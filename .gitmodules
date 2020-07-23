@@ -1,0 +1,3 @@
+[submodule "ubl-subset-schema"]
+	path = ubl-subset-schema
+	url = https://github.com/CraneSoftwrights/ubl-subset-schema

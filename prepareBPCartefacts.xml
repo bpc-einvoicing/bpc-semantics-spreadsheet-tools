@@ -1,0 +1,331 @@
+<project default="make" xmlns:if="ant:if" xmlns:unless="ant:unless">
+
+<taskdef name="grep" classname="ise.antelope.tasks.Find"/>
+
+<taskdef resource="net/sf/antcontrib/antcontrib.properties"/>
+
+<target name="make">
+  <property name="thisdir" value="${user.dir}"/>
+  <property name="utilitydir" value="${thisdir}/utilities/"/>
+  <!--software timestamps-->
+  <property name="ods2obdgc" value="20200412-1320z"/>
+  <property name="cva2sch"   value="20130207-1940z"/>
+  <!--documentation-->
+  <echo message="ods2obdgc=${ods2obdgc}"/>
+  <echo message="cva2sch=${cva2sch}"/>
+  <echo message="dir=${dir}"/>
+  <echo message="utilitydir=${utilitydir}"/>
+  <echo message="thisdir=${thisdir}"/>
+  <echo message="rawdir=${rawdir}"/>
+  <echo message="title=${title}"/>
+  <echo message="UBLversion=${UBLversion}"/>
+  <echo message="version=${version}"/>
+  <echo message="ssGoogle=${ssGoogle}"/>
+  <tstamp>
+    <format property="wgettime" pattern="yyyy-MM-dd HH:mm:ss"/>
+  </tstamp>
+  <echo message="wgettime=${wgettime}"/>
+  
+  <available property="ods2obdgc-exists"
+file="${utilitydir}Crane-ods2obdgc-${ods2obdgc}/Crane-ods2obdgc.xsl"/>
+  <echo unless:set="ods2obdgc-exists" 
+        message="Cannot find ods2obdgc=${ods2obdgc}"/>
+  <available property="cva2sch-exists"
+file="${utilitydir}Crane-cva2sch-${cva2sch}/utility/iso_schematron_assembly.xsl"/>
+  <echo unless:set="cva2sch-exists" 
+        message="Cannot find cva2sch=${cva2sch}"/>
+
+  <!--update the stylesheet documentation-->
+  <uptodate targetfile="readme-ssgc2sch.html"
+            property="readme-ssgc2sch-okay">
+    <srcfiles dir=".">
+      <include name="ssgc2sch.xsl"/>
+    </srcfiles>
+  </uptodate>
+  <antcall target="-make-doc">
+    <param name="okay"   value="readme-ssgc2sch-okay"/>
+    <param name="source" value="ssgc2sch.xsl"/>
+    <param name="target" value="readme-ssgc2sch.html"/>
+  </antcall>
+  <uptodate targetfile="readme-ublgc2bpcgc.html"
+            property="readme-ublgc2bpcgc-okay">
+    <srcfiles dir=".">
+      <include name="ublgc2bpcgc.xsl"/>
+    </srcfiles>
+  </uptodate>
+  <antcall target="-make-doc">
+    <param name="okay"   value="readme-ublgc2bpcgc-okay"/>
+    <param name="source" value="ublgc2bpcgc.xsl"/>
+    <param name="target" value="readme-ublgc2bpcgc.html"/>
+  </antcall>
+  <uptodate targetfile="readme-bpcprocess2sch.html"
+            property="readme-bpcprocess2sch-okay">
+    <srcfiles dir=".">
+      <include name="bpcprocess2sch.xsl"/>
+    </srcfiles>
+  </uptodate>
+  <antcall target="-make-doc">
+    <param name="okay"   value="readme-bpcprocess2sch-okay"/>
+    <param name="source" value="bpcprocess2sch.xsl"/>
+    <param name="target" value="readme-bpcprocess2sch.html"/>
+  </antcall>
+
+  <!--start with the raw files-->
+  <copy preservelastmodified="true" todir="${dir}/${version}-build">
+    <fileset dir="${rawdir}">
+      <include name="**"/>
+    </fileset>
+  </copy>
+  <!--and the configuration files found in the base directory-->
+  <copy preservelastmodified="true" todir="${dir}">
+    <fileset dir=".">
+      <include name="*"/>
+      <exclude name="**/.git/**"/>
+      <exclude name="**/.github/**"/>
+      <exclude name="**/utilities/**"/>
+      <exclude name="**/${dir}/**"/>
+      <exclude name="**/${rawdir}/**"/>
+    </fileset>
+  </copy>
+
+  <!--create GC files for business and signature-->
+  <sequential unless:set="skip-gc">
+    <delete file="${dir}/Semantics-Spreadsheet-${version}.gc"/>
+    
+    <echo file="${dir}/wget-spreadsheet-time.txt" message="${wgettime}"/>
+    <echo file="${dir}/wget-spreadsheet-uri.txt" message="${ssGoogle}"/>
+    <exec executable="wget">
+      <arg value="--no-check-certificate"/>
+      <arg value="-O"/><arg value="${dir}/BPC-Semantics-Spreadsheet-Google.ods"/>
+      <arg value="${ssGoogle}/export?format=ods"/>
+    </exec>
+    <property name="lengthen-uri"
+              location="${dir}/bpcSSmassage.xml"/>
+    <property name="ident-uri"
+              location="${dir}/bpcSSidentification.xml"/>
+    <antcallback target="-ods2gc" return="returnGCss">
+      <param name="okay"   value="gc-sig-okay"/>
+      <param name="source" value="${dir}/BPC-Semantics-Spreadsheet-Google.ods"/>
+      <param name="target" value="${dir}/BPC-Semantics-Spreadsheet-${version}.gc"/>
+      <param name="identification-uri" value="${ident-uri}"/>
+      <param name="lengthen-model-name-uri" value="${lengthen-uri}"/>
+      <param name="returnProperty" value="returnGCss"/>
+    </antcallback>
+    <copy preservelastmodified="true" todir="${dir}/${version}-build/model/"
+          file="${dir}/BPC-Semantics-Spreadsheet-${version}.gc"/>
+    <condition property="gcSScreated">
+      <and>
+        <isset property="returnGCss"/>
+        <equals arg1="${returnGCss}" arg2="0"/>
+      </and>
+    </condition>
+    <echo unless:set="gcSScreated"
+          message="ERROR creating BPC Semantics genericode file"/>
+    <touch unless:set="gcSScreated"
+           message="VALID-SEMANTICS-GC-FILE-NOT-GENERATED"/>
+  </sequential>
+
+  <sequential if:set="gcSScreated">
+    <echo message="Creating subset model genericode..."/>
+    <move preservelastmodified="true"
+          file="${dir}/UBL-Entities-${UBLversion}.gc"
+          todir="${dir}/${version}-build/ubl"/>
+    <java append="true" classname="net.sf.saxon.Transform">
+       <arg value="-xsl:ublgc2bpcgc.xsl"/>
+       <arg value=
+   "-s:${dir}/${version}-build/model/BPC-Semantics-Spreadsheet-${version}.gc"/>
+       <arg value="-o:${dir}/${version}-build/bpc/BPC-Entities-${version}.gc"/>
+       <arg value=
+           "+ublgc=${dir}/${version}-build/ubl/UBL-Entities-${UBLversion}.gc"/>
+    </java>
+
+    <antcall target="-sch4bpc">
+      <param name="process" value="P01"/>
+    </antcall>
+    <antcall target="-sch4bpc">
+      <param name="process" value="P02"/>
+    </antcall>
+    <antcall target="-sch4bpc">
+      <param name="process" value="P03"/>
+    </antcall>
+    <antcall target="-sch4bpc">
+      <param name="process" value="P04"/>
+    </antcall>
+    <antcall target="-sch4bpc">
+      <param name="process" value="P05"/>
+    </antcall>
+  </sequential>
+  
+  <!--package it all up-->
+  <antcall target="-package"/>
+</target>
+
+<!--========================================================================-->
+
+<target name="-ods2gc" unless="${okay}">
+  <delete file="${target}"/>
+  <echo message='Rebuilding "${target}" GC file...'/>
+  <java append="true" classname="net.sf.saxon.Transform">
+    <arg value="-xsl:${utilitydir}Crane-ods2obdgc-${ods2obdgc}/Crane-ods2obdgc.xsl"/>
+    <arg value="-o:${target}"/>
+    <arg value="-it:ods-uri"/>
+    <arg value="ods-uri=${source}"/>
+    <arg value="identification-uri=${identification-uri}"/>
+    <arg value="lengthen-model-name-uri=${lengthen-model-name-uri}"/>
+    <arg value="raw-sheet-long-name=Worksheet Tab"/>
+  </java>
+  <available property="done" file="${target}"/>
+  <sequential unless:set="done">
+    <echo message="Unable to create GC file: ${target}"/>
+    <property unless:set="done" name="${returnProperty}" value="1"/>
+  </sequential>
+  <sequential if:set="done">
+    <property name="jarLocation" location="${utilitydir}xjparse"/>
+    <echo message='Validating "${target}" GC file...'/>
+    <java resultproperty="${returnProperty}" append="true" fork="true"
+          classname="com.nwalsh.parsers.XJParse"
+          classpath="${jarLocation}/xjparse.jar">
+       <arg value="-S"/>
+       <arg value="${utilitydir}genericode/xsd/genericode.xsd"/>
+       <arg value="${target}"/>
+    </java>
+  </sequential>
+</target>
+
+<target name="-sch4bpc" unless="${okay}">
+  <echo message="Creating process-specific Schematron for ${process}"/>
+  <copy file="${dir}/UBL-DocumentConstraints-2.3.pattern.sch"
+        todir="${dir}/${version}-build/bpc/${process}"/>
+  <echo message="Creating subset model genericode..."/>
+  <java append="true" classname="net.sf.saxon.Transform">
+     <arg value="-xsl:ssgc2sch.xsl"/>
+     <arg value=
+   "-s:${dir}/${version}-build/model/BPC-Semantics-Spreadsheet-${version}.gc"/>
+     <arg value="-o:${dir}/${version}-build/bpc/junk.out"/>
+     <arg value="process=${process}"/>
+     <arg value="version=${version}"/>
+  </java>
+  <echo message="Creating shell Schematron script..."/>
+  <java append="true" classname="net.sf.saxon.Transform">
+     <arg value="-xsl:bpcprocess2sch.xsl"/>
+     <arg value="-s:${dir}/BPC-Skeleton-Business-Rules.sch"/>
+     <arg value="-o:${dir}/${version}-build/bpc/junk.out"/>
+     <arg value="process=${process}"/>
+     <arg value="version=${version}"/>
+  </java>
+  
+  <copy file="${dir}/BPC-Skeleton-Business-Rules.sch" tofile=
+   "${dir}/${version}-build/bpc/${process}/BPC-${process}-Business-Rules.sch"/>
+  <antcall target="-sch2xsl">
+    <param name="schin" value=
+   "${dir}/${version}-build/bpc/${process}/BPC-${process}-Business-Rules.sch"/>
+    <param name="xslout" value=
+   "${dir}/${version}-build/bpc/${process}/BPC-${process}-Business-Rules.xsl"/>
+  </antcall>
+</target>
+
+<target name="-sch2xsl" unless="${okay}">
+  <delete file="${xslout}"/>
+  <echo message="Assembling ${xslout}.temp.sch from ${schin}"/>
+  <java append="true" classname="com.icl.saxon.StyleSheet">
+     <arg value="-o"/>
+     <arg value="${xslout}.temp.sch"/>
+     <arg value="${schin}"/>
+     <arg value=
+  "${utilitydir}Crane-cva2sch-${cva2sch}/utility/iso_schematron_assembly.xsl"/>
+  </java>
+  <echo message="Creating ${xslout} from ${xslout}.temp.sch"/>
+  <java append="true" classname="com.icl.saxon.StyleSheet">
+     <arg value="-o"/>
+     <arg value="${xslout}"/>
+     <arg value="${xslout}.temp.sch"/>
+     <arg value=
+"${utilitydir}Crane-cva2sch-${cva2sch}/utility/Message-Schematron-terminator.xsl"/>
+  </java>
+  <delete file="${xslout}.temp.sch"/>
+</target>
+
+<target name="-package">
+  <delete dir="${dir}/bpc-semantics-${version}"/>
+  <mkdir dir="${dir}/bpc-semantics-${version}"/>
+  <copy preservelastmodified="true" todir="${dir}/bpc-semantics-${version}">
+    <fileset dir="${dir}/${version}-build">
+     <include name="**"/>
+    </fileset>
+  </copy>
+  <touch if:set="skip-gc" file="${dir}/bpc-semantics-${version}/SPREADSHEET-GC-FILE-NOT-REGENERATED.txt"/>
+  <mkdir dir="${dir}/bpc-semantics-${version}/archive-only-not-in-final-distribution"/>
+
+  <copy preservelastmodified="true" includeEmptyDirs="false" todir=
+      "${dir}/bpc-semantics-${version}/archive-only-not-in-final-distribution">
+    <fileset dir=".">
+      <include name="**"/>
+      <exclude name="**/.git/**"/>
+      <exclude name="**/.github/**"/>
+      <exclude name="**/utilities/**"/>
+      <exclude name="**/raw/**"/>
+      <exclude name="**/${dir}/**"/>
+    </fileset>
+  </copy>
+  <move preservelastmodified="true" includeEmptyDirs="false" todir=
+      "${dir}/bpc-semantics-${version}/archive-only-not-in-final-distribution">
+    <fileset dir="${dir}">
+      <include name="*"/>
+      <exclude name="artefacts.*.txt"/>
+    </fileset>
+  </move>
+  <!--remove unneeded files to reduce storage burden-->
+  <delete dir="${dir}/${version}-build"/>
+  
+<!--
+    Cannot create zip until console log and error exit files added to archive. 
+    
+  <delete file="${dir}/bpc-semantics-${version}.zip"/>
+
+  <zip destfile="${dir}/bpc-semantics-${version}.zip"
+       basedir="${dir}" includes="bpc-semantics-${version}/**"/>
+  <delete dir="${dir}/bpc-semantics-${version}"/>
+  <unzip src="${dir}/bpc-semantics-${version}.zip" 
+         dest="${dir}" />
+-->
+  <!--documentation-->
+  <echo message="version=${version}"/>
+  
+</target>
+
+<target name="-make-doc" unless="${okay}">
+  <delete file="${target}"/>
+  <echo message='Rebuilding "${target}" documentation...'/>
+  <java failonerror="yes" append="true" classname="com.icl.saxon.StyleSheet">
+    <arg value="-w2"/>
+    <arg value="-a"/>
+    <arg value="-o"/>
+    <arg value="${target}"/>
+    <arg value="${source}"/>
+  </java>
+  <available property="done" file="${target}"/>
+  <fail unless="done" message="Unable to create documentation: ${target}"/>
+  <echo message="Checking..."/>
+  <loadfile property="temp" srcFile="${target}"/>
+  <grep caseinsensitive="true" in="${temp}" 
+        regex="inconsistencies detected" property="${target}-found"/>
+  <antcall target="-error-doc-html"/>
+  <echo message="Clean build of: ${target}"/>
+</target>
+
+<!--this process sets the time stamp of the output to be 2 minutes before
+    the time stamp of the input so that the output will be dected to be
+    needed to be regenerated next time around; without it, the error
+    will be reported once, but not multiple times-->
+<target name="-error-doc-html" if="${target}-found">
+  <tstamp>
+    <format property="then" pattern="yyyyMMdd-HHmmss"/>
+    <format property="earlier" pattern="yyyyMMdd-HHmmss" offset="-2" 
+            unit="minute"/>
+  </tstamp>
+  <touch datetime="${earlier}" pattern="yyyyMMdd-HHmmss" file="${target}"/>
+  <touch datetime="${then}" pattern="yyyyMMdd-HHmmss" file="${source}"/>
+  <fail message="Inconsistencies detected: ${target}"/>
+</target>
+
+</project>

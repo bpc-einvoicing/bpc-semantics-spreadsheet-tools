@@ -122,7 +122,7 @@ file="${utilitydir}Crane-cva2sch-${cva2sch}/utility/iso_schematron_assembly.xsl"
     <echo unless:set="gcSScreated"
           message="ERROR creating BPC Semantics genericode file"/>
     <touch unless:set="gcSScreated"
-           message="VALID-SEMANTICS-GC-FILE-NOT-GENERATED"/>
+           file="VALID-SEMANTICS-GC-FILE-NOT-GENERATED.txt"/>
   </sequential>
 
   <sequential if:set="gcSScreated">
@@ -137,6 +137,7 @@ file="${utilitydir}Crane-cva2sch-${cva2sch}/utility/iso_schematron_assembly.xsl"
        <arg value="-o:${dir}/${version}-build/bpc/BPC-Entities-${version}.gc"/>
        <arg value=
            "+ublgc=${dir}/${version}-build/ubl/UBL-Entities-${UBLversion}.gc"/>
+       <arg value="number-of-processes=${number-of-processes}"/>
     </java>
 
     <antcall target="-sch4bpc">
@@ -246,18 +247,18 @@ file="${utilitydir}Crane-cva2sch-${cva2sch}/utility/iso_schematron_assembly.xsl"
 </target>
 
 <target name="-package">
-  <delete dir="${dir}/bpc-semantics-${version}"/>
-  <mkdir dir="${dir}/bpc-semantics-${version}"/>
-  <copy preservelastmodified="true" todir="${dir}/bpc-semantics-${version}">
+  <delete dir="${dir}/bpc-semantics-tools-${version}"/>
+  <mkdir dir="${dir}/bpc-semantics-tools-${version}"/>
+  <copy preservelastmodified="true" todir="${dir}/bpc-semantics-tools-${version}">
     <fileset dir="${dir}/${version}-build">
      <include name="**"/>
     </fileset>
   </copy>
-  <touch if:set="skip-gc" file="${dir}/bpc-semantics-${version}/SPREADSHEET-GC-FILE-NOT-REGENERATED.txt"/>
-  <mkdir dir="${dir}/bpc-semantics-${version}/archive-only-not-in-final-distribution"/>
+  <touch if:set="skip-gc" file="${dir}/bpc-semantics-tools-${version}/SPREADSHEET-GC-FILE-NOT-REGENERATED.txt"/>
+  <mkdir dir="${dir}/bpc-semantics-tools-${version}/archive-only-not-in-final-distribution"/>
 
   <copy preservelastmodified="true" includeEmptyDirs="false" todir=
-      "${dir}/bpc-semantics-${version}/archive-only-not-in-final-distribution">
+      "${dir}/bpc-semantics-tools-${version}/archive-only-not-in-final-distribution">
     <fileset dir=".">
       <include name="**"/>
       <exclude name="**/.git/**"/>
@@ -268,24 +269,51 @@ file="${utilitydir}Crane-cva2sch-${cva2sch}/utility/iso_schematron_assembly.xsl"
     </fileset>
   </copy>
   <move preservelastmodified="true" includeEmptyDirs="false" todir=
-      "${dir}/bpc-semantics-${version}/archive-only-not-in-final-distribution">
+      "${dir}/bpc-semantics-tools-${version}/archive-only-not-in-final-distribution">
     <fileset dir="${dir}">
       <include name="*"/>
       <exclude name="artefacts.*.txt"/>
     </fileset>
   </move>
+  
+  <!--create distributable ZIP-->
+  <move todir="${dir}">
+    <fileset  dir="${dir}/bpc-semantics-tools-${version}">
+      <include name="**/archive-only-not-in-final-distribution/**"/>
+      <exclude name="**/${version}-build/**"/>
+      <exclude name="**/bpc-semantics-tools-${version}/**"/>
+    </fileset>
+  </move>
+  <zip destfile="${dir}/bpc-semantics.zip"
+       basedir="${dir}/bpc-semantics-tools-${version}">
+    <fileset dir="${dir}/bpc-semantics-tools-${version}">
+      <include name="**"/>
+      <exclude name="bpc-semantics.zip"/>
+    </fileset>
+  </zip>
+  <delete dir="${dir}/bpc-semantics-tools-${version}"/>
+  <mkdir dir="${dir}/bpc-semantics-tools-${version}"/>
+  <move todir="${dir}/bpc-semantics-tools-${version}">
+    <fileset dir="${dir}">
+      <include name="bpc-semantics.zip"/>
+      <include name="**/archive-only-not-in-final-distribution/**"/>
+      <exclude name="**/${version}-build/**"/>
+      <exclude name="**/bpc-semantics-tools-${version}/**"/>
+    </fileset>
+  </move>
+  
   <!--remove unneeded files to reduce storage burden-->
   <delete dir="${dir}/${version}-build"/>
   
 <!--
     Cannot create zip until console log and error exit files added to archive. 
     
-  <delete file="${dir}/bpc-semantics-${version}.zip"/>
+  <delete file="${dir}/bpc-semantics-tools-${version}.zip"/>
 
-  <zip destfile="${dir}/bpc-semantics-${version}.zip"
-       basedir="${dir}" includes="bpc-semantics-${version}/**"/>
-  <delete dir="${dir}/bpc-semantics-${version}"/>
-  <unzip src="${dir}/bpc-semantics-${version}.zip" 
+  <zip destfile="${dir}/bpc-semantics-tools-${version}.zip"
+       basedir="${dir}" includes="bpc-semantics-tools-${version}/**"/>
+  <delete dir="${dir}/bpc-semantics-tools-${version}"/>
+  <unzip src="${dir}/bpc-semantics-tools-${version}.zip" 
          dest="${dir}" />
 -->
   <!--documentation-->

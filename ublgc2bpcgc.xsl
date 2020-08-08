@@ -74,15 +74,6 @@
   </xsl:choose>
 </xsl:variable>
 
-<xs:variable>
-  <para>Harvest the dictionary entry names and cardinalities</para>
-</xs:variable>
-<xsl:variable name="bpc:info">
-  <xsl:for-each-group select="/*" group-starting-with="abc">
-    
-  </xsl:for-each-group>
-</xsl:variable>
-
 <xs:template>
   <para>Getting started</para>
 </xs:template>
@@ -97,7 +88,46 @@
     <xsl:message terminate="yes"
                  select="'UBL model input is not a genericode file'"/>
   </xsl:if>
-  <xsl:apply-templates select="$ublgc/*"/>
+
+  <!--handle each worksheet tab separately-->
+  <xsl:for-each-group select="/*/SimpleCodeList/Row"
+                      group-by="bpc:col(.,'WorksheetTab')">
+    <xsl:variable name="tab" select="current-grouping-key()"/>
+    <xsl:message select="'Processing spreadsheet tab:',$tab"/>
+    <xsl:message select="'Checking spreadsheet integrity...'"/>
+    <xsl:variable name="tabNumber" select="replace($tab,'.*?(\d+).*','$1')"/>
+    
+    <!--check worksheet and harvest the needed information-->
+    <xsl:variable name="bpc:info" as="element(info)*">
+      <xsl:for-each-group select="current-group()"
+                          group-by="for $col in string(bpc:col(.,'BPCID'))
+return if( normalize-space($col)='' )
+       then (:the row doesn't have an ID so it is a vertical span; find first:)
+            preceding-sibling::Row[normalize-space(bpc:col(.,'BPCID'))][1]/
+            bpc:col(.,'BPCID')
+       else (: the row isn't in the middle of a vertical span :) $col">
+
+        <!--worksheet tab consistency checks-->
+        
+        
+        <!--harvest the needed information-->
+        <info bpcid="{bpc:col(.,'BPCID')}">
+          
+        </info>
+      </xsl:for-each-group>
+    </xsl:variable>
+
+    <xsl:analyze-string select="$tab" regex="[a-zA-Z]+">
+      <xsl:matching-substring>
+        <xsl:variable name="doctype" select="."/>
+        <xsl:message select="'Processing :',$doctype"/>
+
+      </xsl:matching-substring>
+    </xsl:analyze-string>
+  </xsl:for-each-group>
+  <xsl:apply-templates select="$ublgc/*">
+    <xsl:with-param name="x"></xsl:with-param>
+  </xsl:apply-templates>
 </xsl:template>
 
 <xs:template>
@@ -138,4 +168,28 @@
   </xsl:copy>
 </xsl:template>
 
+<!--========================================================================-->
+<xs:doc>
+  <xs:title>Genericode access functions</xs:title>
+  <para>
+    Various convenience functions to access information from an
+    instance of genericode
+  </para>
+</xs:doc>
+
+<xs:key>
+  <para>Tracking the rows by the unique dictionary entry name</para>
+</xs:key>
+<xsl:key name="bpc:den" match="Row" use="bpc:col(.,'DictionaryEntryName')"/>
+
+<xs:function>
+  <para>Returning a row's column value by its column name</para>
+  <xs:param name="row"><para>The genericode row</para></xs:param>
+  <xs:param name="column"><para>The genericode column</para></xs:param>
+</xs:function>
+<xsl:function name="bpc:col" as="element(SimpleValue)*">
+  <xsl:param name="row" as="element(Row)"/>
+  <xsl:param name="column" as="xsd:string"/>
+  <xsl:sequence select="$row/Value[@ColumnRef=$column]/SimpleValue"/>
+</xsl:function>
 </xsl:stylesheet>

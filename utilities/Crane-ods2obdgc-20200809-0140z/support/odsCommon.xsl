@@ -10,7 +10,7 @@
   xmlns:table="urn:oasis:names:tc:opendocument:xmlns:table:1.0"
   version="2.0">
 
-<xs:doc info="$Id: odsCommon.xsl,v 1.18 2014/12/27 22:11:50 admin Exp $"
+<xs:doc info="$Id: odsCommon.xsl,v 1.20 2020/08/09 01:36:01 admin Exp $"
         filename="odsCommon.xsl" vocabulary="DocBook">
   <xs:title>Common support ODF access by Crane styesheets</xs:title>
   <para>
@@ -170,6 +170,33 @@ use="substring-after(
 <xsl:function name="o:odsCell2Text" as="xsd:string?">
   <xsl:param name="o:cell" as="element(table:table-cell)?"/>
   <xsl:sequence select="string-join($o:cell/text:p/string(.),'&#xa;')"/>
+</xsl:function>
+
+<xs:function>
+  <para>Get the text value of the table cell current node.</para>
+  <xs:param name="o:row">
+    <para>Which row?</para>
+  </xs:param>
+  <xs:param name="o:column">
+    <para>Which column is needed?</para>
+  </xs:param>
+</xs:function>
+<xsl:function name="o:odsColumn2Text" as="xsd:string?">
+  <xsl:param name="o:row" as="element(table:table-row)"/>
+  <xsl:param name="o:column" as="xsd:decimal"/>
+  <xsl:for-each select="$o:row/(table:table-cell|table:covered-table-cell)
+                               [o:column(.) = $o:column]">
+    <xsl:choose>
+      <xsl:when test="self::table:covered-table-cell">
+        <!--the value is spanned rows from above-->
+        <xsl:sequence select="
+    o:odsColumn2Text($o:row/preceding-sibling::table:table-row[1],$o:column)"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:sequence select="o:odsCell2Text(.)"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:for-each>
 </xsl:function>
 
 <xs:template>
@@ -368,7 +395,7 @@ use="substring-after(
 <xs:function>
   <para>
     Return the sequence of 1-origin column numbers corresponding to the
-    given table-cell or table-column.
+    given table-cell, covered-table-cell, or table-column.
   </para>
   <para>
     This will return a runtime error if the node passed is neither a
@@ -378,18 +405,50 @@ use="substring-after(
     <para>The table cell being counted within it's row.</para>
   </xs:param>
 </xs:function>
-<xsl:function name="o:column" as="xsd:double+">
+<xsl:function name="o:column" as="xsd:integer*">
   <xsl:param name="o:cell" as="node()"/>
-  <xsl:for-each select="$o:cell[self::table:table-cell]">
+  <xsl:for-each select="$o:cell[self::table:covered-table-cell]">
+    <xsl:variable name="o:prevCells"
+                  select="preceding-sibling::table:table-cell"/>
+    <xsl:variable name="o:prevRowSpans"
+                  select="preceding-sibling::table:covered-table-cell
+                                                       [exists(o:column(.))]"/>
     <xsl:variable name="o:start"
-                  select="count(preceding-sibling::table:table-cell) + 1 +
-  sum(preceding-sibling::table:table-cell/@table:number-columns-spanned) +
-  sum(preceding-sibling::table:table-cell/@table:number-columns-repeated) -
-  count(preceding-sibling::table:table-cell[@table:number-columns-spanned]) -
-  count(preceding-sibling::table:table-cell[@table:number-columns-repeated])"/>
-    <xsl:sequence select="xsd:integer($o:start) to xsd:integer( $o:start - 1 + 
-     ( if( @table:number-columns-repeated ) then @table:number-columns-repeated
-                                            else 1 ) )"/>
+                  select="1
+                    + count($o:prevCells)
+                    + sum(  $o:prevCells/@table:number-columns-repeated )
+                    - count($o:prevCells[@table:number-columns-repeated])
+                    + count($o:prevRowSpans)
+                    + sum(  $o:prevRowSpans/@table:number-columns-repeated )
+                    - count($o:prevRowSpans[@table:number-columns-repeated])"/>
+    <xsl:choose>
+      <xsl:when test="$o:prevCells[last()]/o:column(.) = $o:start">
+        <xsl:sequence select="()"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:sequence select="xsd:integer($o:start) to 
+                              xsd:integer($o:start - 1  +
+                                      (@table:number-columns-repeated,1)[1])"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:for-each>
+  <xsl:for-each select="$o:cell[self::table:table-cell]">
+    <xsl:variable name="o:prevCells"
+                  select="preceding-sibling::table:table-cell"/>
+    <xsl:variable name="o:prevRowSpans"
+                  select="preceding-sibling::table:covered-table-cell
+                                                       [exists(o:column(.))]"/>
+    <xsl:variable name="o:start"
+                  select="count($o:prevCells) + 1
+      + sum($o:prevCells/@table:number-columns-spanned)
+      + sum($o:prevCells/@table:number-columns-repeated)
+      + sum($o:prevRowSpans/(xsd:integer(@table:number-columns-repeated),1)[1])
+      - count($o:prevCells[@table:number-columns-spanned])
+      - count($o:prevCells[@table:number-columns-repeated])"/>
+    <xsl:sequence select="xsd:integer($o:start) to 
+                          xsd:integer( $o:start - 1  +
+                                  (@table:number-columns-spanned,1)[1] +
+                                  (@table:number-columns-repeated,1)[1] - 1)"/>
   </xsl:for-each>
   <xsl:for-each select="$o:cell[self::table:table-column]">
     <xsl:variable name="start"

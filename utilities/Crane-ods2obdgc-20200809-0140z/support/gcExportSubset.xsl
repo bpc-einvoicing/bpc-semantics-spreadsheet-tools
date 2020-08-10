@@ -13,7 +13,7 @@
   version="2.0">
 <!-- xmlns:f="urn:X-Crane:stylesheets:obfuscation" -->
 
-<xs:doc info="$Id: gcExportSubset.xsl,v 1.18 2020/04/12 13:11:15 admin Exp $"
+<xs:doc info="$Id: gcExportSubset.xsl,v 1.20 2020/08/08 17:55:21 admin Exp $"
         filename="gcExportSubset.xsl" vocabulary="DocBook">
   <xs:title>Open Document Spreadsheet to Genericode Subset Transformation</xs:title>
   <para>
@@ -135,15 +135,18 @@ PURPOSE.
   <xsl:param name="c:tables" as="element(table:table)*"/>
   <xsl:for-each select="$c:tables">
     <xsl:variable name="c:modelName" select="c:lengthen(@table:name)"/>
+    <xsl:variable name="c:columnCount" as="xsd:integer"
+                  select="o:column((.//table:table-row)[1]/
+                                table:table-cell[normalize-space()][last()])"/>
     <xsl:variable name="c:columnHeads" as="element()*">
       <xsl:for-each select="(.//table:table-row)[1]">
         <xsl:variable name="c:thisRow" select="."/>
         <xsl:for-each select="1 to 
                   xsd:integer( o:column(table:table-cell[last()])[last()] )">
           <guess>
-            <xsl:value-of select="replace(
-          $c:thisRow/table:table-cell[o:column(.)=current()]/o:odsCell2Text(.),
-                                          '\W+','')"/>
+            <xsl:value-of select="normalize-space(string-join(
+                            $c:thisRow/table:table-cell[o:column(.)=current()]/
+                            replace(o:odsCell2Text(.),'\W+',''),''))"/>
           </guess>
         </xsl:for-each>
       </xsl:for-each>
@@ -178,18 +181,18 @@ PURPOSE.
           </Value>
         </xsl:if>
         <xsl:variable name="c:thisRow" select="."/>
-        <xsl:for-each select="1 to 
-                  xsd:integer( o:column(table:table-cell[last()])[last()] )">
+        <xsl:for-each select="1 to $c:columnCount">
           <xsl:variable name="c:thisColumn" select="."/>
-          <xsl:for-each select="$c:thisRow/table:table-cell
-                                                 [o:column(.)=$c:thisColumn]/
-                                o:odsCell2Text(.)[normalize-space(.)]">
-            <Value ColumnRef="{$c:columnHeads[$c:thisColumn]}">
-              <SimpleValue>
-                <xsl:value-of select="."/>
-              </SimpleValue>
-            </Value>
-          </xsl:for-each>
+          <xsl:if test="normalize-space($c:columnHeads[$c:thisColumn])">
+            <xsl:for-each select="o:odsColumn2Text($c:thisRow,$c:thisColumn)
+                                  [normalize-space(.)]">
+              <Value ColumnRef="{$c:columnHeads[$c:thisColumn]}">
+                <SimpleValue>
+                  <xsl:value-of select="."/>
+                </SimpleValue>
+              </Value>
+            </xsl:for-each>
+          </xsl:if>
         </xsl:for-each>
       </Row>
     </xsl:for-each>

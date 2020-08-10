@@ -8,7 +8,7 @@
   <property name="thisdir" value="${user.dir}"/>
   <property name="utilitydir" value="${thisdir}/utilities/"/>
   <!--software timestamps-->
-  <property name="ods2obdgc" value="20200412-1320z"/>
+  <property name="ods2obdgc" value="20200809-0140z"/>
   <property name="cva2sch"   value="20130207-1940z"/>
   <!--documentation-->
   <echo message="ods2obdgc=${ods2obdgc}"/>
@@ -47,16 +47,16 @@ file="${utilitydir}Crane-cva2sch-${cva2sch}/utility/iso_schematron_assembly.xsl"
     <param name="source" value="ssgc2sch.xsl"/>
     <param name="target" value="readme-ssgc2sch.html"/>
   </antcall>
-  <uptodate targetfile="readme-ublgc2bpcgc.html"
-            property="readme-ublgc2bpcgc-okay">
+  <uptodate targetfile="readme-gc2bpcxml.html"
+            property="readme-gc2bpcxml-okay">
     <srcfiles dir=".">
-      <include name="ublgc2bpcgc.xsl"/>
+      <include name="gc2bpcxml.xsl"/>
     </srcfiles>
   </uptodate>
   <antcall target="-make-doc">
-    <param name="okay"   value="readme-ublgc2bpcgc-okay"/>
-    <param name="source" value="ublgc2bpcgc.xsl"/>
-    <param name="target" value="readme-ublgc2bpcgc.html"/>
+    <param name="okay"   value="readme-gc2bpcxml-okay"/>
+    <param name="source" value="gc2bpcxml.xsl"/>
+    <param name="target" value="readme-gc2bpcxml.html"/>
   </antcall>
   <uptodate targetfile="readme-bpcprocess2sch.html"
             property="readme-bpcprocess2sch-okay">
@@ -122,7 +122,7 @@ file="${utilitydir}Crane-cva2sch-${cva2sch}/utility/iso_schematron_assembly.xsl"
     <echo unless:set="gcSScreated"
           message="ERROR creating BPC Semantics genericode file"/>
     <touch unless:set="gcSScreated"
-           file="VALID-SEMANTICS-GC-FILE-NOT-GENERATED.txt"/>
+     file="${dir}/${version}-build/VALID-SEMANTICS-GC-FILE-NOT-GENERATED.txt"/>
   </sequential>
 
   <sequential if:set="gcSScreated">
@@ -130,15 +130,26 @@ file="${utilitydir}Crane-cva2sch-${cva2sch}/utility/iso_schematron_assembly.xsl"
     <move preservelastmodified="true"
           file="${dir}/UBL-Entities-${UBLversion}.gc"
           todir="${dir}/${version}-build/ubl"/>
-    <java append="true" classname="net.sf.saxon.Transform">
-       <arg value="-xsl:ublgc2bpcgc.xsl"/>
+    <java resultproperty="returnBPCxml" append="true"
+          classname="net.sf.saxon.Transform">
+       <arg value="-xsl:gc2bpcxml.xsl"/>
        <arg value=
    "-s:${dir}/${version}-build/model/BPC-Semantics-Spreadsheet-${version}.gc"/>
-       <arg value="-o:${dir}/${version}-build/bpc/BPC-Entities-${version}.gc"/>
+       <arg value=
+  "-o:${dir}/${version}-build/model/BPC-Semantics-Spreadsheet-${version}.xml"/>
        <arg value=
            "+ublgc=${dir}/${version}-build/ubl/UBL-Entities-${UBLversion}.gc"/>
-       <arg value="number-of-processes=${number-of-processes}"/>
     </java>
+    <condition property="bpcXMLcreated">
+      <and>
+        <isset property="returnBPCxml"/>
+        <equals arg1="${returnBPCxml}" arg2="0"/>
+      </and>
+    </condition>
+    <echo unless:set="bpcXMLcreated"
+          message="ERROR creating BPC Semantics XML file"/>
+    <touch unless:set="bpcXMLcreated"
+     file="${dir}/${version}-build/VALID-SEMANTICS-XML-FILE-NOT-GENERATED.txt"/>
 
     <antcall target="-sch4bpc">
       <param name="process" value="P01"/>

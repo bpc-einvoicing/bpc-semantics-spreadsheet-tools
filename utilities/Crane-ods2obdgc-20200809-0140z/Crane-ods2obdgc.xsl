@@ -13,7 +13,7 @@
   version="2.0"> 
 <!-- xmlns:f="urn:X-Crane:stylesheets:obfuscation" -->
 
-<xs:doc info="$Id: Crane-ods2obdgc.xsl,v 1.7 2020/04/12 13:20:00 admin Exp $"
+<xs:doc info="$Id: Crane-ods2obdgc.xsl,v 1.8 2020/08/08 16:53:12 admin Exp $"
         filename="Crane-ods2odsgc.xsl" vocabulary="DocBook">
   <xs:title>Open Document Spreadsheet to Business Document ODS Genericode</xs:title>
   <para>
@@ -231,8 +231,8 @@ PURPOSE.
                 select="$c:roots/*/office:body/office:spreadsheet/table:table
                            [matches(@table:name,$included-sheet-name-regex)]"/>
   <xsl:variable name="c:columnMetadata" as="element(Column)*">
-    <xsl:for-each-group group-by="."
-              select="($c:tables//table:table-row)[1]/table:table-cell/text:p">
+    <xsl:for-each-group group-by="normalize-space(string-join(text:p,' '))"
+ select="($c:tables//table:table-row)[1]/table:table-cell[normalize-space(.)]">
       <xsl:variable name="c:longName" 
                     select="normalize-space(current-grouping-key())"/>
       <xsl:variable name="c:shortName"

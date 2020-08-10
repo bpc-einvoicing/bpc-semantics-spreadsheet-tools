@@ -140,10 +140,15 @@ file="${utilitydir}Crane-cva2sch-${cva2sch}/utility/iso_schematron_assembly.xsl"
        <arg value=
            "+ublgc=${dir}/${version}-build/ubl/UBL-Entities-${UBLversion}.gc"/>
     </java>
+    <available property="bpcXMLerror"
+file="${dir}/${version}-build/model/BPC-Semantics-Spreadsheet-${version}.gc.errors.txt"/>
     <condition property="bpcXMLcreated">
       <and>
         <isset property="returnBPCxml"/>
         <equals arg1="${returnBPCxml}" arg2="0"/>
+        <not>
+          <isset property="bpcXMLerror"/>
+        </not>
       </and>
     </condition>
     <echo unless:set="bpcXMLcreated"

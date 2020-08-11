@@ -27,6 +27,11 @@
 </xs:output>
 <xsl:output indent="yes"/>
 
+<xs:strip-space>
+  <para>It helps not to have white-space characters for comparisons</para>
+</xs:strip-space>
+<xsl:strip-space elements="ublcardinalities"/>
+
 <!--========================================================================-->
 <xs:doc>
   <xs:title>Invocation parameters and input file</xs:title>
@@ -83,88 +88,73 @@
           </xsl:analyze-string>
         </doctypes>
         <semantics>
-        <xsl:for-each-group select="current-group()"
-                            group-by="bpc:col(.,'BPCID')">
+        <xsl:for-each-group group-by="bpc:col(.,'BPCID')"
+                 select="current-group()[bpc:col(.,'UBLDictionaryEntryName')]">
           <semantic bpcID="{current-grouping-key()}"
                     worksheetRows="{current-group()/
          (2 + count(preceding-sibling::Row[bpc:col(.,'WorksheetTab')=$tab]))}">
-            <processes>
-              <xsl:for-each select="current-group()">
-                <process>
-                  <xsl:for-each select="bpc:col(.,'Process')">
-                    <xsl:attribute name="processId" select="."/>
-                  </xsl:for-each>
+            <xsl:for-each select="current-group()">
+              <process>
+                <xsl:for-each select="bpc:col(.,'Process')">
+                  <xsl:attribute name="processId" select="."/>
+                </xsl:for-each>
+                <modelcardinalities>
                   <xsl:analyze-string select="bpc:col(.,'ModelCardinality')"
                                       regex="\s*,\s*">
                     <xsl:non-matching-substring>
-                      <model>
+                      <modelcardinality>
                         <xsl:value-of select="normalize-space(.)"/>
-                      </model>
+                      </modelcardinality>
                     </xsl:non-matching-substring>
                   </xsl:analyze-string>
-                  <data>
-                    <context>
-                      <xsl:value-of select="
-                                    normalize-space(bpc:col(.,'UBLContext'))"/>
-                    </context>
-                    <xsl:for-each select="bpc:col(.,'SchematronAssertion')">
-                      <assert>
-                        <xsl:value-of select="normalize-space(.)"/>
-                      </assert>
-                    </xsl:for-each>
-                    <xsl:for-each select="bpc:col(.,'ErrorMessage')">
-                      <message>
-                        <xsl:value-of select="normalize-space(.)"/>
-                      </message>
-                    </xsl:for-each>
-                  </data>
-                </process>
-              </xsl:for-each>
-            </processes>
-            <xsl:for-each-group select="current-group()" 
-                                group-by="bpc:col(.,'UBLCardinality')">
-              <ublcardinalities>
-                  <xsl:analyze-string select="current-grouping-key()"
-                                      regex="\s*,\s*">
-                    <xsl:non-matching-substring>
-                      <ublcardinality>
-                        <xsl:value-of select="normalize-space(.)"/>
-                      </ublcardinality>
-                    </xsl:non-matching-substring>
-                  </xsl:analyze-string>
-              </ublcardinalities>
-            </xsl:for-each-group>
-            <xsl:for-each-group select="current-group()" 
-                                group-by="bpc:col(.,'UBLDictionaryEntryName')">
-              <ubldens>
-                  <xsl:analyze-string select="current-grouping-key()"
-                                      regex="\s*,\s*">
+                </modelcardinalities>
+                <data>
+                  <contextPrototype>
+                    <xsl:value-of select="
+                                  normalize-space(bpc:col(.,'UBLContext'))"/>
+                  </contextPrototype>
+                  <xsl:for-each select="bpc:col(.,'SchematronAssertion')">
+                    <assertionPrototype>
+                      <xsl:value-of select="normalize-space(.)"/>
+                    </assertionPrototype>
+                  </xsl:for-each>
+                  <xsl:for-each select="bpc:col(.,'ErrorMessage')">
+                    <message>
+                      <xsl:value-of select="normalize-space(.)"/>
+                    </message>
+                  </xsl:for-each>
+                </data>
+                <ublcardinalities>
+                    <xsl:analyze-string select="bpc:col(.,'UBLCardinality')"
+                                        regex="\s*,\s*">
+                      <xsl:non-matching-substring>
+                        <ublcardinality>
+                          <xsl:value-of select="normalize-space(.)"/>
+                        </ublcardinality>
+                      </xsl:non-matching-substring>
+                    </xsl:analyze-string>
+                </ublcardinalities>
+                <ubldens>
+                  <xsl:analyze-string regex="\s*,\s*"
+                                  select="bpc:col(.,'UBLDictionaryEntryName')">
                     <xsl:non-matching-substring>
                       <ublden>
                         <xsl:value-of select="normalize-space(.)"/>
                       </ublden>
                     </xsl:non-matching-substring>
                   </xsl:analyze-string>
-              </ubldens>
-            </xsl:for-each-group>
-            <xsl:for-each-group select="current-group()" 
-                                group-by="bpc:col(.,'BPCTerm')">
-              <bpcTerm>
-               <xsl:value-of select="normalize-space(current-grouping-key())"/>
-              </bpcTerm>
-            </xsl:for-each-group>
-            <xsl:for-each-group select="current-group()" 
-                                group-by="bpc:col(.,'Description')">
-              <description>
-               <xsl:value-of select="normalize-space(current-grouping-key())"/>
-              </description>
-            </xsl:for-each-group>
-            <xsl:for-each-group select="current-group()" 
-                                group-by="bpc:col(.,'DataType')">
-              <dataType>
-               <xsl:value-of select="normalize-space(current-grouping-key())"/>
-              </dataType>
-            </xsl:for-each-group>
+                </ubldens>
+                <bpcTerm>
+                 <xsl:value-of select="bpc:col(.,'BPCTerm')"/>
+                </bpcTerm>
+                <description>
+             <xsl:value-of select="normalize-space(bpc:col(.,'Description'))"/>
+                </description>
+                <dataType>
+                <xsl:value-of select="normalize-space(bpc:col(.,'DataType'))"/>
+                </dataType>
+              </process>
+            </xsl:for-each>
           </semantic>
         </xsl:for-each-group>
         </semantics>
@@ -181,10 +171,12 @@
       <xsl:variable name="doctypes" as="xsd:string*"
                     select="doctypes/doctype"/>
       <analysis banner="{@tab}">
-        <xsl:for-each select="semantics/semantic">
-          <xsl:variable name="worksheetRows" select="@worksheetRows"/>
-          <xsl:variable name="thisSemantic">
-            <!--check that the UBL Dictionary Entry Names exist-->
+        <xsl:for-each select="semantics/semantic/process">
+          <xsl:variable name="worksheetRows" select="../@worksheetRows"/>
+          <xsl:variable name="bpcID" select="../@bpcID"/>
+          <xsl:variable name="thisProcess" select="."/>
+          <xsl:variable name="semanticErrors">
+            <!--check that the stated Dictionary Entry Names exist in UBL-->
             <xsl:for-each select="ubldens/ublden">
               <xsl:variable name="checks" as="xsd:string*">
                 <xsl:choose>
@@ -217,16 +209,83 @@
             
             <!--check that the model cardinalities and UBL cardinalities
                 match the UBL Dictionary Entry Names that are in play-->
-            <xsl:if test="count(ublcardinalities/ublcardinality) !=
-                          count(ubldens/ublden)">
+            <xsl:for-each select="if( some $den in ubldens/ublden
+                                      satisfies contains( $den, '#' ) )
+                                  then doctypes/doctype else 'xxxxx'">
+              <xsl:variable name="doctypeCompressed"
+                            select="replace(.,'\s+','')"/>
+              <xsl:for-each select="$thisProcess">
+                <!--build the expected cardinalities from the UBL model-->
+                <xsl:variable name="ublDefinedCardinalities" as="element()">
+                  <ublcardinalities>
+                    <xsl:for-each select="ubldens/ublden">
+                      <xsl:for-each select="
+                       key('bpc:den',replace(.,'#',$doctypeCompressed),$ublgc)/
+                       bpc:col(.,'Cardinality')/replace(.,'^1$','1..1')">
+                        <ublcardinality>
+                          <xsl:value-of select="."/>
+                        </ublcardinality>
+                      </xsl:for-each>
+                      <xsl:if test="starts-with(.,'@')">
+                        <ublcardinality>
+                          <xsl:value-of select="
+                           $bpc:supplemental[.=substring(current(),2)]/@card"/>
+                        </ublcardinality>
+                      </xsl:if>
+                    </xsl:for-each>
+                  </ublcardinalities>
+                </xsl:variable>
+                <!--compare the stated cardinalities to actual cardinalities-->
+                <xsl:variable name="cardinalityTests">
+                  <xsl:choose>
+                    <xsl:when test="count(ublcardinalities/ublcardinality) !=
+                                    count(ubldens/ublden)">
 <xsl:text>Mismatched number of UBL cardinalities to dictionary entry names.&#xa;</xsl:text>
-            </xsl:if>
+                   </xsl:when>
+                   <xsl:when test="not( deep-equal( $ublDefinedCardinalities,
+                                                    ublcardinalities ) )">
+              <xsl:text>Mismatched record of UBL cardinalities.&#xa;</xsl:text>
+                   </xsl:when>
+                    <xsl:when test="count(ublcardinalities/ublcardinality) !=
+                                    count(ubldens/ublden)">
+<xsl:text>Mismatched number of UBL cardinalities to dictionary entry names.&#xa;</xsl:text>
+                   </xsl:when>
+                    <xsl:when test="count(ublcardinalities/ublcardinality) !=
+                                   count(modelcardinalities/modelcardinality)">
+<xsl:text>Mismatched number of UBL cardinalities to BPC model cardinalities.&#xa;</xsl:text>
+                   </xsl:when>
+                   <xsl:otherwise>
+                     <xsl:for-each select="1 to
+                                       count(ublcardinalities/ublcardinality)">
+                       <xsl:if test="not(bpc:checkConstraints(
+    $thisProcess/ublcardinalities/ublcardinality[position()=current()],
+    $thisProcess/modelcardinalities/modelcardinality[position()=current()]))">
+                         <xsl:value-of select="concat(
+        'The model cannot constrain UBL''s cardinality of ',
+        $thisProcess/ublcardinalities/ublcardinality[position()=current()],
+        ' using ',
+        $thisProcess/modelcardinalities/modelcardinality[position()=current()],
+        '.&#xa;')"/>
+                       </xsl:if>
+                     </xsl:for-each>
+                   </xsl:otherwise>
+                 </xsl:choose>
+               </xsl:variable>
+               <xsl:if test="normalize-space($cardinalityTests)">
+                 <xsl:copy-of select="$cardinalityTests"/>
+   <xsl:text>Expected cardinalities: </xsl:text>
+   <xsl:value-of select="$ublDefinedCardinalities/ublcardinality"
+                 separator=", "/>
+   <xsl:text>&#xa;</xsl:text>
+               </xsl:if>
+             </xsl:for-each>
+            </xsl:for-each>
           </xsl:variable>
-          <xsl:if test="normalize-space($thisSemantic)">
-            <xsl:value-of select="concat(@bpcID,' worksheet row',
+          <xsl:if test="normalize-space($semanticErrors)">
+            <xsl:value-of select="concat($bpcID,' worksheet row',
                                   if( contains($worksheetRows,' ') )
                                   then 's ' else ' ', $worksheetRows,'&#xa;',
-                                  $thisSemantic )"/>
+                                  $semanticErrors )"/>
           </xsl:if>
         </xsl:for-each>
       </analysis>
@@ -268,43 +327,75 @@
   <xsl:sequence select="$row/Value[@ColumnRef=$column]/SimpleValue"/>
 </xsl:function>
 
+<xs:function>
+  <para>Returning the allowed constraint of a constraint</para>
+  <xs:param name="old"><para>The old constraint</para></xs:param>
+  <xs:param name="new"><para>The new constraint</para></xs:param>
+</xs:function>
+<xsl:function name="bpc:checkConstraints" as="xsd:boolean">
+  <xsl:param name="old" as="xsd:string"/>
+  <xsl:param name="new" as="xsd:string"/>
+  <xsl:for-each select="$old">
+    <xsl:choose>
+      <xsl:when test=". = $new">
+        <xsl:sequence select="true()"/>
+      </xsl:when>
+      <xsl:when test=". = '1..1'">
+        <xsl:sequence select="false()"/>
+      </xsl:when>
+      <xsl:when test=". = '0..1'">
+        <xsl:sequence select="$new = ('1..1')"/>
+      </xsl:when>
+      <xsl:when test=". = '1..n'">
+        <xsl:sequence select="$new = ('1..1')"/>
+      </xsl:when>
+      <xsl:when test=". = '0..n'">
+        <xsl:sequence select="$new = ('0..1','1..1','1..n')"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:message terminate="yes" 
+                     select="'Internal error constraint checking:',$old,$new"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:for-each>
+</xsl:function>
+
 <xs:variable>
   <para>List of all of the supplemental components</para>
 </xs:variable>
-<xsl:variable name="bpc:supplemental" as="xsd:string*"
-              select="
-'AmountCurrencyIdentifier',
-'AmountCurrencyCodeListVersionIdentifier',
-'BinaryObjectMimeCode',
-'BinaryObjectCharacterSetCode',
-'BinaryObjectEncodingCode',
-'BinaryObjectFilenameText',
-'BinaryObjectFormatText',
-'BinaryObjectUniformResourceIdentifier',
-'LanguageIdentifier',
-'CodeListAgencyIdentifier',
-'CodeListAgencyNameText',
-'CodeListIdentifier',
-'CodeListNameText',
-'CodeListSchemeUniformResourceIdentifier',
-'CodeListUniformResourceIdentifier',
-'CodeListVersionIdentifier',
-'CodeNameText',
-'IdentificationSchemeAgencyIdentifier',
-'IdentificationSchemeAgencyNameText',
-'IdentificationSchemeDataUniformResourceIdentifier',
-'IdentificationSchemeIdentifier',
-'IdentificationSchemeNameText',
-'IdentificationSchemeUniformResourceIdentifier',
-'IdentificationSchemeVersionIdentifier',
-'MeasureUnitCode',
-'MeasureUnitCodeListVersionIdentifier',
-'NumericFormatText',
-'QuantityUnitCode',
-'QuantityUnitCodeListAgencyIdentifier',
-'QuantityUnitCodeListAgencyNameText',
-'QuantityUnitCodeListIdentifier',
-'LanguageLocaleIdentifier'
-"/>
+<xsl:variable name="bpc:supplemental" as="element(supp)+">
+<supp card="1..1">AmountCurrencyIdentifier</supp>
+<supp card="0..1">AmountCurrencyCodeListVersionIdentifier</supp>
+<supp card="1..1">BinaryObjectMimeCode</supp>
+<supp card="0..1">BinaryObjectCharacterSetCode</supp>
+<supp card="0..1">BinaryObjectEncodingCode</supp>
+<supp card="0..1">BinaryObjectFilenameText</supp>
+<supp card="0..1">BinaryObjectFormatText</supp>
+<supp card="0..1">BinaryObjectUniformResourceIdentifier</supp>
+<supp card="0..1">LanguageIdentifier</supp>
+<supp card="0..1">CodeListAgencyIdentifier</supp>
+<supp card="0..1">CodeListAgencyNameText</supp>
+<supp card="0..1">CodeListIdentifier</supp>
+<supp card="0..1">CodeListNameText</supp>
+<supp card="0..1">CodeListSchemeUniformResourceIdentifier</supp>
+<supp card="0..1">CodeListUniformResourceIdentifier</supp>
+<supp card="0..1">CodeListVersionIdentifier</supp>
+<supp card="0..1">CodeNameText</supp>
+<supp card="0..1">IdentificationSchemeAgencyIdentifier</supp>
+<supp card="0..1">IdentificationSchemeAgencyNameText</supp>
+<supp card="0..1">IdentificationSchemeDataUniformResourceIdentifier</supp>
+<supp card="0..1">IdentificationSchemeIdentifier</supp>
+<supp card="0..1">IdentificationSchemeNameText</supp>
+<supp card="0..1">IdentificationSchemeUniformResourceIdentifier</supp>
+<supp card="0..1">IdentificationSchemeVersionIdentifier</supp>
+<supp card="1..1">MeasureUnitCode</supp>
+<supp card="0..1">MeasureUnitCodeListVersionIdentifier</supp>
+<supp card="0..1">NumericFormatText</supp>
+<supp card="0..1">QuantityUnitCode</supp>
+<supp card="0..1">QuantityUnitCodeListAgencyIdentifier</supp>
+<supp card="0..1">QuantityUnitCodeListAgencyNameText</supp>
+<supp card="0..1">QuantityUnitCodeListIdentifier</supp>
+<supp card="0..1">LanguageLocaleIdentifier</supp>
+</xsl:variable>
   
 </xsl:stylesheet>

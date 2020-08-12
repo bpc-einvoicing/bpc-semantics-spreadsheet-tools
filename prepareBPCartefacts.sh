@@ -8,8 +8,9 @@ export platform=$2
 export rawdir=raw
 export targetdir="$1"
 export title="BPC Semantics Group"
+export BPCversion=0.1
 export UBLversion=2.3-csprd02
-export version=$3
+export dateTime=$3
 export numberOfProcesses=5
 
 export ssGoogle=https://docs.google.com/spreadsheets/d/1qAz_aAbJ99ikA4zUk97FyjyDLcsQ3B3vqjEK-b3C_h8

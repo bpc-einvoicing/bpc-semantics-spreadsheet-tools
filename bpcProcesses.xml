@@ -1,0 +1,35 @@
+<!--
+  Summary of processes governing the generation of artifacts.
+-->
+<bpcProcesses>
+  <bpcProcess bpcID="P01" worksheetNumber="1">
+    <title>Invoice with reference to a blanket or standard PO based on a contract</title>
+    <doctypes>
+      <doctype>Invoice</doctype>
+    </doctypes>
+  </bpcProcess>
+  <bpcProcess bpcID="P02" worksheetNumber="1">
+    <title>Invoice with reference to a blanket or standard PO without a contract</title>
+    <doctypes>
+      <doctype>Invoice</doctype>
+    </doctypes>
+  </bpcProcess>
+  <bpcProcess bpcID="P03" worksheetNumber="1">
+    <title>Invoice without reference to contract or purchase order</title>
+    <doctypes>
+      <doctype>Invoice</doctype>
+    </doctypes>
+  </bpcProcess>
+  <bpcProcess bpcID="P04" worksheetNumber="1">
+    <title>Credit Memo Pre-payment</title>
+    <doctypes>
+      <doctype>Credit Note</doctype>
+    </doctypes>
+  </bpcProcess>
+  <bpcProcess bpcID="P05" worksheetNumber="1">
+    <title>Credit Memo Post-payment</title>
+    <doctypes>
+      <doctype>Credit Note</doctype>
+    </doctypes>
+  </bpcProcess>
+</bpcProcesses>

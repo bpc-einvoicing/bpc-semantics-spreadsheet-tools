@@ -3,8 +3,9 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:xs="http://www.CraneSoftwrights.com/ns/xslstyle"
                 xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-                xmlns:c="urn:X-Crane"
-                exclude-result-prefixes="xs xsd c"
+                xmlns:bpc="urn:X-BPC"
+                xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+                exclude-result-prefixes="xs xsd bpc"
                 version="2.0">
 
 <xs:doc filename="bpcprcess2sch.xsl" vocabulary="DocBook">
@@ -34,60 +35,159 @@
 
 <xs:param ignore-ns='yes'>
   <para>
-    The process number in the format "P##".
+    Schema skeleton to be fleshed out.
   </para>
 </xs:param>
-<xsl:param name="process" required="yes" as="xsd:string"/>
+<xsl:param name="schemaSkeleton" required="yes"
+           as="document-node(element(sch:schema))"/>
+
+<xs:param ignore-ns='yes'>
+  <para>
+    Schema skeleton to be fleshed out.
+  </para>
+</xs:param>
+<xsl:param name="patternSkeleton" required="yes"
+           as="document-node(element(sch:pattern))"/>
+
+<xs:param ignore-ns='yes'>
+  <para>
+    The location in which to create the dynamic Ant script.
+  </para>
+</xs:param>
+<xsl:param name="antDynamicScriptURI" required="yes" as="xsd:string"/>
 
 <xs:param ignore-ns='yes'>
   <para>
     The version number not including a preceding "v".
   </para>
 </xs:param>
-<xsl:param name="version" required="yes" as="xsd:string"/>
+<xsl:param name="BPCversion" required="yes" as="xsd:string"/>
+
+<xs:param ignore-ns='yes'>
+  <para>
+    The date and time stamp to distinguish releases of a particular version.
+  </para>
+</xs:param>
+<xsl:param name="dateTime" required="yes" as="xsd:string"/>
+
+<xs:output>
+  <para>For the convenience of human readers, the outputs are indented</para>
+</xs:output>
+<xsl:output indent="yes"/>
 
 <!--========================================================================-->
 <xs:doc>
-  <xs:title></xs:title>
+  <xs:title>Main logic</xs:title>
 </xs:doc>
 
 <xs:template>
   <para>Getting started</para>
 </xs:template>
 <xsl:template match="/">
- <xsl:result-document href="{$process}/BPC-{$process}-Business-Rules.sch">
-  <xsl:apply-templates/>
- </xsl:result-document>
+  <!--first create the Schematron schema and pattern files for each process-->
+  <xsl:for-each select="/*/bpcProcess">
+    <xsl:variable name="procID" select="@bpcID"/>
+    <xsl:result-document
+              href="{$procID}/BPC-{$procID}-v{$BPCversion}-Business-Rules.sch">
+      <xsl:apply-templates select="$schemaSkeleton/*">
+        <xsl:with-param name="process" select="." tunnel="yes"/>
+      </xsl:apply-templates>
+    </xsl:result-document>
+    <xsl:result-document
+          href="{$procID}/BPC-{$procID}-v{$BPCversion}-Assertions.pattern.sch">
+      <xsl:apply-templates select="$patternSkeleton/*">
+        <xsl:with-param name="process" select="." tunnel="yes"/>
+      </xsl:apply-templates>
+    </xsl:result-document>
+  </xsl:for-each>
+  
+  <!--next create the Ant script that will process each of the Schematron
+      schemas to create XSLT stylesheets-->
+  <xsl:result-document href="{$antDynamicScriptURI}" xmlns="">
+    <project default="make" xmlns:if="ant:if" xmlns:unless="ant:unless">
+    
+    <taskdef name="grep" classname="ise.antelope.tasks.Find"/>
+    
+    <taskdef resource="net/sf/antcontrib/antcontrib.properties"/>
+    
+    <target name="make">
+      <echo message="Invoking ${{antStaticScriptURI}} for each process"/>
+      <xsl:for-each select="/*/bpcProcess">
+        <ant antfile="${{antStaticScriptURI}}" target="-sch4bpc">
+          <property name="process" value="{@bpcID}"/>
+          <property name="version" value="{$BPCversion}"/>
+        </ant>
+      </xsl:for-each>
+    </target>
+      
+    </project>
+  </xsl:result-document>
 </xsl:template>
-
+  
 <xs:template>
   <para>
-    Replace the {bpc:process} string with the process number.
+    Replace in text the {bpc:*} strings with the process information.
   </para>
+  <xs:param name="process">
+    <para>The information for the process being acted on</para>
+  </xs:param>
 </xs:template>
 <xsl:template match="text()" priority="1">
-  <xsl:value-of select=
-                "replace(.,'\{bpc:process\}',concat($process,' v',$version))"/>
+  <xsl:param name="process" as="element(bpcProcess)" tunnel="yes"/>
+  <xsl:call-template name="bpc:formatProcessInfo"/>
 </xsl:template>
 
 <xs:template>
   <para>
-    Replace the {bpc:process} string with the process number.
+    Replace in comments the {bpc:*} strings with the process information.
   </para>
+  <xs:param name="process">
+    <para>The information for the process being acted on</para>
+  </xs:param>
 </xs:template>
 <xsl:template match="comment()" priority="1">
-  <xsl:comment select=
-                "replace(.,'\{bpc:process\}',concat($process,' v',$version))"/>
+  <xsl:param name="process" as="element(bpcProcess)" tunnel="yes"/>
+  <xsl:call-template name="bpc:formatProcessInfo"/>
 </xsl:template>
 
 <xs:template>
   <para>
-    Replace the {bpc:process} string with the process number.
+    Replace in attributes the {bpc:*} strings with the process information.
   </para>
+  <xs:param name="process">
+    <para>The information for the process being acted on</para>
+  </xs:param>
 </xs:template>
 <xsl:template match="@*" priority="1">
-  <xsl:attribute name="{name(.)}" namespace="{namespace-uri(.)}"
-                 select="replace(.,'\{bpc:process\}',$process)"/>
+  <xsl:param name="process" as="element(bpcProcess)" tunnel="yes"/>
+  <xsl:attribute name="{name(.)}" namespace="{namespace-uri(.)}">
+    <xsl:call-template name="bpc:formatProcessInfo"/>
+  </xsl:attribute>
+</xsl:template>
+
+<xs:template>
+  <para>
+    Replace the {bpc:process} strings with the process information.
+  </para>
+  <itemizedlist>
+    <listitem>bpc:process - P##</listitem>
+    <listitem>bpc:worksheet - #</listitem>
+    <listitem>bpc:title - formatted string of version and dateTime</listitem>
+  </itemizedlist>
+  <xs:param name="process">
+    <para>The information for the process being acted on</para>
+  </xs:param>
+</xs:template>
+<xsl:template name="bpc:formatProcessInfo">
+  <xsl:param name="process" as="element(bpcProcess)"
+             tunnel="yes" required="yes"/>
+  <xsl:value-of select="replace(replace(replace(replace(.,
+                       '\{bpc:title\}',concat($process/@bpcID,' v',$BPCversion,
+                                              ' - ',$dateTime,
+                                              ' - ',$process/title)),
+                       '\{bpc:worksheet\}',$process/@worksheetNumber),
+                       '\{bpc:process\}',$process/@bpcID),
+                       '\{bpc:version\}',$BPCversion)"/>
 </xsl:template>
 
 <xs:template>
@@ -99,6 +199,28 @@
 <xsl:template match="@*|node()" mode="#all">
   <xsl:copy>
     <xsl:apply-templates mode="#current" select="@*|node()"/>
+  </xsl:copy>
+</xsl:template>
+
+<!--========================================================================-->
+
+<xs:template>
+  <para>
+    Create a Schematron pattern with all of the 
+  </para>
+  <xs:param name="process">
+    <para>The information for the process being acted on</para>
+  </xs:param>
+</xs:template>
+<xsl:template match="sch:pattern">
+  <xsl:param name="process" as="element(bpcProcess)" tunnel="yes"/>
+  <xsl:copy>
+    <xsl:copy-of select="@*"/>
+    <xsl:apply-templates/>
+    <!--generate assertions at this point--> 
+
+    <xsl:comment>Assertions go here</xsl:comment>
+    <xsl:text>&#xa;</xsl:text>
   </xsl:copy>
 </xsl:template>
 

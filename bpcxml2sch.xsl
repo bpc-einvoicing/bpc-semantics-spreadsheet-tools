@@ -9,12 +9,13 @@
 
 <xs:doc filename="ublgc2bpcgc.xsl" vocabulary="DocBook">
   <xs:title>
-    Convert a UBL genericode model into a BPC semantic model XML instance
+    Convert a BPC semantic model XML instance into the ISO Schematron
+    shells necessary for all of the doctypes for all of the processes.
   </xs:title>
   <para>
     The BPC Semantics group has imposed changes in cardinality and has
     specified these values in a spreadsheet. The spreadsheet is translated
-    to a colloquial XML for downstream processing.
+    to genericode for XML processing.
   </para>
   <para>
     This stylesheet reads the genericode to augment a copy of the

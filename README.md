@@ -1,8 +1,8 @@
 # A repository for tools related to the BPC Semantics spreadsheet
 
-The [BPC Semantics Group spreadsheet](https://docs.google.com/spreadsheets/d/1qAz_aAbJ99ikA4zUk97FyjyDLcsQ3B3vqjEK-b3C_h8/view) is an artifact used to capture decisions by the Semantics Group regarding the document model and associated business rules imposed on corners 2 and 3 in the 4-corner model for interoperability.
+The [BPC Semantics Group spreadsheet](https://docs.google.com/spreadsheets/d/1qAz_aAbJ99ikA4zUk97FyjyDLcsQ3B3vqjEK-b3C_h8/view) is an artifact used to capture decisions by the Semantics Group regarding the document model and associated data integrity constraints imposed on corners 2 and 3 in the 4-corner model for semantic interoperability in data.
 
-Various artifacts need to be created to help in the generation and validation of UBL documents in conformance with the subset and business rules defined by the BPC e-Invoicing Semantics Group.
+Various artifacts need to be created to help in the generation and validation of UBL documents in conformance with the subset and data integrity constraints defined by the BPC e-Invoicing Semantics Group.
 
 This diagram outlines the role of a subset of UBL schemas in the generation of XML documents, independent of the role of the full UBL schemas when ingesting XML documents:
 

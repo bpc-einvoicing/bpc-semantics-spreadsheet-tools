@@ -108,13 +108,13 @@ file="${utilitydir}Crane-cva2sch-${cva2sch}/utility/iso_schematron_assembly.xsl"
     <antcallback target="-ods2gc" return="returnGCss">
       <param name="okay"   value="gc-sig-okay"/>
       <param name="source" value="${dir}/BPC-Semantics-Spreadsheet-Google.ods"/>
-      <param name="target" value="${dir}/BPC-Semantics-Spreadsheet-${dateTime}.gc"/>
+      <param name="target" value="${dir}/BPC-Semantics-Spreadsheet-${BPCversion}-${dateTime}.gc"/>
       <param name="identification-uri" value="${ident-uri}"/>
       <param name="lengthen-model-name-uri" value="${lengthen-uri}"/>
       <param name="returnProperty" value="returnGCss"/>
     </antcallback>
     <copy preservelastmodified="true" todir="${dir}/${BPCversion}-build/model/"
-          file="${dir}/BPC-Semantics-Spreadsheet-${dateTime}.gc"/>
+          file="${dir}/BPC-Semantics-Spreadsheet-${BPCversion}-${dateTime}.gc"/>
     <condition property="gcSScreated">
       <and>
         <isset property="returnGCss"/>
@@ -136,14 +136,14 @@ file="${utilitydir}Crane-cva2sch-${cva2sch}/utility/iso_schematron_assembly.xsl"
           classname="net.sf.saxon.Transform">
        <arg value="-xsl:gc2bpcxml.xsl"/>
        <arg value=
-   "-s:${dir}/${BPCversion}-build/model/BPC-Semantics-Spreadsheet-${dateTime}.gc"/>
+   "-s:${dir}/${BPCversion}-build/model/BPC-Semantics-Spreadsheet-${BPCversion}-${dateTime}.gc"/>
        <arg value=
-  "-o:${dir}/${BPCversion}-build/model/BPC-Semantics-Spreadsheet-${dateTime}.xml"/>
+  "-o:${dir}/${BPCversion}-build/model/BPC-Semantics-Spreadsheet-${BPCversion}-${dateTime}.xml"/>
        <arg value=
            "+ublgc=${dir}/${BPCversion}-build/ubl/UBL-Entities-${UBLversion}.gc"/>
     </java>
     <available property="bpcXMLerror"
-file="${dir}/${BPCversion}-build/model/BPC-Semantics-Spreadsheet-${dateTime}.gc.errors.txt"/>
+file="${dir}/${BPCversion}-build/model/BPC-Semantics-Spreadsheet-${BPCversion}-${dateTime}.gc.errors.txt"/>
     <condition property="bpcXMLcreated">
       <and>
         <isset property="returnBPCxml"/>
@@ -162,7 +162,7 @@ file="${dir}/${BPCversion}-build/model/BPC-Semantics-Spreadsheet-${dateTime}.gc.
     <java append="true" classname="net.sf.saxon.Transform">
        <arg value="-xsl:ssgc2sch.xsl"/>
        <arg value=
-     "-s:${dir}/${BPCversion}-build/model/BPC-Semantics-Spreadsheet-${dateTime}.gc"/>
+     "-s:${dir}/${BPCversion}-build/model/BPC-Semantics-Spreadsheet-${BPCversion}-${dateTime}.gc"/>
        <arg value="-o:${dir}/${BPCversion}-build/bpc/junk.out"/>
        <arg value="process=${process}"/>
        <arg value="version=${dateTime}"/>
@@ -171,7 +171,6 @@ file="${dir}/${BPCversion}-build/model/BPC-Semantics-Spreadsheet-${dateTime}.gc.
     <echo message="Creating process-specific Schematron for all processes"/>
     <property name="antStaticScriptURI"
               location="${dir}/prepareBPCartefacts.xml"/>
-    <mkdir dir="${dir}/${BPCversion}-build/bpc"/>
     <move file="${dir}/bpcProcesses.xml"
           todir="${dir}/${BPCversion}-build/bpc"/>
     <java append="true" classname="net.sf.saxon.Transform">
@@ -180,9 +179,12 @@ file="${dir}/${BPCversion}-build/model/BPC-Semantics-Spreadsheet-${dateTime}.gc.
       <arg value="-s:${dir}/${BPCversion}-build/bpc/bpcProcesses.xml"/>
       <arg value="-o:${dir}/${BPCversion}-build/bpc/junk.out"/>
        <arg value=
-"+semanticInfo=${dir}/${BPCversion}-build/model/BPC-Semantics-Spreadsheet-${dateTime}.xml"/>
-      <arg value="+schemaSkeleton=${dir}/BPC-Skeleton-Business-Rules.sch"/>
+"+semanticInfo=${dir}/${BPCversion}-build/model/BPC-Semantics-Spreadsheet-${BPCversion}-${dateTime}.xml"/>
+      <arg value=
+              "+schemaSkeleton=${dir}/BPC-Skeleton-Data-Integrity-Constraints.sch"/>
       <arg value="+patternSkeleton=${dir}/BPC-Skeleton-Pattern.sch"/>
+      <arg value=
+ "+semanticsSummary=${dir}/${BPCversion}-build/model/BPC-Semantics-Spreadsheet-${BPCversion}-${dateTime}.gc"/>
       <arg value="BPCversion=${BPCversion}"/>
       <arg value="dateTime=${dateTime}"/>
       <arg value="antDynamicScriptURI=../../doAllProcessAntScripts.xml"/>
@@ -237,9 +239,9 @@ file="${dir}/${BPCversion}-build/model/BPC-Semantics-Spreadsheet-${dateTime}.gc.
         todir="${dir}/${BPCversion}-build/bpc/${process}"/>
   <antcall target="-sch2xsl">
     <param name="schin" value=
-"${dir}/${BPCversion}-build/bpc/${process}/BPC-${process}-v${BPCversion}-Business-Rules.sch"/>
+"${dir}/${BPCversion}-build/bpc/${process}/BPC-${process}-v${BPCversion}-Data-Integrity-Constraints.sch"/>
     <param name="xslout" value=
-"${dir}/${BPCversion}-build/bpc/${process}/BPC-${process}-v${BPCversion}-Business-Rules.xsl"/>
+"${dir}/${BPCversion}-build/bpc/${process}/BPC-${process}-v${BPCversion}-Data-Integrity-Constraints.xsl"/>
   </antcall>
 </target>
 
@@ -302,18 +304,18 @@ file="${dir}/${BPCversion}-build/model/BPC-Semantics-Spreadsheet-${dateTime}.gc.
       <exclude name="**/bpc-semantics-tools-${BPCversion}-${dateTime}/**"/>
     </fileset>
   </move>
-  <zip destfile="${dir}/bpc-semantics-${BPCversion}.zip"
+  <zip destfile="${dir}/bpc-semantics-${BPCversion}-${dateTime}.zip"
        basedir="${dir}/bpc-semantics-tools-${BPCversion}-${dateTime}">
     <fileset dir="${dir}/bpc-semantics-tools-${BPCversion}-${dateTime}">
       <include name="**"/>
-      <exclude name="bpc-semantics-${BPCversion}.zip"/>
+      <exclude name="bpc-semantics-${BPCversion}-${dateTime}.zip"/>
     </fileset>
   </zip>
   <delete dir="${dir}/bpc-semantics-tools-${BPCversion}-${dateTime}"/>
   <mkdir dir="${dir}/bpc-semantics-tools-${BPCversion}-${dateTime}"/>
   <move todir="${dir}/bpc-semantics-tools-${BPCversion}-${dateTime}">
     <fileset dir="${dir}">
-      <include name="bpc-semantics-${BPCversion}.zip"/>
+      <include name="bpc-semantics-${BPCversion}-${dateTime}.zip"/>
       <include name="**/archive-only-not-in-final-distribution/**"/>
       <exclude name="**/${BPCversion}-build/**"/>
       <exclude name="**/bpc-semantics-tools-${BPCversion}-${dateTime}/**"/>

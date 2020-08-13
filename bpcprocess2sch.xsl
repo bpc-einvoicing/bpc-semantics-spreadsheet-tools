@@ -5,7 +5,8 @@
                 xmlns:xsd="http://www.w3.org/2001/XMLSchema"
                 xmlns:bpc="urn:X-BPC"
                 xmlns:sch="http://purl.oclc.org/dsdl/schematron"
-                exclude-result-prefixes="xs xsd bpc"
+                xmlns:xslo="dummy"
+                exclude-result-prefixes="xs xsd bpc xslo"
                 version="2.0">
 
 <xs:doc filename="bpcprcess2sch.xsl" vocabulary="DocBook">
@@ -51,6 +52,14 @@
 
 <xs:param ignore-ns='yes'>
   <para>
+    Schema skeleton to be fleshed out.
+  </para>
+</xs:param>
+<xsl:param name="semanticsSummary" required="yes"
+           as="document-node(element(worksheets))"/>
+
+<xs:param ignore-ns='yes'>
+  <para>
     The location in which to create the dynamic Ant script.
   </para>
 </xs:param>
@@ -75,6 +84,8 @@
 </xs:output>
 <xsl:output indent="yes"/>
 
+<xsl:namespace-alias stylesheet-prefix="xslo" result-prefix="xsl"/>
+
 <!--========================================================================-->
 <xs:doc>
   <xs:title>Main logic</xs:title>
@@ -88,7 +99,7 @@
   <xsl:for-each select="/*/bpcProcess">
     <xsl:variable name="procID" select="@bpcID"/>
     <xsl:result-document
-              href="{$procID}/BPC-{$procID}-v{$BPCversion}-Business-Rules.sch">
+  href="{$procID}/BPC-{$procID}-v{$BPCversion}-Data-Integrity-Constraints.sch">
       <xsl:apply-templates select="$schemaSkeleton/*">
         <xsl:with-param name="process" select="." tunnel="yes"/>
       </xsl:apply-templates>
@@ -98,6 +109,22 @@
       <xsl:apply-templates select="$patternSkeleton/*">
         <xsl:with-param name="process" select="." tunnel="yes"/>
       </xsl:apply-templates>
+    </xsl:result-document>
+    <xsl:result-document exclude-result-prefixes="sch"
+                      href="{$procID}/BPC-{$procID}-Data-Integrity-Constraints.xsl">
+      <xslo:stylesheet version="1.0">
+        <xsl:text>&#xa;</xsl:text>
+<xsl:comment>
+  Wrapper invocation stylesheet for BPC Semantics process:
+  <xsl:value-of select="
+       bpc:formatProcessInfo('{bpc:title} from worksheet {bpc:worksheet}',.)"/>
+  incorporating the code list functions for XPath use.
+</xsl:comment>
+        <xsl:text>&#xa;</xsl:text>
+        <xslo:import
+           href="BPC-{$procID}-v{$BPCversion}-Data-Integrity-Constraints.xsl"/>
+        <xslo:import href="../BPC-v{$BPCversion}-Code-Lists.xsl"/>
+      </xslo:stylesheet>
     </xsl:result-document>
   </xsl:for-each>
   
@@ -181,14 +208,33 @@
 <xsl:template name="bpc:formatProcessInfo">
   <xsl:param name="process" as="element(bpcProcess)"
              tunnel="yes" required="yes"/>
-  <xsl:value-of select="replace(replace(replace(replace(.,
+  <xsl:value-of select="bpc:formatProcessInfo(.,$process)"/>
+</xsl:template>
+
+<xs:function>
+  <para>
+    Return the {bpc:process} strings replaced with the process information.
+  </para>
+  <itemizedlist>
+    <listitem>bpc:process - P##</listitem>
+    <listitem>bpc:worksheet - #</listitem>
+    <listitem>bpc:title - formatted string of version and dateTime</listitem>
+  </itemizedlist>
+  <xs:param name="process">
+    <para>The information for the process being acted on</para>
+  </xs:param>
+</xs:function>
+<xsl:function name="bpc:formatProcessInfo">
+  <xsl:param name="template" as="xsd:string"/>
+  <xsl:param name="process" as="element(bpcProcess)"/>
+  <xsl:value-of select="replace(replace(replace(replace($template,
                        '\{bpc:title\}',concat($process/@bpcID,' v',$BPCversion,
                                               ' - ',$dateTime,
                                               ' - ',$process/title)),
                        '\{bpc:worksheet\}',$process/@worksheetNumber),
                        '\{bpc:process\}',$process/@bpcID),
                        '\{bpc:version\}',$BPCversion)"/>
-</xsl:template>
+</xsl:function>
 
 <xs:template>
   <para>
@@ -219,9 +265,19 @@
     <xsl:apply-templates/>
     <!--generate assertions at this point--> 
 
-    <xsl:comment>Assertions go here</xsl:comment>
     <xsl:text>&#xa;</xsl:text>
   </xsl:copy>
 </xsl:template>
+
+<xs:function>
+  <para>Returning a row's column value by its column name</para>
+  <xs:param name="row"><para>The genericode row</para></xs:param>
+  <xs:param name="column"><para>The genericode column</para></xs:param>
+</xs:function>
+<xsl:function name="bpc:col" as="element(SimpleValue)*">
+  <xsl:param name="row" as="element(Row)"/>
+  <xsl:param name="column" as="xsd:string"/>
+  <xsl:sequence select="$row/Value[@ColumnRef=$column]/SimpleValue"/>
+</xsl:function>
 
 </xsl:stylesheet>

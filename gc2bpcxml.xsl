@@ -79,7 +79,7 @@
       <xsl:message select="'Harvesting spreadsheet tab:',$tab"/>
       <xsl:variable name="tabNumber" select="replace($tab,'.*?(\d+).*','$1')"/>
       <xsl:attribute name="tab" select="$tab"/>
-      <xsl:attribute name="tabNumber" select="$tabNumber"/>
+      <xsl:attribute name="worksheetNumber" select="$tabNumber"/>
         <doctypes>
           <xsl:analyze-string select="$tab" regex="(\d+\s*)|(\s*,\s*)">
             <xsl:non-matching-substring>

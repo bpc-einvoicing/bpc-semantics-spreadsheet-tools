@@ -265,6 +265,8 @@
     <xsl:apply-templates/>
     <!--generate assertions at this point--> 
 
+
+
     <xsl:text>&#xa;</xsl:text>
   </xsl:copy>
 </xsl:template>

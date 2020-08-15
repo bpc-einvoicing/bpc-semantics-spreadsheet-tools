@@ -4,7 +4,7 @@
     
     Business Payments Coalition Semantics Group - (skeleton:20200812-2100z)
 -->
-<schema xmlns="http://purl.oclc.org/dsdl/schematron">
+<schema xmlns="http://purl.oclc.org/dsdl/schematron" queryBinding="xslt2">
   <title>BPC Schematron Constraints for process {bpc:title}</title>
   <ns prefix="ext"
 uri="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2"/>

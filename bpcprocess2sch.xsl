@@ -112,7 +112,7 @@
     </xsl:result-document>
     <xsl:result-document exclude-result-prefixes="sch"
                       href="{$procID}/BPC-{$procID}-Data-Integrity-Constraints.xsl">
-      <xslo:stylesheet version="1.0">
+      <xslo:stylesheet version="2.0">
         <xsl:text>&#xa;</xsl:text>
 <xsl:comment>
   Wrapper invocation stylesheet for BPC Semantics process:

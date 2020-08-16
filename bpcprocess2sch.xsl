@@ -159,8 +159,7 @@
     <target name="make">
       <echo message="Invoking ${{antStaticScriptURI}} for each process"/>
       <xsl:for-each select="/*/bpcProcess">
-        <ant antfile="${{antStaticScriptURI}}" target="-sch4bpc"
-             useNativeBasedir="true">
+        <ant antfile="${{antStaticScriptURI}}" target="-sch4bpc">
           <property name="process" value="{@bpcID}"/>
           <property name="version" value="{$BPCversion}"/>
           <property name="saxon9heJar" value="{

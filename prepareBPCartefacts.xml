@@ -228,6 +228,7 @@ tofile="${dir}/${BPCversion}-build/model/BPC-Semantics-Spreadsheet-${BPCversion}
          useNativeBasedir="true">
       <property name="antStaticScriptURI"
                 value="${antStaticScriptURI}"/>
+      <property name="basedir" value="${basedir}"/>
     </ant>
 
   </sequential>

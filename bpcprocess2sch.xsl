@@ -162,6 +162,7 @@
         <ant antfile="${{antStaticScriptURI}}" target="-sch4bpc">
           <property name="process" value="{@bpcID}"/>
           <property name="version" value="{$BPCversion}"/>
+          <property name="basedir" value="${{basedir}}"/>
           <property name="saxon9heJar" value="{
            replace(resolve-uri('utilities/saxon9he/saxon9he.jar',
                                base-uri(document(''))),

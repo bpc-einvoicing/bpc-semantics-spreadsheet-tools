@@ -27,7 +27,17 @@
     <format property="wgettime" pattern="yyyy-MM-dd HH:mm:ss"/>
   </tstamp>
   <echo message="wgettime=${wgettime}"/>
-  
+
+
+
+
+<property name="debug-submodule" location="ubl-subset-schema/UBL-2.3-CSPRD02/mod/UBL-Entities-2.3-CSPRD02.gc"/>
+<echo message="DEBUG: debug-submodule=${debug-submodule}"/>
+
+
+
+
+
   <available property="ods2obdgc-exists"
 file="${utilitydir}Crane-ods2obdgc-${ods2obdgc}/Crane-ods2obdgc.xsl"/>
   <echo unless:set="ods2obdgc-exists" 

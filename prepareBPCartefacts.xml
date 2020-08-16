@@ -74,6 +74,18 @@ file="${utilitydir}Crane-cva2sch-${cva2sch}/utility/iso_schematron_assembly.xsl"
     <param name="target" value="readme-bpcprocess2sch.html"/>
   </antcall>
 
+  <uptodate targetfile="readme-bpccodelists2xsl.html"
+            property="readme-bpccodelists2xsl-okay">
+    <srcfiles dir=".">
+      <include name="bpccodelists2xsl.xsl"/>
+    </srcfiles>
+  </uptodate>
+  <antcall target="-make-doc">
+    <param name="okay"   value="readme-bpccodelists2xsl-okay"/>
+    <param name="source" value="bpccodelists2xsl.xsl"/>
+    <param name="target" value="readme-bpccodelists2xsl.html"/>
+  </antcall>
+
   <!--start with the raw files-->
   <copy preservelastmodified="true" todir="${dir}/${BPCversion}-build">
     <fileset dir="${rawdir}">
@@ -179,18 +191,9 @@ file="${dir}/${BPCversion}-build/model/BPC-Semantics-Spreadsheet-${BPCversion}-$
           file="${dir}/BPC-Semantics-Spreadsheet-Google.ods" 
 tofile="${dir}/${BPCversion}-build/model/BPC-Semantics-Spreadsheet-${BPCversion}-${dateTime}.ods"/>
 
-<!--
-    <echo message="Creating subset model genericode..."/>
-    <java append="true" classname="net.sf.saxon.Transform">
-       <arg value="-xsl:ssgc2sch.xsl"/>
-       <arg value=
-     "-s:${dir}/${BPCversion}-build/model/BPC-Semantics-Spreadsheet-${BPCversion}-${dateTime}.gc"/>
-       <arg value="-o:${dir}/${BPCversion}-build/bpc/junk.out"/>
-       <arg value="process=${process}"/>
-       <arg value="version=${dateTime}"/>
-    </java>
--->
-    <echo message="Creating process-specific Schematron for all processes"/>
+    <!--synthesize the invocations of the -sch4bpc Ant target and
+        the input Schematron pattern harvested from the spreadsheet--> 
+    <echo message="Creating process-specific Schematron for all processes..."/>
     <property name="antStaticScriptURI"
               location="${dir}/prepareBPCartefacts.xml"/>
     <move file="${dir}/bpcProcesses.xml"
@@ -210,7 +213,19 @@ tofile="${dir}/${BPCversion}-build/model/BPC-Semantics-Spreadsheet-${BPCversion}
       <arg value="antDynamicScriptURI=../../doAllProcessAntScripts.xml"/>
     </java>
 
-    <ant antfile="${dir}/doAllProcessAntScripts.xml">
+    <echo message="Creating the code list support stylesheet..."/>
+    <java append="true" classname="net.sf.saxon.Transform">
+      <arg value="--suppressXsltNamespaceCheck:on"/>
+      <arg value="-xsl:bpccodelists2xsl.xsl"/>
+      <arg value="-s:${dir}/BPC-Skeleton-Code-Lists.xsl"/>
+      <arg value="-o:${dir}/${BPCversion}-build/bpc/BPC-v${BPCversion}-Code-Lists.xsl"/>
+      <arg value="BPCversion=${BPCversion}"/>
+      <arg value="dateTime=${dateTime}"/>
+    </java>
+
+    <!--invoke the synthesized script that, itself, will invoke -sch4bpc-->
+    <ant antfile="${dir}/doAllProcessAntScripts.xml"
+         useNativeBasedir="true">
       <property name="antStaticScriptURI"
                 value="${antStaticScriptURI}"/>
     </ant>
@@ -251,50 +266,6 @@ tofile="${dir}/${BPCversion}-build/model/BPC-Semantics-Spreadsheet-${BPCversion}
        <arg value="${target}"/>
     </java>
   </sequential>
-</target>
-
-<target name="-sch4bpc" unless="${okay}">
-  <echo message="Creating shell Schematron for ${process}"/>
-  <copy file="${dir}/${BPCversion}-build//ubl/UBL-DocumentConstraints-2.3.pattern.sch"
-        todir="${dir}/${BPCversion}-build/bpc/${process}"/>
-  <antcall target="-sch2xsl">
-    <param name="schin" value=
-"${dir}/${BPCversion}-build/bpc/${process}/BPC-${process}-v${BPCversion}-Data-Integrity-Constraints.sch"/>
-    <param name="xslout" value=
-"${dir}/${BPCversion}-build/bpc/${process}/BPC-${process}-v${BPCversion}-Data-Integrity-Constraints.xsl"/>
-  </antcall>
-</target>
-
-<target name="-sch2xsl" unless="${okay}">
-  <delete file="${xslout}"/>
-  <echo message="Creating ${xslout} from ${schin}"/>
-  <java append="true" classname="com.icl.saxon.StyleSheet">
-     <arg value="-o"/>
-     <arg value="${xslout}"/>
-     <arg value="${schin}"/>
-     <arg value="${utilitydir}schematron/code/iso_svrl_for_xslt2.xsl"/>
-  </java>
-</target>
-
-<target name="-sch2xsl1" unless="${okay}">
-  <delete file="${xslout}"/>
-  <echo message="Assembling ${xslout}.temp.sch from ${schin}"/>
-  <java append="true" classname="com.icl.saxon.StyleSheet">
-     <arg value="-o"/>
-     <arg value="${xslout}.temp.sch"/>
-     <arg value="${schin}"/>
-     <arg value=
-  "${utilitydir}Crane-cva2sch-${cva2sch}/utility/iso_schematron_assembly.xsl"/>
-  </java>
-  <echo message="Creating ${xslout} from ${xslout}.temp.sch"/>
-  <java append="true" classname="com.icl.saxon.StyleSheet">
-     <arg value="-o"/>
-     <arg value="${xslout}"/>
-     <arg value="${xslout}.temp.sch"/>
-     <arg value=
-"${utilitydir}Crane-cva2sch-${cva2sch}/utility/Message-Schematron-terminator.xsl"/>
-  </java>
-  <delete file="${xslout}.temp.sch"/>
 </target>
 
 <target name="-package">
@@ -356,17 +327,6 @@ tofile="${dir}/${BPCversion}-build/model/BPC-Semantics-Spreadsheet-${BPCversion}
   <!--remove unneeded files to reduce storage burden-->
   <delete dir="${dir}/${BPCversion}-build"/>
   
-<!--
-    Cannot create zip until console log and error exit files added to archive. 
-    
-  <delete file="${dir}/bpc-semantics-tools-${BPCversion}-${dateTime}.zip"/>
-
-  <zip destfile="${dir}/bpc-semantics-tools-${BPCversion}-${dateTime}.zip"
-       basedir="${dir}" includes="bpc-semantics-tools-${BPCversion}-${dateTime}/**"/>
-  <delete dir="${dir}/bpc-semantics-tools-${BPCversion}-${dateTime}"/>
-  <unzip src="${dir}/bpc-semantics-tools-${BPCversion}-${dateTime}.zip" 
-         dest="${dir}" />
--->
   <!--documentation-->
   <echo message="dateTime=${dateTime}"/>
   
@@ -405,6 +365,60 @@ tofile="${dir}/${BPCversion}-build/model/BPC-Semantics-Spreadsheet-${BPCversion}
   <touch datetime="${earlier}" pattern="yyyyMMdd-HHmmss" file="${target}"/>
   <touch datetime="${then}" pattern="yyyyMMdd-HHmmss" file="${source}"/>
   <fail message="Inconsistencies detected: ${target}"/>
+</target>
+
+<!--========================================================================-->
+
+<!--this target is invoked from an Ant script that is synthesized by
+    bpcprocess2sch.xsl stylesheet, creating one invocation for each
+    process-->
+
+<target name="-sch4bpc" unless="${okay}">
+  <echo message="Creating shell Schematron for ${process}"/>
+  <copy file="${dir}/${BPCversion}-build//ubl/UBL-DocumentConstraints-2.3.pattern.sch"
+        todir="${dir}/${BPCversion}-build/bpc/${process}"/>
+  <antcall target="-sch2xsl">
+    <param name="schin" value=
+"${dir}/${BPCversion}-build/bpc/${process}/BPC-${process}-v${BPCversion}-Data-Integrity-Constraints.sch"/>
+    <param name="xslout" value=
+"${dir}/${BPCversion}-build/bpc/${process}/BPC-${process}-v${BPCversion}-Data-Integrity-Constraints.xsl"/>
+  </antcall>
+</target>
+
+<target name="-sch2xsl" unless="${okay}">
+  <delete file="${xslout}"/>
+  <echo message="Creating ${xslout} from ${schin}"/>
+  <java append="true" classname="com.icl.saxon.StyleSheet">
+     <arg value="-o"/>
+     <arg value="${xslout}"/>
+     <arg value="${schin}"/>
+     <arg value="${utilitydir}schematron/code/iso_svrl_for_xslt2.xsl"/>
+  </java>
+  <echo message="Validating
+${dir}/${BPCversion}-build/bpc/${process}/BPC-${process}-Data-Integrity-Constraints.xsl..."/>
+  <java resultproperty="returnXSLTtest" fork="true"
+        outputproperty="outputXSLTtest"
+        jar="${saxon9heJar}"
+        errorproperty="errorXSLTtest">
+   <arg value=
+"-xsl:${dir}/${BPCversion}-build/bpc/${process}/BPC-${process}-Data-Integrity-Constraints.xsl"/>
+   <arg value=
+"-s:${dir}/${BPCversion}-build/bpc/${process}/BPC-${process}-Data-Integrity-Constraints.xsl"/>
+  </java>
+  <echo message="${errorXSLTtest}"/>
+  <condition property="xsl${process}created">
+    <and>
+      <isset property="returnXSLTtest"/>
+      <equals arg1="${returnXSLTtest}" arg2="0"/>
+    </and>
+  </condition>
+  <echo unless:set="xsl${process}created"
+        message="ERROR with the BPC Semantics XSLT file ${dir}/${BPCversion}-build/bpc/${process}/BPC-${process}-Data-Integrity-Constraints.xsl"/>
+  <echo unless:set="xsl${process}created" message="${errorXSLTtest}"
+        file=
+"${dir}/${BPCversion}-build/bpc/${process}/BPC-${process}-Data-Integrity-Constraints.error.txt"/>
+  <echo unless:set="xsl${process}created" message="${errorXSLTtest}"
+   file="${dir}/${BPCversion}-build/ERROR-RUNNING-RESULTING-XSLT-FOR-${process}.txt"/>
 </target>
 
 </project>

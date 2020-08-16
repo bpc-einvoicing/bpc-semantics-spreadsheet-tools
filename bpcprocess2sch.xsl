@@ -159,9 +159,14 @@
     <target name="make">
       <echo message="Invoking ${{antStaticScriptURI}} for each process"/>
       <xsl:for-each select="/*/bpcProcess">
-        <ant antfile="${{antStaticScriptURI}}" target="-sch4bpc">
+        <ant antfile="${{antStaticScriptURI}}" target="-sch4bpc"
+             useNativeBasedir="true">
           <property name="process" value="{@bpcID}"/>
           <property name="version" value="{$BPCversion}"/>
+          <property name="saxon9heJar" value="{
+           replace(resolve-uri('utilities/saxon9he/saxon9he.jar',
+                               base-uri(document(''))),
+                   '^file:','')}"/>
         </ant>
       </xsl:for-each>
     </target>
@@ -193,7 +198,10 @@
 </xs:template>
 <xsl:template match="comment()" priority="1">
   <xsl:param name="process" as="element(bpcProcess)" tunnel="yes"/>
-  <xsl:call-template name="bpc:formatProcessInfo"/>
+  <xsl:comment>
+    <xsl:call-template name="bpc:formatProcessInfo"/>
+  </xsl:comment>
+  <xsl:text>&#xa;</xsl:text>
 </xsl:template>
 
 <xs:template>
@@ -237,6 +245,7 @@
   <itemizedlist>
     <listitem>bpc:process - P##</listitem>
     <listitem>bpc:worksheet - #</listitem>
+    <listitem>bpc:version - #.#</listitem>
     <listitem>bpc:title - formatted string of version and dateTime</listitem>
   </itemizedlist>
   <xs:param name="template">
@@ -372,16 +381,5 @@
     <xsl:text>&#xa;</xsl:text>
   </xsl:copy>
 </xsl:template>
-
-<xs:function>
-  <para>Returning a row's column value by its column name</para>
-  <xs:param name="row"><para>The genericode row</para></xs:param>
-  <xs:param name="column"><para>The genericode column</para></xs:param>
-</xs:function>
-<xsl:function name="bpc:col" as="element(SimpleValue)*">
-  <xsl:param name="row" as="element(Row)"/>
-  <xsl:param name="column" as="xsd:string"/>
-  <xsl:sequence select="$row/Value[@ColumnRef=$column]/SimpleValue"/>
-</xsl:function>
 
 </xsl:stylesheet>

@@ -136,4 +136,4 @@ Release notes:
                     - ids on sections preserved
 
 ===========================
-$Id: readme-package.txt,v 1.5 2010/08/17 02:40:13 admin Exp $
+$Id: 729b92e4d8c7bf0bf885770b5ca02515b7fa6b13 $

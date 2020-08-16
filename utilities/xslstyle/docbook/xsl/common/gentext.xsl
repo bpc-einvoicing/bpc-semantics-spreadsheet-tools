@@ -5,7 +5,7 @@
                 version='1.0'>
 
 <!-- ********************************************************************
-     $Id: gentext.xsl 6910 2007-06-28 23:23:30Z xmldoc $
+     $Id: 93f742d12ac3ab3e1c68b0cd1b42c1e8e9d8971e $
      ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.

@@ -9,7 +9,7 @@
 <xsl:import href="support/xslstyle-dita-core.xsl"/>
 
 <xs:doc filename="xslstyle-dita.xsl" global-ns="xs" 
-  info="$Id: xslstyle-dita.xsl,v 1.19 2010/03/02 17:06:02 gkholman Exp $"
+  info="$Id: 7f4152e7f3fdb325b1a24b138623b40fba1c1217 $"
         vocabulary="DocBook">
   <xs:title>DITA shell for the XSLStyle&#x2122; environment</xs:title>
   <para>

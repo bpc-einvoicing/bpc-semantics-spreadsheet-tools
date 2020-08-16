@@ -8,7 +8,7 @@
                 exclude-result-prefixes="xs"
                 version="1.0">
 
-<xs:doc info="$Id: xhtmlex1.xsl,v 1.3 2010/02/20 14:25:23 gkholman Exp $"
+<xs:doc info="$Id: 34dbf1a87f5ff45eb39c01da2913f6146054afae $"
         filename="xhtmlex1.xsl" global-ns="xs" vocabulary="XHTML">
   <xs:title>&XS; imported fragment one</xs:title>
   <p>

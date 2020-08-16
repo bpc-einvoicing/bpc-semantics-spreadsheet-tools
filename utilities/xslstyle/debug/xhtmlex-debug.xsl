@@ -7,7 +7,7 @@
 
 <xsl:import href="../xhtmlex.xsl"/>
 
-<xs:doc info="$Id: xhtmlex-debug.xsl,v 1.4 2010/03/02 15:45:23 gkholman Exp $"
+<xs:doc info="$Id: 0ee2fb16866bba8e7afa021000f8ad4d94cb134e $"
         external-css="debug-xslstyle.css"
         filename="xhtmlex-debug.xsl" global-ns="xs" vocabulary="XHTML">
   <xs:title>Test shell to demonstrate "debug" style formatting</xs:title>

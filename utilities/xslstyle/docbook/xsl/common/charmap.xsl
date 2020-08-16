@@ -8,7 +8,7 @@
                 version='1.0'>
 
 <!-- ********************************************************************
-     $Id: charmap.xsl 7266 2007-08-22 11:58:42Z xmldoc $
+     $Id: 9935214c21e2eacec4ffc8bc9d86c203b75efae9 $
      ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.
@@ -20,7 +20,7 @@
   <info>
     <title>Common » Character-Map Template Reference</title>
     <releaseinfo role="meta">
-      $Id: charmap.xsl 7266 2007-08-22 11:58:42Z xmldoc $
+      $Id: 9935214c21e2eacec4ffc8bc9d86c203b75efae9 $
     </releaseinfo>
   </info>
   <!-- * yes, partintro is a valid child of a reference... -->

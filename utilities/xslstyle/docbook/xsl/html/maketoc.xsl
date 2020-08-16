@@ -4,7 +4,7 @@
                 exclude-result-prefixes="doc">
 
 <!-- ********************************************************************
-     $Id: maketoc.xsl 6910 2007-06-28 23:23:30Z xmldoc $
+     $Id: 5353b673490aafd8892269783504ae753e09f110 $
      ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.

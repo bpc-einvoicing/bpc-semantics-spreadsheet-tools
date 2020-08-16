@@ -14,7 +14,7 @@
                 version="1.0">
 
 <xs:doc filename="xslstyle-def-debug.xsl" global-ns="xs"
-info="$Id: xslstyle-def-debug.xsl,v 1.3 2010/03/02 15:45:24 gkholman Exp $"
+info="$Id: 109cdade0f16ea50360e70e15a59d0f0470e8abc $"
         vocabulary="DocBook">
   <xs:title><literal>debug</literal> definitions for the XSLStyle&#x2122; environment</xs:title>
   <para>

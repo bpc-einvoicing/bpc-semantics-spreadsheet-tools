@@ -7,7 +7,7 @@
                 exclude-result-prefixes="exsl cf ng db">
 
 <!-- ********************************************************************
-     $Id: chunk-common.xsl 7833 2008-03-04 19:09:35Z nwalsh $
+     $Id: 24167bf90c2c1dbba50ff376a08015cb135f7f2e $
      ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.

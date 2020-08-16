@@ -3,7 +3,7 @@
                 version='1.0'>
 
 <!-- ********************************************************************
-     $Id: keywords.xsl 6910 2007-06-28 23:23:30Z xmldoc $
+     $Id: 1ca7374a2f2dd97e8d77348779a0b3ba1f71659e $
      ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.

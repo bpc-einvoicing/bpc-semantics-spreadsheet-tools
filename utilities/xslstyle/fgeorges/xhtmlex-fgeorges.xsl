@@ -7,7 +7,7 @@
 
 <xsl:import href="../xhtmlex.xsl"/>
 
-<xs:doc info="$Id: xhtmlex-fgeorges.xsl,v 1.4 2010/03/02 15:46:10 gkholman Exp $"
+<xs:doc info="$Id: 74dd6a7363d4b09a5a1e71a72ad3f0ef4e43ee23 $"
         external-css="fgeorges-xslstyle.css"
         filename="xhtmlex-fgeorges.xsl" global-ns="xs" vocabulary="XHTML">
   <xs:title>Test shell to demonstrate "fgeorges" style formatting</xs:title>

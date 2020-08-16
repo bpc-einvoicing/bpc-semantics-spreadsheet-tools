@@ -11,7 +11,7 @@
 <xsl:import href="xslstyle-def-fgeorges.xsl"/>
 
 <xs:doc filename="xslstyle-docbook-fgeorges.xsl" internal-ns="xv" global-ns="xs"
-info="$Id: xslstyle-docbook-fgeorges.xsl,v 1.4 2010/03/02 15:46:12 gkholman Exp $"
+info="$Id: cfde7549d39b572ce0516c915b55b6abf9298917 $"
       external-css="fgeorges-xslstyle.css" vocabulary="DocBook">
   <xs:title>DocBook <literal>fgeorges</literal> shell for the XSLStyle&#x2122; environment</xs:title>
   <para>

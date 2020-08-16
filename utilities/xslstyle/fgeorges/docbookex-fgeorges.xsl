@@ -7,7 +7,7 @@
 
 <xsl:import href="../docbookex.xsl"/>
 
-<xs:doc info="$Id: docbookex-fgeorges.xsl,v 1.4 2010/03/02 15:46:09 gkholman Exp $"
+<xs:doc info="$Id: 7b33b698712afc6132ed37e15cc68fd810476799 $"
         external-css="fgeorges-xslstyle.css"
         filename="docbookex-fgeorges.xsl" vocabulary="DocBook">
   <xs:title>Test shell to demonstrate "fgeorges" style formatting</xs:title>

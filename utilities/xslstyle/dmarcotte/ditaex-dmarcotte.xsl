@@ -7,7 +7,7 @@
 
 <xsl:import href="../ditaex.xsl"/>
 
-<xs:doc info="$Id: ditaex-dmarcotte.xsl,v 1.3 2010/03/02 15:45:44 gkholman Exp $"
+<xs:doc info="$Id: f1b4bd37ff0f04fd9c08e8f0a40afda2c572b3a5 $"
         external-css="dmarcotte-xslstyle.css"
         filename="ditaex-dmarcotte.xsl" vocabulary="DITA">
   <xs:title>Test shell to demonstrate "dmarcotte" style formatting</xs:title>

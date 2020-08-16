@@ -5,7 +5,7 @@
                 exclude-result-prefixes="xs xv"
                 version="1.0">
    <xs:doc filename="xslstyle-ditadef.xsl" internal-ns="xs" vocabulary="DocBook"
-           info="$Id: xslstyle-ditadef.xsl,v 1.2 2007/09/16 20:15:10 G. Ken Holman Exp $">
+           info="$Id: 28713563ff9a6ae71e14c6174ffdddfe8619699f $">
       <xs:title>Synthesized DITA stylesheet supplying default attributes</xs:title>
       <para>
     This is a synthesized stylesheet culled from the DITA W3C Schemas providing

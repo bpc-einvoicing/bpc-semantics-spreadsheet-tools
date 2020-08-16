@@ -5,7 +5,7 @@
                 exclude-result-prefixes="cf exsl">
 
 <!-- ********************************************************************
-     $Id: chunkfast.xsl 6910 2007-06-28 23:23:30Z xmldoc $
+     $Id: 777e878d65c785ebe7130231e0a331b0da227bba $
      ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.

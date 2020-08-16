@@ -8,7 +8,7 @@
                 version='1.0'>
 
 <!-- ********************************************************************
-     $Id: verbatim.xsl 6946 2007-07-04 10:21:57Z xmldoc $
+     $Id: ea5eba285c82d60f01a882d9e9ac5db5c00f34d3 $
      ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.

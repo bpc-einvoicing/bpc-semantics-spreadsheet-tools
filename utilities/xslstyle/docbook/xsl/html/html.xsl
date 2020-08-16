@@ -3,7 +3,7 @@
                 version='1.0'>
 
 <!-- ********************************************************************
-     $Id: html.xsl 6910 2007-06-28 23:23:30Z xmldoc $
+     $Id: 132edac41a3fdafbf70917ac3ccdc4f6e0eb2ab6 $
      ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.

@@ -17,7 +17,7 @@
                 version="1.0">
 
 <!-- ********************************************************************
-     $Id: autoidx-kimber.xsl 6910 2007-06-28 23:23:30Z xmldoc $
+     $Id: a105d862a75c8a9f51e40bfef569249a7f55592c $
      ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.

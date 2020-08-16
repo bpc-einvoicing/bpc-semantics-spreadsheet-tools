@@ -15,7 +15,7 @@
 <!--another example import-->
 <xsl:import href="xhtmlex2.xsl"/>
 
-<xs:doc info="$Id: xhtmlex.xsl,v 1.2 2010/03/02 17:05:43 gkholman Exp $"
+<xs:doc info="$Id: afc77bc290cd169fd8d29d934d14ac390d9daba8 $"
         filename="xhtmlex.xsl" global-ns="xs" vocabulary="XHTML">
   <xs:title>&XS; illustration for the XHTML vocabulary</xs:title>
   <p>

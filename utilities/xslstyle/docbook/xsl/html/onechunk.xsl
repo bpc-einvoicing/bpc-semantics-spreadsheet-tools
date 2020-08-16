@@ -5,7 +5,7 @@
                 exclude-result-prefixes="doc">
 
 <!-- ********************************************************************
-     $Id: onechunk.xsl 6910 2007-06-28 23:23:30Z xmldoc $
+     $Id: 857b188acd4b230931b359f1d3a7abab2f1e1a09 $
      ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.

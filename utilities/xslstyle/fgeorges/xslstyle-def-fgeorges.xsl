@@ -14,7 +14,7 @@
                 version="1.0">
 
 <xs:doc filename="xslstyle-def-fgeorges.xsl" global-ns="xs"
-info="$Id: xslstyle-def-fgeorges.xsl,v 1.3 2010/02/28 22:46:17 gkholman Exp $"
+info="$Id: 12bf73ff521f11490002506a377ff55c06be6ede $"
 
         vocabulary="DocBook">
   <xs:title><literal>fgeorges</literal> definitions for the XSLStyle&#x2122; environment</xs:title>

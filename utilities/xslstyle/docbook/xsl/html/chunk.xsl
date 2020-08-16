@@ -4,7 +4,7 @@
                 exclude-result-prefixes="exsl">
 
 <!-- ********************************************************************
-     $Id: chunk.xsl 6910 2007-06-28 23:23:30Z xmldoc $
+     $Id: b45fe3b2a6bec9719c1d16a5ac174a05cff6a86a $
      ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.

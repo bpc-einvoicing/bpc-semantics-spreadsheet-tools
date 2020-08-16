@@ -14,7 +14,7 @@
                 version="1.0">
 
 <xs:doc filename="xslstyle-def-dmarcotte.xsl" global-ns="xs"
-info="$Id: xslstyle-def-dmarcotte.xsl,v 1.3 2010/02/28 22:46:16 gkholman Exp $"
+info="$Id: 3aefcb9ee45efc88f1c11dac7ff5996522b53816 $"
         vocabulary="DocBook">
   <xs:title><literal>dmarcotte</literal> definitions for the XSLStyle&#x2122; environment</xs:title>
   <para>

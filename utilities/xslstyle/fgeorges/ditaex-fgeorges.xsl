@@ -7,7 +7,7 @@
 
 <xsl:import href="../ditaex.xsl"/>
 
-<xs:doc info="$Id: ditaex-fgeorges.xsl,v 1.3 2010/03/02 15:46:08 gkholman Exp $"
+<xs:doc info="$Id: 8a12d69672925cd1c8f009c1aed675bcfa6ade53 $"
         external-css="fgeorges-xslstyle.css"
         filename="ditaex-fgeorges.xsl" vocabulary="DITA">
   <xs:title>Test shell to demonstrate "fgeorges" style formatting</xs:title>

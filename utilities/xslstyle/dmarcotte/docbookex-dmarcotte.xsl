@@ -7,7 +7,7 @@
 
 <xsl:import href="../docbookex.xsl"/>
 
-<xs:doc info="$Id: docbookex-dmarcotte.xsl,v 1.3 2010/03/02 15:45:45 gkholman Exp $"
+<xs:doc info="$Id: 97302484a2fcb7862e25676a14242bd4998a1501 $"
         external-css="dmarcotte-xslstyle.css"
         filename="docbookex-dmarcotte.xsl" vocabulary="DocBook">
   <xs:title>Test shell to demonstrate "dmarcotte" style formatting</xs:title>

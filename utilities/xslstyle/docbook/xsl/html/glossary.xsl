@@ -7,7 +7,7 @@
                 version='1.0'>
 
 <!-- ********************************************************************
-     $Id: glossary.xsl 7631 2007-12-31 18:33:28Z dcramer $
+     $Id: 2213f1a9c34858c5a1046b0dda2ee1def4de50dd $
      ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.

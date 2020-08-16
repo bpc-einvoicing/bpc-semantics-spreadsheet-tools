@@ -11,7 +11,7 @@
 
 <xs:doc filename="xslstyle-xhtml-core.xsl" internal-ns="xv xs" 
         vocabulary="DocBook"
-  info="$Id: xslstyle-xhtml-core.xsl,v 1.6 2010/08/17 01:29:05 admin Exp $">
+  info="$Id: 5a840eb0aef412da5c63787e6398f82450fc0f76 $">
   <xs:title>XHTML core for the XSLStyle&#x2122; environment</xs:title>
   <para>
     This core for XSLStyle&#x2122; assumes that the embedded constructs

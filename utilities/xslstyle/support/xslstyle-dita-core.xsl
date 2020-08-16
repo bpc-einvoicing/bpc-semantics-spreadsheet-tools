@@ -26,7 +26,7 @@
 
 <xs:doc filename="xslstyle-dita-core.xsl" internal-ns="xv xs" 
         vocabulary="DocBook"
-  info="$Id: xslstyle-dita-core.xsl,v 1.22 2010/08/17 01:28:05 admin Exp $">
+  info="$Id: b8ac35c08030a48bc03d95c1e86492bd637749ac $">
   <xs:title>DITA core for the XSLStyle&#x2122; environment</xs:title>
   <para>
     This core for XSLStyle&#x2122; assumes that the embedded constructs

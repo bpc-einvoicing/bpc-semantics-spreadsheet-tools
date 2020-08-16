@@ -8,7 +8,7 @@
 <!--diagnostic inclusion of the main stylesheet-->
 <xsl:import href="xslstyle-dita.xsl"/>
 
-<xs:doc info="$Id: xslstyle-dita.xml,v 1.1 2007/09/16 17:40:58 G. Ken Holman Exp $"
+<xs:doc info="$Id: fc60157544cae38533d39b0dcf36abdf62f30b0b $"
         filename="xslstyle-dita.xml" vocabulary='DocBook'>
   <xs:title>DITA shell for XSLStyle&#x2122; test harness</xs:title>
   <para>

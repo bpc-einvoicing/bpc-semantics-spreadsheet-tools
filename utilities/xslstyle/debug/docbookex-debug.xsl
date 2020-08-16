@@ -7,7 +7,7 @@
 
 <xsl:import href="../docbookex.xsl"/>
 
-<xs:doc info="$Id: docbookex-debug.xsl,v 1.3 2010/03/02 15:45:22 gkholman Exp $"
+<xs:doc info="$Id: da0e049feab45a1d6b332f12627b9e4ab55b7972 $"
         external-css="debug-xslstyle.css"
         filename="docbookex-debug.xsl" vocabulary="DocBook">
   <xs:title>Test shell to demonstrate "debug" style formatting</xs:title>

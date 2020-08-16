@@ -5,7 +5,7 @@
                 version='1.0'>
 
 <!-- ********************************************************************
-     $Id: math.xsl 6961 2007-07-07 02:05:56Z xmldoc $
+     $Id: dcc1281bbc0bfdde8da73e7f9f1f7f95fa8efb89 $
      ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.

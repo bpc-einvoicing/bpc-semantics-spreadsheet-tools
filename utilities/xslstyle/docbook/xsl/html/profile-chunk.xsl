@@ -4,7 +4,7 @@
                 exclude-result-prefixes="exsl">
 
 <!-- ********************************************************************
-     $Id: profile-chunk.xsl 6910 2007-06-28 23:23:30Z xmldoc $
+     $Id: 879654ecb78498ad448063ad24f30b4bba1d439a $
      ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.

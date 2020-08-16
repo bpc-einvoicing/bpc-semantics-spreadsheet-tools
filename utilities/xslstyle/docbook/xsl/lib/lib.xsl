@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ASCII"?>
 <!-- ********************************************************************
-     $Id: lib.xweb 7102 2007-07-20 15:35:24Z xmldoc $
+     $Id: 20f99a1ec5ecfd6a8fbe99b5a9cbdfaea2a72421 $
      ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.

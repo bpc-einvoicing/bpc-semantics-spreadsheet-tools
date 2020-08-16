@@ -11,7 +11,7 @@
 <xsl:include href="../common/table.xsl"/>
 
 <!-- ********************************************************************
-     $Id: table.xsl 8010 2008-05-21 16:17:44Z abdelazer $
+     $Id: c1905713d293f02f77285ed942ab37706e45c59c $
      ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.

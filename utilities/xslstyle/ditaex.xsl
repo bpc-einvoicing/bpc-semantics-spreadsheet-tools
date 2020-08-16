@@ -15,7 +15,7 @@
 <!--another example import-->
 <xsl:import href="ditaex2.xsl"/>
 
-<xs:doc info="$Id: ditaex.xsl,v 1.5 2010/03/02 17:05:43 gkholman Exp $"
+<xs:doc info="$Id: 0c458850fb8d3ceb6f56633545de6cf32e35447e $"
         filename="ditaex.xsl" global-ns="xs" vocabulary="DITA">
   <xs:title>&XS; illustration for the DITA vocabulary</xs:title>
   <p>

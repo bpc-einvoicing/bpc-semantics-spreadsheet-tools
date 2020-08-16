@@ -39,7 +39,7 @@ Note: for your reference, the above is the "Modified BSD license", this text
 -->
 
 <xs:doc filename="xslstyle-nodes.xsl" internal-ns="xs" vocabulary="DocBook"
-  info="$Id: xslstyle-nodes.xsl,v 1.10 2010/08/17 01:29:38 admin Exp $">
+  info="$Id: 5d8f9b7c14d01776edfece4f47339bafe8d98038 $">
   <xs:title>XSLT processor-specific extension support for node-sets</xs:title>
   <para>
     Since the XSLT 1.0 environment needs extensions for converting a 

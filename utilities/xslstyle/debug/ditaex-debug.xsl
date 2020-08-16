@@ -7,7 +7,7 @@
 
 <xsl:import href="../ditaex.xsl"/>
 
-<xs:doc info="$Id: ditaex-debug.xsl,v 1.4 2010/03/02 15:45:21 gkholman Exp $"
+<xs:doc info="$Id: e102ce95c5e9c870dc52e38d3a31a25c7bd0a990 $"
         external-css="debug-xslstyle.css"
         filename="ditaex-debug.xsl" global-ns="xs" vocabulary="DITA">
   <xs:title>Test shell to demonstrate "debug" style formatting</xs:title>

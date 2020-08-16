@@ -3,7 +3,7 @@
                 version='1.0'>
 
 <!-- ********************************************************************
-     $Id: autotoc.xsl 7084 2007-07-19 07:17:45Z xmldoc $
+     $Id: fabb2ecc7872583fa98fdf55cd38d82ebca946e4 $
      ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.

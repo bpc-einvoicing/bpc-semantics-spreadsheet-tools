@@ -8,7 +8,7 @@
                 exclude-result-prefixes="xs"
                 version="1.0">
 
-<xs:doc info="$Id: docbookex2.xsl,v 1.2 2010/02/20 14:21:00 gkholman Exp $"
+<xs:doc info="$Id: 06b00d845608cb7c1710ecd29b2cead8b3f3b4c1 $"
         filename="docbookex2.xsl" global-ns="xs" vocabulary="DocBook">
   <xs:title>&XS; imported fragment two</xs:title>
   <para>

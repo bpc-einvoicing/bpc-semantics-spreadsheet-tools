@@ -3,7 +3,7 @@
                 version='1.0'>
 
 <!-- ********************************************************************
-     $Id: component.xsl 7656 2008-02-02 00:29:28Z nwalsh $
+     $Id: 634f220534cc9147d165a1cdd36c08f93e1c24c2 $
      ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.

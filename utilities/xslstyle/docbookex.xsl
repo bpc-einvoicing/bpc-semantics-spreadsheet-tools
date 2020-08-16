@@ -16,7 +16,7 @@
 <!--another example import-->
 <xsl:import href="docbookex2.xsl"/>
 
-<xs:doc info="$Id: docbookex.xsl,v 1.4 2010/03/02 17:05:43 gkholman Exp $"
+<xs:doc info="$Id: 4e38dd28274b1fd19687285a37e1eedfb043a7b6 $"
         filename="docbookex.xsl" global-ns="xs" vocabulary="DocBook">
   <xs:title>&XS; illustration for the DocBook vocabulary</xs:title>
   <para>

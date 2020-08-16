@@ -3,7 +3,7 @@
                 version="1.0">
 
 <!-- ********************************************************************
-     $Id: changebars.xsl 6910 2007-06-28 23:23:30Z xmldoc $
+     $Id: 313fdbba963724321c5619488afbe3419b5ed2b9 $
      ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.

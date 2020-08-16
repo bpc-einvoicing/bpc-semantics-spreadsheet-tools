@@ -16,4 +16,4 @@ XSLStyle(TM) by Crane Softwrights Ltd:
   http://www.CraneSoftwrights.com/resources/#xslstyle
 
 =============
-$Id: readme.txt,v 1.2 2010/03/02 15:43:38 gkholman Exp $
+$Id: 3520ac0dc7992ca05319445b10aabfaedcbec7f1 $

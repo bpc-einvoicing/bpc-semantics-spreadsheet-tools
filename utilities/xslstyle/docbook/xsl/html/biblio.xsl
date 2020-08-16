@@ -3,7 +3,7 @@
                 version='1.0'>
 
 <!-- ********************************************************************
-     $Id: biblio.xsl 8009 2008-05-21 00:12:14Z abdelazer $
+     $Id: c32bf770c4663cdce8bb286fe630c5d43437ce59 $
      ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.

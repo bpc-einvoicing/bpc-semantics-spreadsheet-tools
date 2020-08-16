@@ -7,7 +7,8 @@
                 exclude-result-prefixes="xs xsd bpc"
                 version="2.0">
 
-<xs:doc filename="ublgc2bpcgc.xsl" vocabulary="DocBook">
+<xs:doc filename="ublgc2bpcgc.xsl" vocabulary="DocBook"
+        info="$Id$">
   <xs:title>
     Convert a BPC semantic model XML instance into the ISO Schematron
     shells necessary for all of the doctypes for all of the processes.

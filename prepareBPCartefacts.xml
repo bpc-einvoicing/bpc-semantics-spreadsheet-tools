@@ -201,12 +201,10 @@ tofile="${dir}/${BPCversion}-build/model/BPC-Semantics-Spreadsheet-${BPCversion}
       <arg value="-s:${dir}/${BPCversion}-build/bpc/bpcProcesses.xml"/>
       <arg value="-o:${dir}/${BPCversion}-build/bpc/junk.out"/>
        <arg value=
-"+semanticInfo=${dir}/${BPCversion}-build/model/BPC-Semantics-Spreadsheet-${BPCversion}-${dateTime}.xml"/>
+"+semanticsSummary=${dir}/${BPCversion}-build/model/BPC-Semantics-Spreadsheet-${BPCversion}-${dateTime}.xml"/>
       <arg value=
               "+schemaSkeleton=${dir}/BPC-Skeleton-Data-Integrity-Constraints.sch"/>
       <arg value="+patternSkeleton=${dir}/BPC-Skeleton-Pattern.sch"/>
-      <arg value=
- "+semanticsSummary=${dir}/${BPCversion}-build/model/BPC-Semantics-Spreadsheet-${BPCversion}-${dateTime}.gc"/>
       <arg value="BPCversion=${BPCversion}"/>
       <arg value="dateTime=${dateTime}"/>
       <arg value="antDynamicScriptURI=../../doAllProcessAntScripts.xml"/>

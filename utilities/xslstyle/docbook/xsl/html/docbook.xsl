@@ -12,7 +12,7 @@
             indent="no"/>
 
 <!-- ********************************************************************
-     $Id: docbook.xsl 7939 2008-03-23 04:32:34Z xmldoc $
+     $Id: d5f54865796f35e38b0c39b1eebbfd6a87f92ca1 $
      ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.

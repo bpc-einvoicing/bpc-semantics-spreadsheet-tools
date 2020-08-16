@@ -12,7 +12,7 @@
 <xsl:import href="xslstyle-core.xsl"/>
 
 <xs:doc filename="xslstyle-docbook-core.xsl" internal-ns="xv" global-ns="xs"
-info="$Id: xslstyle-docbook-core.xsl,v 1.23 2010/08/17 01:28:28 admin Exp $"
+info="$Id: bc429cfc032fe9179423e7fdbfc074033db76223 $"
         vocabulary="DocBook">
   <xs:title>DocBook core for the XSLStyle&#x2122; environment</xs:title>
   <para>

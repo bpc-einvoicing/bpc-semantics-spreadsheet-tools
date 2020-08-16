@@ -7,7 +7,7 @@
                 version='1.0'>
 
 <!-- ********************************************************************
-     $Id: callout.xsl 6910 2007-06-28 23:23:30Z xmldoc $
+     $Id: 7b5eefddb501b4bf21f4a55f5b5b1ed93fb43582 $
      ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.

@@ -6,7 +6,7 @@
                 version='1.0'>
 
 <!-- ********************************************************************
-     $Id: pi.xsl 7684 2008-02-18 01:50:02Z xmldoc $
+     $Id: 10c6363731d92d5ed64ba67d70caf7a84fc01884 $
      ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.
@@ -17,7 +17,7 @@
 
 <doc:reference xmlns=""><info><title>HTML Processing Instruction Reference</title>
     <releaseinfo role="meta">
-      $Id: pi.xsl 7684 2008-02-18 01:50:02Z xmldoc $
+      $Id: 10c6363731d92d5ed64ba67d70caf7a84fc01884 $
     </releaseinfo>
   </info>
   <partintro xml:id="partintro">

@@ -5,7 +5,7 @@
                 version='1.0'>
 
 <!-- ********************************************************************
-     $Id: targets.xsl 6910 2007-06-28 23:23:30Z xmldoc $
+     $Id: daeeb1cc4ccd4e4e166be2449802d7b01305c2fb $
      ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.

@@ -5,7 +5,7 @@
                 version='1.0'>
 
 <!-- ********************************************************************
-     $Id: footnote.xsl 6910 2007-06-28 23:23:30Z xmldoc $
+     $Id: 9f941b9171b0a38ac51682638a2fdf4f7a5d5ed4 $
      ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.

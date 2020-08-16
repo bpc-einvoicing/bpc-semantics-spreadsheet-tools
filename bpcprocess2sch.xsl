@@ -6,10 +6,11 @@
                 xmlns:bpc="urn:X-BPC"
                 xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                 xmlns:xslo="dummy"
-                exclude-result-prefixes="xs xsd bpc xslo"
+                exclude-result-prefixes="xs xsd bpc xslo xsl"
                 version="2.0">
 
-<xs:doc filename="bpcprcess2sch.xsl" vocabulary="DocBook">
+<xs:doc filename="bpcprocess2sch.xsl" vocabulary="DocBook"
+        info="$Id$">
   <xs:title>
     Convert a BPC skeleton Schematron script into one tailored for a process.
   </xs:title>
@@ -52,11 +53,10 @@
 
 <xs:param ignore-ns='yes'>
   <para>
-    Schema skeleton to be fleshed out.
+    Main input semantics file.
   </para>
 </xs:param>
-<xsl:param name="semanticsSummary" required="yes"
-           as="document-node(element(worksheets))"/>
+<xsl:param name="semanticsSummary" required="yes" as="document-node()"/>
 
 <xs:param ignore-ns='yes'>
   <para>
@@ -84,6 +84,11 @@
 </xs:output>
 <xsl:output indent="yes"/>
 
+<xs:namespace-alias>
+  <para>
+    Portions of the output are in the XSLT vocabulary, thus this is needed.
+  </para>
+</xs:namespace-alias>
 <xsl:namespace-alias stylesheet-prefix="xslo" result-prefix="xsl"/>
 
 <!--========================================================================-->
@@ -96,22 +101,36 @@
 </xs:template>
 <xsl:template match="/">
   <!--first create the Schematron schema and pattern files for each process-->
-  <xsl:for-each select="/*/bpcProcess">
+  <xsl:for-each select="/*/bpcProcess
+          [some $w in $semanticsSummary/worksheets/worksheet
+           satisfies $w/@worksheetNumber = @worksheetNumber ]">
+    <xsl:variable name="worksheet" 
+                  select="$semanticsSummary/worksheets/worksheet
+                          [@worksheetNumber = current()/@worksheetNumber]"/>
     <xsl:variable name="procID" select="@bpcID"/>
-    <xsl:result-document
-  href="{$procID}/BPC-{$procID}-v{$BPCversion}-Data-Integrity-Constraints.sch">
+    <!--this is the wrapper schematron-->
+    <xsl:variable name="schematronOutURI"
+                  select="concat($procID,'/BPC-',$procID,'-v',
+                          $BPCversion,'-Data-Integrity-Constraints.sch')"/>
+    <xsl:message select="'Writing:',$schematronOutURI"/>
+    <xsl:result-document href="{$schematronOutURI}">
       <xsl:apply-templates select="$schemaSkeleton/*">
         <xsl:with-param name="process" select="." tunnel="yes"/>
+        <xsl:with-param name="worksheet" select="$worksheet" tunnel="yes"/>
       </xsl:apply-templates>
     </xsl:result-document>
-    <xsl:result-document
-          href="{$procID}/BPC-{$procID}-v{$BPCversion}-Assertions.pattern.sch">
+    <!--this is the embedded pattern schematron-->
+    <xsl:variable name="patternOutURI"
+                  select="concat($procID,'/BPC-',$procID,'-v',
+                          $BPCversion,'-Assertions.pattern.sch')"/>
+    <xsl:result-document href="{$patternOutURI}">
       <xsl:apply-templates select="$patternSkeleton/*">
         <xsl:with-param name="process" select="." tunnel="yes"/>
+        <xsl:with-param name="worksheet" select="$worksheet" tunnel="yes"/>
       </xsl:apply-templates>
     </xsl:result-document>
     <xsl:result-document exclude-result-prefixes="sch"
-                      href="{$procID}/BPC-{$procID}-Data-Integrity-Constraints.xsl">
+                 href="{$procID}/BPC-{$procID}-Data-Integrity-Constraints.xsl">
       <xslo:stylesheet version="2.0">
         <xsl:text>&#xa;</xsl:text>
 <xsl:comment>
@@ -220,11 +239,14 @@
     <listitem>bpc:worksheet - #</listitem>
     <listitem>bpc:title - formatted string of version and dateTime</listitem>
   </itemizedlist>
+  <xs:param name="template">
+    <para>The string input to the translation</para>
+  </xs:param>
   <xs:param name="process">
     <para>The information for the process being acted on</para>
   </xs:param>
 </xs:function>
-<xsl:function name="bpc:formatProcessInfo">
+<xsl:function name="bpc:formatProcessInfo" as="xsd:string">
   <xsl:param name="template" as="xsd:string"/>
   <xsl:param name="process" as="element(bpcProcess)"/>
   <xsl:value-of select="replace(replace(replace(replace($template,
@@ -257,15 +279,95 @@
   <xs:param name="process">
     <para>The information for the process being acted on</para>
   </xs:param>
+  <xs:param name="worksheet">
+    <para>The semantic information for all process being acted on</para>
+  </xs:param>
 </xs:template>
-<xsl:template match="sch:pattern">
+<xsl:template match="sch:pattern" xmlns="http://purl.oclc.org/dsdl/schematron"
+              exclude-result-prefixes="xsl xslo sch">
   <xsl:param name="process" as="element(bpcProcess)" tunnel="yes"/>
+  <xsl:param name="worksheet" as="element(worksheet)" tunnel="yes"/>
+  <xsl:variable name="bpcId" select="$process/@bpcId"/>
+  <xsl:variable name="bpcDocTypes" as="xsd:string*"
+                select="$process/doctypes/doctype/translate(.,' ','')"/>
+  <xsl:variable name="worksheetDocTypes" as="xsd:string*"
+                select="$worksheet/doctypes/doctype/translate(.,' ','')"/>
+  <!--first, preserve the pattern itself and its existing content-->
   <xsl:copy>
     <xsl:copy-of select="@*"/>
     <xsl:apply-templates/>
-    <!--generate assertions at this point--> 
+    <xsl:text>&#xa;</xsl:text>
+    <xsl:comment>
+      <xsl:text>Generated assertions from spreadsheet worksheet </xsl:text>
+      <xsl:value-of select="concat($worksheet/@tab,' for process ',$bpcId,
+                                 ' for doctype',
+                                 if(count($process/doctypes/doctype)>1)
+                                 then 's:' else ':'),
+                                 string-join($process/doctypes/doctype,', ')"/>
+    </xsl:comment>
+    <xsl:text>&#xa;</xsl:text>
 
-
+    <xsl:for-each-group group-by="." select="
+                   $worksheet/semantics/semantic/process/data/contextPrototype
+                   (:a process that has an assertion for the semantic:)
+                   [ exists( ../assertionPrototype ) ]
+                   (:and:)
+                   [(:that is specific to the current process or:)
+                    ( @processId = $process/@bpcId ) or
+                    (:not specific to any process and 
+                      no sibling process specific to current:) 
+                    ( not( @processId ) and
+                      not( some $p in ancestor::process/@processId
+                           satisfies $p=$bpcId ) ) ]
+                   (:and whose context is for the process's document type:)
+                   [ (:is a relative context:)
+                     not( starts-with(.,'/') )
+                  or (:is an absolute context of an expected doctype:)
+                     ( some $d in $bpcDocTypes satisfies
+                       starts-with(.,concat('/',$d)) )
+                  or (:is a prototype context and one of the document
+                       types for the process matches one of the document
+                       types for the worksheet:)
+                     ( starts-with(., '/#')
+                   and ( some $pd in $bpcDocTypes,
+                              $wd in $worksheetDocTypes
+                         satisfies $pd = $wd ) 
+                     ) 
+                   ]">
+      <xsl:variable name="contextPrototype" select="."/>
+      <xsl:for-each select="$process/doctypes/doctype
+                                       [ some $d in $worksheet/doctypes/doctype
+                                         satisfies $d = . ]">
+        <xsl:variable name="doctype" 
+                      select="translate(.,' ','')"/>
+        <!--only execute once unless there is a prototype replacement-->
+        <xsl:if test="position()=1 or contains($contextPrototype,'#')">
+          <xsl:element name="rule"
+                   namespace="http://purl.oclc.org/dsdl/schematron">
+            <xsl:attribute name="context"
+                           select="concat(
+   replace(normalize-space($contextPrototype),'#',$doctype),' ',
+   concat('(',':',string-join(distinct-values(
+                              current-group()/ancestor::semantic/@bpcID),' ' ),
+   ' Tab ',$worksheet/@worksheetNumber,':',')') )"/>
+            <xsl:for-each select="current-group()">
+              <xsl:element name="assert"
+                       namespace="http://purl.oclc.org/dsdl/schematron">
+                <xsl:attribute name="test"
+                               select="concat(
+    replace(normalize-space(../assertionPrototype),'#',$doctype), ' ','(',':',
+    ancestor::semantic/@bpcID,' Tab ',$worksheet/@worksheetNumber,':',')')"/>
+                <xsl:value-of select="replace(../message, '#',$doctype)"/>
+                <xsl:text> </xsl:text>
+                <xsl:value-of select="concat
+                              ('(',':',ancestor::semantic/@bpcID, 
+                               ' Tab ',$worksheet/@worksheetNumber,':',')')"/>
+              </xsl:element>
+            </xsl:for-each>
+          </xsl:element>
+        </xsl:if>
+      </xsl:for-each>
+    </xsl:for-each-group>
 
     <xsl:text>&#xa;</xsl:text>
   </xsl:copy>

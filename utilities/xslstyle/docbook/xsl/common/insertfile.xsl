@@ -4,7 +4,7 @@
                 version='1.0'>
 
 <!-- ********************************************************************
-     $Id: insertfile.xsl 5262 2005-10-12 14:58:42Z xmldoc $
+     $Id: c4e2d0d4416b1fe43585e81c732109d7ddea8f4a $
      ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.

@@ -9,7 +9,7 @@
 <xsl:import href="support/xslstyle-docbook-core.xsl"/>
 
 <xs:doc filename="xslstyle-docbook.xsl" global-ns="xs"
-info="$Id: xslstyle-docbook.xsl,v 1.21 2010/03/02 17:06:02 gkholman Exp $"
+info="$Id: d74ead41484c246f079b44602f2c8f8168001191 $"
         vocabulary="DocBook">
   <xs:title>DocBook shell for the XSLStyle&#x2122; environment</xs:title>
   <para>

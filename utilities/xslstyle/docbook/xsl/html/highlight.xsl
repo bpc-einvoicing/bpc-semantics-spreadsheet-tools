@@ -5,7 +5,7 @@
                 version='1.0'>
 
 <!-- ********************************************************************
-     $Id: highlight.xsl 7266 2007-08-22 11:58:42Z xmldoc $
+     $Id: 94efb26f1c58c186448335fc1e325acf24d7a73d $
      ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.

@@ -3,7 +3,7 @@
                 version='1.0'>
 
 <!-- ********************************************************************
-     $Id: refentry.xsl 6910 2007-06-28 23:23:30Z xmldoc $
+     $Id: ebff78ff98cc7fb66552b1eca1070e746a93a160 $
      ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.

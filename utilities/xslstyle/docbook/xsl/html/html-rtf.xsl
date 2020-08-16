@@ -6,7 +6,7 @@
                 version="1.0">
 
 <!-- ********************************************************************
-     $Id: html-rtf.xsl 6910 2007-06-28 23:23:30Z xmldoc $
+     $Id: a0b24d84285f67e02e021c3f6d725f0fa8acf1e4 $
      ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.

@@ -7,7 +7,8 @@
                 exclude-result-prefixes="xs xsd c"
                 version="2.0">
 
-<xs:doc filename="ssgc2sch.xsl" vocabulary="DocBook">
+<xs:doc filename="ssgc2sch.xsl" vocabulary="DocBook"
+        info="$Id$">
   <xs:title>
     Convert a BPC spreadsheet genericode file into Schematron scripts
   </xs:title>

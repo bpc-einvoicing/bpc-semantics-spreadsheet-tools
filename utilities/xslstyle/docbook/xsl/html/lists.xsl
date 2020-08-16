@@ -3,7 +3,7 @@
                 version='1.0'>
 
 <!-- ********************************************************************
-     $Id: lists.xsl 8002 2008-04-21 16:03:57Z kosek $
+     $Id: 908bccee15b05a1bb561fa7e57d7b974b4ecc2f3 $
      ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.

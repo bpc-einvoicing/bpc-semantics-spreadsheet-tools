@@ -8,7 +8,7 @@
                 version="1.0">
 
 <!-- ********************************************************************
-     $Id: chunk-code.xsl 6942 2007-07-04 04:42:17Z xmldoc $
+     $Id: 92729fc1174cc65f7e2426adae1f3249bbf0151b $
      ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.

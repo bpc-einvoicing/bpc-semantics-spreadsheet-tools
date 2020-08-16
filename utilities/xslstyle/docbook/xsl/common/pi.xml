@@ -2,7 +2,7 @@
 
 <reference><info><title>Common Processing Instruction Reference</title>
     <releaseinfo role="meta">
-      $Id: pi.xsl 7107 2007-07-22 10:22:06Z xmldoc $
+      $Id: 52dd04ef38361442cb3794db74f4328d5a40aa8f $
     </releaseinfo>
   </info>
   <partintro xml:id="partintro">

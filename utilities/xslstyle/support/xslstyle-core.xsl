@@ -16,7 +16,7 @@
 <!--use a generic module for converting result tree fragments to node sets-->
 <xsl:import href="xslstyle-nodes.xsl"/>
 
-<xs:doc info="$Id: xslstyle-core.xsl,v 1.44 2010/08/17 01:24:08 admin Exp $"
+<xs:doc info="$Id: 4fa2908d7b7d0ca40a6670b3f7f3a75c3fa56735 $"
         filename="xslstyle-core.xsl" global-ns="xs" internal-ns="xv"
         vocabulary="DocBook">
   <xs:title>&XS;</xs:title>

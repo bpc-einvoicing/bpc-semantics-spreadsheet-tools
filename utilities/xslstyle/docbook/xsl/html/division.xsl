@@ -3,7 +3,7 @@
                 version='1.0'>
 
 <!-- ********************************************************************
-     $Id: division.xsl 7000 2007-07-10 20:41:35Z mzjn $
+     $Id: d7b42ddb36ebe77a9f97868cec724d806a81b9a3 $
      ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.

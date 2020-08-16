@@ -11,7 +11,7 @@
 <xsl:import href="xslstyle-def-dmarcotte.xsl"/>
 
 <xs:doc filename="xslstyle-xhtml-dmarcotte.xsl" global-ns="xs"
-info="$Id: xslstyle-xhtml-dmarcotte.xsl,v 1.4 2010/03/02 15:45:49 gkholman Exp $"
+info="$Id: 194670d106766d92280b0eef477f1999d0db5251 $"
         external-css="dmarcotte-xslstyle.css" vocabulary="DocBook">
   <xs:title>DocBook shell for the XSLStyle&#x2122; environment</xs:title>
   <para>

@@ -8,7 +8,7 @@
 <!--diagnostic inclusion of the main stylesheet-->
 <xsl:import href="xslstyle-docbook.xsl"/>
 
-<xs:doc info="$Id: xslstyle-docbook.xml,v 1.1 2006/03/26 07:15:59 G. Ken Holman Exp $"
+<xs:doc info="$Id: efa65e2b39a7c64cafed8f4df337220211cf5fa8 $"
         filename="xslstyle-docbook.xml" vocabulary='DocBook'>
   <xs:title>DocBook shell for XSLStyle&#x2122; test harness</xs:title>
   <para>

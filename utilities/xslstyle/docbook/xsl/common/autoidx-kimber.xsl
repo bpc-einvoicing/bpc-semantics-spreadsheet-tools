@@ -12,7 +12,7 @@
                 exclude-result-prefixes="k">
 
 <!-- ********************************************************************
-     $Id: autoidx-kimber.xsl 6910 2007-06-28 23:23:30Z xmldoc $
+     $Id: 291880e7231ad78777c2c1f83b045473719d62d6 $
      ********************************************************************
 
      This file is part of the DocBook XSL Stylesheet distribution.

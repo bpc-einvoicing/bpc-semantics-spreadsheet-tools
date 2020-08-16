@@ -11,7 +11,7 @@
 <xsl:import href="xslstyle-def-fgeorges.xsl"/>
 
 <xs:doc filename="xslstyle-dita-fgeorges.xsl" internal-ns="xv" global-ns="xs"
-info="$Id: xslstyle-dita-fgeorges.xsl,v 1.5 2010/03/02 15:46:11 gkholman Exp $"
+info="$Id: c89c6219558c56bdba71648fc56feb0bf501e253 $"
       external-css="fgeorges-xslstyle.css" vocabulary="DocBook">
   <xs:title>DITA <literal>fgeorges</literal> shell for the XSLStyle&#x2122; environment</xs:title>
   <para>

@@ -5,7 +5,7 @@
                 version="1.0">
 
 <!-- ********************************************************************
-     $Id: table.xsl 7056 2007-07-17 13:56:09Z xmldoc $
+     $Id: 562d3412ada75cb3fa732af25d464b2256e3dbb6 $
      ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.

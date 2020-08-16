@@ -4,7 +4,7 @@
                 exclude-result-prefixes="doc">
 
 <!-- ********************************************************************
-     $Id: manifest.xsl 6910 2007-06-28 23:23:30Z xmldoc $
+     $Id: 7e1e1f3d0721bc181e4e4d0d110e671e47d3d7e7 $
      ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.

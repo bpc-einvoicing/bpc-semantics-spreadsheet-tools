@@ -11,7 +11,7 @@
 <xsl:import href="xslstyle-def-debug.xsl"/>
 
 <xs:doc filename="xslstyle-xhtml-debug.xsl" global-ns="xs"
-info="$Id: xslstyle-xhtml-debug.xsl,v 1.3 2010/03/02 15:45:27 gkholman Exp $"
+info="$Id: 18b7bb79a27587c83ca80909b91d74169f2ada1f $"
         external-css="debug-xslstyle.css" vocabulary="DocBook">
   <xs:title>DocBook shell for the XSLStyle&#x2122; environment</xs:title>
   <para>

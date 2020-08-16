@@ -8,7 +8,7 @@
                 exclude-result-prefixes="xs"
                 version="1.0">
 
-<xs:doc info="$Id: ditaex1.xsl,v 1.3 2010/02/20 14:21:00 gkholman Exp $"
+<xs:doc info="$Id: ee01dc24d46c844fc77b2f9f4d359648f349b640 $"
         filename="ditaex1.xsl" global-ns="xs" vocabulary="DITA">
   <xs:title>&XS; imported fragment one</xs:title>
   <p>

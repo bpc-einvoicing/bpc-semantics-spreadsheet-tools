@@ -6,7 +6,7 @@
 <xsl:output method="html" encoding="ISO-8859-1" indent="no"/>
 
 <!-- ********************************************************************
-     $Id: docbook.xsl 7939 2008-03-23 04:32:34Z xmldoc $
+     $Id: e7915a84fddff5cdce9ad6dbe5787ad70ac992e1 $
      ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.

@@ -3,7 +3,7 @@
                 version='1.0'>
 
 <!-- ********************************************************************
-     $Id: titlepage.xsl 7441 2007-09-12 20:59:57Z mzjn $
+     $Id: 9be4b13421cee9e52d0e8313e42a6f29101dc63e $
      ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.

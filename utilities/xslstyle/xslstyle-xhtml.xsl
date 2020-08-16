@@ -9,7 +9,7 @@
 <xsl:import href="support/xslstyle-xhtml-core.xsl"/>
 
 <xs:doc filename="xslstyle-xhtml.xsl" global-ns="xs"
-  info="$Id: xslstyle-xhtml.xsl,v 1.5 2010/03/02 17:06:02 gkholman Exp $"
+  info="$Id: 0d801cff83a03fc61d0aa7c78c0db807298b93e3 $"
   vocabulary="DocBook">
   <xs:title>XHTML shell for the XSLStyle&#x2122; environment</xs:title>
   <para>

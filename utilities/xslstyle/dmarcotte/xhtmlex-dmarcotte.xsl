@@ -7,7 +7,7 @@
 
 <xsl:import href="../xhtmlex.xsl"/>
 
-<xs:doc info="$Id: xhtmlex-dmarcotte.xsl,v 1.4 2010/03/02 15:45:46 gkholman Exp $"
+<xs:doc info="$Id: 833622c311b8fdd2b1174766e15960b07a556231 $"
         external-css="dmarcotte-xslstyle.css"
         filename="xhtmlex-dmarcotte.xsl" global-ns="xs" vocabulary="XHTML">
   <xs:title>Test shell to demonstrate "dmarcotte" style formatting</xs:title>

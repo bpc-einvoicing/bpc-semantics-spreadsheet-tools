@@ -32,8 +32,8 @@
 
 
 <property name="debug-submodule" location="ubl-subset-schema/UBL-2.3-CSPRD02/mod/summary/reports/All-UBL-2.3-Documents.html"/>
-<echo message="DEBUG: debug-submodule=${debug-submodule}"/>
-<copy file="${debug-submodule}" todir="${dir}"/>
+<echo message="DEBUG: debug-submodule=${debug-submodule} for ${basedir} and  ubl-subset-schema/UBL-2.3-CSPRD02/mod/summary/reports/All-UBL-2.3-Documents.html"/>
+<copy file="ubl-subset-schema/UBL-2.3-CSPRD02/mod/summary/reports/All-UBL-2.3-Documents.html" todir="${dir}"/>
 
 
 

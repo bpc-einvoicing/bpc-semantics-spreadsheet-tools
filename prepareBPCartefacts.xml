@@ -31,9 +31,9 @@
 
 
 
-<property name="debug-submodule" location="ubl-subset-schema/UBL-2.3-CSPRD02/mod/UBL-Entities-2.3-CSPRD02.gc"/>
+<property name="debug-submodule" location="ubl-subset-schema/UBL-2.3-CSPRD02/mod/summary/reports/All-UBL-2.3-Documents.html"/>
 <echo message="DEBUG: debug-submodule=${debug-submodule}"/>
-
+<copy file="${debug-submodule}" todir="${dir}"/>
 
 
 
@@ -122,6 +122,7 @@ file="${utilitydir}Crane-cva2sch-${cva2sch}/utility/iso_schematron_assembly.xsl"
       <exclude name="**/.git/**"/>
       <exclude name="**/.github/**"/>
       <exclude name="**/utilities/**"/>
+      <exclude name="**/ubl-subset-schema/**"/>
       <exclude name="**/${dir}/**"/>
       <exclude name="**/${rawdir}/**"/>
     </fileset>
@@ -313,6 +314,7 @@ tofile="${dir}/${BPCversion}-build/model/BPC-Semantics-Spreadsheet-${BPCversion}
       <exclude name="**/.git/**"/>
       <exclude name="**/.github/**"/>
       <exclude name="**/utilities/**"/>
+      <exclude name="**/ubl-subset-schema/**"/>
       <exclude name="**/raw/**"/>
       <exclude name="**/${dir}/**"/>
     </fileset>

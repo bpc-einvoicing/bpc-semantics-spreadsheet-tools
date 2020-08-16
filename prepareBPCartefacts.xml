@@ -86,6 +86,19 @@ file="${utilitydir}Crane-cva2sch-${cva2sch}/utility/iso_schematron_assembly.xsl"
     <param name="target" value="readme-bpccodelists2xsl.html"/>
   </antcall>
 
+  <uptodate targetfile="readme-bpc-artifacts.html"
+            property="readme-bpc-artifacts-okay">
+    <srcfiles dir=".">
+      <include name="readme-bpc-artifacts.xml"/>
+      <include name="README-subset.svg"/>
+    </srcfiles>
+  </uptodate>
+  <antcall target="-make-doc">
+    <param name="okay"   value="readme-bpc-artifacts-okay"/>
+    <param name="source" value="readme-bpc-artifacts.xml"/>
+    <param name="target" value="readme-bpc-artifacts.html"/>
+  </antcall>
+
   <!--start with the raw files-->
   <copy preservelastmodified="true" todir="${dir}/${BPCversion}-build">
     <fileset dir="${rawdir}">

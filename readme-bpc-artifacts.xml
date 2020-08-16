@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl"
+                 href="utilities/article/article-html.xsl"?>
+<article conformance="ids ebuzzwords quotes">
+  <title>BPC Semantic Model Validation Artifacts</title>
+  <articleinfo>
+    <copyright>
+      <year>2020</year>
+      <year>Business Payments Coalition</year>
+    </copyright>
+    <authorgroup>
+      <author>
+        <firstname>G. Ken</firstname>
+        <surname>Holman</surname>
+        <affiliation>
+          <orgname>Crane Softwrights Ltd.</orgname>
+          <address><email>gkholman@CraneSoftwrights.com</email></address>
+        </affiliation>
+      </author>
+    </authorgroup>
+    <legalnotice>
+      <title>Executive summary</title>
+      <para>The summary goes here.</para>
+    </legalnotice>
+    <pubdate>$Date: 2004/04/20 21:44:41 $(UTC)</pubdate>
+  </articleinfo>
+  <section id="S-INTRODUCTION">
+    <title>Introduction</title>
+    <para>Artifacts employed for semantic validation</para>
+    <figure id="F-XML-DOCUMENT-GENERATION-AND-INGRESS">
+      <title>XML document generation and ingress</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata role="html-embed" fileref="README-subset.svg"/>
+        </imageobject>
+      </mediaobject>
+    </figure>
+  </section>
+<!--  <bibliography>
+    <para>See article-bibliography.xml for bibliographic entries.</para>
+  </bibliography>-->
+</article>

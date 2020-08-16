@@ -358,19 +358,21 @@
    replace(normalize-space($contextPrototype),'#',$doctype),' ',
    concat('(',':',string-join(distinct-values(
                               current-group()/ancestor::semantic/@bpcID),' ' ),
-   ' Tab ',$worksheet/@worksheetNumber,':',')') )"/>
+                              ' Tab ',$worksheet/@worksheetNumber,':',')') )"/>
             <xsl:for-each select="current-group()">
               <xsl:element name="assert"
                        namespace="http://purl.oclc.org/dsdl/schematron">
                 <xsl:attribute name="test"
                                select="concat(
     replace(normalize-space(../assertionPrototype),'#',$doctype), ' ','(',':',
-    ancestor::semantic/@bpcID,' Tab ',$worksheet/@worksheetNumber,':',')')"/>
+                 ancestor::semantic/@bpcID,' Tab ',$worksheet/@worksheetNumber,
+                 ' Row ',ancestor::semantic/@worksheetRows,':',')')"/>
                 <xsl:value-of select="replace(../message, '#',$doctype)"/>
                 <xsl:text> </xsl:text>
                 <xsl:value-of select="concat
-                              ('(',':',ancestor::semantic/@bpcID, 
-                               ' Tab ',$worksheet/@worksheetNumber,':',')')"/>
+                         ('(',':',ancestor::semantic/@bpcID, 
+                          ' Tab ',$worksheet/@worksheetNumber,
+                          ' Row ',ancestor::semantic/@worksheetRows,':',')')"/>
               </xsl:element>
             </xsl:for-each>
           </xsl:element>

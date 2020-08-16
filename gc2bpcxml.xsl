@@ -50,6 +50,13 @@
 </xs:param>
 <xsl:param name="ublgc" required="yes" as="document-node()"/>
 
+<xs:param ignore-ns='yes'>
+  <para>
+    The comment to embed at the beginning of the output XML
+  </para>
+</xs:param>
+<xsl:param name="embedded-comment" required="yes" as="xsd:string"/>
+
 <!--========================================================================-->
 <xs:doc>
   <xs:title>Main processing</xs:title>
@@ -163,6 +170,7 @@
     </xsl:for-each-group>
   </xsl:variable>
   <!--put out the results first-->
+  <xsl:comment select="$embedded-comment"/>
   <worksheets>
     <xsl:copy-of select="$worksheet"/>
   </worksheets>

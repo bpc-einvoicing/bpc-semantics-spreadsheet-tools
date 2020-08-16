@@ -168,6 +168,9 @@ file="${utilitydir}Crane-cva2sch-${cva2sch}/utility/iso_schematron_assembly.xsl"
   "-o:${dir}/${BPCversion}-build/model/BPC-Semantics-Spreadsheet-${BPCversion}-${dateTime}.xml"/>
        <arg value=
         "+ublgc=${dir}/${BPCversion}-build/ubl/UBL-Entities-${UBLversion}.gc"/>
+      <arg value="embedded-comment=&#xa;&#xa;XML serialization of BPC Semantics
+Spreadsheet v${BPCversion} ${dateTime} from location:
+&#xa;&#xa;${ssGoogle}&#xa;&#xa;"/>
     </java>
     <available property="bpcXMLerror"
 file="${dir}/${BPCversion}-build/model/BPC-Semantics-Spreadsheet-${BPCversion}-${dateTime}.gc.errors.txt"/>

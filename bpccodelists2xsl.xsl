@@ -62,10 +62,11 @@
 <xsl:template match="/*">
   <xsl:copy>
     <xsl:copy-of select="@*"/>
-    <xsl:copy-of select="xsl:function"/>
+    <xsl:apply-templates
+                   select="node() except xsl:variable[@name='bpc:generated']"/>
     
     <xsl:text>&#xa;</xsl:text>
-    <xsl:comment>Generated content</xsl:comment>
+    <xsl:comment>This is some generated content</xsl:comment>
     <xsl:text>&#xa;</xsl:text>
     <xsl:text>&#xa;</xsl:text>
 
@@ -90,7 +91,6 @@
   <xsl:comment>
     <xsl:call-template name="bpc:formatProcessInfo"/>
   </xsl:comment>
-  <xsl:text>&#xa;</xsl:text>
 </xsl:template>
 
 <xs:template>

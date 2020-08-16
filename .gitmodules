@@ -1,0 +1,3 @@
+[submodule "ubl-subset-schema"]
+	path = ubl-subset-schema
+	url = git@github.com:bpc-einvoicing/ubl-subset-schema.git

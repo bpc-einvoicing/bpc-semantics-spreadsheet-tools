@@ -20,15 +20,15 @@
     </authorgroup>
     <legalnotice>
       <title>Executive summary</title>
-      <para>The summary goes here.</para>
+      <para>This documents the use of the BPC Semantics validation artefacts.</para>
     </legalnotice>
-    <pubdate>$Date: 2004/04/20 21:44:41 $(UTC)</pubdate>
   </articleinfo>
   <section id="S-INTRODUCTION">
     <title>Introduction</title>
-    <para>Artifacts employed for semantic validation</para>
-    <figure id="F-XML-DOCUMENT-GENERATION-AND-INGRESS">
-      <title>XML document generation and ingress</title>
+    <para>In the 4-corner model it is the responsibility of Corner 2 to send semantically- and syntactically-valid documents to Corner 3. It is incumbent on Corner 3 to validate explicitly that the received data conforms to the structure of the UBL schema document model and to the data integrity
+      constraints of the BPC semantic model. In <xref linkend="F-XML-DOCUMENT-GENERATION-AND-INGESTION"/> these two artifacts used in the two-phase validation are labeled 1 and 3:</para>
+    <figure id="F-XML-DOCUMENT-GENERATION-AND-INGESTION">
+      <title>XML document generation and ingestion</title>
       <mediaobject>
         <imageobject>
           <imagedata role="html-embed" fileref="README-subset.svg"/>
@@ -36,9 +36,65 @@
       </mediaobject>
     </figure>
   </section>
-  <section>
+  <section id="S-DEMONSTRATION">
     <title>Demonstration</title>
-    <para>Talk about the val/ directory</para>
+    <para>A running demonstration of the two-phase ingestion of a BPC XML document is in the <literal>val/</literal> subdirectory. </para>
+    <para>There are four illustrative XML instances being validated:</para>
+    <itemizedlist>
+      <listitem>
+        <para>a document with a syntax error on line 7</para>
+        <itemizedlist>
+          <listitem>
+            <para>the end delimiter of the closing tag for the <literal>cbc:ID</literal> element is missing</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+      <listitem>
+        <para>a document with a model error on line 7</para>
+        <itemizedlist>
+          <listitem>
+            <para>the <literal>cbc:ID</literal> element is misspelled as <literal>cbc:IDxxxxxxx</literal></para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+      <listitem>
+        <para>a document with a data integrity error:</para>
+        <itemizedlist>
+          <listitem>
+            <para>two identifiers are provided for the payee party, when there is a maximum of only 1</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+      <listitem>
+        <para>a valid document</para>
+      </listitem>
+    </itemizedlist>
+    <para>To run the demonstration there is an invocation for each of the Windows and Shell environments:</para>
+    <itemizedlist>
+      <listitem>
+        <para>Windows:</para>
+        <itemizedlist>
+          <listitem>
+            <para>
+              <programlisting>cd val\
+test.bat</programlisting>
+            </para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+      <listitem>
+        <para>Shell::</para>
+        <itemizedlist>
+          <listitem>
+            <para>
+              <programlisting>cd val/
+sh test.sh</programlisting>
+            </para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </itemizedlist>
+    <para>The following is a transcript of the output of running the demonstration:</para>
     <programlisting>############################################################
 Validating invoice-test-bad-syntax.xml
 ############################################################
@@ -91,6 +147,27 @@ Validating invoice-test-good.xml
 No schema validation errors.
 ============ Phase 2: BPC process P01 data integrity validation ============
 No data integrity validation errors.</programlisting>
+    <para>To validate a document there is an invocation for each of the Windows and Shell environments:</para>
+    <itemizedlist>
+      <listitem>
+        <para>Windows:</para>
+        <itemizedlist>
+          <listitem>
+            <para><programlisting>validate.bat  ubl-schema-file  bpc-process-Pxx  ubl-xml-file</programlisting>for example from the <literal>test.bat</literal> demonstration:</para>
+            <programlisting>call validate.bat  ..\ubl\xsd\maindoc\UBL-Invoice-2.2.xsd P01 invoice-test-good.xml</programlisting>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+      <listitem>
+        <para>Shell::</para>
+        <itemizedlist>
+          <listitem>
+            <para><programlisting>sh validate.sh  ubl-schema-file  bpc-process-Pxx  ubl-xml-file</programlisting>for example from the <literal>test.sh</literal> demonstration:</para>
+            <programlisting>sh validate.sh  ../ubl/xsd/maindoc/UBL-Invoice-2.2.xsd P01 invoice-test-good.xml</programlisting>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </itemizedlist>
   </section>
   <!--  <bibliography>
     <para>See article-bibliography.xml for bibliographic entries.</para>

@@ -31,6 +31,10 @@
                 select="if( $item instance of element() )
                         then $item else ()"/>
   <xsl:variable name="value" select="normalize-space($item)"/>
+  
+  <xsl:message select="'Error: Missing a code list implementation for: ',
+                       $listID"/>
+  
   <xsl:sequence select="false()"/>
 </xsl:function>
 

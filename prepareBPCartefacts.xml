@@ -344,10 +344,10 @@ tofile="${dir}/${BPCversion}-build/model/BPC-Semantics-Spreadsheet-${BPCversion}
     </fileset>
   </move>
   <zip destfile="${dir}/bpc-semantics-${BPCversion}-${dateTime}.zip"
-       basedir="${dir}/bpc-semantics-tools-${BPCversion}-${dateTime}">
+       basedir="${dir}/bpc-semantics-tools-${BPCversion}-${dateTime}"
+       duplicate="preserve">
     <fileset dir="${dir}/bpc-semantics-tools-${BPCversion}-${dateTime}">
       <include name="**"/>
-      <exclude name="bpc-semantics-${BPCversion}-${dateTime}.zip"/>
     </fileset>
   </zip>
   <delete dir="${dir}/bpc-semantics-tools-${BPCversion}-${dateTime}"/>

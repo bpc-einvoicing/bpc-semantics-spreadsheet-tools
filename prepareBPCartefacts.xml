@@ -135,7 +135,7 @@ file="${utilitydir}Crane-cva2sch-${cva2sch}/utility/iso_schematron_assembly.xsl"
         message="${dateTime}"/>
 
   <!--copy the end-user documentation-->
-  <move file="${dir}/readme-bpc-artifacts.html"
+  <copy file="readme-bpc-artifacts.html"
         todir="${dir}/${BPCversion}-build"/>
 
   <!--create GC files for business and signature-->

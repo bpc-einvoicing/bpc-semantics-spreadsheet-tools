@@ -106,7 +106,7 @@ file="${utilitydir}Crane-cva2sch-${cva2sch}/utility/iso_schematron_assembly.xsl"
   </antcall>
 
   <!--start with the raw files-->
-  <copy preservelastmodified="true" todir="${dir}/${BPCversion}-build">
+  <copy preservelastmodified="true" todir="${dir}/bpc-semantics-${BPCversion}-${dateTime}">
     <fileset dir="${rawdir}">
       <include name="**"/>
     </fileset>
@@ -125,79 +125,78 @@ file="${utilitydir}Crane-cva2sch-${cva2sch}/utility/iso_schematron_assembly.xsl"
   </copy>
   
   <!--label the directory for future reference-->
-  <echo file="${dir}/${BPCversion}-build/version-${BPCversion}.txt"
+  <echo file="${dir}/bpc-semantics-${BPCversion}-${dateTime}/version-${BPCversion}.txt"
         message="${BPCversion}"/>
-  <echo file="${dir}/${BPCversion}-build/version.txt"
+  <echo file="${dir}/bpc-semantics-${BPCversion}-${dateTime}/version.txt"
         message="${BPCversion}"/>
-  <echo file="${dir}/${BPCversion}-build/release-${dateTime}.txt"
+  <echo file="${dir}/bpc-semantics-${BPCversion}-${dateTime}/release-${dateTime}.txt"
         message="${dateTime}"/>
-  <echo file="${dir}/${BPCversion}-build/release.txt"
+  <echo file="${dir}/bpc-semantics-${BPCversion}-${dateTime}/release.txt"
         message="${dateTime}"/>
 
   <!--copy the end-user documentation-->
   <copy file="${dir}/readme-bpc-artifacts.html"
-        todir="${dir}/${BPCversion}-build"/>
+        todir="${dir}/bpc-semantics-${BPCversion}-${dateTime}"/>
 
   <!--create GC files for business and signature-->
-  <sequential unless:set="skip-gc">
-    <delete file="${dir}/Semantics-Spreadsheet-${dateTime}.gc"/>
-    
-    <echo file="${dir}/wget-spreadsheet-time.txt" message="${wgettime}"/>
-    <echo file="${dir}/wget-spreadsheet-uri.txt" message="${ssGoogle}"/>
-    <exec executable="wget">
-      <arg value="--no-check-certificate"/>
-      <arg value="-O"/>
-      <arg value="${dir}/BPC-Semantics-Spreadsheet-Google.ods"/>
-      <arg value="${ssGoogle}/export?format=ods"/>
-    </exec>
-    <property name="lengthen-uri"
-              location="${dir}/bpcSSmassage.xml"/>
-    <property name="ident-uri"
-              location="${dir}/bpcSSidentification.xml"/>
-    <antcallback target="-ods2gc" return="returnGCss">
-      <param name="okay"   value="gc-sig-okay"/>
-      <param name="source" 
-                   value="${dir}/BPC-Semantics-Spreadsheet-Google.ods"/>
-      <param name="target" 
-        value="${dir}/BPC-Semantics-Spreadsheet-${BPCversion}-${dateTime}.gc"/>
-      <param name="identification-uri" value="${ident-uri}"/>
-      <param name="lengthen-model-name-uri" value="${lengthen-uri}"/>
-      <param name="returnProperty" value="returnGCss"/>
-    </antcallback>
-    <copy preservelastmodified="true" todir="${dir}/${BPCversion}-build/model/"
-         file="${dir}/BPC-Semantics-Spreadsheet-${BPCversion}-${dateTime}.gc"/>
-    <condition property="gcSScreated">
-      <and>
-        <isset property="returnGCss"/>
-        <equals arg1="${returnGCss}" arg2="0"/>
-      </and>
-    </condition>
-    <echo unless:set="gcSScreated"
-          message="ERROR creating BPC Semantics genericode file"/>
-    <touch unless:set="gcSScreated"
-  file="${dir}/${BPCversion}-build/VALID-SEMANTICS-GC-FILE-NOT-GENERATED.txt"/>
-  </sequential>
+  <delete file="${dir}/Semantics-Spreadsheet-${dateTime}.gc"/>
+  
+  <echo file="${dir}/wget-spreadsheet-time.txt" message="${wgettime}"/>
+  <echo file="${dir}/wget-spreadsheet-uri.txt" message="${ssGoogle}"/>
+  <exec executable="wget">
+    <arg value="--no-check-certificate"/>
+    <arg value="-O"/>
+    <arg value="${dir}/BPC-Semantics-Spreadsheet-Google.ods"/>
+    <arg value="${ssGoogle}/export?format=ods"/>
+  </exec>
+  <property name="lengthen-uri"
+            location="${dir}/bpcSSmassage.xml"/>
+  <property name="ident-uri"
+            location="${dir}/bpcSSidentification.xml"/>
+  <antcallback target="-ods2gc" return="returnGCss">
+    <param name="okay"   value="gc-sig-okay"/>
+    <param name="source" 
+                 value="${dir}/BPC-Semantics-Spreadsheet-Google.ods"/>
+    <param name="target" 
+      value="${dir}/BPC-Semantics-Spreadsheet-${BPCversion}-${dateTime}.gc"/>
+    <param name="identification-uri" value="${ident-uri}"/>
+    <param name="lengthen-model-name-uri" value="${lengthen-uri}"/>
+    <param name="returnProperty" value="returnGCss"/>
+  </antcallback>
+  <copy preservelastmodified="true"
+        todir="${dir}/bpc-semantics-${BPCversion}-${dateTime}/model/"
+        file="${dir}/BPC-Semantics-Spreadsheet-${BPCversion}-${dateTime}.gc"/>
+  <condition property="gcSScreated">
+    <and>
+      <isset property="returnGCss"/>
+      <equals arg1="${returnGCss}" arg2="0"/>
+    </and>
+  </condition>
+  <echo unless:set="gcSScreated"
+        message="ERROR creating BPC Semantics genericode file"/>
+  <touch unless:set="gcSScreated"
+file="${dir}/bpc-semantics-${BPCversion}-${dateTime}/VALID-SEMANTICS-GC-FILE-NOT-GENERATED.txt"/>
 
   <sequential if:set="gcSScreated">
     <echo message="Creating subset model genericode..."/>
     <move preservelastmodified="true"
           file="${dir}/UBL-Entities-${UBLversion}.gc"
-          todir="${dir}/${BPCversion}-build/ubl"/>
+          todir="${dir}/bpc-semantics-${BPCversion}-${dateTime}/ubl"/>
     <java resultproperty="returnBPCxml" append="true"
           classname="net.sf.saxon.Transform">
        <arg value="-xsl:gc2bpcxml.xsl"/>
        <arg value=
-   "-s:${dir}/${BPCversion}-build/model/BPC-Semantics-Spreadsheet-${BPCversion}-${dateTime}.gc"/>
+   "-s:${dir}/bpc-semantics-${BPCversion}-${dateTime}/model/BPC-Semantics-Spreadsheet-${BPCversion}-${dateTime}.gc"/>
        <arg value=
-  "-o:${dir}/${BPCversion}-build/model/BPC-Semantics-Spreadsheet-${BPCversion}-${dateTime}.xml"/>
+  "-o:${dir}/bpc-semantics-${BPCversion}-${dateTime}/model/BPC-Semantics-Spreadsheet-${BPCversion}-${dateTime}.xml"/>
        <arg value=
-        "+ublgc=${dir}/${BPCversion}-build/ubl/UBL-Entities-${UBLversion}.gc"/>
+        "+ublgc=${dir}/bpc-semantics-${BPCversion}-${dateTime}/ubl/UBL-Entities-${UBLversion}.gc"/>
       <arg value="embedded-comment=&#xa;&#xa;XML serialization of BPC Semantics
 Spreadsheet v${BPCversion} ${dateTime} from location:
 &#xa;&#xa;${ssGoogle}&#xa;&#xa;"/>
     </java>
     <available property="bpcXMLerror"
-file="${dir}/${BPCversion}-build/model/BPC-Semantics-Spreadsheet-${BPCversion}-${dateTime}.gc.errors.txt"/>
+file="${dir}/bpc-semantics-${BPCversion}-${dateTime}/model/BPC-Semantics-Spreadsheet-${BPCversion}-${dateTime}.gc.errors.txt"/>
     <condition property="bpcXMLcreated">
       <and>
         <isset property="returnBPCxml"/>
@@ -210,13 +209,13 @@ file="${dir}/${BPCversion}-build/model/BPC-Semantics-Spreadsheet-${BPCversion}-$
     <echo unless:set="bpcXMLcreated"
           message="ERROR creating BPC Semantics XML file"/>
     <touch unless:set="bpcXMLcreated"
-     file="${dir}/${BPCversion}-build/VALID-SEMANTICS-XML-FILE-NOT-GENERATED.txt"/>
+     file="${dir}/bpc-semantics-${BPCversion}-${dateTime}/VALID-SEMANTICS-XML-FILE-NOT-GENERATED.txt"/>
     <copy preservelastmodified="true"
-file="${dir}/${BPCversion}-build/model/BPC-Semantics-Spreadsheet-${BPCversion}-${dateTime}.xml"
-      tofile="${dir}/${BPCversion}-build/model/BPC-Semantics-Spreadsheet.xml"/>
+file="${dir}/bpc-semantics-${BPCversion}-${dateTime}/model/BPC-Semantics-Spreadsheet-${BPCversion}-${dateTime}.xml"
+      tofile="${dir}/bpc-semantics-${BPCversion}-${dateTime}/model/BPC-Semantics-Spreadsheet.xml"/>
     <move preservelastmodified="true"
           file="${dir}/BPC-Semantics-Spreadsheet-Google.ods" 
-tofile="${dir}/${BPCversion}-build/model/BPC-Semantics-Spreadsheet-${BPCversion}-${dateTime}.ods"/>
+tofile="${dir}/bpc-semantics-${BPCversion}-${dateTime}/model/BPC-Semantics-Spreadsheet-${BPCversion}-${dateTime}.ods"/>
 
     <!--synthesize the invocations of the -sch4bpc Ant target and
         the input Schematron pattern harvested from the spreadsheet--> 
@@ -224,14 +223,14 @@ tofile="${dir}/${BPCversion}-build/model/BPC-Semantics-Spreadsheet-${BPCversion}
     <property name="antStaticScriptURI"
               location="${dir}/prepareBPCartefacts.xml"/>
     <move file="${dir}/bpcProcesses.xml"
-          todir="${dir}/${BPCversion}-build/bpc"/>
+          todir="${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc"/>
     <java append="true" classname="net.sf.saxon.Transform">
       <arg value="--suppressXsltNamespaceCheck:on"/>
       <arg value="-xsl:bpcprocess2sch.xsl"/>
-      <arg value="-s:${dir}/${BPCversion}-build/bpc/bpcProcesses.xml"/>
-      <arg value="-o:${dir}/${BPCversion}-build/bpc/junk.out"/>
+      <arg value="-s:${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/bpcProcesses.xml"/>
+      <arg value="-o:${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/junk.out"/>
        <arg value=
-"+semanticsSummary=${dir}/${BPCversion}-build/model/BPC-Semantics-Spreadsheet-${BPCversion}-${dateTime}.xml"/>
+"+semanticsSummary=${dir}/bpc-semantics-${BPCversion}-${dateTime}/model/BPC-Semantics-Spreadsheet-${BPCversion}-${dateTime}.xml"/>
       <arg value=
               "+schemaSkeleton=${dir}/BPC-Skeleton-Data-Integrity-Constraints.sch"/>
       <arg value="+patternSkeleton=${dir}/BPC-Skeleton-Pattern.sch"/>
@@ -245,7 +244,7 @@ tofile="${dir}/${BPCversion}-build/model/BPC-Semantics-Spreadsheet-${BPCversion}
       <arg value="--suppressXsltNamespaceCheck:on"/>
       <arg value="-xsl:bpccodelists2xsl.xsl"/>
       <arg value="-s:${dir}/BPC-Skeleton-Code-Lists.xsl"/>
-      <arg value="-o:${dir}/${BPCversion}-build/bpc/BPC-v${BPCversion}-Code-Lists.xsl"/>
+      <arg value="-o:${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/BPC-v${BPCversion}-Code-Lists.xsl"/>
       <arg value="BPCversion=${BPCversion}"/>
       <arg value="dateTime=${dateTime}"/>
     </java>
@@ -264,8 +263,8 @@ tofile="${dir}/${BPCversion}-build/model/BPC-Semantics-Spreadsheet-${BPCversion}
   <exec executable="wget">
     <arg value="--no-check-certificate"/>
     <arg value="-O"/>
-    <arg value="${dir}/${BPCversion}-build/model/BPC-Semantics-Spreadsheet-${BPCversion}-${dateTime}.xls"/>
-    <arg value="${ssGoogle}/export?format=xls"/>
+    <arg value="${dir}/bpc-semantics-${BPCversion}-${dateTime}/model/BPC-Semantics-Spreadsheet-${BPCversion}-${dateTime}.xlsx"/>
+    <arg value="${ssGoogle}/export?format=xlsx"/>
   </exec>
 
   <!--package it all up-->
@@ -305,65 +304,37 @@ tofile="${dir}/${BPCversion}-build/model/BPC-Semantics-Spreadsheet-${BPCversion}
 </target>
 
 <target name="-package">
+  
+  <!--prepare the tools distribution-->
   <delete dir="${dir}/bpc-semantics-tools-${BPCversion}-${dateTime}"/>
   <mkdir dir="${dir}/bpc-semantics-tools-${BPCversion}-${dateTime}"/>
-  <copy preservelastmodified="true" todir="${dir}/bpc-semantics-tools-${BPCversion}-${dateTime}">
-    <fileset dir="${dir}/${BPCversion}-build">
-     <include name="**"/>
-    </fileset>
-  </copy>
-  <touch if:set="skip-gc" file="${dir}/bpc-semantics-tools-${BPCversion}-${dateTime}/SPREADSHEET-GC-FILE-NOT-REGENERATED.txt"/>
-  <mkdir dir="${dir}/bpc-semantics-tools-${BPCversion}-${dateTime}/archive-only-not-in-final-distribution"/>
 
-  <copy preservelastmodified="true" includeEmptyDirs="false" todir=
-      "${dir}/bpc-semantics-tools-${BPCversion}-${dateTime}/archive-only-not-in-final-distribution">
-    <fileset dir=".">
-      <include name="**"/>
-      <exclude name="**/.git/**"/>
-      <exclude name="**/.github/**"/>
-      <exclude name="**/utilities/**"/>
-      <exclude name="**/ubl-subset-schema/**"/>
-      <exclude name="**/raw/**"/>
-      <exclude name="**/${dir}/**"/>
-    </fileset>
-  </copy>
-  <move preservelastmodified="true" includeEmptyDirs="false" todir=
-      "${dir}/bpc-semantics-tools-${BPCversion}-${dateTime}/archive-only-not-in-final-distribution">
+  <!--move dev files to the archive archive directory-->
+  <move preservelastmodified="true" includeEmptyDirs="false" 
+todir="${dir}/bpc-semantics-tools-${BPCversion}-${dateTime}/archive-only-not-in-final-distribution">
     <fileset dir="${dir}">
       <include name="*"/>
       <exclude name="artefacts.*.txt"/>
     </fileset>
   </move>
   
-  <!--create distributable ZIP-->
-  <move todir="${dir}">
-    <fileset  dir="${dir}/bpc-semantics-tools-${BPCversion}-${dateTime}">
-      <include name="**/archive-only-not-in-final-distribution/**"/>
-      <exclude name="**/${BPCversion}-build/**"/>
-      <exclude name="**/bpc-semantics-tools-${BPCversion}-${dateTime}/**"/>
-    </fileset>
-  </move>
-  <zip destfile="${dir}/bpc-semantics-${BPCversion}-${dateTime}.zip"
-       basedir="${dir}/bpc-semantics-tools-${BPCversion}-${dateTime}"
-       duplicate="preserve">
-    <fileset dir="${dir}/bpc-semantics-tools-${BPCversion}-${dateTime}">
-      <include name="**"/>
-    </fileset>
-  </zip>
-  <delete dir="${dir}/bpc-semantics-tools-${BPCversion}-${dateTime}"/>
-  <mkdir dir="${dir}/bpc-semantics-tools-${BPCversion}-${dateTime}"/>
-  <move todir="${dir}/bpc-semantics-tools-${BPCversion}-${dateTime}">
+  <!--create end-user distributable ZIP-->
+  <mkdir dir="${dir}/zipdir"/>
+  <move preservelastmodified="true" todir="${dir}/zipdir">
     <fileset dir="${dir}">
-      <include name="bpc-semantics-${BPCversion}-${dateTime}.zip"/>
-      <include name="**/archive-only-not-in-final-distribution/**"/>
-      <exclude name="**/${BPCversion}-build/**"/>
-      <exclude name="**/bpc-semantics-tools-${BPCversion}-${dateTime}/**"/>
+      <include name="bpc-semantics-${BPCversion}-${dateTime}/**"/>
     </fileset>
   </move>
-  
-  <!--remove unneeded files to reduce storage burden-->
-  <delete dir="${dir}/${BPCversion}-build"/>
-  
+  <delete dir="${dir}/bpc-semantics-${BPCversion}-${dateTime}"/>
+  <zip 
+destfile="${dir}/bpc-semantics-tools-${BPCversion}-${dateTime}/bpc-semantics-${BPCversion}-${dateTime}.zip"
+       basedir="${dir}/zipdir" duplicate="preserve">
+    <fileset dir="${dir}/zipdir"/>
+  </zip>
+
+  <delete dir="${dir}/zipdir"/>
+  <delete dir="${dir}/bpc-semantics-${BPCversion}-${dateTime}"/>
+
   <!--documentation-->
   <echo message="dateTime=${dateTime}"/>
   
@@ -406,7 +377,7 @@ tofile="${dir}/${BPCversion}-build/model/BPC-Semantics-Spreadsheet-${BPCversion}
   <touch datetime="${earlier}" pattern="yyyyMMdd-HHmmss" file="${target}"/>
   <touch datetime="${then}" pattern="yyyyMMdd-HHmmss" file="${source}"/>
   <echo message="Inconsistencies detected: ${source}"/>
-  <copy tofile="${dir}/${BPCversion}-build/INCONSISTENCIES-DETECTED-${source}.html"
+  <copy tofile="${dir}/bpc-semantics-${BPCversion}-${dateTime}/INCONSISTENCIES-DETECTED-${source}.html"
         file="${target}"/>
 </target>
 
@@ -418,13 +389,13 @@ tofile="${dir}/${BPCversion}-build/model/BPC-Semantics-Spreadsheet-${BPCversion}
 
 <target name="-sch4bpc" unless="${okay}">
   <echo message="Creating shell Schematron for ${process}"/>
-  <copy file="${dir}/${BPCversion}-build/ubl/UBL-DocumentConstraints-2.3.pattern.sch"
-        todir="${dir}/${BPCversion}-build/bpc/${process}"/>
+  <copy file="${dir}/bpc-semantics-${BPCversion}-${dateTime}/ubl/UBL-DocumentConstraints-2.3.pattern.sch"
+        todir="${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/${process}"/>
   <antcall target="-sch2xsl">
     <param name="schin" value=
-"${dir}/${BPCversion}-build/bpc/${process}/BPC-${process}-v${BPCversion}-Data-Integrity-Constraints.sch"/>
+"${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/${process}/BPC-${process}-v${BPCversion}-Data-Integrity-Constraints.sch"/>
     <param name="xslout" value=
-"${dir}/${BPCversion}-build/bpc/${process}/BPC-${process}-v${BPCversion}-Data-Integrity-Constraints.xsl"/>
+"${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/${process}/BPC-${process}-v${BPCversion}-Data-Integrity-Constraints.xsl"/>
   </antcall>
 </target>
 
@@ -438,15 +409,15 @@ tofile="${dir}/${BPCversion}-build/model/BPC-Semantics-Spreadsheet-${BPCversion}
      <arg value="${utilitydir}schematron/code/iso_svrl_for_xslt2.xsl"/>
   </java>
   <echo message="Validating
-${dir}/${BPCversion}-build/bpc/${process}/BPC-${process}-Data-Integrity-Constraints.xsl..."/>
+${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/${process}/BPC-${process}-Data-Integrity-Constraints.xsl..."/>
   <java resultproperty="returnXSLTtest" fork="true"
         outputproperty="outputXSLTtest"
         jar="${saxon9heJar}"
         errorproperty="errorXSLTtest">
    <arg value=
-"-xsl:${dir}/${BPCversion}-build/bpc/${process}/BPC-${process}-Data-Integrity-Constraints.xsl"/>
+"-xsl:${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/${process}/BPC-${process}-Data-Integrity-Constraints.xsl"/>
    <arg value=
-"-s:${dir}/${BPCversion}-build/bpc/${process}/BPC-${process}-Data-Integrity-Constraints.xsl"/>
+"-s:${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/${process}/BPC-${process}-Data-Integrity-Constraints.xsl"/>
   </java>
   <echo message="${errorXSLTtest}"/>
   <condition property="xsl${process}created">
@@ -456,12 +427,12 @@ ${dir}/${BPCversion}-build/bpc/${process}/BPC-${process}-Data-Integrity-Constrai
     </and>
   </condition>
   <echo unless:set="xsl${process}created"
-        message="ERROR with the BPC Semantics XSLT file ${dir}/${BPCversion}-build/bpc/${process}/BPC-${process}-Data-Integrity-Constraints.xsl"/>
+        message="ERROR with the BPC Semantics XSLT file ${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/${process}/BPC-${process}-Data-Integrity-Constraints.xsl"/>
   <echo unless:set="xsl${process}created" message="${errorXSLTtest}"
         file=
-"${dir}/${BPCversion}-build/bpc/${process}/BPC-${process}-Data-Integrity-Constraints.error.txt"/>
+"${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/${process}/BPC-${process}-Data-Integrity-Constraints.error.txt"/>
   <echo unless:set="xsl${process}created" message="${errorXSLTtest}"
-   file="${dir}/${BPCversion}-build/ERROR-RUNNING-RESULTING-XSLT-FOR-${process}.txt"/>
+   file="${dir}/bpc-semantics-${BPCversion}-${dateTime}/ERROR-RUNNING-RESULTING-XSLT-FOR-${process}.txt"/>
 </target>
 
 </project>

@@ -17,8 +17,11 @@ echo $serverReturn >$targetdir/bpc-semantics-tools-$BPCversion-$dateTime/archive
 
 # reduce GitHub storage costs by zipping results and deleting intermediate files
 pushd $targetdir
+
 if [ -f bpc-semantics-tools-$BPCversion-$dateTime.zip ]; then rm bpc-semantics-tools-$BPCversion-$dateTime.zip ; fi
 7z a bpc-semantics-tools-$BPCversion-$dateTime.zip bpc-semantics-tools-$BPCversion-$dateTime
+rm -r -f bpc-semantics-tools-$BPCversion-$dateTime
+
 popd
 
 if [ "$targetdir" = "target" ]

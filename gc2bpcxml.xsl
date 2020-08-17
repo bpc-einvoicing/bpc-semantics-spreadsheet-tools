@@ -7,7 +7,7 @@
                 exclude-result-prefixes="xs xsd bpc"
                 version="2.0">
 
-<xs:doc filename="ublgc2bpcgc.xsl" vocabulary="DocBook">
+<xs:doc filename="ublgc2bpcgc.xsl" vocabulary="DocBook" info="$Id$">
   <xs:title>
     Convert a UBL genericode model into a BPC semantic model XML instance
   </xs:title>

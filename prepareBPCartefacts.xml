@@ -44,7 +44,7 @@ file="${utilitydir}Crane-cva2sch-${cva2sch}/utility/iso_schematron_assembly.xsl"
         message="Cannot find cva2sch=${cva2sch}"/>
 
   <!--update the stylesheet documentation-->
-  <uptodate targetfile="readme-ssgc2sch.html"
+  <uptodate targetfile="${dir}/readme-ssgc2sch.html"
             property="readme-ssgc2sch-okay">
     <srcfiles dir=".">
       <include name="ssgc2sch.xsl"/>
@@ -53,10 +53,10 @@ file="${utilitydir}Crane-cva2sch-${cva2sch}/utility/iso_schematron_assembly.xsl"
   <antcall target="-make-doc">
     <param name="okay"   value="readme-ssgc2sch-okay"/>
     <param name="source" value="ssgc2sch.xsl"/>
-    <param name="target" value="readme-ssgc2sch.html"/>
+    <param name="target" value="${dir}/readme-ssgc2sch.html"/>
   </antcall>
   
-  <uptodate targetfile="readme-gc2bpcxml.html"
+  <uptodate targetfile="${dir}/readme-gc2bpcxml.html"
             property="readme-gc2bpcxml-okay">
     <srcfiles dir=".">
       <include name="gc2bpcxml.xsl"/>
@@ -65,10 +65,10 @@ file="${utilitydir}Crane-cva2sch-${cva2sch}/utility/iso_schematron_assembly.xsl"
   <antcall target="-make-doc">
     <param name="okay"   value="readme-gc2bpcxml-okay"/>
     <param name="source" value="gc2bpcxml.xsl"/>
-    <param name="target" value="readme-gc2bpcxml.html"/>
+    <param name="target" value="${dir}/readme-gc2bpcxml.html"/>
   </antcall>
   
-  <uptodate targetfile="readme-bpcprocess2sch.html"
+  <uptodate targetfile="${dir}/readme-bpcprocess2sch.html"
             property="readme-bpcprocess2sch-okay">
     <srcfiles dir=".">
       <include name="bpcprocess2sch.xsl"/>
@@ -77,10 +77,10 @@ file="${utilitydir}Crane-cva2sch-${cva2sch}/utility/iso_schematron_assembly.xsl"
   <antcall target="-make-doc">
     <param name="okay"   value="readme-bpcprocess2sch-okay"/>
     <param name="source" value="bpcprocess2sch.xsl"/>
-    <param name="target" value="readme-bpcprocess2sch.html"/>
+    <param name="target" value="${dir}/readme-bpcprocess2sch.html"/>
   </antcall>
 
-  <uptodate targetfile="readme-bpccodelists2xsl.html"
+  <uptodate targetfile="${dir}/readme-bpccodelists2xsl.html"
             property="readme-bpccodelists2xsl-okay">
     <srcfiles dir=".">
       <include name="bpccodelists2xsl.xsl"/>
@@ -89,10 +89,10 @@ file="${utilitydir}Crane-cva2sch-${cva2sch}/utility/iso_schematron_assembly.xsl"
   <antcall target="-make-doc">
     <param name="okay"   value="readme-bpccodelists2xsl-okay"/>
     <param name="source" value="bpccodelists2xsl.xsl"/>
-    <param name="target" value="readme-bpccodelists2xsl.html"/>
+    <param name="target" value="${dir}/readme-bpccodelists2xsl.html"/>
   </antcall>
 
-  <uptodate targetfile="readme-bpc-artifacts.html"
+  <uptodate targetfile="${dir}/readme-bpc-artifacts.html"
             property="readme-bpc-artifacts-okay">
     <srcfiles dir=".">
       <include name="readme-bpc-artifacts.xml"/>
@@ -102,7 +102,7 @@ file="${utilitydir}Crane-cva2sch-${cva2sch}/utility/iso_schematron_assembly.xsl"
   <antcall target="-make-doc">
     <param name="okay"   value="readme-bpc-artifacts-okay"/>
     <param name="source" value="readme-bpc-artifacts.xml"/>
-    <param name="target" value="readme-bpc-artifacts.html"/>
+    <param name="target" value="${dir}/readme-bpc-artifacts.html"/>
   </antcall>
 
   <!--start with the raw files-->
@@ -135,7 +135,7 @@ file="${utilitydir}Crane-cva2sch-${cva2sch}/utility/iso_schematron_assembly.xsl"
         message="${dateTime}"/>
 
   <!--copy the end-user documentation-->
-  <copy file="readme-bpc-artifacts.html"
+  <copy file="${dir}/readme-bpc-artifacts.html"
         todir="${dir}/${BPCversion}-build"/>
 
   <!--create GC files for business and signature-->
@@ -259,7 +259,15 @@ tofile="${dir}/${BPCversion}-build/model/BPC-Semantics-Spreadsheet-${BPCversion}
     </ant>
 
   </sequential>
-  
+
+  <!--download the XLS spreadsheet version-->
+  <exec executable="wget">
+    <arg value="--no-check-certificate"/>
+    <arg value="-O"/>
+    <arg value="${dir}/${BPCversion}-build/model/BPC-Semantics-Spreadsheet-${BPCversion}-${dateTime}.xls"/>
+    <arg value="${ssGoogle}/export?format=xls"/>
+  </exec>
+
   <!--package it all up-->
   <antcall target="-package"/>
 </target>
@@ -375,6 +383,10 @@ tofile="${dir}/${BPCversion}-build/model/BPC-Semantics-Spreadsheet-${BPCversion}
   <fail unless="done" message="Unable to create documentation: ${target}"/>
   <echo message="Checking..."/>
   <loadfile property="temp" srcFile="${target}"/>
+  <length property="length" string="${temp}"/>
+  <condition property="${target}-found">
+    <equals arg1="${length}" arg2="0"/>
+  </condition>
   <grep caseinsensitive="true" in="${temp}" 
         regex="inconsistencies detected" property="${target}-found"/>
   <antcall target="-error-doc-html"/>
@@ -393,7 +405,9 @@ tofile="${dir}/${BPCversion}-build/model/BPC-Semantics-Spreadsheet-${BPCversion}
   </tstamp>
   <touch datetime="${earlier}" pattern="yyyyMMdd-HHmmss" file="${target}"/>
   <touch datetime="${then}" pattern="yyyyMMdd-HHmmss" file="${source}"/>
-  <fail message="Inconsistencies detected: ${target}"/>
+  <echo message="Inconsistencies detected: ${source}"/>
+  <copy tofile="${dir}/${BPCversion}-build/INCONSISTENCIES-DETECTED-${source}.html"
+        file="${target}"/>
 </target>
 
 <!--========================================================================-->
@@ -404,7 +418,7 @@ tofile="${dir}/${BPCversion}-build/model/BPC-Semantics-Spreadsheet-${BPCversion}
 
 <target name="-sch4bpc" unless="${okay}">
   <echo message="Creating shell Schematron for ${process}"/>
-  <copy file="${dir}/${BPCversion}-build//ubl/UBL-DocumentConstraints-2.3.pattern.sch"
+  <copy file="${dir}/${BPCversion}-build/ubl/UBL-DocumentConstraints-2.3.pattern.sch"
         todir="${dir}/${BPCversion}-build/bpc/${process}"/>
   <antcall target="-sch2xsl">
     <param name="schin" value=

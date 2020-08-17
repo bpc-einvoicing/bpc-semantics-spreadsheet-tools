@@ -20,6 +20,8 @@ The artifact labeled (1) comes from the OASIS UBL Technical Committee. The artif
 
 The semantics spreadsheet produces a genericode input file that is used indirectly to a schema subsetting process to create the XSD schemas according to the subset specification for each of the identified business processes.
 
+_Please note that at this time the subset schemas are not being produced; this is a future sub-project._
+
 ## Value constraints Schematron schema
 
 The semantics spreadsheet produces a Schematron pattern for each of the identified business processes.
@@ -30,7 +32,9 @@ The artifacts are created from the Google spreadsheet whenever a change in the r
 
 To trigger the creation of the artifacts after having changed the Google spreadsheet, create the `trigger.txt` file if it does not exist, or delete the `trigger.txt` file if it does exist, then commit this change to the repository. The commit comment can be something simple like "Create new artifacts from spreadsheet". From the "Code" tab in browser interface, use the "Add file" button at the top right to create `trigger.txt` (it can be empty). To delete an existing `trigger.txt`, click on the file name and then on the trash can icon.
 
-Once triggered, the action progresses in the background on a server until complete, after which a ZIP of the artifacts can be downloaded from the "Actions" tab. A copy of the Google spreadsheet is included in the archive directory. To get an email notification of the completion of the process, go to your personal settings under your profile picture, select "Notifications" from the groups on the left, and click "Email" under "GitHub Actions".
+Once triggered, the action progresses in the background on a server until complete, after which a ZIP of the artifacts can be downloaded from the "Actions" tab. A copy of the Google spreadsheet is included in the distribution `model/` directory. To get an email notification of the completion of the process, go to your personal settings under your profile picture, select "Notifications" from the groups on the left, and click "Email" under "GitHub Actions".
+
+## Reviewing the results
 
 In the downloaded artefacts a transcript of the server action is recorded in the `archive-only-not-in-final-distribution` directory in the file ending with "`console.{date}.txt`". If the results are incomplete and there are no other error indications, inspect this file for errors and report the problem to the repository maintainers by creating an issue.
 
@@ -38,4 +42,18 @@ The existence of the file `VALID-SEMANTICS-GC-FILE-NOT-GENERATED.txt` indicates 
 
 The existence of the file `VALID-SEMANTICS-XML-FILE-NOT-GENERATED.txt` indicates a problem converting the spreadsheet content into XML, otherwise there were no problems in the second stage. First check the "model" subdirectory for a file ending with "`errors.txt`". If that does not exist, then check the console transcript.
 
-_(more documentation to come)_
+The existence of the file `ERROR-RUNNING-RESULTING-XSLT-FOR-P##.txt` indicates a problem in the XPath of the Schematron generated for the process `P##`. This file contains the report of the problems, as well as the file `bpc/P##/BPC-P##-Data-Integrity-Constraints.error.txt`. Two steps are needed to determine where to fix the XPath problem:
+
+1 - determine the line number from the error message, for example line 581 in this message:
+  - `Static error near {...} on line 581 column 109 of BPC-P01-v0.1-Data-Integrity-Constraints.xsl`
+  - `XPST0017: Cannot find a 1-argument function named {http://www.w3.org/2005/xpath-functions}Count()`
+
+2 - determine the spreadsheet row from that numbered line in the `bpc/P##/BPC-P##-v#.#-Data-Integrity-Constraints.xsl` file (not the `bpc/P##/BPC-P##-Data-Integrity-Constraints.xsl` file, but the one with `-v#.#` in the name), for example, row 71 of worksheet tab 1 for semantic NABG-999 in this line:
+  - `test="Count(cac:PayeeParty/cac:Party/cac:PostalAddress) = 1 (:NABG-999 Tab 1 Row 71:)"`
+
+## Documentation - using the validation results
+
+The `readme-bpc-artifacts.html` file in the downloaded ZIP describes the use of the validation artefacts that are produced by this process.
+
+Note that the programmer's documentation of each of the XSLT stylesheets used in the generation is found in the `archive-only-not-in-final-distribution` directory of the downloaded ZIP. The Ant script governing the generation process also is found in that directory.
+

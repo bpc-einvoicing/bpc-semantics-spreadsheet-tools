@@ -1,4 +1,5 @@
-sh validate.sh ../xsd/maindoc/UBL-Order-2.3.xsd order-test-bad-syntax.xml
-sh validate.sh ../xsd/maindoc/UBL-Order-2.3.xsd order-test-bad-model.xml
-sh validate.sh ../xsd/maindoc/UBL-Order-2.3.xsd order-test-bad-code.xml
-sh validate.sh ../xsd/maindoc/UBL-Order-2.3.xsd order-test-good.xml
+
+sh validate.sh ../ubl/xsd/maindoc/UBL-Invoice-2.2.xsd P01 invoice-test-bad-syntax.xml
+sh validate.sh ../ubl/xsd/maindoc/UBL-Invoice-2.2.xsd P01 invoice-test-bad-model.xml
+sh validate.sh ../ubl/xsd/maindoc/UBL-Invoice-2.2.xsd P01 invoice-test-bad-data.xml
+sh validate.sh ../ubl/xsd/maindoc/UBL-Invoice-2.2.xsd P01 invoice-test-good.xml

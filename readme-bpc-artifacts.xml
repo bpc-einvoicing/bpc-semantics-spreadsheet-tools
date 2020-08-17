@@ -36,7 +36,63 @@
       </mediaobject>
     </figure>
   </section>
-<!--  <bibliography>
+  <section>
+    <title>Demonstration</title>
+    <para>Talk about the val/ directory</para>
+    <programlisting>############################################################
+Validating invoice-test-bad-syntax.xml
+############################################################
+============== Phase 1: XSD schema validation ==============
+org.xml.sax.SAXParseException; systemId: 
+  file:///Users/admin/test/val/invoice-test-bad-syntax.xml; 
+  lineNumber: 7; columnNumber: 2; The end-tag for element type 
+  "cbc:ID" must end with a '>' delimiter.
+	at org.apache.xerces.parsers.AbstractSAXParser.parse(Unknown Source)
+	at org.apache.xerces.jaxp.SAXParserImpl$JAXPSAXParser.parse(Unknown Source)
+	at org.apache.xerces.jaxp.SAXParserImpl.parse(Unknown Source)
+	at javax.xml.parsers.SAXParser.parse(SAXParser.java:274)
+	at com.nwalsh.parsers.XJParser.xsdParse(Unknown Source)
+	at com.nwalsh.parsers.XJParser.parse(Unknown Source)
+	at com.nwalsh.parsers.XJParse.run(Unknown Source)
+	at com.nwalsh.parsers.XJParse.main(Unknown Source)
+Exception in thread "main" java.lang.NullPointerException
+	at com.nwalsh.parsers.XJParser.printParseStats(Unknown Source)
+	at com.nwalsh.parsers.XJParse.run(Unknown Source)
+	at com.nwalsh.parsers.XJParse.main(Unknown Source)
+Attempting well-formed, namespace-aware parse
+Fatal error:file:///Users/admin/test/val/invoice-test-bad-syntax.xml:
+  7:2:The end-tag for element type "cbc:ID" must end with a '>' delimiter.
+
+############################################################
+Validating invoice-test-bad-model.xml
+############################################################
+============== Phase 1: XSD schema validation ==============
+Attempting well-formed, namespace-aware parse
+Error:file:///Users/admin/test/val/invoice-test-bad-model.xml:6:17:cvc-complex-type.2.4.a: 
+  Invalid content was found starting with element 'cbc:IDxxxxxxx'. One of 
+  '{"urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2":CustomizationID,
+  "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2":ProfileID,
+  "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2":ProfileExecutionID,
+  "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2":ID}' is expected.
+Parse succeeded (0.17) with 1 error and no warnings.
+
+############################################################
+Validating invoice-test-bad-data.xml
+############################################################
+============== Phase 1: XSD schema validation ==============
+No schema validation errors.
+============ Phase 2: BPC process P01 data integrity validation ============
+ERROR: More than one Supplier - Accounts Receivable Identifier exists.
+
+############################################################
+Validating invoice-test-good.xml
+############################################################
+============== Phase 1: XSD schema validation ==============
+No schema validation errors.
+============ Phase 2: BPC process P01 data integrity validation ============
+No data integrity validation errors.</programlisting>
+  </section>
+  <!--  <bibliography>
     <para>See article-bibliography.xml for bibliographic entries.</para>
   </bibliography>-->
 </article>

@@ -1,5 +1,5 @@
 @echo off
-call validate ..\xsd\maindoc\UBL-Order-2.3.xsd order-test-bad-syntax.xml
-call validate ..\xsd\maindoc\UBL-Order-2.3.xsd order-test-bad-model.xml
-call validate ..\xsd\maindoc\UBL-Order-2.3.xsd order-test-bad-code.xml
-call validate ..\xsd\maindoc\UBL-Order-2.3.xsd order-test-good.xml
+call validate   ..\ubl\xsd\maindoc\UBL-Invoice-2.2.xsd P01 invoice-test-bad-syntax.xml
+call validate   ..\ubl\xsd\maindoc\UBL-Invoice-2.2.xsd P01 invoice-test-bad-model.xml
+call validate   ..\ubl\xsd\maindoc\UBL-Invoice-2.2.xsd P01 invoice-test-bad-data.xml
+call validate   ..\ubl\xsd\maindoc\UBL-Invoice-2.2.xsd P01 invoice-test-good.xml

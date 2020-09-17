@@ -174,7 +174,13 @@ file="${utilitydir}Crane-cva2sch-${cva2sch}/utility/iso_schematron_assembly.xsl"
   </condition>
   <echo unless:set="gcSScreated"
         message="ERROR creating BPC Semantics genericode file"/>
-  <touch unless:set="gcSScreated"
+  <copy unless:set="gcSScreated" preservelastmodified="true"
+        todir="${dir}/bpc-semantics-${BPCversion}-${dateTime}/model/"
+ file="${dir}/BPC-Semantics-Spreadsheet-${BPCversion}-${dateTime}.gc.error.txt"/>
+  <copy unless:set="gcSScreated"
+ file="${dir}/BPC-Semantics-Spreadsheet-${BPCversion}-${dateTime}.gc.error.txt"
+tofile="${dir}/bpc-semantics-${BPCversion}-${dateTime}/VALID-SEMANTICS-GC-FILE-NOT-GENERATED.txt"/>
+  <touch unless:set="gcSScreated" 
 file="${dir}/bpc-semantics-${BPCversion}-${dateTime}/VALID-SEMANTICS-GC-FILE-NOT-GENERATED.txt"/>
 
   <sequential if:set="gcSScreated">
@@ -295,11 +301,16 @@ tofile="${dir}/bpc-semantics-${BPCversion}-${dateTime}/model/BPC-Semantics-Sprea
     <echo message='Validating "${target}" GC file...'/>
     <java resultproperty="${returnProperty}" append="true" fork="true"
           classname="com.nwalsh.parsers.XJParse"
+          output="${target}.error.txt"
           classpath="${jarLocation}/xjparse.jar">
        <arg value="-S"/>
        <arg value="${utilitydir}genericode/xsd/genericode.xsd"/>
        <arg value="${target}"/>
     </java>
+    <condition property="okayGCparse">
+      <equals arg1="${returnProperty}" arg2="0"/>
+    </condition>
+    <delete if:set="okayGCparse" file="${target}.error.txt"/>
   </sequential>
 </target>
 

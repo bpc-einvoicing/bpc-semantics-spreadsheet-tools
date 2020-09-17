@@ -358,7 +358,8 @@
    replace(normalize-space($contextPrototype),'#',$doctype),' ',
    concat('(',':',string-join(distinct-values(
                               current-group()/ancestor::semantic/@bpcID),' ' ),
-                              ' Tab ',$worksheet/@worksheetNumber,':',')') )"/>
+     ' Tab ',$worksheet/@worksheetNumber,
+     ' Row ',current-group()[1]/ancestor::semantic/@worksheetRows,':',')') )"/>
             <xsl:for-each select="current-group()">
               <xsl:element name="assert"
                        namespace="http://purl.oclc.org/dsdl/schematron">

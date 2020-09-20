@@ -8,41 +8,143 @@
       <year>2020</year>
       <year>Business Payments Coalition</year>
     </copyright>
-    <authorgroup>
-      <author>
-        <firstname>G. Ken</firstname>
-        <surname>Holman</surname>
-        <affiliation>
-          <orgname>Crane Softwrights Ltd.</orgname>
-          <address><email>gkholman@CraneSoftwrights.com</email></address>
-        </affiliation>
-      </author>
-    </authorgroup>
     <legalnotice>
       <title>Executive summary</title>
-      <para>This documents the use of the BPC Semantics validation artefacts.</para>
+      <para>This documents the use of the demonstration BPC Semantics validation artefacts that can be incorporated into one’s process of accepting UBL document instances across the BPC network.</para>
     </legalnotice>
   </articleinfo>
   <section id="S-INTRODUCTION">
     <title>Introduction</title>
-    <para>In the 4-corner model it is the responsibility of Corner 2 to send semantically- and syntactically-valid documents to Corner 3. It is incumbent on Corner 3 to validate explicitly that the received data conforms to the structure of the UBL schema document model and to the data integrity
-      constraints of the BPC semantic model. In <xref linkend="F-XML-DOCUMENT-GENERATION-AND-INGESTION"/> these two artifacts used in the two-phase validation are labeled 1 and 3:</para>
-    <figure id="F-XML-DOCUMENT-GENERATION-AND-INGESTION">
-      <title>XML document generation and ingestion</title>
+    <para>In the 4-corner model it is the responsibility of Corner 2 to send semantically- and syntactically-valid documents to Corner 3, per the definitions and constraints of the Business Payments Coalition (BPC). Corner 2 presents to Corner 3 the data received from Corner 1 however Corner 1 may
+      have the information encoded and transmitted to Corner 2. In turn, Corner 3 presents to Corner 4 the information received from Corner 2 however Corner 4 wishes to have it encoded and transmitted.</para>
+    <para>Repeated failure by Corner 2 to send valid documents to Corner 3 is grounds for disciplinary consideration based on governance rules committed to by Corner 2.</para>
+    <para>Nevertheless, it is incumbent on Corner 3 to validate explicitly that the data received from Corner 2 conforms to the structure of the UBL schema document model and to the data integrity constraints of the BPC semantic model. Such checking ensures that the application code can assume not
+      only that the information is in the correct structure, but also that the integrity of the data as dictated by the BPC is whole. Also, it will help identify delinquent Corners 2 who fail to send information correctly across the network.</para>
+    <para>The tools described in this document and made available in this package are sample implementations of the Corner 3 processes of validating incoming XML instances from Corner 2, checking in two passes that the data conforms to UBL constraints and conforms to BPC constraints.</para>
+  </section>
+  <section id="S-DATA-FLOWS">
+    <title>Data flows</title>
+    <para>In <xref linkend="F-XML-DOCUMENT-EGRESS-GENERATION-AND-INGRESS-INGESTION"/> the two artifacts, the complete UBL schema and data integrity constraint checking, used by Corner 3 in the two-phase validation are depicted with the labels ① and ③ at the bottom right.</para>
+    <figure id="F-XML-DOCUMENT-EGRESS-GENERATION-AND-INGRESS-INGESTION">
+      <title>XML document egress (generation) and ingress (ingestion)</title>
       <mediaobject>
         <imageobject>
           <imagedata role="html-embed" fileref="README-subset.svg"/>
         </imageobject>
       </mediaobject>
     </figure>
+    <para>These two artifacts fulfill the only required steps in the egress and ingress of documents from Corner 2 to Corner 3. Also depicted in the diagram, with the label ②, is the minimum subset schema representing the repertoire of UBL semantics selected by the BPC to represent sufficient
+      information to be sent across the network. Using the subset schema is discretionary as Corner 2 may have different means by which the BPC subset of UBL semantics is represented during code generation. Using that schema and the same BPC constraint checking as used by Corner 3, depicted in both
+      corners with the label ③, Corner 2 can pre-validate the outgoing XML content as a self-check so as not to violate its governance commitment to send only BPC-valid content.</para>
+    <para>A UBL document sent by Corner 2 across the network may include schema-valid representations of additional semantics beyond the BPC repertoire, but Corner 3 is only obliged to recognize the BPC suite. Corner 3 may choose to support more, but Corner 2 cannot rely on Corner 3 supporting more
+      than the BPC repertoire.</para>
   </section>
-  <section id="S-DEMONSTRATION">
-    <title>Demonstration</title>
+  <section id="S-DEMONSTRATION-ARTIFACTS">
+    <title>Demonstration artifacts</title>
+    <para>This package named “<literal>bpc-semantics-{version}-{revision-date}.zip</literal>” contains the following developer-referenced files in the indicated subdirectories:</para>
+    <itemizedlist>
+      <listitem>
+        <para><literal>readme-bpc-artifacts.html</literal> - this documentation file</para>
+      </listitem>
+      <listitem>
+        <para><literal>release-{revision-date}.txt</literal> and <literal>release.txt</literal> - the date of the revision of the release in UTC (Zulu) time as “<literal>CCYYMMDD-HHMMSSz</literal>”</para>
+      </listitem>
+      <listitem>
+        <para><literal>version-{version}.txt</literal> and <literal>version.txt</literal> - the version of the release as “<literal>x.y</literal>”</para>
+      </listitem>
+      <listitem>
+        <para><literal>bpc/bpcProcesses.xml</literal> - an XML summary of the titles and document types involved in each of the BPC processes for which the semantics have been determined (this XML follows a straightforward colloquial schema for which a formal schema is not available)</para>
+      </listitem>
+      <listitem>
+        <para><literal>bpc/PXX/BPC-PXX-Data-Integrity-Constraints.xsl</literal> - the master XSLT stylesheet for process PXX implementing artifact ③ in the data flow</para>
+      </listitem>
+      <listitem>
+        <para><literal>bpc/PXX/BPC-PXX-{version}-Data-Integrity-Constraints.sch</literal> - the master Schematron assertion schema used as the source to synthesize the XSLT artifact ③ in the data flow (developers deploying alternative implementations of Schematron can do so using this file)</para>
+      </listitem>
+    </itemizedlist>
+    <para>The following files are fragments utilized by the developer-referenced files and are never intended to be used standalone by developers; these files have no facility when used on their own:</para>
+    <itemizedlist>
+      <listitem>
+        <para><literal>bpc/BPC-v0.1-Code-Lists.xsl</literal> - an XSLT stylesheet fragment providing code list value validation support to the data integrity checking stylesheet</para>
+      </listitem>
+      <listitem>
+        <para><literal>bpc/PXX/BPC-PXX-{version}-Data-Integrity-Constraints.xsl</literal> - an XSLT stylesheet fragment providing the basic semantic value checking</para>
+      </listitem>
+      <listitem>
+        <para><literal>bpc/PXX/BPC-PXX-{version}-Assertions.pattern.sch</literal> - the Schematron pattern expressing the basic BPC semantic value constraints</para>
+      </listitem>
+      <listitem>
+        <para><literal>bpc/PXX/UBL-DocumentConstraints.pattern.sch</literal> - the Schematron pattern expressing the basic UBL document constraints as described in the standard</para>
+      </listitem>
+    </itemizedlist>
+    <para>The following files describe the BPC model subset and associated semantics as formally recorded in the BPC Semantics spreadsheet <ulink url="https://docs.google.com/spreadsheets/d/1qAz_aAbJ99ikA4zUk97FyjyDLcsQ3B3vqjEK-b3C_h8/edit#gid=138586877" conformance="skip">on Google
+      here</ulink>:</para>
+    <itemizedlist>
+      <listitem>
+        <para><literal>BPC-Semantics-Spreadsheet.xml</literal> and <literal>BPC-Semantics-Spreadsheet-{version}-{revision-date}.xml</literal> - an XML summary of the semantic information (this XML follows a straightforward colloquial schema for which a formal schema is not available)</para>
+      </listitem>
+      <listitem>
+        <para><literal>BPC-Semantics-Spreadsheet-{version}-{revision-date}.xlsx</literal> and <literal>BPC-Semantics-Spreadsheet-{version}-{revision-date}.ods</literal> - spreadsheet serializations in office document formats for Excel and OpenOffice (respectively)</para>
+      </listitem>
+      <listitem>
+        <para><literal>BPC-Semantics-Spreadsheet-{version}-{revision-date}.gc</literal> - spreadsheet serialization in OASIS genericode XML format</para>
+      </listitem>
+    </itemizedlist>
+    <para>The following files describe the portion of UBL 2.3 (Committee Specification Public Review Draft 03)  relevant to the BPC work:</para>
+    <itemizedlist>
+      <listitem>
+        <para><literal>ubl/UBL-DocumentConstraints.pattern.sch</literal> - the Schematron pattern expressing the basic UBL document constraints as described in the standard</para>
+      </listitem>
+      <listitem>
+        <para><literal>ubl/UBL-Entities-2.3-cspred03.gc</literal> - the summary of all UBL semantics in OASIS genericode XML format</para>
+      </listitem>
+    </itemizedlist>
+    <itemizedlist>
+      <listitem>
+        <para><literal>ubl/All-UBL-2.3-cspred03-Documents.html</literal> - the summary of all UBL semantics as a single large hyperlinked HTML file</para>
+      </listitem>
+      <listitem>
+        <para><literal>ubl/UBL-CreditNote-2.3-csprd03.html</literal> - the summary of UBL Credit Note semantics as a hyperlinked HTML file</para>
+      </listitem>
+      <listitem>
+        <para><literal>ubl/UBL-Invoice-2.3-csprd03.html</literal> - the summary of UBL Invoice semantics as a hyperlinked HTML file</para>
+      </listitem>
+      <listitem>
+        <para><literal>ubl/maindoc/*.xsd</literal> - all UBL 2.3 document XSD XML schema expressions of the UBL semantics (use the appropriate of these to implement artifact ① in the data flow)</para>
+      </listitem>
+      <listitem>
+        <para><literal>ubl/common/*.xsd</literal> - support schema expressions of the UBL semantics (these XSD fragments have no facility when used on their own)</para>
+      </listitem>
+    </itemizedlist>
+    <para>The following code list files support the validation of coded value domains:</para>
+    <itemizedlist>
+      <listitem>
+        <para><literal>codelist/*</literal></para>
+      </listitem>
+    </itemizedlist>
+    <para>The demonstration directory is the <literal>val/</literal> directory (see <xref linkend="S-DEMONSTRATION-EXECUTION"/> for details):</para>
+    <itemizedlist>
+      <listitem>
+        <para><literal>*.jar</literal> - open-source project Java executables implementing validation and transformation (see the included notices for open-source details)</para>
+      </listitem>
+      <listitem>
+        <para><literal>*.bat</literal> - Windows-based invocations in a DOS command box</para>
+      </listitem>
+      <listitem>
+        <para><literal>*.sh</literal> - shell-based invocations in a *nix terminal</para>
+      </listitem>
+      <listitem>
+        <para><literal>*.xml</literal> - demonstration test files</para>
+      </listitem>
+    </itemizedlist>
+  </section>
+  <section id="S-DEMONSTRATION-EXECUTION">
+    <title>Demonstration execution</title>
     <para>A running demonstration of the two-phase ingestion of a BPC XML document is in the <literal>val/</literal> subdirectory. </para>
     <para>There are four illustrative XML instances being validated:</para>
     <itemizedlist>
       <listitem>
-        <para>a document with a syntax error on line 7</para>
+        <para><literal>invoice-test-bad-syntax.xml</literal> - a document with an XML syntax error on line 7</para>
         <itemizedlist>
           <listitem>
             <para>the end delimiter of the closing tag for the <literal>cbc:ID</literal> element is missing</para>
@@ -50,7 +152,7 @@
         </itemizedlist>
       </listitem>
       <listitem>
-        <para>a document with a model error on line 7</para>
+        <para><literal>invoice-test-bad-model.xml</literal> - a document with a UBL model error on line 7</para>
         <itemizedlist>
           <listitem>
             <para>the <literal>cbc:ID</literal> element is misspelled as <literal>cbc:IDxxxxxxx</literal></para>
@@ -58,15 +160,15 @@
         </itemizedlist>
       </listitem>
       <listitem>
-        <para>a document with a data integrity error:</para>
+        <para><literal>invoice-test-bad-data.xml</literal> - a document with a BPC data integrity error:</para>
         <itemizedlist>
           <listitem>
-            <para>two identifiers are provided for the payee party, when there is a maximum of only 1</para>
+            <para>two identifiers are provided for the payee party, when there is a maximum of only 1 in BPC (UBL allows any number of identifiers for a party)</para>
           </listitem>
         </itemizedlist>
       </listitem>
       <listitem>
-        <para>a valid document</para>
+        <para><literal>invoice-test-good.xml</literal> - a valid UBL document without violating BPC data integrity constraints</para>
       </listitem>
     </itemizedlist>
     <para>To run the demonstration there is an invocation for each of the Windows and Shell environments:</para>
@@ -83,7 +185,7 @@ test.bat</programlisting>
         </itemizedlist>
       </listitem>
       <listitem>
-        <para>Shell::</para>
+        <para>Shell:</para>
         <itemizedlist>
           <listitem>
             <para>
@@ -159,7 +261,7 @@ No data integrity validation errors.</programlisting>
         </itemizedlist>
       </listitem>
       <listitem>
-        <para>Shell::</para>
+        <para>Shell:</para>
         <itemizedlist>
           <listitem>
             <para><programlisting>sh validate.sh  ubl-schema-file  bpc-process-Pxx  ubl-xml-file</programlisting>for example from the <literal>test.sh</literal> demonstration:</para>

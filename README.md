@@ -4,6 +4,8 @@ The [BPC Semantics Group spreadsheet](https://docs.google.com/spreadsheets/d/1qA
 
 Various artifacts need to be created to help in the generation and validation of UBL documents in conformance with the subset and data integrity constraints defined by the BPC e-Invoicing Semantics Group.
 
+_*IMPORTANT: This repository maintains the raw materials used to create the validation artifacts and not the validation artifacts themselves. Download the actual artefact files from [this repository's Actions tab](https://github.com/bpc-einvoicing/bpc-semantics-spreadsheet-tools/actions) using the most recent ZIP file. See below for triggering the creation of a new set of artefacts.*_
+
 This diagram outlines the role of a subset of UBL schemas in the generation of XML documents, independent of the role of the full UBL schemas when ingesting XML documents:
 
 ![The role of a UBL subset schema](README-subset.png "The role of a UBL subset schema")
@@ -33,6 +35,22 @@ The artifacts are created from the Google spreadsheet whenever a change in the r
 To trigger the creation of the artifacts after having changed the Google spreadsheet, create the `trigger.txt` file if it does not exist, or delete the `trigger.txt` file if it does exist, then commit this change to the repository. The commit comment can be something simple like "Create new artifacts from spreadsheet". From the "Code" tab in browser interface, use the "Add file" button at the top right to create `trigger.txt` (it can be empty). To delete an existing `trigger.txt`, click on the file name and then on the trash can icon.
 
 Once triggered, the action progresses in the background on a server until complete, after which a ZIP of the artifacts can be downloaded from the "Actions" tab. A copy of the Google spreadsheet is included in the distribution `model/` directory. To get an email notification of the completion of the process, go to your personal settings under your profile picture, select "Notifications" from the groups on the left, and click "Email" under "GitHub Actions".
+
+## Downloading the results
+
+From [this repository's Actions tab](https://github.com/bpc-einvoicing/bpc-semantics-spreadsheet-tools/actions) download the latest server ZIP file that has the name `bpc-semantics-github-{revision-date}.zip`. This ZIP file is doubly-wrapped as a necessity to transmit the information from the server using a generic name that cannot include the version number, only the revision date.
+
+Unzipping this reveals the latest archive ZIP file that has the name `bpc-semantics-tools-{version}-{revision-date}.zip` including the version. This ZIP is used to snapshot the committee's work in some other location for posterity because the ZIP files on git are deleted after a period of time.
+
+The archive ZIP contains all content to be snapshot by a committee for posterity:
+- the `archive-only-not-in-final-distribution/` directory with a snapshot of all of the raw tools used in the generation of the distributed artefacts, and
+- the `bpc-semantics-{version}-{revision-date}.zip` artifacts ZIP package to be made available to the BPC community of users.
+
+The artifacts ZIP contains the following as described in detail in the included `readme-bpc-artifacts.html` file:
+- UBL model information,
+- BPC subset information,
+- BPC semantic information, and
+- a demonstration environment where the generated validation files can be exercised.
 
 ## Reviewing the results
 

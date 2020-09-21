@@ -92,6 +92,30 @@ file="${utilitydir}Crane-cva2sch-${cva2sch}/utility/iso_schematron_assembly.xsl"
     <param name="target" value="${dir}/readme-bpccodelists2xsl.html"/>
   </antcall>
 
+  <uptodate targetfile="${dir}/readme-massageXSLT4Schematron.html"
+            property="readme-massageXSLT4Schematron-okay">
+    <srcfiles dir=".">
+      <include name="massageXSLT4Schematron.xsl"/>
+    </srcfiles>
+  </uptodate>
+  <antcall target="-make-doc">
+    <param name="okay"   value="readme-massageXSLT4Schematron-okay"/>
+    <param name="source" value="massageXSLT4Schematron.xsl"/>
+    <param name="target" value="${dir}/readme-massageXSLT4Schematron.html"/>
+  </antcall>
+
+  <uptodate targetfile="${dir}/readme-testSVRL4UBLerrors.html"
+            property="readme-testSVRL4UBLerrors-okay">
+    <srcfiles dir=".">
+      <include name="testSVRL4UBLerrors.xsl"/>
+    </srcfiles>
+  </uptodate>
+  <antcall target="-make-doc">
+    <param name="okay"   value="readme-testSVRL4UBLerrors-okay"/>
+    <param name="source" value="testSVRL4UBLerrors.xsl"/>
+    <param name="target" value="${dir}/readme-testSVRL4UBLerrors.html"/>
+  </antcall>
+
   <uptodate targetfile="${dir}/readme-bpc-artifacts.html"
             property="readme-bpc-artifacts-okay">
     <srcfiles dir=".">
@@ -121,6 +145,14 @@ file="${utilitydir}Crane-cva2sch-${cva2sch}/utility/iso_schematron_assembly.xsl"
       <exclude name="**/ubl-subset-schema/**"/>
       <exclude name="**/${dir}/**"/>
       <exclude name="**/${rawdir}/**"/>
+    </fileset>
+  </copy>
+  <!--add generated files into the distribution directory-->
+  <copy preservelastmodified="true"
+        todir="${dir}/bpc-semantics-${BPCversion}-${dateTime}/val">
+    <fileset dir="${dir}">
+      <include name="testSVRL4UBLerrors.xsl"/>
+      <include name="readme-testSVRL4UBLerrors.html"/>
     </fileset>
   </copy>
   
@@ -262,6 +294,10 @@ tofile="${dir}/bpc-semantics-${BPCversion}-${dateTime}/model/BPC-Semantics-Sprea
                 value="${antStaticScriptURI}"/>
       <property name="basedir" value="${basedir}"/>
     </ant>
+    
+    <!--trash the source code list stylesheet that by now has been copied
+        into the PXX directories-->
+    <delete file="${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/BPC-v${BPCversion}-Code-Lists.xsl"/>
 
   </sequential>
 
@@ -402,6 +438,8 @@ destfile="${dir}/bpc-semantics-tools-${BPCversion}-${dateTime}/bpc-semantics-${B
   <echo message="Creating shell Schematron for ${process}"/>
   <copy file="${dir}/bpc-semantics-${BPCversion}-${dateTime}/ubl/UBL-DocumentConstraints-2.3.pattern.sch"
         todir="${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/${process}"/>
+  <copy file="${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/BPC-v${BPCversion}-Code-Lists.xsl"
+        todir="${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/${process}"/>
   <antcall target="-sch2xsl">
     <param name="schin" value=
 "${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/${process}/BPC-${process}-v${BPCversion}-Data-Integrity-Constraints.sch"/>
@@ -412,38 +450,77 @@ destfile="${dir}/bpc-semantics-tools-${BPCversion}-${dateTime}/bpc-semantics-${B
 
 <target name="-sch2xsl" unless="${okay}">
   <delete file="${xslout}"/>
-  <echo message="Creating ${xslout} from ${schin}"/>
+  <echo message="Creating ${xslout} from ${schin}..."/>
+  <echo message="Assembling fragmented Schematron into whole..."/>
   <java append="true" classname="com.icl.saxon.StyleSheet">
      <arg value="-o"/>
-     <arg value="${xslout}"/>
+     <arg value="${xslout}.temp.sch"/>
      <arg value="${schin}"/>
+     <arg value="${utilitydir}schematron/code/iso_dsdl_include.xsl"/>
+  </java>
+  
+  <echo message="Transforming whole Schematron into intermediate XSLT..."/>
+  <java append="true" classname="com.icl.saxon.StyleSheet">
+     <arg value="-o"/>
+     <arg value="${xslout}.temp.xsl"/>
+     <arg value="${xslout}.temp.sch"/>
      <arg value="${utilitydir}schematron/code/iso_svrl_for_xslt2.xsl"/>
   </java>
+  
+  <echo message="Deleting intermediate whole..."/>
+  <delete file="${xslout}.temp.sch"/>
+  <echo message="Massaging intermediate XSLT for attribute contexts..."/>
+  <java append="true" classname="net.sf.saxon.Transform">
+     <arg value="-o:${xslout}"/>
+     <arg value="-s:${xslout}.temp.xsl"/>
+     <arg value="-xsl:${dir}/massageXSLT4Schematron.xsl"/>
+  </java>
+  <echo message="Deleting intermediate XSLT..."/>
+  <delete file="${xslout}.temp.xsl"/>
+  
   <echo message="Validating
 ${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/${process}/BPC-${process}-Data-Integrity-Constraints.xsl..."/>
   <java resultproperty="returnXSLTtest" fork="true"
-        outputproperty="outputXSLTtest"
         jar="${saxon9heJar}"
         errorproperty="errorXSLTtest">
    <arg value=
 "-xsl:${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/${process}/BPC-${process}-Data-Integrity-Constraints.xsl"/>
-   <arg value=
-"-s:${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/${process}/BPC-${process}-Data-Integrity-Constraints.xsl"/>
+   <arg value= "-s:${dir}/${doctype}-test-Schematron.xml"/>
+   <arg value="-o:${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/${process}/BPC-${process}-Data-Integrity-Constraints.svrl.xml"/>
   </java>
+  <length property="lengthErrorXSLTtest"
+          string="${errorXSLTtest}"/>
   <echo message="${errorXSLTtest}"/>
+  
+  <echo message="Analyzing SVRL output..."/>
+  <java resultproperty="returnSVRLtest" fork="true"
+        jar="${saxon9heJar}"
+        errorproperty="errorSVRLtest">
+   <arg value= "-xsl:${dir}/testSVRL4UBLerrors.xsl"/>
+   <arg 
+value="-s:${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/${process}/BPC-${process}-Data-Integrity-Constraints.svrl.xml"/>
+   <arg value="-o:${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/${process}/BPC-${process}-Data-Integrity-Constraints.svrl.txt"/>
+  </java>
+  
   <condition property="xsl${process}created">
     <and>
       <isset property="returnXSLTtest"/>
       <equals arg1="${returnXSLTtest}" arg2="0"/>
+      <equals arg1="${returnSVRLtest}" arg2="0"/>
+      <equals arg1="${lengthErrorXSLTtest}" arg2="0"/>
     </and>
   </condition>
   <echo unless:set="xsl${process}created"
         message="ERROR with the BPC Semantics XSLT file ${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/${process}/BPC-${process}-Data-Integrity-Constraints.xsl"/>
-  <echo unless:set="xsl${process}created" message="${errorXSLTtest}"
+  <echo unless:set="xsl${process}created"
+        message="${errorXSLTtest}&#xa;${errorSVRLtest}"
         file=
 "${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/${process}/BPC-${process}-Data-Integrity-Constraints.error.txt"/>
-  <echo unless:set="xsl${process}created" message="${errorXSLTtest}"
-   file="${dir}/bpc-semantics-${BPCversion}-${dateTime}/ERROR-RUNNING-RESULTING-XSLT-FOR-${process}.txt"/>
+  <echo unless:set="xsl${process}created"
+        message="${errorXSLTtest}&#xa;${errorSVRLtest}"
+file="${dir}/bpc-semantics-${BPCversion}-${dateTime}/ERROR-RUNNING-RESULTING-XSLT-FOR-${process}.txt"/>
+  <echo unless:set="xsl${process}created"
+        message="${errorXSLTtest}&#xa;${errorSVRLtest}"/>
 </target>
 
 </project>

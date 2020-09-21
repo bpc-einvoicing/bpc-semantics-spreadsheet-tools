@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="US-ASCII"?>
+<?xml-stylesheet type="text/xsl" href="utilities/xslstyle/xslstyle-docbook.xsl"?>
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns:xs="http://www.CraneSoftwrights.com/ns/xslstyle"
+                xmlns:svrl="http://purl.oclc.org/dsdl/svrl"
+                exclude-result-prefixes="xs svrl"
+                version="2.0">
+
+<xs:doc filename="testSVRL4UBLerrors.xsl" vocabulary="DocBook"
+        info="$Id$">
+  <xs:title>
+    Test the output of Schematron transformation for any errors while at
+    the same time translating the location contexts for UBL namespace prefixes.
+  </xs:title>
+  <para>
+    This returns a non-zero exit code when the input SVRL xml file contains
+    a signalled error for an assertion or a report.
+    (ref: Part 3: Rule-based validation - Schematron (ISO/IEC 19757-3:2006)
+          <ulink url="http://standards.iso.org/ittf/PubliclyAvailableStandards">http://standards.iso.org/ittf/PubliclyAvailableStandards</ulink> 19757-3)
+  </para>
+  <para>
+    The location contexts are massaged when UBL namespaces are recognized so
+    that the end result uses familiar cac:, cbc:, and ext: prefixes, and no
+    prefix on the document element.
+  </para>
+</xs:doc>
+
+<!--========================================================================-->
+<xs:doc>
+  <xs:title>Invocation parameters and input file</xs:title>
+  <para>
+    The input file is the output SVRL from Schematron checking.
+  </para>
+</xs:doc>
+
+<xs:output>
+  <para>The output is a text file</para>
+</xs:output>
+<xsl:output method="text"/>
+
+<!--========================================================================-->
+<xs:doc>
+  <xs:title>Main logic</xs:title>
+</xs:doc>
+
+<xs:template>
+  <para>
+    Return an error and report all failed assertions or successful reports.
+  </para>
+</xs:template>
+<xsl:template match="/">
+  <xsl:variable name="failures"
+                select="//(svrl:failed-assert,//svrl:successful-report)"/>
+  <xsl:if test="$failures">
+    <xsl:for-each select="$failures">
+      <xsl:variable name="location"
+                 select="replace(@location,'^/\*:([^\[]+?)\[.*?\]\[1\]','/$1')"/>
+      <xsl:variable name="location" select="
+replace($location,'\*:([^\[]+?)\[namespace-uri\(\)=''urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2''\]','cac:$1')"/>
+      <xsl:variable name="location" select="
+replace($location,'\*:([^\[]+?)\[namespace-uri\(\)=''urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2''\]','cbc:$1')"/>
+      <xsl:variable name="location" select="
+replace($location,'\*:([^\[]+?)\[namespace-uri\(\)=''urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2''\]','ext:$1')"/>
+      <xsl:value-of select="position()"/>
+      <xsl:text>. </xsl:text>
+      <xsl:value-of select="svrl:text"/>
+      <xsl:text>: </xsl:text>
+      <xsl:value-of select="$location"/>
+      <xsl:text>&#xa;</xsl:text>
+      <xsl:message>
+        <xsl:value-of select="position()"/>
+        <xsl:text>. </xsl:text>
+        <xsl:value-of select="svrl:text"/>
+        <xsl:text>: </xsl:text>
+        <xsl:value-of select="$location"/>
+      </xsl:message>
+    </xsl:for-each>
+  </xsl:if>
+</xsl:template>
+
+</xsl:stylesheet>

@@ -104,6 +104,17 @@
   <xsl:for-each select="/*/bpcProcess
           [some $w in $semanticsSummary/worksheets/worksheet
            satisfies $w/@worksheetNumber = @worksheetNumber ]">
+    <xsl:if test="not( count(doctypes/doctype)=1 )">
+      <xsl:message terminate="yes">
+        <xsl:text>At this time the code presumes only a single </xsl:text>
+        <xsl:text>document type is listed for each process. Process </xsl:text>
+        <xsl:value-of select="@bpcID"/>
+        <xsl:text> has </xsl:text>
+        <xsl:value-of select="count(doctypes/doctype)"/>
+        <xsl:text> listed. This presumption is in the synthesis of </xsl:text>
+        <xsl:text>Schematron script invocations with test files.</xsl:text>
+      </xsl:message>
+    </xsl:if>
     <xsl:variable name="worksheet" 
                   select="$semanticsSummary/worksheets/worksheet
                           [@worksheetNumber = current()/@worksheetNumber]"/>
@@ -142,7 +153,7 @@
         <xsl:text>&#xa;</xsl:text>
         <xslo:import
            href="BPC-{$procID}-v{$BPCversion}-Data-Integrity-Constraints.xsl"/>
-        <xslo:import href="../BPC-v{$BPCversion}-Code-Lists.xsl"/>
+        <xslo:import href="BPC-v{$BPCversion}-Code-Lists.xsl"/>
       </xslo:stylesheet>
     </xsl:result-document>
   </xsl:for-each>
@@ -163,6 +174,8 @@
           <property name="process" value="{@bpcID}"/>
           <property name="version" value="{$BPCversion}"/>
           <property name="basedir" value="${{basedir}}"/>
+          <property name="doctype"
+                    value="{doctypes/doctype/translate(.,' ','')}"/>
           <property name="saxon9heJar" value="{
            replace(resolve-uri('utilities/saxon9he/saxon9he.jar',
                                base-uri(document(''))),
@@ -175,6 +188,31 @@
   </xsl:result-document>
 </xsl:template>
   
+<xs:template>
+  <para>
+    Replace in text the {bpc:*} strings with the process information.
+  </para>
+  <xs:param name="process">
+    <para>The information for the process being acted on</para>
+  </xs:param>
+</xs:template>
+<xsl:template match="sch:ns[@prefix='{bpc:doctype}']" priority="1"
+              xmlns:sch="http://purl.oclc.org/dsdl/schematron">
+  <xsl:param name="process" as="element(bpcProcess)" tunnel="yes"/>
+  <xsl:variable name="this" select="."/>
+  <!--repeat this element once for each document type-->
+  <xsl:for-each select="$process/doctypes/doctype">
+    <xsl:variable name="doctype" select="."/>
+    <!--set context back to the element for it to be processed-->
+    <xsl:for-each select="$this">
+      <xsl:call-template name="bpc:processThis">
+        <xsl:with-param name="doctype" select="$doctype" tunnel="yes"/>
+      </xsl:call-template>
+    </xsl:for-each>
+  </xsl:for-each>
+  <xsl:call-template name="bpc:formatProcessInfo"/>
+</xsl:template>
+
 <xs:template>
   <para>
     Replace in text the {bpc:*} strings with the process information.
@@ -223,31 +261,26 @@
   <para>
     Replace the {bpc:process} strings with the process information.
   </para>
-  <itemizedlist>
-    <listitem>bpc:process - P##</listitem>
-    <listitem>bpc:worksheet - #</listitem>
-    <listitem>bpc:title - formatted string of version and dateTime</listitem>
-  </itemizedlist>
   <xs:param name="process">
     <para>The information for the process being acted on</para>
+  </xs:param>
+  <xs:param name="doctype">
+    <para>One of the document types for the given process</para>
   </xs:param>
 </xs:template>
 <xsl:template name="bpc:formatProcessInfo">
   <xsl:param name="process" as="element(bpcProcess)"
              tunnel="yes" required="yes"/>
-  <xsl:value-of select="bpc:formatProcessInfo(.,$process)"/>
+  <xsl:param name="doctype" as="xsd:string?"
+             tunnel="yes"/>
+  <xsl:value-of select="bpc:formatProcessInfo(.,$process,$doctype)"/>
 </xsl:template>
 
 <xs:function>
   <para>
-    Return the {bpc:process} strings replaced with the process information.
+    This is a 2-argument version of the complete 3-argument function, filling
+    in a default empty string for the document type.
   </para>
-  <itemizedlist>
-    <listitem>bpc:process - P##</listitem>
-    <listitem>bpc:worksheet - #</listitem>
-    <listitem>bpc:version - #.#</listitem>
-    <listitem>bpc:title - formatted string of version and dateTime</listitem>
-  </itemizedlist>
   <xs:param name="template">
     <para>The string input to the translation</para>
   </xs:param>
@@ -258,11 +291,40 @@
 <xsl:function name="bpc:formatProcessInfo" as="xsd:string">
   <xsl:param name="template" as="xsd:string"/>
   <xsl:param name="process" as="element(bpcProcess)"/>
-  <xsl:value-of select="replace(replace(replace(replace($template,
+  <xsl:sequence select="bpc:formatProcessInfo($template,$process,'')"/>
+</xsl:function>
+
+<xs:function>
+  <para>
+    Return the {bpc:process} strings replaced with the process information.
+  </para>
+  <itemizedlist>
+    <listitem>bpc:process - P##</listitem>
+    <listitem>bpc:worksheet - #</listitem>
+    <listitem>bpc:version - #.#</listitem>
+    <listitem>bpc:doctype - CamelCaseDocumentType</listitem>
+    <listitem>bpc:title - formatted string of version and dateTime</listitem>
+  </itemizedlist>
+  <xs:param name="template">
+    <para>The string input to the translation</para>
+  </xs:param>
+  <xs:param name="process">
+    <para>The information for the process being acted on</para>
+  </xs:param>
+  <xs:param name="doctype">
+    <para>One of the document types for the given process</para>
+  </xs:param>
+</xs:function>
+<xsl:function name="bpc:formatProcessInfo" as="xsd:string">
+  <xsl:param name="template" as="xsd:string"/>
+  <xsl:param name="process" as="element(bpcProcess)"/>
+  <xsl:param name="doctype" as="xsd:string?"/>
+  <xsl:value-of select="replace(replace(replace(replace(replace($template,
                        '\{bpc:title\}',concat($process/@bpcID,' v',$BPCversion,
                                               ' - ',$dateTime,
                                               ' - ',$process/title)),
                        '\{bpc:worksheet\}',$process/@worksheetNumber),
+                       '\{bpc:doctype\}',translate($doctype,' ','')),
                        '\{bpc:process\}',$process/@bpcID),
                        '\{bpc:version\}',$BPCversion)"/>
 </xsl:function>
@@ -273,7 +335,7 @@
     by other template rules.
   </para>
 </xs:template>
-<xsl:template match="@*|node()" mode="#all">
+<xsl:template match="@*|node()" mode="#all" name="bpc:processThis">
   <xsl:copy>
     <xsl:apply-templates mode="#current" select="@*|node()"/>
   </xsl:copy>
@@ -343,7 +405,13 @@
                          satisfies $pd = $wd ) 
                      ) 
                    ]">
-      <xsl:variable name="contextPrototype" select="."/>
+      <!--massage the context prototype to accommodate a namespace prefix
+          that matches the document element name when the context expression
+          is absolute and does not already contain a colon (presuming the
+          author already is using a namespace-qualified name-->
+      <xsl:variable name="contextPrototype"
+                    select="if( matches(.,'^/[^:/]:') ) then .
+                            else replace(.,'^/([^/]+)','/$1:$1')"/>
       <xsl:for-each select="$process/doctypes/doctype
                                        [ some $d in $worksheet/doctypes/doctype
                                          satisfies $d = . ]">
@@ -358,8 +426,9 @@
    replace(normalize-space($contextPrototype),'#',$doctype),' ',
    concat('(',':',string-join(distinct-values(
                               current-group()/ancestor::semantic/@bpcID),' ' ),
-     ' Tab ',$worksheet/@worksheetNumber,
-     ' Row ',current-group()[1]/ancestor::semantic/@worksheetRows,':',')') )"/>
+    ' Tab ',$worksheet/@worksheetNumber,
+    ' Row ',string-join(current-group()/ancestor::semantic/@worksheetRows,' '),
+    ':',')') )"/>
             <xsl:for-each select="current-group()">
               <xsl:element name="assert"
                        namespace="http://purl.oclc.org/dsdl/schematron">

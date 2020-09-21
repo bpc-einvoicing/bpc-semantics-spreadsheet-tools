@@ -256,7 +256,7 @@ No data integrity validation errors.</programlisting>
         <itemizedlist>
           <listitem>
             <para><programlisting>validate.bat  ubl-schema-file  bpc-process-Pxx  ubl-xml-file</programlisting>for example from the <literal>test.bat</literal> demonstration:</para>
-            <programlisting>call validate.bat  ..\ubl\xsd\maindoc\UBL-Invoice-2.2.xsd P01 invoice-test-good.xml</programlisting>
+            <programlisting>call validate.bat  ..\ubl\xsd\maindoc\UBL-Invoice-2.3.xsd P01 invoice-test-good.xml</programlisting>
           </listitem>
         </itemizedlist>
       </listitem>
@@ -265,7 +265,7 @@ No data integrity validation errors.</programlisting>
         <itemizedlist>
           <listitem>
             <para><programlisting>sh validate.sh  ubl-schema-file  bpc-process-Pxx  ubl-xml-file</programlisting>for example from the <literal>test.sh</literal> demonstration:</para>
-            <programlisting>sh validate.sh  ../ubl/xsd/maindoc/UBL-Invoice-2.2.xsd P01 invoice-test-good.xml</programlisting>
+            <programlisting>sh validate.sh  ../ubl/xsd/maindoc/UBL-Invoice-2.3.xsd P01 invoice-test-good.xml</programlisting>
           </listitem>
         </itemizedlist>
       </listitem>

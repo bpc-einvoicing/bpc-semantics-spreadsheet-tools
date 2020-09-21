@@ -45,9 +45,6 @@
 			<cac:PartyIdentification>
 				<cbc:ID schemeID="ZZZ">Supp123</cbc:ID>
 			</cac:PartyIdentification>
-			<cac:PartyIdentification>
-				<cbc:ID schemeID="ZZZ">Supp234</cbc:ID>
-			</cac:PartyIdentification>
 			<cac:PartyName>
 				<cbc:Name>Salescompany ltd.</cbc:Name>
 			</cac:PartyName>
@@ -153,9 +150,6 @@
 	<cac:PayeeParty>
 		<cac:PartyIdentification>
 			<cbc:ID schemeID="GLN" schemeAgencyID="9">098740918237</cbc:ID>
-		</cac:PartyIdentification>
-		<cac:PartyIdentification>
-			<cbc:ID schemeID="Other" schemeAgencyID="9">TheCompanyID</cbc:ID>
 		</cac:PartyIdentification>
 		<cac:PartyName>
 			<cbc:Name>Ebeneser Scrooge Inc.</cbc:Name>

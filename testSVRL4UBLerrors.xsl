@@ -7,11 +7,12 @@
                 version="2.0">
 
 <xs:doc filename="testSVRL4UBLerrors.xsl" vocabulary="DocBook"
-        info="$Id$">
-  <xs:title>
+        info="20200921-2030z">
+  <xs:title>Testing SVRL for any UBL-related errors</xs:title>
+  <para>
     Test the output of Schematron transformation for any errors while at
     the same time translating the location contexts for UBL namespace prefixes.
-  </xs:title>
+  </para>
   <para>
     This returns a non-zero exit code when the input SVRL xml file contains
     a signalled error for an assertion or a report.
@@ -22,6 +23,16 @@
     The location contexts are massaged when UBL namespaces are recognized so
     that the end result uses familiar cac:, cbc:, and ext: prefixes, and no
     prefix on the document element.
+  </para>
+  <para>
+    Standard output can be ignored as all messages are sent to standard error.
+  </para>
+  <para>
+    Any given error reports the ordinal number, followed by the message,
+    followed by the XPath context, followed by " / ", followed by the
+    XPath test, followed by the semantics spreadsheet reference. 
+    The XPath context can be found in the input document. The
+    XPath test location may or may not be found in the input document. 
   </para>
 </xs:doc>
 
@@ -49,10 +60,14 @@
   </para>
 </xs:template>
 <xsl:template match="/">
+  <!--gather up all of the errors-->
   <xsl:variable name="failures"
                 select="//(svrl:failed-assert,//svrl:successful-report)"/>
+  
   <xsl:if test="$failures">
+    <!--report all of the errors-->
     <xsl:for-each select="$failures">
+      <!--massage the location based on knowledge of UBL namespaces-->
       <xsl:variable name="location"
                  select="replace(@location,'^/\*:([^\[]+?)\[.*?\]\[1\]','/$1')"/>
       <xsl:variable name="location" select="
@@ -61,20 +76,22 @@ replace($location,'\*:([^\[]+?)\[namespace-uri\(\)=''urn:oasis:names:specificati
 replace($location,'\*:([^\[]+?)\[namespace-uri\(\)=''urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2''\]','cbc:$1')"/>
       <xsl:variable name="location" select="
 replace($location,'\*:([^\[]+?)\[namespace-uri\(\)=''urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2''\]','ext:$1')"/>
-      <xsl:value-of select="position()"/>
-      <xsl:text>. </xsl:text>
-      <xsl:value-of select="svrl:text"/>
-      <xsl:text>: </xsl:text>
-      <xsl:value-of select="$location"/>
-      <xsl:text>&#xa;</xsl:text>
-      <xsl:message>
+      <!--compose message-->
+      <xsl:variable name="message">
         <xsl:value-of select="position()"/>
         <xsl:text>. </xsl:text>
-        <xsl:value-of select="svrl:text"/>
-        <xsl:text>: </xsl:text>
+        <xsl:value-of select="replace( svrl:text, '\(:.*?:\)', '' )"/>
         <xsl:value-of select="$location"/>
-      </xsl:message>
+        <xsl:text> / </xsl:text>
+        <xsl:value-of select="@test"/>
+      </xsl:variable>
+      <!--log message-->
+      <xsl:message select="$message"/>
     </xsl:for-each>
+    <!--terminate with an error since there was at least one problem-->
+    <xsl:message terminate="yes">
+      <xsl:value-of select="'Count of errors:',count($failures)"/>
+    </xsl:message>
   </xsl:if>
 </xsl:template>
 

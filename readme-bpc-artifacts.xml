@@ -10,15 +10,15 @@
     </copyright>
     <legalnotice>
       <title>Executive summary</title>
-      <para>This documents the use of the demonstration BPC Semantics validation artefacts that can be incorporated into one’s process of accepting UBL document instances across the BPC network.</para>
+      <para>This documents the use of the demonstration BPC Semantics validation artefacts that can be incorporated into one’s process of accepting UBL ISO/IEC 19845 document instances across the BPC network.</para>
     </legalnotice>
   </articleinfo>
   <section id="S-INTRODUCTION">
     <title>Introduction</title>
     <para>In the 4-corner model it is the responsibility of Corner 2 to send semantically- and syntactically-valid documents to Corner 3, per the definitions and constraints of the Business Payments Coalition (BPC) governance. Corner 2 presents to Corner 3 the data received from Corner 1 however
       Corner 1 may have the information encoded and transmitted to Corner 2. In turn, Corner 3 presents to Corner 4 the information received from Corner 2 however Corner 4 wishes to have it encoded and transmitted.</para>
-    <para>Nevertheless, it is incumbent on Corner 3 to validate explicitly that the data received from Corner 2 conforms to the structure of the UBL schema document model and to the data integrity constraints of the BPC semantic model. Such checking ensures that the application code can assume not
-      only that the information is in the correct structure, but also that the integrity of the data as dictated by the BPC is whole. Also, it will help identify delinquent Corners 2 who fail to send information correctly across the network.</para>
+    <para>Nevertheless, it is incumbent on Corner 3 to validate explicitly that the data received from Corner 2 conforms to the structure of the UBL ISO/IEC 19845 schema document model and to the data integrity constraints of the BPC semantic model. Such checking ensures that the application code
+      can assume not only that the information is in the correct structure, but also that the integrity of the data as dictated by the BPC is whole. Also, it will help identify delinquent Corners 2 who fail to send information correctly across the network.</para>
     <para>The tools described in this document and made available in this package are sample implementations of the Corner 3 processes of validating incoming XML instances from Corner 2, checking in two passes that the data conforms to UBL constraints and conforms to BPC constraints.</para>
   </section>
   <section id="S-DATA-FLOWS">
@@ -77,8 +77,8 @@
         <para><literal>bpc/PXX/UBL-DocumentConstraints.pattern.sch</literal> - the Schematron pattern expressing the basic UBL document constraints as described in the standard</para>
       </listitem>
     </itemizedlist>
-    <para>The following files describe the BPC model subset and associated semantics as formally recorded in the BPC Semantics spreadsheet <ulink url="https://docs.google.com/spreadsheets/d/1qAz_aAbJ99ikA4zUk97FyjyDLcsQ3B3vqjEK-b3C_h8/edit#gid=138586877" conformance="skip">on Google
-      here</ulink>:</para>
+    <para>The following files describe the BPC model subset and associated semantics as formally recorded in the BPC Semantics spreadsheet <ulink url="https://docs.google.com/spreadsheets/d/1qAz_aAbJ99ikA4zUk97FyjyDLcsQ3B3vqjEK-b3C_h8/view" conformance="skip">available for viewing on Google
+        here</ulink>:</para>
     <itemizedlist>
       <listitem>
         <para><literal>BPC-Semantics-Spreadsheet.xml</literal> and <literal>BPC-Semantics-Spreadsheet-{version}-{revision-date}.xml</literal> - an XML summary of the semantic information (this XML follows a straightforward colloquial schema for which a formal schema is not available)</para>
@@ -90,7 +90,7 @@
         <para><literal>BPC-Semantics-Spreadsheet-{version}-{revision-date}.gc</literal> - spreadsheet serialization in OASIS genericode XML format</para>
       </listitem>
     </itemizedlist>
-    <para>The following files describe the portion of UBL 2.3 (Committee Specification Public Review Draft 03) relevant to the BPC work:</para>
+    <para>The following files describe the portion of UBL 2.3 (Committee Specification Draft 03) relevant to the BPC work <ulink url="https://docs.oasis-open.org/ubl/csd03-UBL-2.3/" conformance="skip">available on the OASIS web site here</ulink>:</para>
     <itemizedlist>
       <listitem>
         <para><literal>ubl/UBL-DocumentConstraints.pattern.sch</literal> - the Schematron pattern expressing the basic UBL document constraints as described in the standard</para>
@@ -277,14 +277,17 @@ No schema validation errors.
 ============ Phase 2: BPC process P01 data integrity validation ============
 No data integrity validation errors.
 </programlisting>
-    <para>To validate a document there is an invocation for each of the Windows and Shell environments:</para>
+  </section>
+  <section id="S-VALIDATING-ONES-OWN-TEST-FILES">
+    <title>Validating one’s own test files</title>
+    <para>To validate a test document of one’s own that is found in the <literal>val/</literal> directory there is an invocation for each of the Windows and Shell environments:</para>
     <itemizedlist>
       <listitem>
         <para>Windows:</para>
         <itemizedlist>
           <listitem>
             <para><programlisting>validate.bat  ubl-schema-file  bpc-process-Pxx  ubl-xml-file</programlisting>for example from the <literal>test.bat</literal> demonstration:</para>
-            <programlisting>call validate.bat  ..\ubl\xsd\maindoc\UBL-Invoice-2.3.xsd P01 invoice-test-good.xml</programlisting>
+            <programlisting>validate.bat  ..\ubl\xsd\maindoc\UBL-Invoice-2.3.xsd P01 invoice-test-good.xml</programlisting>
           </listitem>
         </itemizedlist>
       </listitem>
@@ -300,6 +303,12 @@ No data integrity validation errors.
     </itemizedlist>
     <para>When there is an error of any kind, the script creates a file named by adding the “<literal>.error.txt</literal>” suffix to the input file name and records the error information in that file.</para>
     <para>When there is a data integrity error, the script also creates a file named by adding the “<literal>.svrl.xml</literal>” suffix to the input file name and records the Schematron SVRL record information in that file.</para>
+    <para>For example, if one has a test file for Process 05 named <literal>myCreditNoteTest.xml</literal> in the <literal>val\</literal> directory then in Windows one would use:</para>
+    <para><programlisting>validate.bat ..\ubl\xsd\maindoc\UBL-CreditNote-2.3.xsd P05 myCreditNoteTest.xml</programlisting>and when running from another directory one need only point to the invocation and schema:</para>
+    <programlisting>bpc-semantics-0.1-20200924-011846z\val\validate.bat bpc-semantics-0.1-20200924-011846z\ubl\xsd\maindoc\UBL-CreditNote-2.3.xsd P05 myCreditNoteTest.xml</programlisting>
+    <para>And if one is using Shell in the <literal>val/</literal> directory one would use:</para>
+    <para><programlisting>sh validate.sh ../ubl/xsd/maindoc/UBL-CreditNote-2.3.xsd P05 myCreditNoteTest.xml</programlisting>and when running from another directory one need only point to the invocation and schema:</para>
+    <programlisting>sh bpc-semantics-0.1-20200924-011846z/val/validate.sh bpc-semantics-0.1-20200924-011846z/ubl/xsd/maindoc/UBL-CreditNote-2.3.xsd P05 myCreditNoteTest.xml</programlisting>
   </section>
   <!--  <bibliography>
     <para>See article-bibliography.xml for bibliographic entries.</para>

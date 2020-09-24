@@ -145,7 +145,7 @@
     <para>There are four illustrative XML instances being validated:</para>
     <itemizedlist>
       <listitem>
-        <para><literal>invoice-test-bad-syntax.xml</literal> - a document with an XML syntax error on line 7</para>
+        <para><literal>invoice-test-bad-syntax.xml</literal> - a document with an XML syntax error on line 9</para>
         <itemizedlist>
           <listitem>
             <para>the end delimiter of the closing tag for the <literal>cbc:ID</literal> element is missing</para>
@@ -153,7 +153,7 @@
         </itemizedlist>
       </listitem>
       <listitem>
-        <para><literal>invoice-test-bad-model.xml</literal> - a document with a UBL model error on line 7</para>
+        <para><literal>invoice-test-bad-model.xml</literal> - a document with a UBL model error on line 9</para>
         <itemizedlist>
           <listitem>
             <para>the <literal>cbc:ID</literal> element is misspelled as <literal>cbc:IDxxxxxxx</literal></para>
@@ -164,7 +164,7 @@
         <para><literal>invoice-test-bad-data.xml</literal> - a document with a BPC data integrity error:</para>
         <itemizedlist>
           <listitem>
-            <para>two identifiers are provided for the payee party, when there is a maximum of only 1 in BPC (UBL allows any number of identifiers for a party)</para>
+            <para>the payable rounding amount is absent and so the arithmetic for the payable amount calculation is incorrect</para>
           </listitem>
         </itemizedlist>
       </listitem>
@@ -202,10 +202,9 @@ sh test.sh</programlisting>
 Validating invoice-test-bad-syntax.xml
 ############################################################
 ============== Phase 1: XSD schema validation ==============
-org.xml.sax.SAXParseException; systemId: 
-  file:///Users/admin/test/val/invoice-test-bad-syntax.xml; 
-  lineNumber: 7; columnNumber: 2; The end-tag for element type 
-  "cbc:ID" must end with a '>' delimiter.
+org.xml.sax.SAXParseException; systemId: invoice-test-bad-syntax.xml;
+ lineNumber: 10; columnNumber: 2; The end-tag for element type "cbc:ID" must end
+ with a '>' delimiter.
 	at org.apache.xerces.parsers.AbstractSAXParser.parse(Unknown Source)
 	at org.apache.xerces.jaxp.SAXParserImpl$JAXPSAXParser.parse(Unknown Source)
 	at org.apache.xerces.jaxp.SAXParserImpl.parse(Unknown Source)
@@ -219,21 +218,19 @@ Exception in thread "main" java.lang.NullPointerException
 	at com.nwalsh.parsers.XJParse.run(Unknown Source)
 	at com.nwalsh.parsers.XJParse.main(Unknown Source)
 Attempting well-formed, namespace-aware parse
-Fatal error:file:///Users/admin/test/val/invoice-test-bad-syntax.xml:
-  7:2:The end-tag for element type "cbc:ID" must end with a '>' delimiter.
+Fatal error:invoice-test-bad-syntax.xml:10:2:The end-tag for element type
+ "cbc:ID" must end with a '>' delimiter.
 
 ############################################################
 Validating invoice-test-bad-model.xml
 ############################################################
 ============== Phase 1: XSD schema validation ==============
 Attempting well-formed, namespace-aware parse
-Error:file:///Users/admin/test/val/invoice-test-bad-model.xml:6:17:cvc-complex-type.2.4.a: 
-  Invalid content was found starting with element 'cbc:IDxxxxxxx'. One of 
-  '{"urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2":CustomizationID,
-  "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2":ProfileID,
-  "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2":ProfileExecutionID,
-  "urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2":ID}' is expected.
-Parse succeeded (0.17) with 1 error and no warnings.
+Error:invoice-test-bad-model.xml:9:17:cvc-complex-type.2.4.a: Invalid content
+ was found starting with element 'cbc:IDxxxxxxx'. One of
+ '{"urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2":ID}'
+ is expected.
+Parse succeeded (0.18) with 1 error and no warnings.
 
 ############################################################
 Validating invoice-test-bad-data.xml
@@ -241,10 +238,12 @@ Validating invoice-test-bad-data.xml
 ============== Phase 1: XSD schema validation ==============
 No schema validation errors.
 ============ Phase 2: BPC process P01 data integrity validation ============
-1. More than one Supplier - Seller Identifier exists.
- /Invoice/cac:AccountingSupplierParty[1] /
- count(cac:Party/cac:PartyIdentification/cbc:ID) &amp;lt;= 1
- (:NABT-029 Tab 1 Row 42 43:)
+1. Amount Due for Payment (NABT-115) is not equal to the total amount with
+ tax (NABT-112) minus PrePaid Amount (NABT-113) plus Rounding Amount (NABT-114).
+ /Invoice/cac:LegalMonetaryTotal[1]/cbc:PayableAmount[1] /
+ bpc:compareAmountsEqual( ., sum( ( ../cbc:TaxInclusiveAmount, -1 *
+ ../cbc:PrepaidAmount, ../cbc:PayableRoundingAmount ) ) )
+ (:NABT-115 Tab 1 Row 183 184:)
 Count of errors: 1
 Error in xsl:value-of/@select on line 93 column 67 of testSVRL4UBLerrors.xsl:
   XTMM9000: Processing terminated by xsl:message at line 93 in testSVRL4UBLerrors.xsl
@@ -256,7 +255,8 @@ Validating invoice-test-good.xml
 ============== Phase 1: XSD schema validation ==============
 No schema validation errors.
 ============ Phase 2: BPC process P01 data integrity validation ============
-No data integrity validation errors.</programlisting>
+No data integrity validation errors.
+</programlisting>
     <para>To validate a document there is an invocation for each of the Windows and Shell environments:</para>
     <itemizedlist>
       <listitem>
@@ -279,7 +279,7 @@ No data integrity validation errors.</programlisting>
       </listitem>
     </itemizedlist>
     <para>When there is an error of any kind, the script creates a file named by adding the “<literal>.error.txt</literal>” suffix to the input file name and records the error information in that file.</para>
-    <para>When there is a data integrity error, the script also creates a file named by adding the  “<literal>.svrl.xml</literal>” suffix to the input file name and records the Schematron SVRL record information in that file.</para>
+    <para>When there is a data integrity error, the script also creates a file named by adding the “<literal>.svrl.xml</literal>” suffix to the input file name and records the Schematron SVRL record information in that file.</para>
   </section>
   <!--  <bibliography>
     <para>See article-bibliography.xml for bibliographic entries.</para>

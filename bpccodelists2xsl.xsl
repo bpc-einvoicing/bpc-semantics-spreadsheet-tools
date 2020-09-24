@@ -13,7 +13,10 @@
     Convert a BPC skeleton XSLT stylesheet into one supporting code list data.
   </xs:title>
   <para>
-    This adds global definitions only.
+    This presumes that the skeleton has references to ISO-3166 (Country Codes)
+    and for each place found, replaces the given instruction with multiple
+    copies of the instruction, one for each of the code lists found in the
+    "raw/codelists" directory.
   </para>
 </xs:doc>
 
@@ -51,28 +54,125 @@
 </xs:output>
 <xsl:output indent="yes"/>
 
+<xs:variable>
+  <para>
+    Collect the list of code lists by reviewing the directory.
+  </para>
+</xs:variable>
+<xsl:variable name="bpc:lists" as="document-node()*"
+              select="collection('raw/codelists/?select=*.gc')"/>
+  
 <!--========================================================================-->
 <xs:doc>
   <xs:title>Main logic</xs:title>
+  <para>
+    Note that the match strings are based on the expected values found in
+    the skeleton file. Wherever there is a reference to ISO-3166, the
+    element is repeated for all code lists.
+  </para>
 </xs:doc>
 
 <xs:template>
-  <para>Getting started</para>
+  <para>Looking up the list</para>
 </xs:template>
-<xsl:template match="/*">
-  <xsl:copy>
-    <xsl:copy-of select="@*"/>
-    <xsl:apply-templates
-                   select="node() except xsl:variable[@name='bpc:generated']"/>
-    
-    <xsl:text>&#xa;</xsl:text>
-    <xsl:comment>This is some generated content</xsl:comment>
-    <xsl:text>&#xa;</xsl:text>
-    <xsl:text>&#xa;</xsl:text>
-
-  </xsl:copy>
+<xsl:template match="xsl:when[contains(@test,'ISO-3166')]">
+  <xsl:variable name="this" select="."/>
+  <xsl:for-each select="$bpc:lists">
+    <xsl:sort select="document-uri(.)"/>
+    <xsl:variable name="listId" select="bpc:listId(.)"/>
+    <xsl:for-each select="$this">
+      <!--copy the given xsl:when-->
+      <xsl:copy>
+        <xsl:for-each select="@*">
+          <xsl:attribute name="{name(.)}" 
+                         select="replace(.,'ISO-3166',$listId)"/>
+        </xsl:for-each>
+        <!--copy each of the children and their descendants, checking only
+            the attributes of the children-->
+        <xsl:for-each select="node()">
+          <xsl:copy>
+            <xsl:for-each select="@*">
+              <xsl:attribute name="{name(.)}" 
+                             select="replace(.,'ISO-3166',$listId)"/>
+            </xsl:for-each>
+            <xsl:apply-templates/>
+          </xsl:copy>
+        </xsl:for-each>    
+      </xsl:copy>
+    </xsl:for-each>
+  </xsl:for-each>
 </xsl:template>
 
+<xs:template>
+  <para>Declaring the list metadata</para>
+</xs:template>
+<xsl:template match="codeList">
+  <xsl:variable name="this" select="."/>
+  <xsl:for-each select="$bpc:lists">
+    <xsl:sort select="document-uri(.)"/>
+    <xsl:variable name="gc" select="."/>
+    <xsl:for-each select="$this">
+      <xsl:copy>
+        <xsl:for-each select="@*">
+          <xsl:attribute name="{name(.)}" 
+                         select="replace(.,'ISO-3166',bpc:listId($gc))"/>
+        </xsl:for-each>
+        <xsl:attribute name="file"
+                       select="substring-after(document-uri($gc),'raw/')"/>
+        <xsl:copy-of select="$gc/*/Identification"/> 
+      </xsl:copy>
+    </xsl:for-each>
+  </xsl:for-each>
+</xsl:template>
+
+<xs:template>
+  <para>Declaring the list codes</para>
+</xs:template>
+<xsl:template match="xsl:variable[contains(@name,'ISO-3166')]">
+  <xsl:variable name="this" select="."/>
+  <xsl:for-each select="$bpc:lists">
+    <xsl:sort select="document-uri(.)"/>
+    <xsl:variable name="gc" select="."/>
+    <xsl:for-each select="$this">
+      <xsl:copy>
+        <xsl:for-each select="@*">
+          <xsl:attribute name="{name(.)}" 
+                         select="replace(.,'ISO-3166',bpc:listId($gc))"/>
+        </xsl:for-each>
+        <xsl:attribute name="select">
+          <xsl:for-each select="$gc/*/SimpleCodeList/
+                                Row/Value[@ColumnRef='code']/SimpleValue">
+            <xsl:if test="position()>1">, </xsl:if>
+            <xsl:value-of select="concat('''',replace(.,'''',''''''),'''')"/>
+          </xsl:for-each>
+        </xsl:attribute>
+      </xsl:copy>
+    </xsl:for-each>
+  </xsl:for-each>
+</xsl:template>
+
+<xs:function>
+  <para>
+    Distill the list name from the filename being all text before the first
+    dot in the filename.
+  </para>
+  <xs:param name="doc">
+    <para>
+      The document node returned from the collection function searching
+      all of the genericode files.
+    </para>
+  </xs:param>
+</xs:function>
+<xsl:function name="bpc:listId" as="xsd:string">
+  <xsl:param name="doc" as="document-node()"/>
+  <xsl:sequence select="replace(document-uri($doc),
+                                '^.+/(.+?)(\.[^\.]*)?$','$1')"/>
+</xsl:function>
+<!--========================================================================-->
+<xs:doc>
+  <xs:title>Generic matching</xs:title>
+</xs:doc>
+  
 <xs:template>
   <para>
     Replace in text the {bpc:*} strings with the process information.

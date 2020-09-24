@@ -440,6 +440,8 @@ destfile="${dir}/bpc-semantics-tools-${BPCversion}-${dateTime}/bpc-semantics-${B
         todir="${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/${process}"/>
   <copy file="${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/BPC-v${BPCversion}-Code-Lists.xsl"
         todir="${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/${process}"/>
+  <copy file="${dir}/BPC-Schematron-Support.xsl"
+        todir="${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/${process}"/>
   <antcall target="-sch2xsl">
     <param name="schin" value=
 "${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/${process}/BPC-${process}-v${BPCversion}-Data-Integrity-Constraints.sch"/>

@@ -154,6 +154,7 @@
         <xslo:import
            href="BPC-{$procID}-v{$BPCversion}-Data-Integrity-Constraints.xsl"/>
         <xslo:import href="BPC-v{$BPCversion}-Code-Lists.xsl"/>
+        <xslo:import href="BPC-Schematron-Support.xsl"/>
       </xslo:stylesheet>
     </xsl:result-document>
   </xsl:for-each>
@@ -375,6 +376,27 @@
                                  if(count($process/doctypes/doctype)>1)
                                  then 's:' else ':'),
                                  string-join($process/doctypes/doctype,', ')"/>
+    </xsl:comment>
+    <xsl:text>&#xa;</xsl:text>
+    
+    <xsl:comment>
+      <xsl:text>Cited code lists in the assertions:&#xa;&#xa;</xsl:text>
+      <xsl:variable name="codeListReferences" as="xsd:string*">
+        <!--first find them-->
+        <xsl:for-each select="$worksheet//assertionPrototype">
+          <xsl:analyze-string select="."
+                   regex="bpc:codelist\(.+?\s*,\s*['&#x22;](.+)['&#x22;]\s*\)">
+            <xsl:matching-substring>
+              <xsl:sequence select="regex-group(1)"/>
+            </xsl:matching-substring>
+          </xsl:analyze-string>
+        </xsl:for-each>
+      </xsl:variable>
+      <!--report a summary of them-->
+      <xsl:for-each select="distinct-values($codeListReferences)">
+        <xsl:sort/>
+        <xsl:value-of select="."/><xsl:text>&#xa;</xsl:text>
+      </xsl:for-each>
     </xsl:comment>
     <xsl:text>&#xa;</xsl:text>
 

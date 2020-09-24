@@ -17,7 +17,6 @@
     <title>Introduction</title>
     <para>In the 4-corner model it is the responsibility of Corner 2 to send semantically- and syntactically-valid documents to Corner 3, per the definitions and constraints of the Business Payments Coalition (BPC) governance. Corner 2 presents to Corner 3 the data received from Corner 1 however
       Corner 1 may have the information encoded and transmitted to Corner 2. In turn, Corner 3 presents to Corner 4 the information received from Corner 2 however Corner 4 wishes to have it encoded and transmitted.</para>
-    <para>Repeated failure by Corner 2 to send valid documents to Corner 3 is grounds for disciplinary consideration based on governance rules committed to by Corner 2.</para>
     <para>Nevertheless, it is incumbent on Corner 3 to validate explicitly that the data received from Corner 2 conforms to the structure of the UBL schema document model and to the data integrity constraints of the BPC semantic model. Such checking ensures that the application code can assume not
       only that the information is in the correct structure, but also that the integrity of the data as dictated by the BPC is whole. Also, it will help identify delinquent Corners 2 who fail to send information correctly across the network.</para>
     <para>The tools described in this document and made available in this package are sample implementations of the Corner 3 processes of validating incoming XML instances from Corner 2, checking in two passes that the data conforms to UBL constraints and conforms to BPC constraints.</para>
@@ -117,10 +116,31 @@
         <para><literal>ubl/common/*.xsd</literal> - support schema expressions of the UBL semantics (these XSD fragments have no facility when used on their own)</para>
       </listitem>
     </itemizedlist>
-    <para>The following code list files support the validation of coded value domains:</para>
+    <para>The following code list files in OASIS genericode format support the validation of coded value domains:</para>
     <itemizedlist>
       <listitem>
-        <para><literal>codelist/*</literal></para>
+        <para><literal>codelist/IANA-Media-Types.gc</literal> - MIME types</para>
+      </listitem>
+      <listitem>
+        <para><literal>codelist/ISO-3166.gc</literal> - country codes</para>
+      </listitem>
+      <listitem>
+        <para><literal>codelist/ISO-4217.gc</literal> - currency codes</para>
+      </listitem>
+      <listitem>
+        <para><literal>codelist/UNECE-4461.gc</literal> - payment means</para>
+      </listitem>
+      <listitem>
+        <para><literal>codelist/UNECE-5153.gc</literal> - tax type</para>
+      </listitem>
+      <listitem>
+        <para><literal>codelist/UNECE-5189.gc</literal> - allowance/charge reason code</para>
+      </listitem>
+      <listitem>
+        <para><literal>codelist/UNECE-5305.gc</literal> - tax category</para>
+      </listitem>
+      <listitem>
+        <para><literal>codelist/UNECE-Rec-20.gc</literal> - Units of measure</para>
       </listitem>
     </itemizedlist>
     <para>The demonstration directory is the <literal>val/</literal> directory (see <xref linkend="S-DEMONSTRATION-EXECUTION"/> for details):</para>

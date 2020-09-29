@@ -2,8 +2,9 @@
 <?xml-stylesheet type="text/xsl"
                  href="utilities/article/article-html.xsl"?>
 <article conformance="ids ebuzzwords quotes">
-  <title>BPC Semantic Model Validation Artifacts</title>
+  <title>BPC Semantic Model Validation Artifacts - v0.1</title>
   <articleinfo>
+    <pubdate>2020-09-29 00:40z</pubdate>
     <copyright>
       <year>2020</year>
       <year>Business Payments Coalition</year>
@@ -19,7 +20,8 @@
       Corner 1 may have the information encoded and transmitted to Corner 2. In turn, Corner 3 presents to Corner 4 the information received from Corner 2 however Corner 4 wishes to have it encoded and transmitted.</para>
     <para>Nevertheless, it is incumbent on Corner 3 to validate explicitly that the data received from Corner 2 conforms to the structure of the UBL ISO/IEC 19845 schema document model and to the data integrity constraints of the BPC semantic model. Such checking ensures that the application code
       can assume not only that the information is in the correct structure, but also that the integrity of the data as dictated by the BPC is whole. Also, it will help identify delinquent Corners 2 who fail to send information correctly across the network.</para>
-    <para>The tools described in this document and made available in this package are sample implementations of the Corner 3 processes of validating incoming XML instances from Corner 2, checking in two passes that the data conforms to UBL constraints and conforms to BPC constraints.</para>
+    <para>The Java-based tools described in this document and made available in this package are sample implementations of the Corner 3 processes of validating incoming XML instances from Corner 2, checking in two passes that the data conforms to UBL constraints and conforms to BPC
+      constraints.</para>
   </section>
   <section id="S-DATA-FLOWS">
     <title>Data flows</title>
@@ -159,9 +161,21 @@
       </listitem>
     </itemizedlist>
   </section>
+  <section id="S-JAVA">
+    <title>Java</title>
+    <para>Java must be installed in the environment before the demonstration can run or one can validate their own test files. To know if Java is ready to be used, one simply enters the command that brings up the “Usage:” summary:</para>
+    <programlisting>C:\>java
+Usage: java [-options] class [args...]
+           (to execute a class)
+   or  java [-options] -jar jarfile [args...]
+           (to execute a jar file)
+where options include:
+<emphasis>...followed by many lines...</emphasis></programlisting>
+    <para>If the command cannot be found, an error message will be displayed.</para>
+  </section>
   <section id="S-DEMONSTRATION-EXECUTION">
     <title>Demonstration execution</title>
-    <para>A running demonstration of the two-phase ingestion of a BPC XML document is in the <literal>val/</literal> subdirectory. </para>
+    <para>A running Java-based demonstration of the two-phase ingestion of a BPC XML document is in the <literal>val/</literal> subdirectory. </para>
     <para>There are four illustrative XML instances being validated:</para>
     <itemizedlist>
       <listitem>
@@ -280,7 +294,7 @@ No data integrity validation errors.
   </section>
   <section id="S-VALIDATING-ONES-OWN-TEST-FILES">
     <title>Validating one’s own test files</title>
-    <para>To validate a test document of one’s own that is found in the <literal>val/</literal> directory there is an invocation for each of the Windows and Shell environments:</para>
+    <para>To validate a test document of one’s own that is found in the <literal>val/</literal> directory there is a Java-based invocation for each of the Windows and Shell environments:</para>
     <itemizedlist>
       <listitem>
         <para>Windows:</para>

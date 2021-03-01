@@ -13,7 +13,7 @@ export UBLversion=2.3-csprd03
 export dateTime=$3
 export numberOfProcesses=5
 
-export ssGoogle=https://docs.google.com/spreadsheets/d/1nK4Rt2ucNmxJCFCtWLlBTxzyRijEWrCVcO2cO7durvY
+export ssGoogle=https://docs.google.com/spreadsheets/d/1qAz_aAbJ99ikA4zUk97FyjyDLcsQ3B3vqjEK-b3C_h8
 
 bash prepareBPCartefacts-common.sh "$1" "$2" "$3" "$4"
 

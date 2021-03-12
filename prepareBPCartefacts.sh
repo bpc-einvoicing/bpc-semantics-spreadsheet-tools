@@ -8,8 +8,8 @@ export platform=$2
 export rawdir=raw
 export targetdir="$1"
 export title="BPC Semantics Group"
-export BPCversion=0.1
-export UBLversion=2.3-csprd03
+export BPCversion=0.2
+export UBLversion=2.3-cs01
 export dateTime=$3
 export numberOfProcesses=5
 

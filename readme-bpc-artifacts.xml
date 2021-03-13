@@ -2,11 +2,11 @@
 <?xml-stylesheet type="text/xsl"
                  href="utilities/article/article-html.xsl"?>
 <article conformance="ids ebuzzwords quotes">
-  <title>BPC Semantic Model Validation Artifacts - v0.1</title>
+  <title>BPC Semantic Model Validation Artifacts - v0.2</title>
   <articleinfo>
-    <pubdate>2020-09-29 00:40z</pubdate>
+    <pubdate>2021-03-13 02:40z</pubdate>
     <copyright>
-      <year>2020</year>
+      <year>2021</year>
       <year>Business Payments Coalition</year>
     </copyright>
     <legalnotice>
@@ -98,24 +98,24 @@
         <para><literal>ubl/UBL-DocumentConstraints.pattern.sch</literal> - the Schematron pattern expressing the basic UBL document constraints as described in the standard</para>
       </listitem>
       <listitem>
-        <para><literal>ubl/UBL-Entities-2.3-cspred03.gc</literal> - the summary of all UBL semantics in OASIS genericode XML format</para>
+        <para><literal>ubl/UBL-Entities-2.3.gc</literal> - the summary of all UBL semantics in OASIS genericode XML format</para>
       </listitem>
     </itemizedlist>
     <itemizedlist>
       <listitem>
-        <para><literal>ubl/All-UBL-2.3-cspred03-Documents.html</literal> - the summary of all UBL semantics as a single large hyperlinked HTML file</para>
+        <para><literal>ubl/All-UBL-2.3-Documents.html</literal> - the summary of all UBL semantics as a single large hyperlinked HTML file</para>
       </listitem>
       <listitem>
-        <para><literal>ubl/UBL-CreditNote-2.3-csprd03.html</literal> - the summary of UBL Credit Note semantics as a hyperlinked HTML file</para>
+        <para><literal>ubl/UBL-CreditNote-2.3.html</literal> - the summary of UBL Credit Note semantics as a hyperlinked HTML file</para>
       </listitem>
       <listitem>
-        <para><literal>ubl/UBL-Invoice-2.3-csprd03.html</literal> - the summary of UBL Invoice semantics as a hyperlinked HTML file</para>
+        <para><literal>ubl/UBL-Invoice-2.3.html</literal> - the summary of UBL Invoice semantics as a hyperlinked HTML file</para>
       </listitem>
       <listitem>
-        <para><literal>ubl/maindoc/*.xsd</literal> - all UBL 2.3 document XSD XML schema expressions of the UBL semantics (use the appropriate of these to implement artifact ① in the data flow)</para>
+        <para><literal>ubl/xsd/maindoc/*.xsd</literal> - all UBL 2.3 document XSD XML schema expressions of the UBL semantics (use the appropriate of these to implement artifact ① in the data flow)</para>
       </listitem>
       <listitem>
-        <para><literal>ubl/common/*.xsd</literal> - support schema expressions of the UBL semantics (these XSD fragments have no facility when used on their own)</para>
+        <para><literal>ubl/xsd/common/*.xsd</literal> - support schema expressions of the UBL semantics (these XSD fragments have no facility when used on their own)</para>
       </listitem>
     </itemizedlist>
     <para>The following code list files in OASIS genericode format support the validation of coded value domains:</para>

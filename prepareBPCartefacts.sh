@@ -8,12 +8,12 @@ export platform=$2
 export rawdir=raw
 export targetdir="$1"
 export title="BPC Semantics Group"
-export BPCversion=0.2
-export UBLversion=2.3-cs01
+export BPCversion=0.3
+export UBLversion=2.3-os
 export dateTime=$3
 export numberOfProcesses=5
 
-export ssGoogle=https://docs.google.com/spreadsheets/d/1qAz_aAbJ99ikA4zUk97FyjyDLcsQ3B3vqjEK-b3C_h8
+export ssGoogle=https://docs.google.com/spreadsheets/d/16Nj_hW5_T_2Z2Hgd_vJHGx47iwvW-RlA
 
 bash prepareBPCartefacts-common.sh "$1" "$2" "$3" "$4"
 

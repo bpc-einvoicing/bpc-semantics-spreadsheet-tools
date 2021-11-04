@@ -14,6 +14,7 @@ export dateTime=$3
 export numberOfProcesses=5
 
 export ssGoogle=https://docs.google.com/spreadsheets/d/16Nj_hW5_T_2Z2Hgd_vJHGx47iwvW-RlA
+export "ssTabName=1 Invoice, Credit Note"
 
 bash prepareBPCartefacts-common.sh "$1" "$2" "$3" "$4"
 

@@ -9,7 +9,7 @@ mkdir     $targetdir/bpc-semantics-tools-$BPCversion-$dateTime/archive-only-not-
 fi
 
 echo Building package...
-java -Dant.home=utilities/ant -classpath utilities/saxon/saxon.jar:utilities/ant/lib/ant-launcher.jar:utilities/saxon9he/saxon9he.jar:. org.apache.tools.ant.launch.Launcher -buildfile prepareBPCartefacts.xml "-Drawdir=$rawdir" "-Ddir=$targetdir" "-Dtitle=$title" "-DBPCversion=$BPCversion" "-DUBLversion=$UBLversion" "-DssGoogle=$ssGoogle" "-DdateTime=$dateTime" "-Dnumber-of-processes=$numberOfProcesses" | tee $targetdir/bpc-semantics-tools.console.$3.txt
+java -Dant.home=utilities/ant -classpath utilities/saxon/saxon.jar:utilities/ant/lib/ant-launcher.jar:utilities/saxon9he/saxon9he.jar:. org.apache.tools.ant.launch.Launcher -buildfile prepareBPCartefacts.xml "-Drawdir=$rawdir" "-Ddir=$targetdir" "-Dtitle=$title" "-DBPCversion=$BPCversion" "-DUBLversion=$UBLversion" "-DssGoogle=$ssGoogle" "-DssTabName=$ssTabName" "-DdateTime=$dateTime" "-Dnumber-of-processes=$numberOfProcesses" | tee $targetdir/bpc-semantics-tools.console.$3.txt
 serverReturn=${PIPESTATUS[0]}
 
 mv $targetdir/bpc-semantics-tools.console.$3.txt $targetdir/bpc-semantics-tools-$BPCversion-$dateTime/archive-only-not-in-final-distribution/

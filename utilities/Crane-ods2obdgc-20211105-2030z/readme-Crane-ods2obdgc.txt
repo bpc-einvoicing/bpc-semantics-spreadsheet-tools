@@ -35,9 +35,10 @@ Additional invocation arguments:
  
 Additional optional invocation parameters:
 
- - add row as a column value:  row-number-column-name={string}
+ - add row as a column value:    row-number-column-name={string}
    - use this argument to add the row number of each row as a genericode
      column simple value, by naming the new column to be added
+   - this also adds a unique key suitable for raw output
 
  - identification metadata:      identification-uri={filename}
    - an XML document to use in place of defaulted metadata; the file is
@@ -63,6 +64,9 @@ Additional optional invocation parameters:
      identifiers for the sheet name value
    - set the raw sheet long name to the empty string to suppress output of the
      sheet name value
+   - define the row number column name to ensure a key column is added to the
+     output to make the genericode file complete (a genericode file with rows
+     is required to have a unique column value as a key)
 
  - selective worksheet outputs:  included-sheet-name-regex={regex}
    - all worksheets are output unless this regular expression is specified

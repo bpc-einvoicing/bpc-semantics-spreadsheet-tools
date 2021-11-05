@@ -13,7 +13,7 @@
   version="2.0">
 <!-- xmlns:f="urn:X-Crane:stylesheets:obfuscation" -->
 
-<xs:doc info="$Id: gcExportSubset.xsl,v 1.20 2020/08/08 17:55:21 admin Exp $"
+<xs:doc info="$Id: gcExportSubset.xsl,v 1.25 2021/11/05 20:25:04 admin Exp $"
         filename="gcExportSubset.xsl" vocabulary="DocBook">
   <xs:title>Open Document Spreadsheet to Genericode Subset Transformation</xs:title>
   <para>
@@ -135,11 +135,17 @@ PURPOSE.
   <xsl:param name="c:tables" as="element(table:table)*"/>
   <xsl:for-each select="$c:tables">
     <xsl:variable name="c:modelName" select="c:lengthen(@table:name)"/>
+    <xsl:variable name="c:headerRowNumber" as="xsd:integer"
+                  select="1 + count((.//
+              table:table-row[table:table-cell[normalize-space()][last()]])[1]/
+              preceding-sibling::table:table-row)"/>
     <xsl:variable name="c:columnCount" as="xsd:integer"
-                  select="o:column((.//table:table-row)[1]/
-                                table:table-cell[normalize-space()][last()])"/>
+                  select="o:column((.//
+              table:table-row[table:table-cell[normalize-space()][last()]])[1]/
+              table:table-cell[normalize-space()][last()])"/>
     <xsl:variable name="c:columnHeads" as="element()*">
-      <xsl:for-each select="(.//table:table-row)[1]">
+      <xsl:for-each select="(.//
+             table:table-row[table:table-cell[normalize-space()][last()]])[1]">
         <xsl:variable name="c:thisRow" select="."/>
         <xsl:for-each select="1 to 
                   xsd:integer( o:column(table:table-cell[last()])[last()] )">
@@ -156,13 +162,13 @@ PURPOSE.
                   string-join(table:table-cell/o:odsCell2Text(.),''))='END']/
                                     preceding::table:table-row[1],
                             (.//table:table-row)[last()] )[1]"/>
-    <xsl:for-each select="(.//table:table-row)[position()>1]
+    <xsl:for-each select="(.//table:table-row)[position()>$c:headerRowNumber]
                                          [ .    is    $c:lastTableRow or
                                            . &lt;&lt; $c:lastTableRow ]
                      [string-join(table:table-cell/o:odsCell2Text(.),'')!='']">
       <Row>
         <xsl:if test="not($row-number-column-name)">
-          <xsl:comment select="position()+1"/>
+          <xsl:comment select="position()+$c:headerRowNumber"/>
         </xsl:if>
         <xsl:if test="lower-case($indent)=('y','yes')">
           <xsl:text>&#xa;         </xsl:text>
@@ -174,9 +180,19 @@ PURPOSE.
         </xsl:if>
         <xsl:if test="$row-number-column-name">
           <Value
-    ColumnRef="{translate(normalize-space($row-number-column-name),'\W+','')}">
+      ColumnRef="{translate(normalize-space($row-number-column-name),' ','')}">
             <SimpleValue>
-              <xsl:value-of select="position()+1"/>
+              <xsl:value-of select="position()+$c:headerRowNumber"/>
+            </SimpleValue>
+          </Value>
+          <Value
+ColumnRef="Unique{translate(normalize-space($row-number-column-name),' ','')}">
+            <SimpleValue>
+              <xsl:value-of select="position()+$c:headerRowNumber"/>
+              <xsl:if test="$worksheetIdentifier">
+                <xsl:text>: </xsl:text>
+                <xsl:value-of select="$c:modelName"/>
+              </xsl:if>
             </SimpleValue>
           </Value>
         </xsl:if>

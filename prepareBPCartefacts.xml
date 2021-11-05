@@ -9,7 +9,7 @@
   <property name="thisdir" value="${user.dir}"/>
   <property name="utilitydir" value="${thisdir}/utilities/"/>
   <!--software timestamps-->
-  <property name="ods2obdgc" value="20200809-0140z"/>
+  <property name="ods2obdgc" value="20211105-2030z"/>
   <property name="cva2sch"   value="20130207-1940z"/>
   <!--documentation-->
   <echo message="ods2obdgc=${ods2obdgc}"/>
@@ -320,7 +320,8 @@ tofile="${dir}/bpc-semantics-${BPCversion}-${dateTime}/model/BPC-Semantics-Sprea
 <target name="-ods2gc" unless="${okay}">
   <delete file="${target}"/>
   <echo message='Rebuilding "${target}" GC file...'/>
-  <java append="true" classname="net.sf.saxon.Transform">
+  <java append="true" jar="utilities/saxon9he/saxon9he.jar" failonerror="false"
+       fork="true">
     <arg value="-xsl:${utilitydir}Crane-ods2obdgc-${ods2obdgc}/Crane-ods2obdgc.xsl"/>
     <arg value="-o:${target}"/>
     <arg value="-it:ods-uri"/>
@@ -329,16 +330,17 @@ tofile="${dir}/bpc-semantics-${BPCversion}-${dateTime}/model/BPC-Semantics-Sprea
     <arg value="identification-uri=${identification-uri}"/>
     <arg value="lengthen-model-name-uri=${lengthen-model-name-uri}"/>
     <arg value="raw-sheet-long-name=Worksheet Tab"/>
+    <arg value="row-number-column-name=Row Number"/>
   </java>
   <available property="done" file="${target}"/>
   <sequential unless:set="done">
     <echo message="Unable to create GC file: ${target}"/>
-    <property unless:set="done" name="${returnProperty}" value="1"/>
+    <property unless:set="done" name="${resultProperty}" value="1"/>
   </sequential>
   <sequential if:set="done">
     <property name="jarLocation" location="${utilitydir}xjparse"/>
     <echo message='Validating "${target}" GC file...'/>
-    <java resultproperty="${returnProperty}" append="true" fork="true"
+    <java resultproperty="resultProperty" append="true" fork="true"
           classname="com.nwalsh.parsers.XJParse"
           output="${target}.error.txt"
           classpath="${jarLocation}/xjparse.jar">
@@ -347,9 +349,14 @@ tofile="${dir}/bpc-semantics-${BPCversion}-${dateTime}/model/BPC-Semantics-Sprea
        <arg value="${target}"/>
     </java>
     <condition property="okayGCparse">
-      <equals arg1="${returnProperty}" arg2="0"/>
+      <equals arg1="${resultProperty}" arg2="0"/>
     </condition>
+    <echo unless:set="okayGCparse" file="${target}.error.txt" append="true"/>
+    <echo unless:set="okayGCparse" file="${target}.error.txt" append="true"
+          message=
+"If no 'content.xml' file found, check that the addressed spreadsheet has public access"/>
     <delete if:set="okayGCparse" file="${target}.error.txt"/>
+    <property name="${returnProperty}" value="${resultProperty}"/>
   </sequential>
 </target>
 

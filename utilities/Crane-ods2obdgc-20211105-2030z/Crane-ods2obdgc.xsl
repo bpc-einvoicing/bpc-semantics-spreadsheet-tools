@@ -13,7 +13,7 @@
   version="2.0"> 
 <!-- xmlns:f="urn:X-Crane:stylesheets:obfuscation" -->
 
-<xs:doc info="$Id: Crane-ods2obdgc.xsl,v 1.8 2020/08/08 16:53:12 admin Exp $"
+<xs:doc info="$Id: Crane-ods2obdgc.xsl,v 1.11 2021/11/05 20:27:25 admin Exp $"
         filename="Crane-ods2odsgc.xsl" vocabulary="DocBook">
   <xs:title>Open Document Spreadsheet to Business Document ODS Genericode</xs:title>
   <para>
@@ -231,8 +231,49 @@ PURPOSE.
                 select="$c:roots/*/office:body/office:spreadsheet/table:table
                            [matches(@table:name,$included-sheet-name-regex)]"/>
   <xsl:variable name="c:columnMetadata" as="element(Column)*">
-    <xsl:for-each-group group-by="normalize-space(string-join(text:p,' '))"
- select="($c:tables//table:table-row)[1]/table:table-cell[normalize-space(.)]">
+    <xsl:for-each select="$row-number-column-name">
+      <Column Id="{translate(normalize-space(.),' ','')}" Use="required">
+        <ShortName>
+          <xsl:value-of select="translate(normalize-space(.),' ','')"/>
+        </ShortName>
+        <LongName><xsl:value-of select="."/></LongName>
+        <Data Type="integer"/>
+      </Column>
+      <Column Id="Unique{translate(normalize-space(.),' ','')}" Use="required">
+        <ShortName>
+          <xsl:text>Unique</xsl:text>
+          <xsl:value-of select="translate(normalize-space(.),' ','')"/>
+        </ShortName>
+        <LongName>Unique <xsl:value-of select="."/></LongName>
+        <Data Type="string"/>
+      </Column>
+    </xsl:for-each>
+    <!--check integrity of columns on a per worksheet basis-->
+    <xsl:variable name="problemMessage">
+      <xsl:for-each select="$c:tables">
+        <xsl:variable name="sheetName" select="@table:name"/>
+        <xsl:for-each-group
+          group-by="translate(normalize-space(string-join(text:p,' ')),' ','')"
+         select=".//(table:table-row[table:table-cell[normalize-space(.)]])[1]/
+                     table:table-cell[normalize-space(.)]">
+          <xsl:if test="count(current-group()) > 1 ">
+            <xsl:text>Sheet "</xsl:text>
+            <xsl:value-of select="$sheetName"/>
+            <xsl:text>" has multiple columns abbreviated as "</xsl:text>
+            <xsl:value-of select="current-grouping-key()"/>
+            <xsl:text>"&#xa;</xsl:text>
+          </xsl:if>
+        </xsl:for-each-group>
+      </xsl:for-each>
+    </xsl:variable>
+    <xsl:if test="normalize-space($problemMessage)">
+      <xsl:message terminate="yes" select="$problemMessage"/>
+    </xsl:if>
+    <!--create the total set of columns-->
+    <xsl:for-each-group
+          group-by="translate(normalize-space(string-join(text:p,' ')),' ','')"
+ select="$c:tables//(table:table-row[table:table-cell[normalize-space(.)]])[1]/
+                     table:table-cell[normalize-space(.)]">
       <xsl:variable name="c:longName" 
                     select="normalize-space(current-grouping-key())"/>
       <xsl:variable name="c:shortName"
@@ -280,15 +321,6 @@ PURPOSE.
           <LongName>Model Name</LongName>
           <Data Type="string"/>
         </Column>
-        <xsl:for-each select="$row-number-column-name">
-          <Column Id="{translate(normalize-space(.),' ','')}" Use="required">
-            <ShortName>
-              <xsl:value-of select="translate(normalize-space(.),' ','')"/>
-            </ShortName>
-            <LongName><xsl:value-of select="."/></LongName>
-            <Data Type="integer"/>
-          </Column>
-        </xsl:for-each>
         <xsl:copy-of select="$c:columnMetadata"/>
         <Key Id="key">
           <ShortName>Key</ShortName>
@@ -309,6 +341,16 @@ PURPOSE.
         <xsl:copy-of select="$c:columnMetadata"/>
       </xsl:otherwise>
     </xsl:choose>
+    <xsl:for-each select="$row-number-column-name">
+      <Key Id="Key{translate(normalize-space(.),' ','')}">
+        <ShortName>
+          <xsl:text>Key</xsl:text>
+          <xsl:value-of select="translate(normalize-space(.),' ','')"/>
+        </ShortName>
+        <LongName>Key <xsl:value-of select="."/></LongName>
+        <ColumnRef Ref="Unique{translate(normalize-space(.),' ','')}"/>
+      </Key>
+    </xsl:for-each>
   </ColumnSet>
   <SimpleCodeList>
     <xsl:call-template name="c:emitGenericode">

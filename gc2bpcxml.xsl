@@ -177,12 +177,14 @@
   <!--determine if there were any problems with the inputs based on outputs-->
   <xsl:variable name="analysis" as="element(analysis)+">
     <xsl:for-each select="$worksheet">
-      <xsl:variable name="doctypes" as="xsd:string*"
+      <xsl:variable name="theseDoctypes" as="xsd:string*"
                     select="doctypes/doctype"/>
       <analysis banner="{@tab}">
         <xsl:for-each select="semantics/semantic/process">
-          <xsl:variable name="worksheetRows" select="../@worksheetRows"/>
           <xsl:variable name="bpcID" select="../@bpcID"/>
+          <xsl:variable name="worksheetRows" 
+                        select="if( ends-with($bpcID,'TBD' ) )
+                                then @worksheetRow else ../@worksheetRows"/>
           <xsl:variable name="thisProcess" select="."/>
           <xsl:variable name="semanticErrors">
             <!--check that the stated Dictionary Entry Names exist in UBL-->
@@ -191,7 +193,7 @@
                 <xsl:choose>
                   <xsl:when test="contains(.,'#')">
                     <xsl:variable name="proto" select="."/>
-                    <xsl:for-each select="$doctypes">
+                    <xsl:for-each select="$theseDoctypes">
                       <xsl:sequence select="replace($proto,'#',.)"/>
                     </xsl:for-each>
                   </xsl:when>

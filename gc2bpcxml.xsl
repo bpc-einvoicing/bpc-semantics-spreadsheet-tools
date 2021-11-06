@@ -188,41 +188,46 @@
           <xsl:variable name="thisProcess" select="."/>
           <xsl:variable name="semanticErrors">
             <!--check that the stated Dictionary Entry Names exist in UBL-->
-            <xsl:for-each select="ubldens/ublden">
-              <xsl:variable name="checks" as="xsd:string*">
-                <xsl:choose>
-                  <xsl:when test="contains(.,'#')">
-                    <xsl:variable name="proto" select="."/>
-                    <xsl:for-each select="$theseDoctypes">
-                      <xsl:sequence select="replace($proto,'#',.)"/>
-                    </xsl:for-each>
-                  </xsl:when>
-                  <xsl:otherwise>
-                    <xsl:sequence select="."/>
-                  </xsl:otherwise>
-                </xsl:choose>
-              </xsl:variable>
-              <xsl:for-each select="$checks">
-                <xsl:choose>
-                  <xsl:when test="starts-with(.,'@')">
-                    <xsl:if test="not(substring(.,2) = $bpc:supplemental)">
-                      <xsl:value-of
+            <xsl:variable name="denErrorMessage">
+              <xsl:for-each select="ubldens/ublden">
+                <xsl:variable name="checks" as="xsd:string*">
+                  <xsl:choose>
+                    <xsl:when test="contains(.,'#')">
+                      <xsl:variable name="proto" select="."/>
+                      <xsl:for-each select="$theseDoctypes">
+                        <xsl:sequence select="replace($proto,'#',.)"/>
+                      </xsl:for-each>
+                    </xsl:when>
+                    <xsl:otherwise>
+                      <xsl:sequence select="."/>
+                    </xsl:otherwise>
+                  </xsl:choose>
+                </xsl:variable>
+                <xsl:for-each select="$checks">
+                  <xsl:choose>
+                    <xsl:when test="starts-with(.,'@')">
+                      <xsl:if test="not(substring(.,2) = $bpc:supplemental)">
+                        <xsl:value-of
          select="concat('CCTS Supplemental Component not found: ',.,'&#xa;')"/>
-                    </xsl:if>
-                  </xsl:when>
-                  <xsl:when test="not(key('bpc:den',.,$ublgc))">
-                    <xsl:value-of 
+                      </xsl:if>
+                    </xsl:when>
+                    <xsl:when test="not(key('bpc:den',.,$ublgc))">
+                      <xsl:value-of 
            select="concat('UBL Dictionary Entry Name not found: ',.,'&#xa;')"/>
-                  </xsl:when>
-                </xsl:choose>
+                    </xsl:when>
+                  </xsl:choose>
+                </xsl:for-each>
               </xsl:for-each>
-            </xsl:for-each>
+            </xsl:variable>
+            <!--report the error and have the error ready for later tests-->
+            <xsl:value-of select="$denErrorMessage"/>
             
             <!--check that the model cardinalities and UBL cardinalities
                 match the UBL Dictionary Entry Names that are in play-->
-            <xsl:for-each select="if( some $den in ubldens/ublden
-                                      satisfies contains( $den, '#' ) )
-                                  then doctypes/doctype else 'xxxxx'">
+            <xsl:if test="not(normalize-space($denErrorMessage))">
+             <xsl:for-each select="if( some $den in ubldens/ublden
+                                       satisfies contains( $den, '#' ) )
+                                   then doctypes/doctype else 'xxxxx'">
               <xsl:variable name="doctypeCompressed"
                             select="replace(.,'\s+','')"/>
               <xsl:for-each select="$thisProcess">
@@ -289,8 +294,9 @@
                  separator=", "/>
    <xsl:text>&#xa;</xsl:text>
                </xsl:if>
+              </xsl:for-each>
              </xsl:for-each>
-            </xsl:for-each>
+            </xsl:if>
           </xsl:variable>
           <xsl:if test="normalize-space($semanticErrors)">
             <xsl:value-of select="concat($bpcID,' worksheet row',

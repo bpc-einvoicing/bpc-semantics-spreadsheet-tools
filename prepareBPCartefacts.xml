@@ -248,7 +248,8 @@ file="${dir}/bpc-semantics-${BPCversion}-${dateTime}/model/BPC-Semantics-Spreads
     </condition>
     <echo unless:set="bpcXMLcreated"
           message="ERROR creating BPC Semantics XML file"/>
-    <touch unless:set="bpcXMLcreated"
+    <loadfile unless:set="bpcXMLcreated" property="semanticErrors" srcFile="${dir}/bpc-semantics-${BPCversion}-${dateTime}/model/BPC-Semantics-Spreadsheet-${BPCversion}-${dateTime}.gc.errors.txt"/>
+    <echo unless:set="bpcXMLcreated" message="${semanticErrors}"
      file="${dir}/bpc-semantics-${BPCversion}-${dateTime}/VALID-SEMANTICS-XML-FILE-NOT-GENERATED.txt"/>
     <copy preservelastmodified="true"
 file="${dir}/bpc-semantics-${BPCversion}-${dateTime}/model/BPC-Semantics-Spreadsheet-${BPCversion}-${dateTime}.xml"

@@ -95,7 +95,7 @@
           </xsl:analyze-string>
         </doctypes>
         <semantics>
-        <xsl:for-each-group group-by="bpc:col(.,'BPCID')"
+        <xsl:for-each-group group-by="bpc:col(.,'BPCREF')"
                  select="current-group()[bpc:col(.,'UBLDictionaryEntryName')]">
           <semantic bpcID="{current-grouping-key()}"
                     worksheetRows="{current-group()/

@@ -100,65 +100,67 @@
   <para>Getting started</para>
 </xs:template>
 <xsl:template match="/">
+  <xsl:variable name="activeProcesses"
+                select="/*/bpcProcess
+                        [some $w in $semanticsSummary/worksheets/worksheet
+                         satisfies $w/@worksheetNumber = @worksheetNumber ]"/>
   <!--first create the Schematron schema and pattern files for each process-->
-  <xsl:for-each select="/*/bpcProcess
-          [some $w in $semanticsSummary/worksheets/worksheet
-           satisfies $w/@worksheetNumber = @worksheetNumber ]">
-    <xsl:if test="not( count(doctypes/doctype)=1 )">
-      <xsl:message terminate="yes">
-        <xsl:text>At this time the code presumes only a single </xsl:text>
-        <xsl:text>document type is listed for each process. Process </xsl:text>
-        <xsl:value-of select="@bpcID"/>
-        <xsl:text> has </xsl:text>
-        <xsl:value-of select="count(doctypes/doctype)"/>
-        <xsl:text> listed. This presumption is in the synthesis of </xsl:text>
-        <xsl:text>Schematron script invocations with test files.</xsl:text>
-      </xsl:message>
-    </xsl:if>
-    <xsl:variable name="worksheet" 
-                  select="$semanticsSummary/worksheets/worksheet
-                          [@worksheetNumber = current()/@worksheetNumber]"/>
-    <xsl:variable name="procID" select="@bpcID"/>
-    <!--this is the wrapper schematron-->
-    <xsl:variable name="schematronOutURI"
-                  select="concat($procID,'/BPC-',$procID,'-v',
-                          $BPCversion,'-Data-Integrity-Constraints.sch')"/>
-    <xsl:message select="'Writing:',$schematronOutURI"/>
-    <xsl:result-document href="{$schematronOutURI}">
-      <xsl:apply-templates select="$schemaSkeleton/*">
-        <xsl:with-param name="process" select="." tunnel="yes"/>
-        <xsl:with-param name="worksheet" select="$worksheet" tunnel="yes"/>
-      </xsl:apply-templates>
-    </xsl:result-document>
-    <!--this is the embedded pattern schematron-->
-    <xsl:variable name="patternOutURI"
-                  select="concat($procID,'/BPC-',$procID,'-v',
-                          $BPCversion,'-Assertions.pattern.sch')"/>
-    <xsl:result-document href="{$patternOutURI}">
-      <xsl:apply-templates select="$patternSkeleton/*">
-        <xsl:with-param name="process" select="." tunnel="yes"/>
-        <xsl:with-param name="worksheet" select="$worksheet" tunnel="yes"/>
-      </xsl:apply-templates>
-    </xsl:result-document>
-    <xsl:result-document exclude-result-prefixes="sch"
-                 href="{$procID}/BPC-{$procID}-Data-Integrity-Constraints.xsl">
-      <xslo:stylesheet version="2.0">
-        <xsl:text>&#xa;</xsl:text>
+  <xsl:for-each select="$activeProcesses">
+   <xsl:variable name="thisProcess" select="."/>
+   <xsl:for-each select="doctypes/doctype">
+     <xsl:variable name="thisDoctype" select="translate(.,' ','')"/>
+     <xsl:for-each select="$thisProcess">
+      <xsl:variable name="worksheet" 
+                    select="$semanticsSummary/worksheets/worksheet
+                            [@worksheetNumber = current()/@worksheetNumber]"/>
+      <xsl:variable name="procID" select="@bpcID"/>
+      <!--this is the wrapper schematron-->
+      <xsl:variable name="schematronOutURI"
+                    select="concat($procID,'/BPC-',$procID,'-v',
+                            $BPCversion,'-',$thisDoctype,
+                            '-Data-Integrity-Constraints.sch')"/>
+      <xsl:message select="'Writing:',$schematronOutURI"/>
+      <xsl:result-document href="{$schematronOutURI}">
+        <xsl:apply-templates select="$schemaSkeleton/*">
+          <xsl:with-param name="process" select="." tunnel="yes"/>
+          <xsl:with-param name="worksheet" select="$worksheet" tunnel="yes"/>
+          <xsl:with-param name="doctype" select="$thisDoctype" tunnel="yes"/>
+        </xsl:apply-templates>
+      </xsl:result-document>
+      <!--this is the embedded pattern schematron-->
+      <xsl:variable name="patternOutURI"
+                    select="concat($procID,'/BPC-',$procID,'-v',
+                            $BPCversion,'-',$thisDoctype,
+                            '-Assertions.pattern.sch')"/>
+      <xsl:result-document href="{$patternOutURI}">
+        <xsl:apply-templates select="$patternSkeleton/*">
+          <xsl:with-param name="process" select="." tunnel="yes"/>
+          <xsl:with-param name="worksheet" select="$worksheet" tunnel="yes"/>
+          <xsl:with-param name="doctype" select="$thisDoctype" tunnel="yes"/>
+        </xsl:apply-templates>
+      </xsl:result-document>
+      <xsl:result-document exclude-result-prefixes="sch"
+  href="{$procID}/BPC-{$procID}-{$thisDoctype}-Data-Integrity-Constraints.xsl">
+        <xslo:stylesheet version="2.0">
+          <xsl:text>&#xa;</xsl:text>
 <xsl:comment>
   Wrapper invocation stylesheet for BPC Semantics process:
   <xsl:value-of select="
-       bpc:formatProcessInfo('{bpc:title} from worksheet {bpc:worksheet}',.)"/>
+            bpc:formatProcessInfo('{bpc:title} from worksheet {bpc:worksheet}',
+                                  .,$thisDoctype)"/>
   incorporating the code list functions for XPath use.
 </xsl:comment>
-        <xsl:text>&#xa;</xsl:text>
-        <xslo:import
-           href="BPC-{$procID}-v{$BPCversion}-Data-Integrity-Constraints.xsl"/>
-        <xslo:import href="BPC-v{$BPCversion}-Code-Lists.xsl"/>
-        <xslo:import href="BPC-Schematron-Support.xsl"/>
-      </xslo:stylesheet>
-    </xsl:result-document>
+            <xsl:text>&#xa;</xsl:text>
+            <xslo:import href=
+ "BPC-{$procID}-v{$BPCversion}-{$thisDoctype}-Data-Integrity-Constraints.xsl"/>
+            <xslo:import href="BPC-v{$BPCversion}-Code-Lists.xsl"/>
+            <xslo:import href="BPC-Schematron-Support.xsl"/>
+          </xslo:stylesheet>
+        </xsl:result-document>
+      </xsl:for-each>
+   </xsl:for-each>
   </xsl:for-each>
-  
+      
   <!--next create the Ant script that will process each of the Schematron
       schemas to create XSLT stylesheets-->
   <xsl:result-document href="{$antDynamicScriptURI}" xmlns="">
@@ -170,18 +172,23 @@
     
     <target name="make">
       <echo message="Invoking ${{antStaticScriptURI}} for each process"/>
-      <xsl:for-each select="/*/bpcProcess">
-        <ant antfile="${{antStaticScriptURI}}" target="-sch4bpc">
-          <property name="process" value="{@bpcID}"/>
-          <property name="version" value="{$BPCversion}"/>
-          <property name="basedir" value="${{basedir}}"/>
-          <property name="doctype"
-                    value="{doctypes/doctype/translate(.,' ','')}"/>
-          <property name="saxon9heJar" value="{
-           replace(resolve-uri('utilities/saxon9he/saxon9he.jar',
-                               base-uri(document(''))),
-                   '^file:','')}"/>
-        </ant>
+      <xsl:for-each select="$activeProcesses">
+       <xsl:variable name="thisProcess" select="."/>
+       <xsl:for-each select="doctypes/doctype">
+         <xsl:variable name="thisDoctype" select="translate(.,' ','')"/>
+         <xsl:for-each select="$thisProcess">
+          <ant antfile="${{antStaticScriptURI}}" target="-sch4bpc">
+            <property name="process" value="{@bpcID}"/>
+            <property name="version" value="{$BPCversion}"/>
+            <property name="basedir" value="${{basedir}}"/>
+            <property name="doctype" value="{$thisDoctype}"/>
+            <property name="saxon9heJar" value="{
+             replace(resolve-uri('utilities/saxon9he/saxon9he.jar',
+                                 base-uri(document(''))),
+                     '^file:','')}"/>
+          </ant>
+         </xsl:for-each>
+       </xsl:for-each>
       </xsl:for-each>
     </target>
       

@@ -36,7 +36,7 @@
     <title>Invoicing the delivery of goods and services against a prepayment</title>
     <doctypes>
       <doctype>Invoice</doctype>
-      <!--<doctype>Credit Note</doctype> Temporarily elided for development-->
+      <doctype>Credit Note</doctype> Temporarily elided for development
     </doctypes>
   </bpcProcess>
   <bpcProcess bpcID="P07" worksheetNumber="1">

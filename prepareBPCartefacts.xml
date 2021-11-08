@@ -455,9 +455,15 @@ destfile="${dir}/bpc-semantics-tools-${BPCversion}-${dateTime}/bpc-semantics-${B
         todir="${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/${process}"/>
   <antcall target="-sch2xsl">
     <param name="schin" value=
-"${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/${process}/BPC-${process}-v${BPCversion}-Data-Integrity-Constraints.sch"/>
+"${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/${process}/BPC-${process}-v${BPCversion}-${doctype}-Data-Integrity-Constraints.sch"/>
     <param name="xslout" value=
-"${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/${process}/BPC-${process}-v${BPCversion}-Data-Integrity-Constraints.xsl"/>
+"${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/${process}/BPC-${process}-v${BPCversion}-${doctype}-Data-Integrity-Constraints.xsl"/>
+    <param name="xslin" value=
+"${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/${process}/BPC-${process}-${doctype}-Data-Integrity-Constraints.xsl"/>
+    <param name="svrlin" value=
+"${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/${process}/BPC-${process}-v${BPCversion}-${doctype}-Data-Integrity-Constraints.svrl.xml"/>
+    <param name="svrlout" value=
+"${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/${process}/BPC-${process}-v${BPCversion}-${doctype}-Data-Integrity-Constraints.svrl.txt"/>
   </antcall>
 </target>
 
@@ -491,15 +497,13 @@ destfile="${dir}/bpc-semantics-tools-${BPCversion}-${dateTime}/bpc-semantics-${B
   <echo message="Deleting intermediate XSLT..."/>
   <delete file="${xslout}.temp.xsl"/>
   
-  <echo message="Validating
-${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/${process}/BPC-${process}-Data-Integrity-Constraints.xsl..."/>
+  <echo message="Validating ${xslout} using ${xslin}..."/>
   <java resultproperty="returnXSLTtest" fork="true"
         jar="${saxon9heJar}"
         errorproperty="errorXSLTtest">
-   <arg value=
-"-xsl:${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/${process}/BPC-${process}-Data-Integrity-Constraints.xsl"/>
+   <arg value="-xsl:${xslin}"/>
    <arg value= "-s:${dir}/${doctype}-test-Schematron.xml"/>
-   <arg value="-o:${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/${process}/BPC-${process}-Data-Integrity-Constraints.svrl.xml"/>
+   <arg value="-o:${svrlin}"/>
   </java>
   <length property="lengthErrorXSLTtest"
           string="${errorXSLTtest}"/>
@@ -510,9 +514,8 @@ ${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/${process}/BPC-${process}-Dat
         jar="${saxon9heJar}"
         errorproperty="errorSVRLtest">
    <arg value= "-xsl:${dir}/testSVRL4UBLerrors.xsl"/>
-   <arg 
-value="-s:${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/${process}/BPC-${process}-Data-Integrity-Constraints.svrl.xml"/>
-   <arg value="-o:${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/${process}/BPC-${process}-Data-Integrity-Constraints.svrl.txt"/>
+   <arg value="-s:${svrlin}"/>
+   <arg value="-o:${svrlout}"/>
   </java>
   
   <condition property="xsl${process}created">

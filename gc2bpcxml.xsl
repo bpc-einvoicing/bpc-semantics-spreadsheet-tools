@@ -77,16 +77,22 @@
                  select="'UBL model input is not a genericode file'"/>
   </xsl:if>
 
-  <xsl:variable name="worksheet" as="element(worksheet)+">
+  <xsl:variable name="worksheet" as="element(worksheet)*">
   <!--handle each worksheet tab separately-->
     <xsl:for-each-group select="/*/SimpleCodeList/Row"
                         group-by="bpc:col(.,'WorksheetTab')">
+     <!--does this worksheet have semantics to express?-->
+     <xsl:if test="some $row in current-group() satisfies exists(
+                        $row[exists(bpc:col(.,'BPCID')) and
+                             exists(bpc:col(.,'UBLDictionaryEntryName')) and
+                             exists(bpc:col(.,'UBLCardinality')) and
+                             exists(bpc:col(.,'SchematronAssertion')) and
+                             exists(bpc:col(.,'ErrorMessage')) and
+                             exists(bpc:col(.,'DataIntegrityRules'))])">
       <worksheet>
       <xsl:variable name="tab" select="current-grouping-key()"/>
       <xsl:message select="'Harvesting spreadsheet tab:',$tab"/>
-      <xsl:variable name="tabNumber" select="replace($tab,'.*?(\d+).*','$1')"/>
       <xsl:attribute name="tab" select="$tab"/>
-      <xsl:attribute name="worksheetNumber" select="$tabNumber"/>
         <doctypes>
           <xsl:analyze-string select="$tab" regex="(\d+\s*)|(\s*,\s*)">
             <xsl:non-matching-substring>
@@ -167,8 +173,21 @@
         </xsl:for-each-group>
         </semantics>
       </worksheet>
+     </xsl:if>
     </xsl:for-each-group>
   </xsl:variable>
+
+  <xsl:if test="empty($worksheet)">
+    <xsl:message terminate="yes" select="'There appear not to be any',
+                 'worksheets in the input spreadsheet that describe',
+                 'any BPC data integrity constraints. At least one row',
+                 'in the worksheet must have a value in all of the following',
+                 'columns (by compacted name): ''BPCID'',',
+                 '''UBLDictionaryEntryName'', ''UBLCardinality'',',
+                 '''SchematronAssertion'', ''ErrorMessage'',',
+                 '''DataIntegrityRules'''"/>
+  </xsl:if>
+  
   <!--put out the results first-->
   <xsl:comment select="$embedded-comment"/>
   <worksheets>

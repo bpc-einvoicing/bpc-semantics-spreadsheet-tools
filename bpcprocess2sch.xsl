@@ -101,23 +101,23 @@
 </xs:template>
 <xsl:template match="/">
   <xsl:variable name="activeProcesses"
-                select="/*/bpcProcess
-                        [some $w in $semanticsSummary/worksheets/worksheet
-                         satisfies $w/@worksheetNumber = @worksheetNumber ]"/>
+ select="/*/bpcProcess[some $tab in $semanticsSummary/worksheets/worksheet/@tab
+                       satisfies $tab = doctypes/doctype/@worksheetTab ]"/>
   <!--first create the Schematron schema and pattern files for each process-->
   <xsl:for-each select="$activeProcesses">
    <xsl:variable name="thisProcess" select="."/>
    <xsl:for-each select="doctypes/doctype">
-     <xsl:variable name="thisDoctype" select="translate(.,' ','')"/>
+     <xsl:variable name="thisDoctype" select="."/>
+     <xsl:variable name="thisDoctypeName" select="translate(.,' ','')"/>
      <xsl:for-each select="$thisProcess">
       <xsl:variable name="worksheet" 
                     select="$semanticsSummary/worksheets/worksheet
-                            [@worksheetNumber = current()/@worksheetNumber]"/>
+                            [@tab = $thisDoctype/@worksheetTab]"/>
       <xsl:variable name="procID" select="@bpcID"/>
       <!--this is the wrapper schematron-->
       <xsl:variable name="schematronOutURI"
                     select="concat($procID,'/BPC-',$procID,'-v',
-                            $BPCversion,'-',$thisDoctype,
+                            $BPCversion,'-',$thisDoctypeName,
                             '-Data-Integrity-Constraints.sch')"/>
       <xsl:message select="'Writing:',$schematronOutURI"/>
       <xsl:result-document href="{$schematronOutURI}">
@@ -130,7 +130,7 @@
       <!--this is the embedded pattern schematron-->
       <xsl:variable name="patternOutURI"
                     select="concat($procID,'/BPC-',$procID,'-v',
-                            $BPCversion,'-',$thisDoctype,
+                            $BPCversion,'-',$thisDoctypeName,
                             '-Assertions.pattern.sch')"/>
       <xsl:result-document href="{$patternOutURI}">
         <xsl:apply-templates select="$patternSkeleton/*">
@@ -140,7 +140,7 @@
         </xsl:apply-templates>
       </xsl:result-document>
       <xsl:result-document exclude-result-prefixes="sch"
-  href="{$procID}/BPC-{$procID}-{$thisDoctype}-Data-Integrity-Constraints.xsl">
+  href="{$procID}/BPC-{$procID}-{$thisDoctypeName}-Data-Integrity-Constraints.xsl">
         <xslo:stylesheet version="2.0">
           <xsl:text>&#xa;</xsl:text>
 <xsl:comment>
@@ -152,7 +152,7 @@
 </xsl:comment>
             <xsl:text>&#xa;</xsl:text>
             <xslo:import href=
- "BPC-{$procID}-v{$BPCversion}-{$thisDoctype}-Data-Integrity-Constraints.xsl"/>
+ "BPC-{$procID}-v{$BPCversion}-{$thisDoctypeName}-Data-Integrity-Constraints.xsl"/>
             <xslo:import href="BPC-v{$BPCversion}-Code-Lists.xsl"/>
             <xslo:import href="BPC-Schematron-Support.xsl"/>
           </xslo:stylesheet>
@@ -181,7 +181,7 @@
             <property name="process" value="{@bpcID}"/>
             <property name="version" value="{$BPCversion}"/>
             <property name="basedir" value="${{basedir}}"/>
-            <property name="doctype" value="{$thisDoctype}"/>
+            <property name="doctype" value="{translate($thisDoctype,' ','')}"/>
             <property name="saxon9heJar" value="{
              replace(resolve-uri('utilities/saxon9he/saxon9he.jar',
                                  base-uri(document(''))),
@@ -279,7 +279,7 @@
 <xsl:template name="bpc:formatProcessInfo">
   <xsl:param name="process" as="element(bpcProcess)"
              tunnel="yes" required="yes"/>
-  <xsl:param name="doctype" as="xsd:string?"
+  <xsl:param name="doctype" as="element(doctype)"
              tunnel="yes"/>
   <xsl:value-of select="bpc:formatProcessInfo(.,$process,$doctype)"/>
 </xsl:template>
@@ -299,7 +299,7 @@
 <xsl:function name="bpc:formatProcessInfo" as="xsd:string">
   <xsl:param name="template" as="xsd:string"/>
   <xsl:param name="process" as="element(bpcProcess)"/>
-  <xsl:sequence select="bpc:formatProcessInfo($template,$process,'')"/>
+  <xsl:sequence select="bpc:formatProcessInfo($template,$process,())"/>
 </xsl:function>
 
 <xs:function>
@@ -326,12 +326,12 @@
 <xsl:function name="bpc:formatProcessInfo" as="xsd:string">
   <xsl:param name="template" as="xsd:string"/>
   <xsl:param name="process" as="element(bpcProcess)"/>
-  <xsl:param name="doctype" as="xsd:string?"/>
+  <xsl:param name="doctype" as="element(doctype)?"/>
   <xsl:value-of select="replace(replace(replace(replace(replace($template,
                        '\{bpc:title\}',concat($process/@bpcID,' v',$BPCversion,
                                               ' - ',$dateTime,
                                               ' - ',$process/title)),
-                       '\{bpc:worksheet\}',$process/@worksheetNumber),
+                       '\{bpc:worksheet\}',$doctype/@worksheetTab),
                        '\{bpc:doctype\}',translate($doctype,' ','')),
                        '\{bpc:process\}',$process/@bpcID),
                        '\{bpc:version\}',$BPCversion)"/>
@@ -444,7 +444,7 @@
       <xsl:for-each select="$process/doctypes/doctype
                                        [ some $d in $worksheet/doctypes/doctype
                                          satisfies $d = . ]">
-        <xsl:variable name="doctype" 
+        <xsl:variable name="doctypeName" 
                       select="translate(.,' ','')"/>
         <!--only execute once unless there is a prototype replacement-->
         <xsl:if test="position()=1 or contains($contextPrototype,'#')">
@@ -452,26 +452,27 @@
                    namespace="http://purl.oclc.org/dsdl/schematron">
             <xsl:attribute name="context"
                            select="concat(
-   replace(normalize-space($contextPrototype),'#',$doctype),' ',
+   replace(normalize-space($contextPrototype),'#',$doctypeName),' ',
    concat('(',':',string-join(distinct-values(
                               current-group()/ancestor::semantic/@bpcID),' ' ),
-    ' Tab ',$worksheet/@worksheetNumber,
-    ' Row ',string-join(current-group()/ancestor::process/@worksheetRow,' '),
+    ' Tab ''',$worksheet/@tab,
+    ''' Row ',string-join(current-group()/ancestor::process/@worksheetRow,' '),
     ':',')') )"/>
             <xsl:for-each select="current-group()">
               <xsl:element name="assert"
                        namespace="http://purl.oclc.org/dsdl/schematron">
                 <xsl:attribute name="test"
                                select="concat(
-    replace(normalize-space(../assertionPrototype),'#',$doctype), ' ','(',':',
-                 ancestor::semantic/@bpcID,' Tab ',$worksheet/@worksheetNumber,
-                 ' Row ',ancestor::process/@worksheetRow,':',')')"/>
-                <xsl:value-of select="replace(../message, '#',$doctype)"/>
+              replace(normalize-space(../assertionPrototype),'#',$doctypeName),
+              ' ','(',':',
+              ancestor::semantic/@bpcID,' Tab ''',$worksheet/@tab,
+              ''' Row ',ancestor::process/@worksheetRow,':',')')"/>
+                <xsl:value-of select="replace(../message, '#',$doctypeName)"/>
                 <xsl:text> </xsl:text>
                 <xsl:value-of select="concat
                          ('(',':',ancestor::semantic/@bpcID, 
-                          ' Tab ',$worksheet/@worksheetNumber,
-                          ' Row ',ancestor::process/@worksheetRow,':',')')"/>
+                          ' Tab ''',$worksheet/@tab,
+                          ''' Row ',ancestor::process/@worksheetRow,':',')')"/>
               </xsl:element>
             </xsl:for-each>
           </xsl:element>

@@ -23,7 +23,6 @@
   <echo message="UBLversion=${UBLversion}"/>
   <echo message="dateTime=${dateTime}"/>
   <echo message="ssGoogle=${ssGoogle}"/>
-  <echo message="ssTabName=${ssTabName}"/>
   <tstamp>
     <format property="wgettime" pattern="yyyy-MM-dd HH:mm:ss"/>
   </tstamp>
@@ -163,7 +162,7 @@ file="${utilitydir}Crane-cva2sch-${cva2sch}/utility/iso_schematron_assembly.xsl"
   <delete file="${dir}/Semantics-Spreadsheet-${dateTime}.gc"/>
   
   <echo file="${dir}/wget-spreadsheet-time.txt" message="${wgettime}"/>
-  <echo file="${dir}/wget-spreadsheet-uri.txt" message="${ssGoogle} - ${ssTabName}"/>
+  <echo file="${dir}/wget-spreadsheet-uri.txt" message="${ssGoogle}"/>
   <exec executable="wget">
     <arg value="--no-check-certificate"/>
     <arg value="-O"/>
@@ -178,7 +177,6 @@ file="${utilitydir}Crane-cva2sch-${cva2sch}/utility/iso_schematron_assembly.xsl"
     <param name="okay"   value="gc-sig-okay"/>
     <param name="source" 
                  value="${dir}/BPC-Semantics-Spreadsheet-Google.ods"/>
-    <param name="tabName" value="${ssTabName}"/>
     <param name="target" 
       value="${dir}/BPC-Semantics-Spreadsheet-${BPCversion}-${dateTime}.gc"/>
     <param name="identification-uri" value="${ident-uri}"/>
@@ -315,7 +313,6 @@ tofile="${dir}/bpc-semantics-${BPCversion}-${dateTime}/model/BPC-Semantics-Sprea
     <arg value="-o:${target}"/>
     <arg value="-it:ods-uri"/>
     <arg value="ods-uri=${source}"/>
-    <arg value="included-sheet-name-regex=${tabName}"/>
     <arg value="identification-uri=${identification-uri}"/>
     <arg value="lengthen-model-name-uri=${lengthen-model-name-uri}"/>
     <arg value="raw-sheet-long-name=Worksheet Tab"/>

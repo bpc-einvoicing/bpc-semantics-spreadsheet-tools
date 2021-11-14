@@ -196,8 +196,11 @@ where options include:
         </itemizedlist>
       </listitem>
       <listitem>
-        <para><literal>invoice-test-bad-data.xml</literal> - a document with a BPC data integrity error:</para>
+        <para><literal>invoice-test-bad-data.xml</literal> - a document with two BPC data integrity errors:</para>
         <itemizedlist>
+          <listitem>
+            <para>the registration name for the payee party is absent</para>
+          </listitem>
           <listitem>
             <para>the payable rounding amount is absent and so the arithmetic for the payable amount calculation is incorrect</para>
           </listitem>
@@ -273,13 +276,15 @@ Validating invoice-test-bad-data.xml
 ============== Phase 1: XSD schema validation ==============
 No schema validation errors.
 ============ Phase 2: BPC process P01 data integrity validation ============
-1. Amount Due for Payment (NABT-115) is not equal to the total amount with
- tax (NABT-112) minus PrePaid Amount (NABT-113) plus Rounding Amount (NABT-114).
- /Invoice/cac:LegalMonetaryTotal[1]/cbc:PayableAmount[1] /
- bpc:compareAmountsEqual( ., sum( ( ../cbc:TaxInclusiveAmount, -1 *
- ../cbc:PrepaidAmount, ../cbc:PayableRoundingAmount ) ) )
- (:NABT-115 Tab 1 Row 183 184:)
-Count of errors: 1
+1. Seller name is not specified or exists more than once. /Invoice/cac:PayeeParty[1]
+ / count(cac:PartyLegalEntity/cbc:RegistrationName) = 1 (:NABT-59 Tab '1 Invoice,
+ Credit Note' Row 69:)
+2. Amount Due for Payment (NABT-115) is not equal to the total amount with tax
+ (NABT-112) minus PrePaid Amount (NABT-113) plus Rounding Amount (NABT-114).
+ /Invoice/cac:LegalMonetaryTotal[1]/cbc:PayableAmount[1] / bpc:compareAmountsEqual( 
+ ., sum( ( ../cbc:TaxInclusiveAmount, -1 * ../cbc:PrepaidAmount, 
+ ../cbc:PayableRoundingAmount ) ) ) (:NABT-115 Tab '1 Invoice, Credit Note' Row 167:)
+Count of errors: 2
 Error in xsl:value-of/@select on line 93 column 67 of testSVRL4UBLerrors.xsl:
   XTMM9000: Processing terminated by xsl:message at line 93 in testSVRL4UBLerrors.xsl
 Processing terminated by xsl:message at line 93 in testSVRL4UBLerrors.xsl
@@ -290,8 +295,7 @@ Validating invoice-test-good.xml
 ============== Phase 1: XSD schema validation ==============
 No schema validation errors.
 ============ Phase 2: BPC process P01 data integrity validation ============
-No data integrity validation errors.
-</programlisting>
+No data integrity validation errors.</programlisting>
   </section>
   <section id="S-VALIDATING-ONES-OWN-TEST-FILES">
     <title>Validating one’s own test files</title>

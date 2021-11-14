@@ -69,7 +69,7 @@ The existence of the file `ERROR-RUNNING-RESULTING-XSLT-FOR-P##-#######.txt` ind
 2 - determine the spreadsheet row from that numbered line in the `bpc/P##/BPC-P##-v#.#-#######-Data-Integrity-Constraints.xsl` file (not the `bpc/P##/BPC-P##-#######-Data-Integrity-Constraints.xsl` file, but the one with `-v#.#` in the name), for example, row 71 of worksheet tab 1 for semantic NABG-999 in this line:
   - `test="Count(cac:PayeeParty/cac:Party/cac:PostalAddress) = 1 (:NABG-999 Tab 1 Row 71:)"`
 
-## Documentation - using the validation results
+## Documentation and demonstration - using the validation results
 
 The `readme-bpc-artifacts.html` file in the downloaded ZIP describes the use of the validation artefacts that are produced by this process.
 

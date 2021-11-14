@@ -169,6 +169,7 @@
 			</cac:Country>
 		</cac:PostalAddress>
 		<cac:PartyLegalEntity>
+		  <cbc:RegistrationName>Scrooge Industries</cbc:RegistrationName>
 			<cbc:CompanyID schemeID="UK:CH" schemeAgencyID="ZZZ">6411982340</cbc:CompanyID>
 		</cac:PartyLegalEntity>
 	</cac:PayeeParty>

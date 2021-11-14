@@ -42,7 +42,8 @@
   </section>
   <section id="S-DEMONSTRATION-ARTIFACTS">
     <title>Demonstration artifacts</title>
-    <para>This package named “<literal>bpc-semantics-{version}-{revision-date}.zip</literal>” contains the following developer-referenced files in the indicated subdirectories:</para>
+    <para>In this section, <literal>WWWWWWW</literal> refers to the document type, <literal>X.Y</literal> refers to the version number, and <literal>PZZ</literal> refers to the process number.</para>
+    <para>This package named “<literal>bpc-semantics-vX.Y-{revision-date}.zip</literal>” contains the following developer-referenced files in the indicated subdirectories:</para>
     <itemizedlist>
       <listitem>
         <para><literal>readme-bpc-artifacts.html</literal> - this documentation file</para>
@@ -51,17 +52,17 @@
         <para><literal>release-{revision-date}.txt</literal> and <literal>release.txt</literal> - the date of the revision of the release in UTC (Zulu) time as “<literal>CCYYMMDD-HHMMSSz</literal>”</para>
       </listitem>
       <listitem>
-        <para><literal>version-{version}.txt</literal> and <literal>version.txt</literal> - the version of the release as “<literal>x.y</literal>”</para>
+        <para><literal>version-vX.Y.txt</literal> and <literal>version.txt</literal> - the version of the release as “<literal>x.y</literal>”</para>
       </listitem>
       <listitem>
         <para><literal>bpc/bpcProcesses.xml</literal> - an XML summary of the titles and document types involved in each of the BPC processes for which the semantics have been determined (this XML follows a straightforward colloquial schema for which a formal schema is not available)</para>
       </listitem>
       <listitem>
-        <para><literal>bpc/PXX/BPC-PXX-Data-Integrity-Constraints.xsl</literal> - the master XSLT stylesheet for process PXX implementing artifact ③ in the data flow</para>
+        <para><literal>bpc/PZZ/BPC-PZZ-WWWWWWWW-Data-Integrity-Constraints.xsl</literal> - the master XSLT stylesheet for process <literal>PZZ</literal> for document type <literal>WWWWWWW</literal> implementing artifact ③ in the data flow</para>
       </listitem>
       <listitem>
-        <para><literal>bpc/PXX/BPC-PXX-{version}-Data-Integrity-Constraints.sch</literal> - the master <ulink url="https://standards.iso.org/ittf/PubliclyAvailableStandards" conformance="skip">ISO/IEC 19757-3 DSDL Schematron</ulink> assertion schema used as the source to synthesize the XSLT artifact
-          ③ in the data flow (developers deploying alternative implementations of Schematron can do so using this file)</para>
+        <para><literal>bpc/PZZ/BPC-PZZ-vX.Y-WWWWWWWW-Data-Integrity-Constraints.sch</literal> - the master <ulink url="https://standards.iso.org/ittf/PubliclyAvailableStandards" conformance="skip">ISO/IEC 19757-3 DSDL Schematron</ulink> assertion schema used as the source to synthesize the XSLT
+          artifact ③ in the data flow (developers deploying alternative implementations of Schematron can do so using this file)</para>
       </listitem>
     </itemizedlist>
     <para>The following files are fragments utilized by the developer-referenced files and are never intended to be used standalone by developers; these files have no facility when used on their own:</para>
@@ -70,26 +71,26 @@
         <para><literal>bpc/BPC-v0.1-Code-Lists.xsl</literal> - an XSLT stylesheet fragment providing code list value validation support to the data integrity checking stylesheet</para>
       </listitem>
       <listitem>
-        <para><literal>bpc/PXX/BPC-PXX-{version}-Data-Integrity-Constraints.xsl</literal> - an XSLT stylesheet fragment providing the basic semantic value checking</para>
+        <para><literal>bpc/PZZ/BPC-PZZ-vX.Y-WWWWWWWW-Data-Integrity-Constraints.xsl</literal> - an XSLT stylesheet fragment providing the basic semantic value checking</para>
       </listitem>
       <listitem>
-        <para><literal>bpc/PXX/BPC-PXX-{version}-Assertions.pattern.sch</literal> - the Schematron pattern expressing the basic BPC semantic value constraints</para>
+        <para><literal>bpc/PZZ/BPC-PZZ-vX.Y-Assertions.pattern.sch</literal> - the Schematron pattern expressing the basic BPC semantic value constraints</para>
       </listitem>
       <listitem>
-        <para><literal>bpc/PXX/UBL-DocumentConstraints.pattern.sch</literal> - the Schematron pattern expressing the basic UBL document constraints as described in the standard</para>
+        <para><literal>bpc/PZZ/UBL-DocumentConstraints.pattern.sch</literal> - the Schematron pattern expressing the basic UBL document constraints as described in the standard</para>
       </listitem>
     </itemizedlist>
     <para>The following files describe the BPC model subset and associated semantics as formally recorded in the BPC Semantics spreadsheet <ulink url="https://docs.google.com/spreadsheets/d/1qAz_aAbJ99ikA4zUk97FyjyDLcsQ3B3vqjEK-b3C_h8/view" conformance="skip">available for viewing on Google
         here</ulink>:</para>
     <itemizedlist>
       <listitem>
-        <para><literal>BPC-Semantics-Spreadsheet.xml</literal> and <literal>BPC-Semantics-Spreadsheet-{version}-{revision-date}.xml</literal> - an XML summary of the semantic information (this XML follows a straightforward colloquial schema for which a formal schema is not available)</para>
+        <para><literal>BPC-Semantics-Spreadsheet.xml</literal> and <literal>BPC-Semantics-Spreadsheet-vX.Y-{revision-date}.xml</literal> - an XML summary of the semantic information (this XML follows a straightforward colloquial schema for which a formal schema is not available)</para>
       </listitem>
       <listitem>
-        <para><literal>BPC-Semantics-Spreadsheet-{version}-{revision-date}.xlsx</literal> and <literal>BPC-Semantics-Spreadsheet-{version}-{revision-date}.ods</literal> - spreadsheet serializations in office document formats for Excel and OpenOffice (respectively)</para>
+        <para><literal>BPC-Semantics-Spreadsheet-vX.Y-{revision-date}.xlsx</literal> and <literal>BPC-Semantics-Spreadsheet-vX.Y-{revision-date}.ods</literal> - spreadsheet serializations in office document formats for Excel and OpenOffice (respectively)</para>
       </listitem>
       <listitem>
-        <para><literal>BPC-Semantics-Spreadsheet-{version}-{revision-date}.gc</literal> - spreadsheet serialization in OASIS genericode XML format</para>
+        <para><literal>BPC-Semantics-Spreadsheet-vX.Y-{revision-date}.gc</literal> - spreadsheet serialization in OASIS genericode XML format</para>
       </listitem>
     </itemizedlist>
     <para>The following files describe the portion of UBL 2.3 (Committee Specification Draft 03) relevant to the BPC work <ulink url="https://docs.oasis-open.org/ubl/csd03-UBL-2.3/" conformance="skip">available on the OASIS web site here</ulink>:</para>
@@ -300,8 +301,8 @@ No data integrity validation errors.
         <para>Windows:</para>
         <itemizedlist>
           <listitem>
-            <para><programlisting>validate.bat  ubl-schema-file  bpc-process-Pxx  ubl-xml-file</programlisting>for example from the <literal>test.bat</literal> demonstration:</para>
-            <programlisting>validate.bat  ..\ubl\xsd\maindoc\UBL-Invoice-2.3.xsd P01 invoice-test-good.xml</programlisting>
+            <para><programlisting>validate.bat  ubl-schema-file  bpc-process-PZZ  WWWWWWW  ubl-xml-file</programlisting>for example from the <literal>test.bat</literal> demonstration:</para>
+            <programlisting>validate.bat  ..\ubl\xsd\maindoc\UBL-Invoice-2.3.xsd P01 Invoice invoice-test-good.xml</programlisting>
           </listitem>
         </itemizedlist>
       </listitem>
@@ -309,8 +310,8 @@ No data integrity validation errors.
         <para>Shell:</para>
         <itemizedlist>
           <listitem>
-            <para><programlisting>sh validate.sh  ubl-schema-file  bpc-process-Pxx  ubl-xml-file</programlisting>for example from the <literal>test.sh</literal> demonstration:</para>
-            <programlisting>sh validate.sh  ../ubl/xsd/maindoc/UBL-Invoice-2.3.xsd P01 invoice-test-good.xml</programlisting>
+            <para><programlisting>sh validate.sh  ubl-schema-file  bpc-process-PZZ  WWWWWWW  ubl-xml-file</programlisting>for example from the <literal>test.sh</literal> demonstration:</para>
+            <programlisting>sh validate.sh  ../ubl/xsd/maindoc/UBL-Invoice-2.3.xsd P01 Invoice invoice-test-good.xml</programlisting>
           </listitem>
         </itemizedlist>
       </listitem>
@@ -318,11 +319,11 @@ No data integrity validation errors.
     <para>When there is an error of any kind, the script creates a file named by adding the “<literal>.error.txt</literal>” suffix to the input file name and records the error information in that file.</para>
     <para>When there is a data integrity error, the script also creates a file named by adding the “<literal>.svrl.xml</literal>” suffix to the input file name and records the Schematron SVRL record information in that file.</para>
     <para>For example, if one has a test file for Process 05 named <literal>myCreditNoteTest.xml</literal> in the <literal>val\</literal> directory then in Windows one would use:</para>
-    <para><programlisting>validate.bat ..\ubl\xsd\maindoc\UBL-CreditNote-2.3.xsd P05 myCreditNoteTest.xml</programlisting>and when running from another directory one need only point to the invocation and schema:</para>
-    <programlisting>bpc-semantics-0.1-20200924-011846z\val\validate.bat bpc-semantics-0.1-20200924-011846z\ubl\xsd\maindoc\UBL-CreditNote-2.3.xsd P05 myCreditNoteTest.xml</programlisting>
+    <para><programlisting>validate.bat ..\ubl\xsd\maindoc\UBL-CreditNote-2.3.xsd P05 CreditNote myCreditNoteTest.xml</programlisting>and when running from another directory one need only point to the invocation and schema:</para>
+    <programlisting>bpc-semantics-0.1-20200924-011846z\val\validate.bat bpc-semantics-0.1-20200924-011846z\ubl\xsd\maindoc\UBL-CreditNote-2.3.xsd P05 CreditNote myCreditNoteTest.xml</programlisting>
     <para>And if one is using Shell in the <literal>val/</literal> directory one would use:</para>
-    <para><programlisting>sh validate.sh ../ubl/xsd/maindoc/UBL-CreditNote-2.3.xsd P05 myCreditNoteTest.xml</programlisting>and when running from another directory one need only point to the invocation and schema:</para>
-    <programlisting>sh bpc-semantics-0.1-20200924-011846z/val/validate.sh bpc-semantics-0.1-20200924-011846z/ubl/xsd/maindoc/UBL-CreditNote-2.3.xsd P05 myCreditNoteTest.xml</programlisting>
+    <para><programlisting>sh validate.sh ../ubl/xsd/maindoc/UBL-CreditNote-2.3.xsd P05 CreditNote myCreditNoteTest.xml</programlisting>and when running from another directory one need only point to the invocation and schema:</para>
+    <programlisting>sh bpc-semantics-0.1-20200924-011846z/val/validate.sh bpc-semantics-0.1-20200924-011846z/ubl/xsd/maindoc/UBL-CreditNote-2.3.xsd P05 CreditNote myCreditNoteTest.xml</programlisting>
   </section>
   <!--  <bibliography>
     <para>See article-bibliography.xml for bibliographic entries.</para>

@@ -177,24 +177,18 @@
     </xsl:for-each-group>
   </xsl:variable>
 
-  <xsl:if test="empty($worksheet)">
-    <xsl:message terminate="yes" select="'There appear not to be any',
-                 'worksheets in the input spreadsheet that describe',
-                 'any BPC data integrity constraints. At least one row',
-                 'in the worksheet must have a value in all of the following',
-                 'columns (by compacted name): ''BPCID'',',
-                 '''UBLDictionaryEntryName'', ''UBLCardinality'',',
-                 '''SchematronAssertion'', ''ErrorMessage'',',
-                 '''DataIntegrityRules'''"/>
-  </xsl:if>
-  
   <!--put out the results first-->
   <xsl:comment select="$embedded-comment"/>
   <worksheets>
     <xsl:copy-of select="$worksheet"/>
   </worksheets>
   <!--determine if there were any problems with the inputs based on outputs-->
-  <xsl:variable name="analysis" as="element(analysis)+">
+  <xsl:variable name="worksheetError" as="xsd:string?">
+    <xsl:if test="empty($worksheet)">
+      <xsl:text>There appear not to be any worksheets in the input spreadsheet that describe any BPC data integrity constraints. At least one row in the worksheet must have a value in all of the following columns (by compacted name): "BPCID", "UBLDictionaryEntryName", "UBLCardinality", "SchematronAssertion", "ErrorMessage", "DataIntegrityRules"'</xsl:text>
+    </xsl:if>  
+  </xsl:variable>
+  <xsl:variable name="analysis" as="element(analysis)*">
     <xsl:for-each select="$worksheet">
       <xsl:variable name="theseDoctypes" as="xsd:string*"
                     select="doctypes/doctype"/>
@@ -273,17 +267,9 @@
                 <!--compare the stated cardinalities to actual cardinalities-->
                 <xsl:variable name="cardinalityTests">
                   <xsl:choose>
-                    <xsl:when test="count(ublcardinalities/ublcardinality) !=
-                                    count(ubldens/ublden)">
-<xsl:text>Mismatched number of UBL cardinalities to dictionary entry names.&#xa;</xsl:text>
-                   </xsl:when>
                    <xsl:when test="not( deep-equal( $ublDefinedCardinalities,
                                                     ublcardinalities ) )">
               <xsl:text>Mismatched record of UBL cardinalities.&#xa;</xsl:text>
-                   </xsl:when>
-                    <xsl:when test="count(ublcardinalities/ublcardinality) !=
-                                    count(ubldens/ublden)">
-<xsl:text>Mismatched number of UBL cardinalities to dictionary entry names.&#xa;</xsl:text>
                    </xsl:when>
                     <xsl:when test="count(ublcardinalities/ublcardinality) !=
                                    count(modelcardinalities/modelcardinality)">
@@ -327,8 +313,10 @@
       </analysis>
     </xsl:for-each>
   </xsl:variable>
-  <xsl:if test="some $a in $analysis satisfies normalize-space($a)">
+  <xsl:if test="( some $a in $analysis satisfies normalize-space($a) ) or
+                normalize-space($worksheetError)">
     <xsl:result-document href="{document-uri(.)}.errors.txt" method="text">
+      <xsl:value-of select="$worksheetError"/>
       <xsl:for-each select="$analysis[normalize-space(.)]">
         <xsl:value-of select="@banner"/>
         <xsl:text>&#xa;</xsl:text>

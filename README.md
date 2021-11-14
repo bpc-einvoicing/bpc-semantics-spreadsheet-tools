@@ -60,13 +60,13 @@ The existence of the file `VALID-SEMANTICS-GC-FILE-NOT-GENERATED.txt` indicates 
 
 The existence of the file `VALID-SEMANTICS-XML-FILE-NOT-GENERATED.txt` indicates a problem converting the spreadsheet content into XML, otherwise there were no problems in the second stage. First check the "model" subdirectory for a file ending with "`errors.txt`". If that does not exist, then check the console transcript.
 
-The existence of the file `ERROR-RUNNING-RESULTING-XSLT-FOR-P##.txt` indicates a problem in the XPath of the Schematron generated for the process `P##`. This file contains the report of the problems, as well as the file `bpc/P##/BPC-P##-Data-Integrity-Constraints.error.txt`. Two steps are needed to determine where to fix the XPath problem:
+The existence of the file `ERROR-RUNNING-RESULTING-XSLT-FOR-P##-#######.txt` indicates a problem in the XPath of the Schematron generated for the process `P##` for the doctype `#######`. This file contains the report of the problems, as well as the file `bpc/P##/BPC-P##-#######-Data-Integrity-Constraints.error.txt`. Two steps are needed to determine where to fix the XPath problem:
 
 1 - determine the line number from the error message, for example line 581 in this message:
-  - `Static error near {...} on line 581 column 109 of BPC-P01-v0.1-Data-Integrity-Constraints.xsl`
+  - `Static error near {...} on line 581 column 109 of BPC-P01-v0.1-Invoice-Data-Integrity-Constraints.xsl`
   - `XPST0017: Cannot find a 1-argument function named {http://www.w3.org/2005/xpath-functions}Count()`
 
-2 - determine the spreadsheet row from that numbered line in the `bpc/P##/BPC-P##-v#.#-Data-Integrity-Constraints.xsl` file (not the `bpc/P##/BPC-P##-Data-Integrity-Constraints.xsl` file, but the one with `-v#.#` in the name), for example, row 71 of worksheet tab 1 for semantic NABG-999 in this line:
+2 - determine the spreadsheet row from that numbered line in the `bpc/P##/BPC-P##-v#.#-#######-Data-Integrity-Constraints.xsl` file (not the `bpc/P##/BPC-P##-#######-Data-Integrity-Constraints.xsl` file, but the one with `-v#.#` in the name), for example, row 71 of worksheet tab 1 for semantic NABG-999 in this line:
   - `test="Count(cac:PayeeParty/cac:Party/cac:PostalAddress) = 1 (:NABG-999 Tab 1 Row 71:)"`
 
 ## Documentation - using the validation results

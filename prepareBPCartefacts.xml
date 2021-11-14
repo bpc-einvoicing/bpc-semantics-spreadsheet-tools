@@ -45,18 +45,6 @@ file="${utilitydir}Crane-cva2sch-${cva2sch}/utility/iso_schematron_assembly.xsl"
         message="Cannot find cva2sch=${cva2sch}"/>
 
   <!--update the stylesheet documentation-->
-  <uptodate targetfile="${dir}/readme-ssgc2sch.html"
-            property="readme-ssgc2sch-okay">
-    <srcfiles dir=".">
-      <include name="ssgc2sch.xsl"/>
-    </srcfiles>
-  </uptodate>
-  <antcall target="-make-doc">
-    <param name="okay"   value="readme-ssgc2sch-okay"/>
-    <param name="source" value="ssgc2sch.xsl"/>
-    <param name="target" value="${dir}/readme-ssgc2sch.html"/>
-  </antcall>
-  
   <uptodate targetfile="${dir}/readme-gc2bpcxml.html"
             property="readme-gc2bpcxml-okay">
     <srcfiles dir=".">
@@ -518,7 +506,7 @@ destfile="${dir}/bpc-semantics-tools-${BPCversion}-${dateTime}/bpc-semantics-${B
    <arg value="-o:${svrlout}"/>
   </java>
   
-  <condition property="xsl${process}created">
+  <condition property="xsl${process}${doctype}created">
     <and>
       <isset property="returnXSLTtest"/>
       <equals arg1="${returnXSLTtest}" arg2="0"/>
@@ -526,16 +514,16 @@ destfile="${dir}/bpc-semantics-tools-${BPCversion}-${dateTime}/bpc-semantics-${B
       <equals arg1="${lengthErrorXSLTtest}" arg2="0"/>
     </and>
   </condition>
-  <echo unless:set="xsl${process}created"
-        message="ERROR with the BPC Semantics XSLT file ${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/${process}/BPC-${process}-Data-Integrity-Constraints.xsl"/>
-  <echo unless:set="xsl${process}created"
+  <echo unless:set="xsl${process}${doctype}created"
+        message="ERROR with the BPC Semantics XSLT file ${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/${process}/BPC-${process}-${doctype}-Data-Integrity-Constraints.xsl"/>
+  <echo unless:set="xsl${process}${doctype}created"
         message="${errorXSLTtest}&#xa;${errorSVRLtest}"
         file=
-"${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/${process}/BPC-${process}-Data-Integrity-Constraints.error.txt"/>
-  <echo unless:set="xsl${process}created"
+"${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/${process}/BPC-${process}-${doctype}-Data-Integrity-Constraints.error.txt"/>
+  <echo unless:set="xsl${process}${doctype}created"
         message="${errorXSLTtest}&#xa;${errorSVRLtest}"
-file="${dir}/bpc-semantics-${BPCversion}-${dateTime}/ERROR-RUNNING-RESULTING-XSLT-FOR-${process}.txt"/>
-  <echo unless:set="xsl${process}created"
+file="${dir}/bpc-semantics-${BPCversion}-${dateTime}/ERROR-RUNNING-RESULTING-XSLT-FOR-${process}-${doctype}.txt"/>
+  <echo unless:set="xsl${process}${doctype}created"
         message="${errorXSLTtest}&#xa;${errorSVRLtest}"/>
 </target>
 

@@ -456,7 +456,7 @@
    concat('(',':',string-join(distinct-values(
                               current-group()/ancestor::semantic/@bpcID),' ' ),
     ' Tab ',$worksheet/@worksheetNumber,
-    ' Row ',string-join(current-group()/ancestor::semantic/@worksheetRows,' '),
+    ' Row ',string-join(current-group()/ancestor::process/@worksheetRow,' '),
     ':',')') )"/>
             <xsl:for-each select="current-group()">
               <xsl:element name="assert"
@@ -465,13 +465,13 @@
                                select="concat(
     replace(normalize-space(../assertionPrototype),'#',$doctype), ' ','(',':',
                  ancestor::semantic/@bpcID,' Tab ',$worksheet/@worksheetNumber,
-                 ' Row ',ancestor::semantic/@worksheetRows,':',')')"/>
+                 ' Row ',ancestor::process/@worksheetRow,':',')')"/>
                 <xsl:value-of select="replace(../message, '#',$doctype)"/>
                 <xsl:text> </xsl:text>
                 <xsl:value-of select="concat
                          ('(',':',ancestor::semantic/@bpcID, 
                           ' Tab ',$worksheet/@worksheetNumber,
-                          ' Row ',ancestor::semantic/@worksheetRows,':',')')"/>
+                          ' Row ',ancestor::process/@worksheetRow,':',')')"/>
               </xsl:element>
             </xsl:for-each>
           </xsl:element>

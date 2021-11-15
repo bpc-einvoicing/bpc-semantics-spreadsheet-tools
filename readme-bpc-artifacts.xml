@@ -23,22 +23,8 @@
     <para>The Java-based tools described in this document and made available in this package are sample implementations of the Corner 3 processes of validating incoming XML instances from Corner 2, checking in two passes that the data conforms to UBL constraints and conforms to BPC
       constraints.</para>
   </section>
-  <section id="S-DATA-FLOWS">
-    <title>Data flows</title>
-    <para>In <xref linkend="F-XML-DOCUMENT-EGRESS-GENERATION-AND-INGRESS-INGESTION"/> the two artifacts, the complete UBL schema and data integrity constraint checking, used by Corner 3 in the two-phase validation are depicted with the labels ① and ③ at the bottom right.</para>
-    <figure id="F-XML-DOCUMENT-EGRESS-GENERATION-AND-INGRESS-INGESTION">
-      <title>XML document egress (generation) and ingress (ingestion)</title>
-      <mediaobject>
-        <imageobject>
-          <imagedata role="html-embed" fileref="README-subset.svg"/>
-        </imageobject>
-      </mediaobject>
-    </figure>
-    <para>These two artifacts fulfill the only required steps in the egress and ingress of documents from Corner 2 to Corner 3. Also depicted in the diagram, with the label ②, is the minimum subset schema representing the repertoire of UBL semantics selected by the BPC to represent sufficient
-      information to be sent across the network. Using the subset schema is discretionary as Corner 2 may have different means by which the BPC subset of UBL semantics is represented during code generation. Using that schema and the same BPC constraint checking as used by Corner 3, depicted in both
-      corners with the label ③, Corner 2 can pre-validate the outgoing XML content as a self-check so as not to violate its governance commitment to send only BPC-valid content.</para>
-    <para>A UBL document sent by Corner 2 across the network may include schema-valid representations of additional semantics beyond the BPC repertoire, but Corner 3 is only obliged to recognize the BPC suite. Corner 3 may choose to support more, but Corner 2 cannot rely on Corner 3 supporting more
-      than the BPC repertoire.</para>
+  <section id="S-MESSAGE-FLOWS">
+    <title>Message flows</title>
     <para>In <xref linkend="F-MESSAGE-INTERCHANGE"/> the flow of messages is summarized. In the flow labeled ① the sender of the document acting as Corner 1 sends the semantic content of their document wrapped using whatever format that is compatible their own business system and is agreed to with
       Corner 2. In the flow labeled ② Corner 2 uses UBL syntax to wrap the semantic information for Corner 3. In the two flows labeled ③ Corner 3 either (a) returns a failure message back to Corner 2 due to a failure interpreting the UBL syntax or violating the BPC data integrity constraints, or (b)
       passes the semantic content found in the UBL syntax to Corner 4 wrapped using whatever format is compatible with Corner 4’s business system and Corner 4 agrees to use.</para>
@@ -55,8 +41,22 @@
       flows labeled ⑥ the new Corner 3 either (a) returns a failure message back to the new Corner 2 due to a failure interpreting the UBL syntax or violating the BPC data integrity constraints, or (b) passes the semantic content found in the UBL syntax to the original sender acting as the new
       Corner 4 wrapped using whatever format is compatible with Corner 4’s business system and Corner 4 agrees to use.</para>
   </section>
-  <section id="S-DEMONSTRATION-ARTIFACTS">
-    <title>Demonstration artifacts</title>
+  <section id="S-DATA-FLOWS-AND-VALIDATION-ARTIFACTS">
+    <title>Data flows and validation artifacts</title>
+    <para>In <xref linkend="F-XML-DOCUMENT-EGRESS-GENERATION-AND-INGRESS-INGESTION"/> the two validation artifacts, the complete UBL schema and data integrity constraint checking, used by Corner 3 in the two-phase validation are depicted with the labels ① and ③ at the bottom right.</para>
+    <figure id="F-XML-DOCUMENT-EGRESS-GENERATION-AND-INGRESS-INGESTION">
+      <title>XML document egress (generation) and ingress (ingestion)</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata role="html-embed" fileref="README-subset.svg"/>
+        </imageobject>
+      </mediaobject>
+    </figure>
+    <para>These two artifacts fulfill the only required steps in the egress and ingress of documents from Corner 2 to Corner 3. Also depicted in the diagram, with the label ②, is the minimum subset schema representing the repertoire of UBL semantics selected by the BPC to represent sufficient
+      information to be sent across the network. Using the subset schema is discretionary as Corner 2 may have different means by which the BPC subset of UBL semantics is represented during code generation. Using that schema and the same BPC constraint checking as used by Corner 3, depicted in both
+      corners with the label ③, Corner 2 can pre-validate the outgoing XML content as a self-check so as not to violate its governance commitment to send only BPC-valid content.</para>
+    <para>A UBL document sent by Corner 2 across the network may include schema-valid representations of additional semantics beyond the BPC repertoire, but Corner 3 is only obliged to recognize the BPC suite. Corner 3 may choose to support more, but Corner 2 cannot rely on Corner 3 supporting more
+      than the BPC repertoire.</para>
     <para>In this section, <literal>WWWWWWW</literal> refers to the document type, <literal>X.Y</literal> refers to the version number, and <literal>PZZ</literal> refers to the process number.</para>
     <para>This package named “<literal>bpc-semantics-vX.Y-{revision-date}.zip</literal>” contains the following developer-referenced files in the indicated subdirectories:</para>
     <itemizedlist>
@@ -291,14 +291,14 @@ Validating invoice-test-bad-data.xml
 ============== Phase 1: XSD schema validation ==============
 No schema validation errors.
 ============ Phase 2: BPC process P01 data integrity validation ============
-1. Seller name is not specified or exists more than once. /Invoice/cac:PayeeParty[1]
- / count(cac:PartyLegalEntity/cbc:RegistrationName) = 1 (:NABT-59 Tab '1 Invoice,
- Credit Note' Row 69:)
+1. Payee name is not specified or exists more than once. /Invoice/cac:PayeeParty[1]
+ / count(cac:PartyLegalEntity/cbc:RegistrationName) = 1 (:NABT-59 Row 69 Tab '1
+ Invoice, Credit Note':)
 2. Amount Due for Payment (NABT-115) is not equal to the total amount with tax
  (NABT-112) minus PrePaid Amount (NABT-113) plus Rounding Amount (NABT-114).
  /Invoice/cac:LegalMonetaryTotal[1]/cbc:PayableAmount[1] / bpc:compareAmountsEqual( 
  ., sum( ( ../cbc:TaxInclusiveAmount, -1 * ../cbc:PrepaidAmount, 
- ../cbc:PayableRoundingAmount ) ) ) (:NABT-115 Tab '1 Invoice, Credit Note' Row 167:)
+ ../cbc:PayableRoundingAmount ) ) ) (:NABT-115 Row 167 Tab '1 Invoice, Credit Note':)
 Count of errors: 2
 Error in xsl:value-of/@select on line 93 column 67 of testSVRL4UBLerrors.xsl:
   XTMM9000: Processing terminated by xsl:message at line 93 in testSVRL4UBLerrors.xsl

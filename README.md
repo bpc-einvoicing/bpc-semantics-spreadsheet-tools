@@ -78,8 +78,8 @@ The existence of the file `ERROR-RUNNING-RESULTING-XSLT-FOR-P##-#######.txt` ind
   - `Static error near {...} on line 581 column 109 of BPC-P01-v0.1-Invoice-Data-Integrity-Constraints.xsl`
   - `XPST0017: Cannot find a 1-argument function named {http://www.w3.org/2005/xpath-functions}Count()`
 
-2 - determine the spreadsheet row from that numbered line in the `bpc/P##/BPC-P##-v#.#-#######-Data-Integrity-Constraints.xsl` file (not the `bpc/P##/BPC-P##-#######-Data-Integrity-Constraints.xsl` file, but the one with `-v#.#` in the name), for example, row 71 of worksheet tab 1 for semantic NABG-999 in this line:
-  - `test="Count(cac:PayeeParty/cac:Party/cac:PostalAddress) = 1 (:NABG-999 Tab 1 Row 71:)"`
+2 - determine the spreadsheet row from that numbered line in the `bpc/P##/BPC-P##-v#.#-#######-Data-Integrity-Constraints.xsl` file (not the `bpc/P##/BPC-P##-#######-Data-Integrity-Constraints.xsl` file, but the one with `-v#.#` in the name), for example, row 71 of worksheet tab '1 Invoice, Credit Note' for semantic NABG-999 in this line:
+  - `test="Count(cac:PayeeParty/cac:Party/cac:PostalAddress) = 1 (:NABG-999 Row 71 Tab '1 Invoice, Credit Note':)"`
 
 ## Documentation and demonstration - using the validation results
 

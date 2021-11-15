@@ -217,9 +217,10 @@ file="${dir}/bpc-semantics-${BPCversion}-${dateTime}/VALID-SEMANTICS-GC-FILE-NOT
   "-o:${dir}/bpc-semantics-${BPCversion}-${dateTime}/model/BPC-Semantics-Spreadsheet-${BPCversion}-${dateTime}.xml"/>
        <arg value=
         "+ublgc=${dir}/bpc-semantics-${BPCversion}-${dateTime}/ubl/UBL-Entities-${UBLversion}.gc"/>
-      <arg value="embedded-comment=&#xa;&#xa;XML serialization of BPC Semantics
-Spreadsheet v${BPCversion} ${dateTime} from location:
-&#xa;&#xa;${ssGoogle}&#xa;&#xa;"/>
+      <arg value="embedded-comment=&#xa;&#xa;XML serialization of BPC
+Semantics Spreadsheet v${BPCversion}
+at ${dateTime}&#xa;from
+location:&#xa;&#xa;${ssGoogle}&#xa;&#xa;"/>
     </java>
     <available property="bpcXMLerror"
 file="${dir}/bpc-semantics-${BPCversion}-${dateTime}/model/BPC-Semantics-Spreadsheet-${BPCversion}-${dateTime}.gc.errors.txt"/>

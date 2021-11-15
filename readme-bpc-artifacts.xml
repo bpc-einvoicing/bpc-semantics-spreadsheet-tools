@@ -39,6 +39,21 @@
       corners with the label ③, Corner 2 can pre-validate the outgoing XML content as a self-check so as not to violate its governance commitment to send only BPC-valid content.</para>
     <para>A UBL document sent by Corner 2 across the network may include schema-valid representations of additional semantics beyond the BPC repertoire, but Corner 3 is only obliged to recognize the BPC suite. Corner 3 may choose to support more, but Corner 2 cannot rely on Corner 3 supporting more
       than the BPC repertoire.</para>
+    <para>In <xref linkend="F-MESSAGE-INTERCHANGE"/> the flow of messages is summarized. In the flow labeled ① the sender of the document acting as Corner 1 sends the semantic content of their document wrapped using whatever format that is compatible their own business system and is agreed to with
+      Corner 2. In the flow labeled ② Corner 2 uses UBL syntax to wrap the semantic information for Corner 3. In the two flows labeled ③ Corner 3 either (a) returns a failure message back to Corner 2 due to a failure interpreting the UBL syntax or violating the BPC data integrity constraints, or (b)
+      passes the semantic content found in the UBL syntax to Corner 4 wrapped using whatever format is compatible with Corner 4’s business system and Corner 4 agrees to use.</para>
+    <figure id="F-MESSAGE-INTERCHANGE">
+      <title>Message interchange</title>
+      <mediaobject>
+        <imageobject>
+          <imagedata role="html-embed" fileref="README-flow.svg"/>
+        </imageobject>
+      </mediaobject>
+    </figure>
+    <para>Many, but not all, document types will trigger the need shown in the flow labeled ④ for the receiver trading partner to return to the sender a status of the document that was received when the receiver was acting as Corner 4. To do so, the receiver now acts as the new Corner 1 in the flow
+      labeled ④, sending the document status in a private format to their access point now acting as the new Corner 2. In the flow labeled ⑤ the new Corner 2 sends the document status information wrapped in UBL syntax to the original sender’s access point now acting as the new Corner 3. In the two
+      flows labeled ⑥ the new Corner 3 either (a) returns a failure message back to the new Corner 2 due to a failure interpreting the UBL syntax or violating the BPC data integrity constraints, or (b) passes the semantic content found in the UBL syntax to the original sender acting as the new
+      Corner 4 wrapped using whatever format is compatible with Corner 4’s business system and Corner 4 agrees to use.</para>
   </section>
   <section id="S-DEMONSTRATION-ARTIFACTS">
     <title>Demonstration artifacts</title>

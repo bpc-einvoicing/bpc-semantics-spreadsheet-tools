@@ -15,8 +15,8 @@
    preserveAspectRatio="none"
    height="418.44199"
    inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
-   sodipodi:docname="DocumentExchangeSummary-20211114-2140z.svg"
-   inkscape:export-filename="/Users/admin/s/companies/bpc/DocumentExchangeSummary-20211114-2140z.png"
+   sodipodi:docname="DocumentExchangeSummary-20211115-0210z.svg"
+   inkscape:export-filename="/Users/admin/s/companies/bpc/DocumentExchangeSummary-20211115-0210z.png"
    inkscape:export-xdpi="300.08334"
    inkscape:export-ydpi="300.08334">
   <sodipodi:namedview
@@ -681,38 +681,16 @@
        y="572.02533"
        style="stroke-width:6.66666651px" /></text>
   <text
-     xml:space="preserve"
-     style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:condensed;font-size:88.8888855px;line-height:120.00000477%;font-family:'Arial Narrow';-inkscape-font-specification:'Arial Narrow, Bold Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:6.66666651px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-     x="347.35876"
-     y="959.96698"
-     id="text522"><tspan
-       sodipodi:role="line"
-       id="tspan520"
-       x="347.35876"
-       y="959.96698"
-       style="stroke-width:6.66666651px">C1                                         C2                                C3                                         C4</tspan></text>
-  <text
-     id="text526"
-     y="2309.5027"
-     x="350.93979"
-     style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:condensed;font-size:88.8888855px;line-height:120.00000477%;font-family:'Arial Narrow';-inkscape-font-specification:'Arial Narrow, Bold Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:6.66666651px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-     xml:space="preserve"><tspan
-       style="stroke-width:6.66666651px"
-       y="2309.5027"
-       x="350.93979"
-       id="tspan524"
-       sodipodi:role="line">C4                                         C3                                C2                                         C1</tspan></text>
-  <text
      id="text570"
      y="2761.2192"
      x="3036.7878"
      style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:condensed;font-size:53.33333206px;line-height:120.00000477%;font-family:'Arial Narrow';-inkscape-font-specification:'Arial Narrow, Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:6.66666651px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
      xml:space="preserve"><tspan
-       id="tspan568"
        style="stroke-width:6.66666651px"
        y="2761.2192"
        x="3036.7878"
-       sodipodi:role="line">2021-11-14 21:40z</tspan></text>
+       sodipodi:role="line"
+       id="tspan995">2021-11-15 02:10z</tspan></text>
   <text
      id="text574"
      y="-3290.3096"
@@ -769,5 +747,101 @@
          y="1246.8855"
          x="2135.5713"
          sodipodi:role="line">?</tspan></text>
+  </g>
+  <g
+     id="g1065"
+     transform="translate(0,-91.643005)">
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:condensed;font-size:88.8888855px;line-height:120.00000477%;font-family:'Arial Narrow';-inkscape-font-specification:'Arial Narrow, Bold Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:6.66666651px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="347.35876"
+       y="1051.61"
+       id="text1020"><tspan
+         sodipodi:role="line"
+         id="tspan1018"
+         x="347.35876"
+         y="1051.61"
+         style="stroke-width:6.66666651px">C1</tspan></text>
+    <text
+       id="text1024"
+       y="1051.61"
+       x="1271.1202"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:condensed;font-size:88.8888855px;line-height:120.00000477%;font-family:'Arial Narrow';-inkscape-font-specification:'Arial Narrow, Bold Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:6.66666651px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         style="stroke-width:6.66666651px"
+         y="1051.61"
+         x="1271.1202"
+         id="tspan1022"
+         sodipodi:role="line">C2</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:condensed;font-size:88.8888855px;line-height:120.00000477%;font-family:'Arial Narrow';-inkscape-font-specification:'Arial Narrow, Bold Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:6.66666651px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="2015.2615"
+       y="1051.61"
+       id="text1032"><tspan
+         sodipodi:role="line"
+         id="tspan1030"
+         x="2015.2615"
+         y="1051.61"
+         style="stroke-width:6.66666651px">C3</tspan></text>
+    <text
+       id="text1036"
+       y="1051.61"
+       x="2942.6887"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:condensed;font-size:88.8888855px;line-height:120.00000477%;font-family:'Arial Narrow';-inkscape-font-specification:'Arial Narrow, Bold Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:6.66666651px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         style="stroke-width:6.66666651px"
+         y="1051.61"
+         x="2942.6887"
+         id="tspan1034"
+         sodipodi:role="line">C4</tspan></text>
+  </g>
+  <g
+     transform="translate(0,1250.0106)"
+     id="g1083">
+    <text
+       id="text1069"
+       y="1051.61"
+       x="347.35876"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:condensed;font-size:88.8888855px;line-height:120.00000477%;font-family:'Arial Narrow';-inkscape-font-specification:'Arial Narrow, Bold Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:6.66666651px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         style="stroke-width:6.66666651px"
+         y="1051.61"
+         x="347.35876"
+         id="tspan1067"
+         sodipodi:role="line">C4</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:condensed;font-size:88.8888855px;line-height:120.00000477%;font-family:'Arial Narrow';-inkscape-font-specification:'Arial Narrow, Bold Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:6.66666651px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="1271.1202"
+       y="1051.61"
+       id="text1073"><tspan
+         sodipodi:role="line"
+         id="tspan1071"
+         x="1271.1202"
+         y="1051.61"
+         style="stroke-width:6.66666651px">C3</tspan></text>
+    <text
+       id="text1077"
+       y="1051.61"
+       x="2015.2615"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:condensed;font-size:88.8888855px;line-height:120.00000477%;font-family:'Arial Narrow';-inkscape-font-specification:'Arial Narrow, Bold Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:6.66666651px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         style="stroke-width:6.66666651px"
+         y="1051.61"
+         x="2015.2615"
+         id="tspan1075"
+         sodipodi:role="line">C2</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:condensed;font-size:88.8888855px;line-height:120.00000477%;font-family:'Arial Narrow';-inkscape-font-specification:'Arial Narrow, Bold Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:6.66666651px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="2942.6887"
+       y="1051.61"
+       id="text1081"><tspan
+         sodipodi:role="line"
+         id="tspan1079"
+         x="2942.6887"
+         y="1051.61"
+         style="stroke-width:6.66666651px">C1</tspan></text>
   </g>
 </svg>

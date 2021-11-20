@@ -2,104 +2,20 @@
   Summary of processes governing the generation of artifacts.
 -->
 <bpcProcesses>
-<!--  
-  <bpcProcess bpcID="P00">
-    <title>Miscellaneous ubiquitous document types </title>
+  <bpcProcess processID="Core">
+    <title>Core document types</title>
     <doctypes>
+      <doctype worksheetTab="Invoice, Credit Note">Invoice</doctype>
+      <doctype worksheetTab="Invoice, Credit Note">Credit Note</doctype>
       <doctype worksheetTab="Application Response">Application Response</doctype>
-      <doctype worksheetTab="Document Status">Document Status</doctype>
+      <doctype worksheetTab="Invoice Response Document Status">Document Status</doctype>
     </doctypes>
   </bpcProcess>
--->  
-  <bpcProcess bpcID="P01">
-    <title>Invoice with reference to a blanket or standard PO based on a contract</title>
-    <doctypes>
-      <doctype worksheetTab="Invoice, Credit Note">Invoice</doctype>
-    </doctypes>
-  </bpcProcess>
-  <bpcProcess bpcID="P02">
-    <title>Invoice with reference to a blanket or standard PO without a contract</title>
-    <doctypes>
-      <doctype worksheetTab="Invoice, Credit Note">Invoice</doctype>
-    </doctypes>
-  </bpcProcess>
-  <bpcProcess bpcID="P03">
-    <title>Invoice without reference to contract or purchase order</title>
-    <doctypes>
-      <doctype worksheetTab="Invoice, Credit Note">Invoice</doctype>
-    </doctypes>
-  </bpcProcess>
-  <bpcProcess bpcID="P04">
-    <title>Credit Memo Pre-payment</title>
-    <doctypes>
-      <doctype worksheetTab="Invoice, Credit Note">Credit Note</doctype>
-    </doctypes>
-  </bpcProcess>
-  <bpcProcess bpcID="P05">
-    <title>Credit Memo Post-payment</title>
-    <doctypes>
-      <doctype worksheetTab="Invoice, Credit Note">Credit Note</doctype>
-    </doctypes>
-  </bpcProcess>
-  <bpcProcess bpcID="P06">
-    <title>Invoicing the delivery of goods and services against a prepayment</title>
+  <bpcProcess processID="P">
+    <title>In-development Invoice and Credit Note</title>
     <doctypes>
       <doctype worksheetTab="Invoice, Credit Note">Invoice</doctype>
       <doctype worksheetTab="Invoice, Credit Note">Credit Note</doctype>
     </doctypes>
   </bpcProcess>
-  <bpcProcess bpcID="P07">
-    <title>Invoicing the delivery of goods and services against a payment authorization
-at the time of order or purchase</title>
-    <doctypes>
-      <doctype worksheetTab="Invoice, Credit Note">Invoice</doctype>
-    </doctypes>
-  </bpcProcess>
-  <bpcProcess bpcID="P08">
-    <title>Invoices with references to shipping documents(Advanced Shipping Notice,
-Dispatch Advice, Receiving Advice)</title>
-    <doctypes>
-      <doctype worksheetTab="Invoice, Credit Note">Invoice</doctype>
-    </doctypes>
-  </bpcProcess>
-  <bpcProcess bpcID="P09">
-    <title>Cancellation/corrective invoicing</title>
-    <doctypes>
-      <doctype worksheetTab="Invoice, Credit Note">Invoice</doctype>
-      <doctype worksheetTab="Invoice, Credit Note">Credit Note</doctype>
-    </doctypes>
-  </bpcProcess>
-  <bpcProcess bpcID="P10">
-    <title>Partial and final invoicing</title>
-    <doctypes>
-      <doctype worksheetTab="Invoice, Credit Note">Invoice</doctype>
-    </doctypes>
-  </bpcProcess>
-  <bpcProcess bpcID="P11">
-    <title>Self-billing</title>
-    <doctypes>
-      <doctype worksheetTab="Invoice, Credit Note">Invoice</doctype>
-      <!--<doctype worksheetTab="">Purchase Order</doctype>-->
-    </doctypes>
-  </bpcProcess>
-  <bpcProcess bpcID="P12">
-    <title>Recurring billing (fixed amount)</title>
-    <doctypes>
-      <doctype worksheetTab="Invoice, Credit Note">Invoice</doctype>
-    </doctypes>
-  </bpcProcess>
-  <bpcProcess bpcID="P13">
-    <title>Invoice with opening balance and usage (variable amount)</title>
-    <doctypes>
-      <doctype worksheetTab="Invoice, Credit Note">Invoice</doctype>
-    </doctypes>
-  </bpcProcess>
-<!--
-  <bpcProcess bpcID="P14">
-    <title>Request the status of a document</title>
-    <doctypes>
-      <doctype worksheetTab=""></doctype>
-    </doctypes>
-  </bpcProcess>
--->
 </bpcProcesses>

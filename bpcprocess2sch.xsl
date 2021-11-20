@@ -113,10 +113,10 @@
       <xsl:variable name="worksheet" 
                     select="$semanticsSummary/worksheets/worksheet
                             [@tab = $thisDoctype/@worksheetTab]"/>
-      <xsl:variable name="procID" select="@bpcID"/>
+      <xsl:variable name="processID" select="@processID"/>
       <!--this is the wrapper schematron-->
       <xsl:variable name="schematronOutURI"
-                    select="concat($procID,'/BPC-',$procID,'-v',
+                    select="concat($processID,'/BPC-',$processID,'-v',
                             $BPCversion,'-',$thisDoctypeName,
                             '-Data-Integrity-Constraints.sch')"/>
       <xsl:message select="'Writing:',$schematronOutURI"/>
@@ -129,7 +129,7 @@
       </xsl:result-document>
       <!--this is the embedded pattern schematron-->
       <xsl:variable name="patternOutURI"
-                    select="concat($procID,'/BPC-',$procID,'-v',
+                    select="concat($processID,'/BPC-',$processID,'-v',
                             $BPCversion,'-',$thisDoctypeName,
                             '-Assertions.pattern.sch')"/>
       <xsl:result-document href="{$patternOutURI}">
@@ -139,8 +139,8 @@
           <xsl:with-param name="doctype" select="$thisDoctype" tunnel="yes"/>
         </xsl:apply-templates>
       </xsl:result-document>
-      <xsl:result-document exclude-result-prefixes="sch"
-  href="{$procID}/BPC-{$procID}-{$thisDoctypeName}-Data-Integrity-Constraints.xsl">
+      <xsl:result-document exclude-result-prefixes="sch" href=
+"{$processID}/BPC-{$processID}-{$thisDoctypeName}-Data-Integrity-Constraints.xsl">
         <xslo:stylesheet version="2.0">
           <xsl:text>&#xa;</xsl:text>
 <xsl:comment>
@@ -152,7 +152,7 @@
 </xsl:comment>
             <xsl:text>&#xa;</xsl:text>
             <xslo:import href=
- "BPC-{$procID}-v{$BPCversion}-{$thisDoctypeName}-Data-Integrity-Constraints.xsl"/>
+"BPC-{$processID}-v{$BPCversion}-{$thisDoctypeName}-Data-Integrity-Constraints.xsl"/>
             <xslo:import href="BPC-v{$BPCversion}-Code-Lists.xsl"/>
             <xslo:import href="BPC-Schematron-Support.xsl"/>
           </xslo:stylesheet>
@@ -178,7 +178,7 @@
          <xsl:variable name="thisDoctype" select="translate(.,' ','')"/>
          <xsl:for-each select="$thisProcess">
           <ant antfile="${{antStaticScriptURI}}" target="-sch4bpc">
-            <property name="process" value="{@bpcID}"/>
+            <property name="process" value="{@processID}"/>
             <property name="version" value="{$BPCversion}"/>
             <property name="basedir" value="${{basedir}}"/>
             <property name="doctype" value="{translate($thisDoctype,' ','')}"/>
@@ -328,12 +328,13 @@
   <xsl:param name="process" as="element(bpcProcess)"/>
   <xsl:param name="doctype" as="element(doctype)?"/>
   <xsl:value-of select="replace(replace(replace(replace(replace($template,
-                       '\{bpc:title\}',concat($process/@bpcID,' v',$BPCversion,
+                       '\{bpc:title\}',concat($process/@processID,
+                                              ' v',$BPCversion,
                                               ' - ',$dateTime,
                                               ' - ',$process/title)),
                        '\{bpc:worksheet\}',$doctype/@worksheetTab),
                        '\{bpc:doctype\}',translate($doctype,' ','')),
-                       '\{bpc:process\}',$process/@bpcID),
+                       '\{bpc:process\}',$process/@processID),
                        '\{bpc:version\}',$BPCversion)"/>
 </xsl:function>
 
@@ -366,7 +367,7 @@
               exclude-result-prefixes="xsl xslo sch">
   <xsl:param name="process" as="element(bpcProcess)" tunnel="yes"/>
   <xsl:param name="worksheet" as="element(worksheet)" tunnel="yes"/>
-  <xsl:variable name="bpcId" select="$process/@bpcId"/>
+  <xsl:variable name="processID" select="$process/@processID"/>
   <xsl:variable name="bpcDocTypes" as="xsd:string*"
                 select="$process/doctypes/doctype/translate(.,' ','')"/>
   <xsl:variable name="worksheetDocTypes" as="xsd:string*"
@@ -378,7 +379,7 @@
     <xsl:text>&#xa;</xsl:text>
     <xsl:comment>
       <xsl:text>Generated assertions from spreadsheet worksheet </xsl:text>
-      <xsl:value-of select="concat($worksheet/@tab,' for process ',$bpcId,
+      <xsl:value-of select="concat($worksheet/@tab,' for process ',$processID,
                                  ' for doctype',
                                  if(count($process/doctypes/doctype)>1)
                                  then 's:' else ':'),
@@ -408,17 +409,11 @@
     <xsl:text>&#xa;</xsl:text>
 
     <xsl:for-each-group group-by="." select="
-                   $worksheet/semantics/semantic/process/data/contextPrototype
+                   $worksheet/semantics/semantic/
+                   process[@processID=('Core',$processID)]/
+                   data/contextPrototype
                    (:a process that has an assertion for the semantic:)
                    [ exists( ../assertionPrototype ) ]
-                   (:and:)
-                   [(:that is specific to the current process or:)
-                    ( @processId = $process/@bpcId ) or
-                    (:not specific to any process and 
-                      no sibling process specific to current:) 
-                    ( not( @processId ) and
-                      not( some $p in ancestor::process/@processId
-                           satisfies $p=$bpcId ) ) ]
                    (:and whose context is for the process's document type:)
                    [ (:is a relative context:)
                      not( starts-with(.,'/') )

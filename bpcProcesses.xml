@@ -8,7 +8,7 @@
       <doctype worksheetTab="Invoice, Credit Note">Invoice</doctype>
       <doctype worksheetTab="Invoice, Credit Note">Credit Note</doctype>
       <doctype worksheetTab="Application Response">Application Response</doctype>
-      <doctype worksheetTab="Invoice Response Document Status">Document Status</doctype>
+      <doctype worksheetTab="Document Status">Document Status</doctype>
     </doctypes>
   </bpcProcess>
   <bpcProcess processID="P">
@@ -16,6 +16,7 @@
     <doctypes>
       <doctype worksheetTab="Invoice, Credit Note">Invoice</doctype>
       <doctype worksheetTab="Invoice, Credit Note">Credit Note</doctype>
+      <doctype worksheetTab="Document Status">Document Status</doctype>
     </doctypes>
   </bpcProcess>
 </bpcProcesses>

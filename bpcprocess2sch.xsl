@@ -379,11 +379,8 @@
     <xsl:text>&#xa;</xsl:text>
     <xsl:comment>
       <xsl:text>Generated assertions from spreadsheet worksheet </xsl:text>
-      <xsl:value-of select="concat($worksheet/@tab,' for process ',$processID,
-                                 ' for doctype',
-                                 if(count($process/doctypes/doctype)>1)
-                                 then 's:' else ':'),
-                                 string-join($process/doctypes/doctype,', ')"/>
+      <xsl:value-of select=
+                         "concat($worksheet/@tab,' for process ',$processID)"/>
     </xsl:comment>
     <xsl:text>&#xa;</xsl:text>
     
@@ -410,11 +407,12 @@
 
     <xsl:for-each-group group-by="." select="
                    $worksheet/semantics/semantic/
-                   process[@processID=('Core',$processID)]/
+                   process[ if(count(distinct-values(../process/@processID))=1)
+                            then @processID=('Core',$processID)
+                            else @processID=$processID ]/
                    data/contextPrototype
                    (:a process that has an assertion for the semantic:)
                    [ exists( ../assertionPrototype ) ]
-                   (:and whose context is for the process's document type:)
                    [ (:is a relative context:)
                      not( starts-with(.,'/') )
                   or (:is an absolute context of an expected doctype:)

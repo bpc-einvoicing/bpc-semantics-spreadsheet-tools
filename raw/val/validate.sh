@@ -1,11 +1,11 @@
 # Default UBL 2 two-phase validation for linux
 #
-# Syntax: validate ubl-schema-file ubl-xml-file
+# Syntax: validate ubl-schema-file process-id document-type ubl-xml-file
 
 DP0=$( cd "$(dirname "$0")" ; pwd -P )
 echo
 echo "############################################################"
-echo Validating $4
+echo Validating using process \"$2\": $4
 echo "############################################################"
 
 if [ -f "$4.error.txt" ]; then rm "$4.error.txt" ; fi

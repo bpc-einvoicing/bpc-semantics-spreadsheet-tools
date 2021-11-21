@@ -1,11 +1,11 @@
 @echo off
-rem Default UBL 2 two-phase validation for XP
+rem Default BPC 2 two-phase validation
 rem
-rem Syntax: validate ubl-schema-file bpc-process-Pxx ubl-xml-file
+rem Syntax: validate ubl-schema-file process-id document-type ubl-xml-file
 
 echo.
 echo ############################################################
-echo Validating %3
+echo Validating using process "%~2": %~4
 echo ############################################################
 
 if exist "%~4.error.txt" del "%~4.error.txt"

@@ -523,6 +523,8 @@ destfile="${dir}/bpc-semantics-tools-${BPCversion}-${dateTime}/bpc-semantics-${B
 file="${dir}/bpc-semantics-${BPCversion}-${dateTime}/ERROR-RUNNING-RESULTING-XSLT-FOR-${process}-${doctype}.txt"/>
   <echo unless:set="xsl${process}${doctype}created"
         message="${errorXSLTtest}&#xa;${errorSVRLtest}"/>
+  <delete if:set="xsl${process}${doctype}created" file="${svrlin}"/>
+  <delete if:set="xsl${process}${doctype}created" file="${svrlout}"/>
 </target>
 
 </project>

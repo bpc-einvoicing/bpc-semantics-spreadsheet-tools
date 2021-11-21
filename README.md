@@ -28,6 +28,14 @@ In the flow labeled (1) the sender of the document acting as Corner 1 sends the 
 
 Many, but not all, document types will trigger the need shown in the flow labeled (4) for the receiver trading partner to return to the sender a status of the document that was received when the receiver was acting as Corner 4. To do so, the receiver now acts as the new Corner 1 in the flow labeled (4), sending the document status in a private format to their access point now acting as the new Corner 2. In the flow labeled (5) the new Corner 2 sends the document status information wrapped in UBL syntax to the original sender’s access point now acting as the new Corner 3. In the two flows labeled (6) the new Corner 3 either (a) returns a failure message back to the new Corner 2 due to a failure interpreting the UBL syntax or violating the BPC data integrity constraints, or (b) passes the semantic content found in the UBL syntax to the original sender acting as the new Corner 4 wrapped using whatever format is compatible with Corner 4’s business system and Corner 4 agrees to use.
 
+## Process definitions
+
+At this time there are only two process definitions, each with an associated semantic library data model.
+
+The "Core" process definition and data model is documented in the BPC process definition document the simple process of Corner 1 sending an Invoice to Corner 2, having Corner 2 translate it (if necessary) to BPC UBL. Corner 2 sends the BPC UBL to Corner 3. Corner 3 either responds to Corner 2 with a rejection indicated in an Application Response document, or it sends the content of the BPC UBL invoice to Corner 4 in a format suitable for Corner 4. Corner 4 can respond with an Invoice Response document structured as a BPC UBL Document Status document. Corner 1 may then send a Credit Note document to Corner 2 to send on through Corner 3 to Corner 4. 
+
+In the future there will be other process definitions. At this time, the collection of semantic library work accumulated from the past years in the Semantic Group is given the generic name "P" until the committee formalizes other processes, gives each process a unique abbreviation, and determines the differences in the data model between the core and itself. At this time it is not expected there will be any processes that simply reuse the core semantic library data model, which is to say, a new process can be defined only when its data model differs from the core data model.
+
 ## Subset constraints XSD schema
 
 The semantics spreadsheet produces a genericode input file that is used indirectly to a schema subsetting process to create the XSD schemas according to the subset specification for each of the identified business processes.
@@ -72,13 +80,13 @@ The existence of the file `VALID-SEMANTICS-GC-FILE-NOT-GENERATED.txt` indicates 
 
 The existence of the file `VALID-SEMANTICS-XML-FILE-NOT-GENERATED.txt` indicates a problem converting the spreadsheet content into XML, otherwise there were no problems in the second stage. First check the "model" subdirectory for a file ending with "`errors.txt`". If that does not exist, then check the console transcript.
 
-The existence of the file `ERROR-RUNNING-RESULTING-XSLT-FOR-P##-#######.txt` indicates a problem in the XPath of the Schematron generated for the process `P##` for the doctype `#######`. This file contains the report of the problems, as well as the file `bpc/P##/BPC-P##-#######-Data-Integrity-Constraints.error.txt`. Two steps are needed to determine where to fix the XPath problem:
+The existence of the file `ERROR-RUNNING-RESULTING-XSLT-FOR-PROCNAME-#######.txt` indicates a problem in the XPath of the Schematron generated for the process `PROCNAME` for the doctype `#######`. This file contains the report of the problems, as well as the file `bpc/PROCNAME/BPC-PROCNAME-#######-Data-Integrity-Constraints.error.txt`. Two steps are needed to determine where to fix the XPath problem:
 
 1 - determine the line number from the error message, for example line 581 in this message:
-  - `Static error near {...} on line 581 column 109 of BPC-P01-v0.1-Invoice-Data-Integrity-Constraints.xsl`
+  - `Static error near {...} on line 581 column 109 of BPC-Core-v0.1-Invoice-Data-Integrity-Constraints.xsl`
   - `XPST0017: Cannot find a 1-argument function named {http://www.w3.org/2005/xpath-functions}Count()`
 
-2 - determine the spreadsheet row from that numbered line in the `bpc/P##/BPC-P##-v#.#-#######-Data-Integrity-Constraints.xsl` file (not the `bpc/P##/BPC-P##-#######-Data-Integrity-Constraints.xsl` file, but the one with `-v#.#` in the name), for example, row 71 of worksheet tab '1 Invoice, Credit Note' for semantic NABG-999 in this line:
+2 - determine the spreadsheet row from that numbered line in the `bpc/PROCNAME/BPC-PROCNAME-v#.#-#######-Data-Integrity-Constraints.xsl` file (not the `bpc/PROCNAME/BPC-PROCNAME-#######-Data-Integrity-Constraints.xsl` file, but the one with `-v#.#` in the name), for example, row 71 of worksheet tab '1 Invoice, Credit Note' for semantic NABG-999 in this line:
   - `test="Count(cac:PayeeParty/cac:Party/cac:PostalAddress) = 1 (:NABG-999 Row 71 Tab '1 Invoice, Credit Note':)"`
 
 ## Documentation and demonstration - using the validation results

@@ -1,22 +1,22 @@
 <!--
-  Summary of processes governing the generation of artifacts.
+  Summary of customizations governing the generation of artifacts.
 -->
-<bpcProcesses>
-  <bpcProcess processID="core">
-    <title>Core document types</title>
+<bpcCustomizations>
+  <bpcCustomization custID="core">
+    <title>Core definitions of document types</title>
     <doctypes>
       <doctype worksheetTab="Invoice, Credit Note">Invoice</doctype>
       <doctype worksheetTab="Invoice, Credit Note">Credit Note</doctype>
       <doctype worksheetTab="Application Response">Application Response</doctype>
       <doctype worksheetTab="Document Status">Document Status</doctype>
     </doctypes>
-  </bpcProcess>
-  <bpcProcess processID="extended">
-    <title>In-development Invoice and Credit Note</title>
+  </bpcCustomization>
+  <bpcCustomization custID="extended">
+    <title>Extended definitions of document types</title>
     <doctypes>
       <doctype worksheetTab="Invoice, Credit Note">Invoice</doctype>
       <doctype worksheetTab="Invoice, Credit Note">Credit Note</doctype>
       <doctype worksheetTab="Document Status">Document Status</doctype>
     </doctypes>
-  </bpcProcess>
-</bpcProcesses>
+  </bpcCustomization>
+</bpcCustomizations>

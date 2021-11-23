@@ -4,7 +4,7 @@
 <article conformance="ids ebuzzwords quotes">
   <title>BPC Semantic Model Validation Artifacts - v0.3</title>
   <articleinfo>
-    <pubdate>2021-11-21 19:00z</pubdate>
+    <pubdate>2021-11-23 01:50z</pubdate>
     <copyright>
       <year>2021</year>
       <year>Business Payments Coalition</year>
@@ -57,8 +57,7 @@
       corners with the label ③, Corner 2 can pre-validate the outgoing XML content as a self-check so as not to violate its governance commitment to send only BPC-valid content.</para>
     <para>A UBL document sent by Corner 2 across the network may include schema-valid representations of additional semantics beyond the BPC repertoire, but Corner 3 is only obliged to recognize the BPC suite. Corner 3 may choose to support more, but Corner 2 cannot rely on Corner 3 supporting more
       than the BPC repertoire.</para>
-    <para>In this section, <literal>WWWWWWW</literal> refers to the document type, <literal>X.Y</literal> refers to the version number, and <literal>Core</literal> refers to the process (at this point either “Core” or simply the “P” placebo to replaced in the future with process
-      abbreviations).</para>
+    <para>In this section, <literal>WWWWWWW</literal> refers to the document type, <literal>X.Y</literal> refers to the version number, and <literal>ZZZ</literal> refers to the customization (at this point either “core” or “extended”).</para>
     <para>This package named “<literal>bpc-semantics-vX.Y-{revision-date}.zip</literal>” contains the following developer-referenced files in the indicated subdirectories:</para>
     <itemizedlist>
       <listitem>
@@ -71,14 +70,15 @@
         <para><literal>version-vX.Y.txt</literal> and <literal>version.txt</literal> - the version of the release as “<literal>x.y</literal>”</para>
       </listitem>
       <listitem>
-        <para><literal>bpc/bpcProcesses.xml</literal> - an XML summary of the titles and document types involved in each of the BPC processes for which the semantics have been determined (this XML follows a straightforward colloquial schema for which a formal schema is not available)</para>
+        <para><literal>bpc/bpcCustomizations.xml</literal> - an XML summary of the titles and document types involved in each of the BPC customizations for which the semantics have been determined (this XML follows a straightforward colloquial schema for which a formal schema is not
+          available)</para>
       </listitem>
       <listitem>
-        <para><literal>bpc/Core/BPC-Core-WWWWWWWW-Data-Integrity-Constraints.xsl</literal> - the master XSLT stylesheet for process <literal>Core</literal> for document type <literal>WWWWWWW</literal> implementing artifact ③ in the data flow (using this invocation in your test suites will preclude
-          the need to modify invocations for different versions of the semantic library)</para>
+        <para><literal>bpc/ZZZ/BPC-ZZZ-WWWWWWWW-Data-Integrity-Constraints.xsl</literal> - the master XSLT stylesheet for customization <literal>ZZZ</literal> for document type <literal>WWWWWWW</literal> implementing artifact ③ in the data flow (using this invocation in your test suites will
+          preclude the need to modify invocations for different versions of the semantic library)</para>
       </listitem>
       <listitem>
-        <para><literal>bpc/Core/BPC-Core-vX.Y-WWWWWWWW-Data-Integrity-Constraints.sch</literal> - the master <ulink url="https://standards.iso.org/ittf/PubliclyAvailableStandards" conformance="skip">ISO/IEC 19757-3 DSDL Schematron</ulink> assertion schema used as the source to synthesize the XSLT
+        <para><literal>bpc/ZZZ/BPC-ZZZ-vX.Y-WWWWWWWW-Data-Integrity-Constraints.sch</literal> - the master <ulink url="https://standards.iso.org/ittf/PubliclyAvailableStandards" conformance="skip">ISO/IEC 19757-3 DSDL Schematron</ulink> assertion schema used as the source to synthesize the XSLT
           artifact ③ in the data flow (developers deploying alternative implementations of Schematron can do so using this file)</para>
       </listitem>
     </itemizedlist>
@@ -88,13 +88,13 @@
         <para><literal>BPC-v0.1-Code-Lists.xsl</literal> - an XSLT stylesheet fragment providing code list value validation support to the data integrity checking stylesheet <emphasis>(not implemented at this time)</emphasis></para>
       </listitem>
       <listitem>
-        <para><literal>Core/BPC-Core-vX.Y-WWWWWWWW-Data-Integrity-Constraints.xsl</literal> - an XSLT stylesheet fragment providing the basic semantic value checking</para>
+        <para><literal>ZZZ/BPC-ZZZ-vX.Y-WWWWWWWW-Data-Integrity-Constraints.xsl</literal> - an XSLT stylesheet fragment providing the basic semantic value checking</para>
       </listitem>
       <listitem>
-        <para><literal>Core/BPC-Core-vX.Y-Assertions.pattern.sch</literal> - the Schematron pattern expressing the basic BPC semantic value constraints</para>
+        <para><literal>ZZZ/BPC-ZZZ-vX.Y-Assertions.pattern.sch</literal> - the Schematron pattern expressing the basic BPC semantic value constraints</para>
       </listitem>
       <listitem>
-        <para><literal>Core/UBL-DocumentConstraints.pattern.sch</literal> - the Schematron pattern expressing the basic UBL document constraints as described in the standard</para>
+        <para><literal>ZZZ/UBL-DocumentConstraints.pattern.sch</literal> - the Schematron pattern expressing the basic UBL document constraints as described in the standard</para>
       </listitem>
     </itemizedlist>
     <para>The following files in the <literal>model/</literal> describe the BPC model subset and associated semantics as formally recorded in the BPC Semantics spreadsheet <ulink url="https://docs.google.com/spreadsheets/d/1qAz_aAbJ99ikA4zUk97FyjyDLcsQ3B3vqjEK-b3C_h8/view" conformance="skip"
@@ -203,7 +203,7 @@ where options include:
     <para>There are four illustrative XML instances being validated:</para>
     <itemizedlist>
       <listitem>
-        <para><literal>invoice-test-bad-syntax.xml</literal> - a document with an XML syntax error on line 9</para>
+        <para><literal>Invoice-test-bad-syntax.xml</literal> - a document with an XML syntax error on line 9</para>
         <itemizedlist>
           <listitem>
             <para>the end delimiter of the closing tag for the <literal>cbc:ID</literal> element is missing</para>
@@ -211,7 +211,7 @@ where options include:
         </itemizedlist>
       </listitem>
       <listitem>
-        <para><literal>invoice-test-bad-model.xml</literal> - a document with a UBL model error on line 9</para>
+        <para><literal>Invoice-test-bad-model.xml</literal> - a document with a UBL model error on line 9</para>
         <itemizedlist>
           <listitem>
             <para>the <literal>cbc:ID</literal> element is misspelled as <literal>cbc:IDxxxxxxx</literal></para>
@@ -219,7 +219,7 @@ where options include:
         </itemizedlist>
       </listitem>
       <listitem>
-        <para><literal>invoice-test-bad-data.xml</literal> - a document with one BPC data integrity for process Core and two BPC data integrity errors for process P:</para>
+        <para><literal>Invoice-test-bad-data.xml</literal> - a document with one BPC data integrity for customization ‘core’ and two BPC data integrity errors for customization ‘extended’:</para>
         <itemizedlist>
           <listitem>
             <para>the registration name for the payee party is absent</para>
@@ -230,7 +230,7 @@ where options include:
         </itemizedlist>
       </listitem>
       <listitem>
-        <para><literal>invoice-test-good.xml</literal> - a valid UBL document without violating BPC data integrity constraints</para>
+        <para><literal>Invoice-test-good.xml</literal> - a valid UBL document without violating BPC data integrity constraints</para>
       </listitem>
     </itemizedlist>
     <para>To run the demonstration there is an invocation for each of the Windows and Shell environments:</para>
@@ -260,14 +260,14 @@ sh test.sh</programlisting>
     </itemizedlist>
     <para>The following is a transcript of the output of running the demonstration:</para>
     <programlisting>############################################################
-Validating using process "Core": invoice-test-bad-syntax.xml
+Validating using customization "core": Invoice-test-bad-syntax.xml
 ############################################################
-============== Phase 1: XSD schema validation ==============
-org.xml.sax.SAXParseException; systemId: file:///Users/admin/t/builds/
- bpc-semantics-github-20211121-074957z/bpc-semantics-tools-0.3-20211121-074957z/
- bpc-semantics-0.3-20211121-074957z/val/invoice-test-bad-syntax.xml;
- lineNumber: 10; columnNumber: 2; The end-tag for element type "cbc:ID" must
- end with a '>' delimiter.
+===== Phase 1: XSD schema validation =====
+org.xml.sax.SAXParseException; systemId: file:///Users/admin/u/git/bpc/
+ bpc-semantics-spreadsheet-tools/results/bpc-semantics-tools-0.3-test/
+ bpc-semantics-0.3-test/val/Invoice-test-bad-syntax.xml; lineNumber: 10;
+ columnNumber: 2; The end-tag for element type "cbc:ID" must end with a
+ '>' delimiter.
 	at org.apache.xerces.parsers.AbstractSAXParser.parse(Unknown Source)
 	at org.apache.xerces.jaxp.SAXParserImpl$JAXPSAXParser.parse(Unknown Source)
 	at org.apache.xerces.jaxp.SAXParserImpl.parse(Unknown Source)
@@ -281,49 +281,49 @@ Exception in thread "main" java.lang.NullPointerException
 	at com.nwalsh.parsers.XJParse.run(Unknown Source)
 	at com.nwalsh.parsers.XJParse.main(Unknown Source)
 Attempting well-formed, namespace-aware parse
-Fatal error:file:///Users/admin/t/builds/bpc-semantics-github-20211121-074957z/
- bpc-semantics-tools-0.3-20211121-074957z/bpc-semantics-0.3-20211121-074957z/
- val/invoice-test-bad-syntax.xml:10:2:The end-tag for element type "cbc:ID"
- must end with a '>' delimiter.
+Fatal error:file:///Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/
+ results/bpc-semantics-tools-0.3-test/bpc-semantics-0.3-test/val/
+ Invoice-test-bad-syntax.xml:10:2:The end-tag for element type "cbc:ID" must
+ end with a '>' delimiter.
 
 ############################################################
-Validating using process "Core": invoice-test-bad-model.xml
+Validating using customization "core": Invoice-test-bad-model.xml
 ############################################################
-============== Phase 1: XSD schema validation ==============
+===== Phase 1: XSD schema validation =====
 Attempting well-formed, namespace-aware parse
-Error:file:///Users/admin/t/builds/bpc-semantics-github-20211121-074957z/
- bpc-semantics-tools-0.3-20211121-074957z/bpc-semantics-0.3-20211121-074957z/
- val/invoice-test-bad-model.xml:9:17:cvc-complex-type.2.4.a: Invalid content
+Error:file:///Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/
+ results/bpc-semantics-tools-0.3-test/bpc-semantics-0.3-test/val/
+ Invoice-test-bad-model.xml:9:17:cvc-complex-type.2.4.a: Invalid content
  was found starting with element 'cbc:IDxxxxxxx'. One of
  '{"urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2":ID}'
  is expected.
-Parse succeeded (0.23) with 1 error and no warnings.
+Parse succeeded (0.17) with 1 error and no warnings.
 
 ############################################################
-Validating using process "Core": invoice-test-bad-data.xml
+Validating using customization "core": Invoice-test-bad-data.xml
 ############################################################
-============== Phase 1: XSD schema validation ==============
+===== Phase 1: XSD schema validation =====
 No schema validation errors.
-============ Phase 2: BPC process Core data integrity validation ============
-1. Amount Due for Payment (NABT-115) is not equal to the total amount with
- tax (NABT-112) minus PrePaid Amount (NABT-113) plus Rounding Amount
- (NABT-114). /Invoice/cac:LegalMonetaryTotal[1]/cbc:PayableAmount[1] /
- bpc:compareAmountsEqual( ., sum( ( ../cbc:TaxInclusiveAmount, -1 *
- ../cbc:PrepaidAmount, ../cbc:PayableRoundingAmount ) ) ) (:NABT-115 Row 166
- Tab 'Invoice, Credit Note':)
+===== Phase 2: BPC customization "core" data integrity validation =====
+1. Amount Due for Payment (NABT-115) is not equal to the total amount with tax
+ (NABT-112) minus PrePaid Amount (NABT-113) plus Rounding Amount (NABT-114).
+ /Invoice/cac:LegalMonetaryTotal[1]/cbc:PayableAmount[1] /
+ bpc:compareAmountsEqual( ., sum( ( ../cbc:TaxInclusiveAmount,
+ -1 * ../cbc:PrepaidAmount, ../cbc:PayableRoundingAmount ) ) )
+ (:NABT-115 Row 166 Tab 'Invoice, Credit Note':)
 Count of errors: 1
 Error in xsl:value-of/@select on line 93 column 67 of testSVRL4UBLerrors.xsl:
   XTMM9000: Processing terminated by xsl:message at line 93 in testSVRL4UBLerrors.xsl
 Processing terminated by xsl:message at line 93 in testSVRL4UBLerrors.xsl
 
 ############################################################
-Validating using process "Core": invoice-test-good.xml
+Validating using customization "core": Invoice-test-good.xml
 ############################################################
-============== Phase 1: XSD schema validation ==============
+===== Phase 1: XSD schema validation =====
 No schema validation errors.
-============ Phase 2: BPC process Core data integrity validation ============
+===== Phase 2: BPC customization "core" data integrity validation =====
 No data integrity validation errors.</programlisting>
-    <para>Also included is a script to run all of the document types in both of the profiles for both “good” and “bad” test files:</para>
+    <para>Also included is a script to run all of the document types in both of the customizations for both “good” and “bad” test files:</para>
     <itemizedlist>
       <listitem>
         <para>Windows:</para>
@@ -357,8 +357,8 @@ sh testall.sh</programlisting>
         <para>Windows:</para>
         <itemizedlist>
           <listitem>
-            <para><programlisting>validate.bat  ubl-schema-file  bpc-process-id  WWWWWWW  ubl-xml-file</programlisting>for example from the <literal>test.bat</literal> demonstration:</para>
-            <programlisting>validate.bat  ..\ubl\xsd\maindoc\UBL-Invoice-2.3.xsd Core Invoice invoice-test-good.xml</programlisting>
+            <para><programlisting>validate.bat  ubl-schema-file  customization  document-type  ubl-xml-file</programlisting>for example from the <literal>test.bat</literal> demonstration:</para>
+            <programlisting>validate.bat  ..\ubl\xsd\maindoc\UBL-Invoice-2.3.xsd core Invoice Invoice-test-good.xml</programlisting>
           </listitem>
         </itemizedlist>
       </listitem>
@@ -366,20 +366,20 @@ sh testall.sh</programlisting>
         <para>Shell:</para>
         <itemizedlist>
           <listitem>
-            <para><programlisting>sh validate.sh  ubl-schema-file  bpc-process-id  WWWWWWW  ubl-xml-file</programlisting>for example from the <literal>test.sh</literal> demonstration:</para>
-            <programlisting>sh validate.sh  ../ubl/xsd/maindoc/UBL-Invoice-2.3.xsd Core Invoice invoice-test-good.xml</programlisting>
+            <para><programlisting>sh validate.sh  ubl-schema-file  customization  document-type  ubl-xml-file</programlisting>for example from the <literal>test.sh</literal> demonstration:</para>
+            <programlisting>sh validate.sh  ../ubl/xsd/maindoc/UBL-Invoice-2.3.xsd core Invoice Invoice-test-good.xml</programlisting>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
     <para>When there is an error of any kind, the script creates a file named by adding the “<literal>.error.txt</literal>” suffix to the input file name and records the error information in that file.</para>
     <para>When there is a data integrity error, the script also creates a file named by adding the “<literal>.svrl.xml</literal>” suffix to the input file name and records the Schematron SVRL record information in that file.</para>
-    <para>For example, if one has a test file for Process Core named <literal>myCreditNoteTest.xml</literal> in the <literal>val\</literal> directory then in Windows one would use:</para>
-    <para><programlisting>validate.bat ..\ubl\xsd\maindoc\UBL-CreditNote-2.3.xsd Core CreditNote myCreditNoteTest.xml</programlisting>and when running from another directory one need only point to the invocation and schema:</para>
-    <programlisting>bpc-semantics-0.1-20211121-074957z\val\validate.bat bpc-semantics-0.1-20211121-074957z\ubl\xsd\maindoc\UBL-CreditNote-2.3.xsd Core CreditNote myCreditNoteTest.xml</programlisting>
+    <para>For example, if one has a test file for customization ‘core’ named <literal>myCreditNoteTest.xml</literal> in the <literal>val\</literal> directory then in Windows one would use:</para>
+    <para><programlisting>validate.bat ..\ubl\xsd\maindoc\UBL-CreditNote-2.3.xsd core CreditNote myCreditNoteTest.xml</programlisting>and when running from another directory one need only point to the invocation and schema:</para>
+    <programlisting>bpc-semantics-0.1-20211121-074957z\val\validate.bat bpc-semantics-0.1-20211121-074957z\ubl\xsd\maindoc\UBL-CreditNote-2.3.xsd core CreditNote myCreditNoteTest.xml</programlisting>
     <para>And if one is using Shell in the <literal>val/</literal> directory one would use:</para>
-    <para><programlisting>sh validate.sh ../ubl/xsd/maindoc/UBL-CreditNote-2.3.xsd Core CreditNote myCreditNoteTest.xml</programlisting>and when running from another directory one need only point to the invocation and schema:</para>
-    <programlisting>sh bpc-semantics-0.1-20211121-074957z/val/validate.sh bpc-semantics-0.1-20211121-074957z/ubl/xsd/maindoc/UBL-CreditNote-2.3.xsd Core CreditNote myCreditNoteTest.xml</programlisting>
+    <para><programlisting>sh validate.sh ../ubl/xsd/maindoc/UBL-CreditNote-2.3.xsd core CreditNote myCreditNoteTest.xml</programlisting>and when running from another directory one need only point to the invocation and schema:</para>
+    <programlisting>sh bpc-semantics-0.1-20211121-074957z/val/validate.sh bpc-semantics-0.1-20211121-074957z/ubl/xsd/maindoc/UBL-CreditNote-2.3.xsd core CreditNote myCreditNoteTest.xml</programlisting>
   </section>
   <!--  <bibliography>
     <para>See article-bibliography.xml for bibliographic entries.</para>

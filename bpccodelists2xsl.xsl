@@ -179,7 +179,7 @@
   </para>
 </xs:template>
 <xsl:template match="text()" priority="1">
-  <xsl:call-template name="bpc:formatProcessInfo"/>
+  <xsl:call-template name="bpc:formatCustomizationInfo"/>
 </xsl:template>
 
 <xs:template>
@@ -189,7 +189,7 @@
 </xs:template>
 <xsl:template match="comment()" priority="1">
   <xsl:comment>
-    <xsl:call-template name="bpc:formatProcessInfo"/>
+    <xsl:call-template name="bpc:formatCustomizationInfo"/>
   </xsl:comment>
 </xsl:template>
 
@@ -200,25 +200,25 @@
 </xs:template>
 <xsl:template match="@*" priority="1">
   <xsl:attribute name="{name(.)}" namespace="{namespace-uri(.)}">
-    <xsl:call-template name="bpc:formatProcessInfo"/>
+    <xsl:call-template name="bpc:formatCustomizationInfo"/>
   </xsl:attribute>
 </xsl:template>
 
 <xs:template>
   <para>
-    Replace the {bpc:process} strings with the process information.
+    Replace the {bpc:customization} strings with the process information.
   </para>
   <itemizedlist>
     <listitem>bpc:title - formatted string of version and dateTime</listitem>
   </itemizedlist>
 </xs:template>
-<xsl:template name="bpc:formatProcessInfo">
-  <xsl:value-of select="bpc:formatProcessInfo(.)"/>
+<xsl:template name="bpc:formatCustomizationInfo">
+  <xsl:value-of select="bpc:formatCustomizationInfo(.)"/>
 </xsl:template>
 
 <xs:function>
   <para>
-    Return the {bpc:process} strings replaced with the process information.
+    Return the {bpc:customization} strings replaced with the process information.
   </para>
   <itemizedlist>
     <listitem>bpc:version - #.#</listitem>
@@ -228,7 +228,7 @@
     <para>The string input to the translation</para>
   </xs:param>
 </xs:function>
-<xsl:function name="bpc:formatProcessInfo" as="xsd:string">
+<xsl:function name="bpc:formatCustomizationInfo" as="xsd:string">
   <xsl:param name="template" as="xsd:string"/>
   <xsl:value-of select="replace(replace($template,
                        '\{bpc:title\}',concat('v',$BPCversion,

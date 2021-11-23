@@ -9,10 +9,11 @@
                 exclude-result-prefixes="xs xsd bpc xslo xsl"
                 version="2.0">
 
-<xs:doc filename="bpcprocess2sch.xsl" vocabulary="DocBook"
+<xs:doc filename="bpcCustomization2sch.xsl" vocabulary="DocBook"
         info="$Id$">
   <xs:title>
-    Convert a BPC skeleton Schematron script into one tailored for a process.
+    Convert a BPC skeleton Schematron script into one tailored for a 
+    customization.
   </xs:title>
   <para>
     The tailoring is simple in the attributes, text, and comments.
@@ -24,14 +25,15 @@
   <xs:title>Invocation parameters and input file</xs:title>
   <para>
     The input file is the image of the output file with placeholders
-    of the format "{bpc:process}" that get replaced in-situ in order
+    of the format "{bpc:cust}" that get replaced in-situ in order
     to create the output file.
   </para>
   <para>
-    Comments and text get both the process identifier and the version.
+    Comments and text get both the customization identifier and the version.
   </para>
   <para>
-    Attributes and filenames are replaced with only the process identifier.
+    Attributes and filenames are replaced with only the customization
+    identifier.
   </para>
 </xs:doc>
 
@@ -101,9 +103,11 @@
 </xs:template>
 <xsl:template match="/">
   <xsl:variable name="activeProcesses"
- select="/*/bpcProcess[some $tab in $semanticsSummary/worksheets/worksheet/@tab
-                       satisfies $tab = doctypes/doctype/@worksheetTab ]"/>
-  <!--first create the Schematron schema and pattern files for each process-->
+ select="/*/bpcCustomization
+            [some $tab in $semanticsSummary/worksheets/worksheet/@tab
+             satisfies $tab = doctypes/doctype/@worksheetTab ]"/>
+  <!--first create the Schematron schema and pattern files for each
+      customization-->
   <xsl:for-each select="$activeProcesses">
    <xsl:variable name="thisProcess" select="."/>
    <xsl:for-each select="doctypes/doctype">
@@ -113,38 +117,38 @@
       <xsl:variable name="worksheet" 
                     select="$semanticsSummary/worksheets/worksheet
                             [@tab = $thisDoctype/@worksheetTab]"/>
-      <xsl:variable name="processID" select="@processID"/>
+      <xsl:variable name="custID" select="@custID"/>
       <!--this is the wrapper schematron-->
       <xsl:variable name="schematronOutURI"
-                    select="concat($processID,'/BPC-',$processID,'-v',
+                    select="concat($custID,'/BPC-',$custID,'-v',
                             $BPCversion,'-',$thisDoctypeName,
                             '-Data-Integrity-Constraints.sch')"/>
       <xsl:message select="'Writing:',$schematronOutURI"/>
       <xsl:result-document href="{$schematronOutURI}">
         <xsl:apply-templates select="$schemaSkeleton/*">
-          <xsl:with-param name="process" select="." tunnel="yes"/>
+          <xsl:with-param name="customization" select="." tunnel="yes"/>
           <xsl:with-param name="worksheet" select="$worksheet" tunnel="yes"/>
           <xsl:with-param name="doctype" select="$thisDoctype" tunnel="yes"/>
         </xsl:apply-templates>
       </xsl:result-document>
       <!--this is the embedded pattern schematron-->
       <xsl:variable name="patternOutURI"
-                    select="concat($processID,'/BPC-',$processID,'-v',
+                    select="concat($custID,'/BPC-',$custID,'-v',
                             $BPCversion,'-',$thisDoctypeName,
                             '-Assertions.pattern.sch')"/>
       <xsl:result-document href="{$patternOutURI}">
         <xsl:apply-templates select="$patternSkeleton/*">
-          <xsl:with-param name="process" select="." tunnel="yes"/>
+          <xsl:with-param name="customization" select="." tunnel="yes"/>
           <xsl:with-param name="worksheet" select="$worksheet" tunnel="yes"/>
           <xsl:with-param name="doctype" select="$thisDoctype" tunnel="yes"/>
         </xsl:apply-templates>
       </xsl:result-document>
       <xsl:result-document exclude-result-prefixes="sch" href=
-"{$processID}/BPC-{$processID}-{$thisDoctypeName}-Data-Integrity-Constraints.xsl">
+"{$custID}/BPC-{$custID}-{$thisDoctypeName}-Data-Integrity-Constraints.xsl">
         <xslo:stylesheet version="2.0">
           <xsl:text>&#xa;</xsl:text>
 <xsl:comment>
-  Wrapper invocation stylesheet for BPC Semantics process:
+  Wrapper invocation stylesheet for BPC Semantics customization:
   <xsl:value-of select="
             bpc:formatProcessInfo('{bpc:title} from worksheet {bpc:worksheet}',
                                   .,$thisDoctype)"/>
@@ -152,7 +156,7 @@
 </xsl:comment>
             <xsl:text>&#xa;</xsl:text>
             <xslo:import href=
-"BPC-{$processID}-v{$BPCversion}-{$thisDoctypeName}-Data-Integrity-Constraints.xsl"/>
+"BPC-{$custID}-v{$BPCversion}-{$thisDoctypeName}-Data-Integrity-Constraints.xsl"/>
             <xslo:import href="BPC-v{$BPCversion}-Code-Lists.xsl"/>
             <xslo:import href="BPC-Schematron-Support.xsl"/>
           </xslo:stylesheet>
@@ -171,14 +175,14 @@
     <taskdef resource="net/sf/antcontrib/antcontrib.properties"/>
     
     <target name="make">
-      <echo message="Invoking ${{antStaticScriptURI}} for each process"/>
+      <echo message="Invoking ${{antStaticScriptURI}} for each customization"/>
       <xsl:for-each select="$activeProcesses">
        <xsl:variable name="thisProcess" select="."/>
        <xsl:for-each select="doctypes/doctype">
          <xsl:variable name="thisDoctype" select="translate(.,' ','')"/>
          <xsl:for-each select="$thisProcess">
           <ant antfile="${{antStaticScriptURI}}" target="-sch4bpc">
-            <property name="process" value="{@processID}"/>
+            <property name="customization" value="{@custID}"/>
             <property name="version" value="{$BPCversion}"/>
             <property name="basedir" value="${{basedir}}"/>
             <property name="doctype" value="{translate($thisDoctype,' ','')}"/>
@@ -198,18 +202,18 @@
   
 <xs:template>
   <para>
-    Replace in text the {bpc:*} strings with the process information.
+    Replace in text the {bpc:*} strings with the customization information.
   </para>
-  <xs:param name="process">
-    <para>The information for the process being acted on</para>
+  <xs:param name="customization">
+    <para>The information for the customization being acted on</para>
   </xs:param>
 </xs:template>
 <xsl:template match="sch:ns[@prefix='{bpc:doctype}']" priority="1"
               xmlns:sch="http://purl.oclc.org/dsdl/schematron">
-  <xsl:param name="process" as="element(bpcProcess)" tunnel="yes"/>
+  <xsl:param name="customization" as="element(bpcCustomization)" tunnel="yes"/>
   <xsl:variable name="this" select="."/>
   <!--repeat this element once for each document type-->
-  <xsl:for-each select="$process/doctypes/doctype">
+  <xsl:for-each select="$customization/doctypes/doctype">
     <xsl:variable name="doctype" select="."/>
     <!--set context back to the element for it to be processed-->
     <xsl:for-each select="$this">
@@ -223,27 +227,27 @@
 
 <xs:template>
   <para>
-    Replace in text the {bpc:*} strings with the process information.
+    Replace in text the {bpc:*} strings with the customization information.
   </para>
-  <xs:param name="process">
-    <para>The information for the process being acted on</para>
+  <xs:param name="customization">
+    <para>The information for the customization being acted on</para>
   </xs:param>
 </xs:template>
 <xsl:template match="text()" priority="1">
-  <xsl:param name="process" as="element(bpcProcess)" tunnel="yes"/>
+  <xsl:param name="customization" as="element(bpcCustomization)" tunnel="yes"/>
   <xsl:call-template name="bpc:formatProcessInfo"/>
 </xsl:template>
 
 <xs:template>
   <para>
-    Replace in comments the {bpc:*} strings with the process information.
+    Replace in comments the {bpc:*} strings with the customization information.
   </para>
-  <xs:param name="process">
-    <para>The information for the process being acted on</para>
+  <xs:param name="customization">
+    <para>The information for the customization being acted on</para>
   </xs:param>
 </xs:template>
 <xsl:template match="comment()" priority="1">
-  <xsl:param name="process" as="element(bpcProcess)" tunnel="yes"/>
+  <xsl:param name="customization" as="element(bpcCustomization)" tunnel="yes"/>
   <xsl:comment>
     <xsl:call-template name="bpc:formatProcessInfo"/>
   </xsl:comment>
@@ -252,14 +256,14 @@
 
 <xs:template>
   <para>
-    Replace in attributes the {bpc:*} strings with the process information.
+    Replace in attributes the {bpc:*} strings with the customization information.
   </para>
-  <xs:param name="process">
-    <para>The information for the process being acted on</para>
+  <xs:param name="customization">
+    <para>The information for the customization being acted on</para>
   </xs:param>
 </xs:template>
 <xsl:template match="@*" priority="1">
-  <xsl:param name="process" as="element(bpcProcess)" tunnel="yes"/>
+  <xsl:param name="customization" as="element(bpcCustomization)" tunnel="yes"/>
   <xsl:attribute name="{name(.)}" namespace="{namespace-uri(.)}">
     <xsl:call-template name="bpc:formatProcessInfo"/>
   </xsl:attribute>
@@ -267,21 +271,21 @@
 
 <xs:template>
   <para>
-    Replace the {bpc:process} strings with the process information.
+    Replace the {bpc:customization} strings with the customization information.
   </para>
-  <xs:param name="process">
-    <para>The information for the process being acted on</para>
+  <xs:param name="customization">
+    <para>The information for the customization being acted on</para>
   </xs:param>
   <xs:param name="doctype">
-    <para>One of the document types for the given process</para>
+    <para>One of the document types for the given customization</para>
   </xs:param>
 </xs:template>
 <xsl:template name="bpc:formatProcessInfo">
-  <xsl:param name="process" as="element(bpcProcess)"
+  <xsl:param name="customization" as="element(bpcCustomization)"
              tunnel="yes" required="yes"/>
   <xsl:param name="doctype" as="element(doctype)"
              tunnel="yes"/>
-  <xsl:value-of select="bpc:formatProcessInfo(.,$process,$doctype)"/>
+  <xsl:value-of select="bpc:formatProcessInfo(.,$customization,$doctype)"/>
 </xsl:template>
 
 <xs:function>
@@ -292,22 +296,22 @@
   <xs:param name="template">
     <para>The string input to the translation</para>
   </xs:param>
-  <xs:param name="process">
-    <para>The information for the process being acted on</para>
+  <xs:param name="customization">
+    <para>The information for the customization being acted on</para>
   </xs:param>
 </xs:function>
 <xsl:function name="bpc:formatProcessInfo" as="xsd:string">
   <xsl:param name="template" as="xsd:string"/>
-  <xsl:param name="process" as="element(bpcProcess)"/>
-  <xsl:sequence select="bpc:formatProcessInfo($template,$process,())"/>
+  <xsl:param name="customization" as="element(bpcCustomization)"/>
+  <xsl:sequence select="bpc:formatProcessInfo($template,$customization,())"/>
 </xsl:function>
 
 <xs:function>
   <para>
-    Return the {bpc:process} strings replaced with the process information.
+    Return the {bpc:customization} strings replaced with the customization information.
   </para>
   <itemizedlist>
-    <listitem>bpc:process - P##</listitem>
+    <listitem>bpc:customization - customization name</listitem>
     <listitem>bpc:worksheet - #</listitem>
     <listitem>bpc:version - #.#</listitem>
     <listitem>bpc:doctype - CamelCaseDocumentType</listitem>
@@ -316,25 +320,25 @@
   <xs:param name="template">
     <para>The string input to the translation</para>
   </xs:param>
-  <xs:param name="process">
-    <para>The information for the process being acted on</para>
+  <xs:param name="customization">
+    <para>The information for the customization being acted on</para>
   </xs:param>
   <xs:param name="doctype">
-    <para>One of the document types for the given process</para>
+    <para>One of the document types for the given customization</para>
   </xs:param>
 </xs:function>
 <xsl:function name="bpc:formatProcessInfo" as="xsd:string">
   <xsl:param name="template" as="xsd:string"/>
-  <xsl:param name="process" as="element(bpcProcess)"/>
+  <xsl:param name="customization" as="element(bpcCustomization)"/>
   <xsl:param name="doctype" as="element(doctype)?"/>
   <xsl:value-of select="replace(replace(replace(replace(replace($template,
-                       '\{bpc:title\}',concat($process/@processID,
+                       '\{bpc:title\}',concat($customization/@custID,
                                               ' v',$BPCversion,
                                               ' - ',$dateTime,
-                                              ' - ',$process/title)),
+                                              ' - ',$customization/title)),
                        '\{bpc:worksheet\}',$doctype/@worksheetTab),
                        '\{bpc:doctype\}',translate($doctype,' ','')),
-                       '\{bpc:process\}',$process/@processID),
+                       '\{bpc:customization\}',$customization/@custID),
                        '\{bpc:version\}',$BPCversion)"/>
 </xsl:function>
 
@@ -356,20 +360,20 @@
   <para>
     Create a Schematron pattern with all of the 
   </para>
-  <xs:param name="process">
-    <para>The information for the process being acted on</para>
+  <xs:param name="customization">
+    <para>The information for the customization being acted on</para>
   </xs:param>
   <xs:param name="worksheet">
-    <para>The semantic information for all process being acted on</para>
+    <para>The semantic information for all customization being acted on</para>
   </xs:param>
 </xs:template>
 <xsl:template match="sch:pattern" xmlns="http://purl.oclc.org/dsdl/schematron"
               exclude-result-prefixes="xsl xslo sch">
-  <xsl:param name="process" as="element(bpcProcess)" tunnel="yes"/>
+  <xsl:param name="customization" as="element(bpcCustomization)" tunnel="yes"/>
   <xsl:param name="worksheet" as="element(worksheet)" tunnel="yes"/>
-  <xsl:variable name="processID" select="$process/@processID"/>
+  <xsl:variable name="custID" select="$customization/@custID"/>
   <xsl:variable name="bpcDocTypes" as="xsd:string*"
-                select="$process/doctypes/doctype/translate(.,' ','')"/>
+                select="$customization/doctypes/doctype/translate(.,' ','')"/>
   <xsl:variable name="worksheetDocTypes" as="xsd:string*"
                 select="$worksheet/doctypes/doctype/translate(.,' ','')"/>
   <!--first, preserve the pattern itself and its existing content-->
@@ -380,7 +384,7 @@
     <xsl:comment>
       <xsl:text>Generated assertions from spreadsheet worksheet </xsl:text>
       <xsl:value-of select=
-                         "concat($worksheet/@tab,' for process ',$processID)"/>
+                         "concat($worksheet/@tab,' for customization ',$custID)"/>
     </xsl:comment>
     <xsl:text>&#xa;</xsl:text>
     
@@ -407,11 +411,11 @@
 
     <xsl:for-each-group group-by="." select="
                    $worksheet/semantics/semantic/
-                   process[ if(count(distinct-values(../process/@processID))=1)
-                            then @processID=('core',$processID)
-                            else @processID=$processID ]/
+                   customization[ if(count(distinct-values(../customization/@custID))=1)
+                            then @custID=('core',$custID)
+                            else @custID=$custID ]/
                    data/contextPrototype
-                   (:a process that has an assertion for the semantic:)
+                   (:a customization that has an assertion for the semantic:)
                    [ exists( ../assertionPrototype ) ]
                    [ (:is a relative context:)
                      not( starts-with(.,'/') )
@@ -419,7 +423,7 @@
                      ( some $d in $bpcDocTypes satisfies
                        starts-with(.,concat('/',$d)) )
                   or (:is a prototype context and one of the document
-                       types for the process matches one of the document
+                       types for the customization matches one of the document
                        types for the worksheet:)
                      ( starts-with(., '/#')
                    and ( some $pd in $bpcDocTypes,
@@ -434,7 +438,7 @@
       <xsl:variable name="contextPrototype"
                     select="if( matches(.,'^/[^:/]:') ) then .
                             else replace(.,'^/([^/]+)','/$1:$1')"/>
-      <xsl:for-each select="$process/doctypes/doctype
+      <xsl:for-each select="$customization/doctypes/doctype
                                        [ some $d in $worksheet/doctypes/doctype
                                          satisfies $d = . ]">
         <xsl:variable name="doctypeName" 
@@ -448,7 +452,7 @@
    replace(normalize-space($contextPrototype),'#',$doctypeName),' ',
    concat('(',':',string-join(distinct-values(
                               current-group()/ancestor::semantic/@bpcID),' ' ),
-    ' Row ',string-join(current-group()/ancestor::process/@worksheetRow,' '),
+    ' Row ',string-join(current-group()/ancestor::customization/@worksheetRow,' '),
     ' Tab ''',$worksheet/@tab,
     ''':',')') )"/>
             <xsl:for-each select="current-group()">
@@ -459,13 +463,13 @@
               replace(normalize-space(../assertionPrototype),'#',$doctypeName),
               ' ','(',':',
               ancestor::semantic/@bpcID,
-              ' Row ',ancestor::process/@worksheetRow,
+              ' Row ',ancestor::customization/@worksheetRow,
               ' Tab ''',$worksheet/@tab,''':',')')"/>
                 <xsl:value-of select="replace(../message, '#',$doctypeName)"/>
                 <xsl:text> </xsl:text>
                 <xsl:value-of select="concat
                          ('(',':',ancestor::semantic/@bpcID,
-                          ''' Row ',ancestor::process/@worksheetRow, 
+                          ''' Row ',ancestor::customization/@worksheetRow, 
                           ' Tab ''',$worksheet/@tab,':',')')"/>
               </xsl:element>
             </xsl:for-each>

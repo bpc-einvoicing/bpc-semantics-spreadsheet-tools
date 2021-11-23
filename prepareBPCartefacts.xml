@@ -56,16 +56,16 @@ file="${utilitydir}Crane-cva2sch-${cva2sch}/utility/iso_schematron_assembly.xsl"
     <param name="target" value="${dir}/readme-gc2bpcxml.html"/>
   </antcall>
   
-  <uptodate targetfile="${dir}/readme-bpcprocess2sch.html"
-            property="readme-bpcprocess2sch-okay">
+  <uptodate targetfile="${dir}/readme-bpcCustomization2sch.html"
+            property="readme-bpcCustomization2sch-okay">
     <srcfiles dir=".">
-      <include name="bpcprocess2sch.xsl"/>
+      <include name="bpcCustomization2sch.xsl"/>
     </srcfiles>
   </uptodate>
   <antcall target="-make-doc">
-    <param name="okay"   value="readme-bpcprocess2sch-okay"/>
-    <param name="source" value="bpcprocess2sch.xsl"/>
-    <param name="target" value="${dir}/readme-bpcprocess2sch.html"/>
+    <param name="okay"   value="readme-bpcCustomization2sch-okay"/>
+    <param name="source" value="bpcCustomization2sch.xsl"/>
+    <param name="target" value="${dir}/readme-bpcCustomization2sch.html"/>
   </antcall>
 
   <uptodate targetfile="${dir}/readme-bpccodelists2xsl.html"
@@ -247,15 +247,15 @@ tofile="${dir}/bpc-semantics-${BPCversion}-${dateTime}/model/BPC-Semantics-Sprea
 
     <!--synthesize the invocations of the -sch4bpc Ant target and
         the input Schematron pattern harvested from the spreadsheet--> 
-    <echo message="Creating process-specific Schematron for all processes..."/>
+    <echo message="Creating customization-specific Schematron for all customizations..."/>
     <property name="antStaticScriptURI"
               location="${dir}/prepareBPCartefacts.xml"/>
-    <move file="${dir}/bpcProcesses.xml"
+    <move file="${dir}/bpcCustomizations.xml"
           todir="${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc"/>
     <java append="true" classname="net.sf.saxon.Transform">
       <arg value="--suppressXsltNamespaceCheck:on"/>
-      <arg value="-xsl:bpcprocess2sch.xsl"/>
-      <arg value="-s:${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/bpcProcesses.xml"/>
+      <arg value="-xsl:bpcCustomization2sch.xsl"/>
+      <arg value="-s:${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/bpcCustomizations.xml"/>
       <arg value="-o:${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/junk.out"/>
        <arg value=
 "+semanticsSummary=${dir}/bpc-semantics-${BPCversion}-${dateTime}/model/BPC-Semantics-Spreadsheet-${BPCversion}-${dateTime}.xml"/>
@@ -264,7 +264,7 @@ tofile="${dir}/bpc-semantics-${BPCversion}-${dateTime}/model/BPC-Semantics-Sprea
       <arg value="+patternSkeleton=${dir}/BPC-Skeleton-Pattern.sch"/>
       <arg value="BPCversion=${BPCversion}"/>
       <arg value="dateTime=${dateTime}"/>
-      <arg value="antDynamicScriptURI=../../doAllProcessAntScripts.xml"/>
+      <arg value="antDynamicScriptURI=../../doAllCustomizationAntScripts.xml"/>
     </java>
 
     <echo message="Creating the code list support stylesheet..."/>
@@ -278,7 +278,7 @@ tofile="${dir}/bpc-semantics-${BPCversion}-${dateTime}/model/BPC-Semantics-Sprea
     </java>
 
     <!--invoke the synthesized script that, itself, will invoke -sch4bpc-->
-    <ant antfile="${dir}/doAllProcessAntScripts.xml"
+    <ant antfile="${dir}/doAllCustomizationAntScripts.xml"
          useNativeBasedir="true">
       <property name="antStaticScriptURI"
                 value="${antStaticScriptURI}"/>
@@ -428,28 +428,28 @@ destfile="${dir}/bpc-semantics-tools-${BPCversion}-${dateTime}/bpc-semantics-${B
 <!--========================================================================-->
 
 <!--this target is invoked from an Ant script that is synthesized by
-    bpcprocess2sch.xsl stylesheet, creating one invocation for each
+    bpcCustomization2sch.xsl stylesheet, creating one invocation for each
     process-->
 
 <target name="-sch4bpc" unless="${okay}">
-  <echo message="Creating shell Schematron for ${process}"/>
+  <echo message="Creating shell Schematron for ${customization}"/>
   <copy file="${dir}/bpc-semantics-${BPCversion}-${dateTime}/ubl/UBL-DocumentConstraints-2.3.pattern.sch"
-        todir="${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/${process}"/>
+        todir="${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/${customization}"/>
   <copy file="${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/BPC-v${BPCversion}-Code-Lists.xsl"
-        todir="${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/${process}"/>
+        todir="${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/${customization}"/>
   <copy file="${dir}/BPC-Schematron-Support.xsl"
-        todir="${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/${process}"/>
+        todir="${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/${customization}"/>
   <antcall target="-sch2xsl">
     <param name="schin" value=
-"${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/${process}/BPC-${process}-v${BPCversion}-${doctype}-Data-Integrity-Constraints.sch"/>
+"${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/${customization}/BPC-${customization}-v${BPCversion}-${doctype}-Data-Integrity-Constraints.sch"/>
     <param name="xslout" value=
-"${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/${process}/BPC-${process}-v${BPCversion}-${doctype}-Data-Integrity-Constraints.xsl"/>
+"${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/${customization}/BPC-${customization}-v${BPCversion}-${doctype}-Data-Integrity-Constraints.xsl"/>
     <param name="xslin" value=
-"${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/${process}/BPC-${process}-${doctype}-Data-Integrity-Constraints.xsl"/>
+"${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/${customization}/BPC-${customization}-${doctype}-Data-Integrity-Constraints.xsl"/>
     <param name="svrlin" value=
-"${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/${process}/BPC-${process}-v${BPCversion}-${doctype}-Data-Integrity-Constraints.svrl.xml"/>
+"${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/${customization}/BPC-${customization}-v${BPCversion}-${doctype}-Data-Integrity-Constraints.svrl.xml"/>
     <param name="svrlout" value=
-"${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/${process}/BPC-${process}-v${BPCversion}-${doctype}-Data-Integrity-Constraints.svrl.txt"/>
+"${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/${customization}/BPC-${customization}-v${BPCversion}-${doctype}-Data-Integrity-Constraints.svrl.txt"/>
   </antcall>
 </target>
 
@@ -504,7 +504,7 @@ destfile="${dir}/bpc-semantics-tools-${BPCversion}-${dateTime}/bpc-semantics-${B
    <arg value="-o:${svrlout}"/>
   </java>
   
-  <condition property="xsl${process}${doctype}created">
+  <condition property="xsl${customization}${doctype}created">
     <and>
       <isset property="returnXSLTtest"/>
       <equals arg1="${returnXSLTtest}" arg2="0"/>
@@ -512,19 +512,19 @@ destfile="${dir}/bpc-semantics-tools-${BPCversion}-${dateTime}/bpc-semantics-${B
       <equals arg1="${lengthErrorXSLTtest}" arg2="0"/>
     </and>
   </condition>
-  <echo unless:set="xsl${process}${doctype}created"
-        message="ERROR with the BPC Semantics XSLT file ${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/${process}/BPC-${process}-${doctype}-Data-Integrity-Constraints.xsl"/>
-  <echo unless:set="xsl${process}${doctype}created"
+  <echo unless:set="xsl${customization}${doctype}created"
+        message="ERROR with the BPC Semantics XSLT file ${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/${customization}/BPC-${customization}-${doctype}-Data-Integrity-Constraints.xsl"/>
+  <echo unless:set="xsl${customization}${doctype}created"
         message="${errorXSLTtest}&#xa;${errorSVRLtest}"
         file=
-"${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/${process}/BPC-${process}-${doctype}-Data-Integrity-Constraints.error.txt"/>
-  <echo unless:set="xsl${process}${doctype}created"
+"${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/${customization}/BPC-${customization}-${doctype}-Data-Integrity-Constraints.error.txt"/>
+  <echo unless:set="xsl${customization}${doctype}created"
         message="${errorXSLTtest}&#xa;${errorSVRLtest}"
-file="${dir}/bpc-semantics-${BPCversion}-${dateTime}/ERROR-RUNNING-RESULTING-XSLT-FOR-${process}-${doctype}.txt"/>
-  <echo unless:set="xsl${process}${doctype}created"
+file="${dir}/bpc-semantics-${BPCversion}-${dateTime}/ERROR-RUNNING-RESULTING-XSLT-FOR-${customization}-${doctype}.txt"/>
+  <echo unless:set="xsl${customization}${doctype}created"
         message="${errorXSLTtest}&#xa;${errorSVRLtest}"/>
-  <delete if:set="xsl${process}${doctype}created" file="${svrlin}"/>
-  <delete if:set="xsl${process}${doctype}created" file="${svrlout}"/>
+  <delete if:set="xsl${customization}${doctype}created" file="${svrlin}"/>
+  <delete if:set="xsl${customization}${doctype}created" file="${svrlout}"/>
 </target>
 
 </project>

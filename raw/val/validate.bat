@@ -1,11 +1,11 @@
 @echo off
 rem Default BPC 2 two-phase validation
 rem
-rem Syntax: validate ubl-schema-file process-id document-type ubl-xml-file
+rem Syntax: validate ubl-schema-file customization-id document-type ubl-xml-file
 
 echo.
 echo ############################################################
-echo Validating using process "%~2": %~4
+echo Validating using customization "%~2": %~4
 echo ############################################################
 
 if exist "%~4.error.txt" del "%~4.error.txt"
@@ -18,7 +18,7 @@ if %errorRet% neq 0 goto :error
 echo No schema validation errors.
 del "%~4.error.txt"
 
-echo ===== Phase 2: BPC Process "%~2" data integrity validation =====
+echo ===== Phase 2: BPC customization "%~2" data integrity validation =====
 call "%~dp0xslt.bat" "%~4" "%~dp0../bpc/%~2/BPC-%~2-%~3-Data-Integrity-Constraints.xsl" "%~4.svrl.xml" 2> "%~4.error.txt"
 set errorRet=%errorlevel%
 if %errorRet% neq 0 goto :error

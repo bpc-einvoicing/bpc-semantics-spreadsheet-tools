@@ -38,7 +38,7 @@
   <para>
     The input file is the BPC Semantics Spreadsheet with all of the
     business rule information that contains cardinality requirements for
-    the BPC subset schemas for each process.
+    the BPC subset schemas for each customization.
   </para>
 </xs:doc>
 
@@ -107,10 +107,10 @@
                     worksheetRows="{current-group()/
          (2 + count(preceding-sibling::Row[bpc:col(.,'WorksheetTab')=$tab]))}">
             <xsl:for-each select="current-group()">
-              <process worksheetRow="{
+              <customization worksheetRow="{
          (2 + count(preceding-sibling::Row[bpc:col(.,'WorksheetTab')=$tab]))}">
-                <xsl:for-each select="(bpc:col(.,'Process'),'core')[1]">
-                  <xsl:attribute name="processID" select="."/>
+                <xsl:for-each select="(bpc:col(.,'Customization'),'core')[1]">
+                  <xsl:attribute name="custID" select="."/>
                 </xsl:for-each>
                 <modelcardinalities>
                   <xsl:analyze-string select="bpc:col(.,'ModelCardinality')"
@@ -167,7 +167,7 @@
                 <dataType>
                 <xsl:value-of select="normalize-space(bpc:col(.,'DataType'))"/>
                 </dataType>
-              </process>
+              </customization>
             </xsl:for-each>
           </semantic>
         </xsl:for-each-group>
@@ -193,7 +193,7 @@
       <xsl:variable name="theseDoctypes" as="xsd:string*"
                     select="doctypes/doctype"/>
       <analysis banner="{@tab}">
-        <xsl:for-each select="semantics/semantic/process">
+        <xsl:for-each select="semantics/semantic/customization">
           <xsl:variable name="bpcID" select="../@bpcID"/>
           <xsl:variable name="worksheetRows" 
                         select="if( ends-with($bpcID,'TBD' ) )

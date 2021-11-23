@@ -15,5 +15,5 @@ uri="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2"/>
 uri="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2"/>
   <ns prefix="bpc" uri="urn:X-BPC"/>
   <include href="UBL-DocumentConstraints-2.3.pattern.sch"/>
-  <include href="BPC-{bpc:process}-v{bpc:version}-{bpc:doctype}-Assertions.pattern.sch"/>
+  <include href="BPC-{bpc:customization}-v{bpc:version}-{bpc:doctype}-Assertions.pattern.sch"/>
 </schema>

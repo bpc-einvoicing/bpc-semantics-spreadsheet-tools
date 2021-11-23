@@ -109,7 +109,7 @@
             <xsl:for-each select="current-group()">
               <process worksheetRow="{
          (2 + count(preceding-sibling::Row[bpc:col(.,'WorksheetTab')=$tab]))}">
-                <xsl:for-each select="(bpc:col(.,'Process'),'Core')[1]">
+                <xsl:for-each select="(bpc:col(.,'Process'),'core')[1]">
                   <xsl:attribute name="processID" select="."/>
                 </xsl:for-each>
                 <modelcardinalities>

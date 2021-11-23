@@ -2,7 +2,7 @@
   Summary of processes governing the generation of artifacts.
 -->
 <bpcProcesses>
-  <bpcProcess processID="Core">
+  <bpcProcess processID="core">
     <title>Core document types</title>
     <doctypes>
       <doctype worksheetTab="Invoice, Credit Note">Invoice</doctype>
@@ -11,7 +11,7 @@
       <doctype worksheetTab="Document Status">Document Status</doctype>
     </doctypes>
   </bpcProcess>
-  <bpcProcess processID="P">
+  <bpcProcess processID="extended">
     <title>In-development Invoice and Credit Note</title>
     <doctypes>
       <doctype worksheetTab="Invoice, Credit Note">Invoice</doctype>

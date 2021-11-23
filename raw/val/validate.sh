@@ -11,7 +11,7 @@ echo "############################################################"
 if [ -f "$4.error.txt" ]; then rm "$4.error.txt" ; fi
 if [ -f "$4.svrl.xml" ];  then rm "$4.svrl.xml"  ; fi
 
-echo ============== Phase 1: XSD schema validation ==============
+echo ===== Phase 1: XSD schema validation =====
 sh "$DP0/w3cschema.sh" "$1" "$4" 2>&1 >"$4.error.txt"
 errorRet=$?
 
@@ -20,7 +20,7 @@ then echo No schema validation errors. ; rm "$4.error.txt"
 else cat "$4.error.txt"; exit $errorRet
 fi
 
-echo ============ Phase 2: BPC process $2 data integrity validation ============
+echo ===== Phase 2: BPC process \"$2\" data integrity validation =====
 sh "$DP0/xslt.sh" "$4" "$DP0/../bpc/$2/BPC-$2-$3-Data-Integrity-Constraints.xsl" "$4.svrl.xml" 2>"$4.error.txt"
 errorRet=$?
 

@@ -408,7 +408,7 @@
     <xsl:for-each-group group-by="." select="
                    $worksheet/semantics/semantic/
                    process[ if(count(distinct-values(../process/@processID))=1)
-                            then @processID=('Core',$processID)
+                            then @processID=('core',$processID)
                             else @processID=$processID ]/
                    data/contextPrototype
                    (:a process that has an assertion for the semantic:)

@@ -72,7 +72,7 @@ The artifacts ZIP contains the following as described in detail in the included 
 - BPC semantic information, and
 - a demonstration environment where the generated validation files can be exercised.
 
-## Reviewing the results
+## Reviewing the validation stylesheet generation results
 
 In the downloaded artifacts a transcript of the server action is recorded in the `archive-only-not-in-final-distribution` directory in the file ending with "`console.{date}.txt`". If the results are incomplete and there are no other error indications, inspect this file for errors and report the problem to the repository maintainers by creating an issue.
 
@@ -80,14 +80,39 @@ The existence of the file `VALID-SEMANTICS-GC-FILE-NOT-GENERATED.txt` indicates 
 
 The existence of the file `VALID-SEMANTICS-XML-FILE-NOT-GENERATED.txt` indicates a problem converting the spreadsheet content into XML, otherwise there were no problems in the second stage. First check the "model" subdirectory for a file ending with "`errors.txt`". If that does not exist, then check the console transcript.
 
-The existence of the file `ERROR-RUNNING-RESULTING-XSLT-FOR-CUSTID-#######.txt` indicates a problem in the XPath of the Schematron generated for the customization  `CUSTID` for the doctype `#######`. This file contains the report of the problems, as well as the file `bpc/CUSTID/BPC-CUSTID-#######-Data-Integrity-Constraints.error.txt`. Two steps are needed to determine where to fix the XPath problem:
+In the following, these abbreviations are used:
+- `WWWWWWW` - the document type e.g. Invoice
+- `X.Y` - the version of the semantic library e.g. 0.3
+- `ZZZ` - the customization name e.g. core, e.g. extended
 
-1 - determine the line number from the error message, for example line 581 in this message:
+The existence of the file `ERROR-RUNNING-RESULTING-XSLT-FOR-ZZZ-WWWWWWW.txt` indicates a problem in the XPath of the Schematron generated. This file contains the report of the problems, as well as the file `bpc/ZZZ/BPC-ZZZ-WWWWWWW-Data-Integrity-Constraints.error.txt`. Two steps are needed to determine where to fix the XPath problem:
+
+1 - determine the line number from the error message, for example line 581 in this message making reference to a function named "Count" instead of the XPath function named 'count':
   - `Static error near {...} on line 581 column 109 of BPC-core-v0.1-Invoice-Data-Integrity-Constraints.xsl`
   - `XPST0017: Cannot find a 1-argument function named {http://www.w3.org/2005/xpath-functions}Count()`
 
-2 - determine the spreadsheet row from that numbered line in the `bpc/CUSTID/BPC-CUSTID-v#.#-#######-Data-Integrity-Constraints.xsl` file (not the `bpc/CUSTID/BPC-CUSTID-#######-Data-Integrity-Constraints.xsl` file, but the one with `-v#.#` in the name), for example, row 71 of worksheet tab '1 Invoice, Credit Note' for semantic NABG-999 in this line:
-  - `test="Count(cac:PayeeParty/cac:Party/cac:PostalAddress) = 1 (:NABG-999 Row 71 Tab '1 Invoice, Credit Note':)"`
+2 - determine the spreadsheet row from that numbered line in the `bpc/ZZZ/BPC-ZZZ-vX.Y-WWWWWWW-Data-Integrity-Constraints.xsl` file (not the `bpc/ZZZ/BPC-ZZZ-WWWWWWW-Data-Integrity-Constraints.xsl` file, but the one with `-vX.Y` in the name), for example, row 68 of worksheet tab 'Invoice, Credit Note' for semantic NABG-999 in this line:
+  - `test="Count(cac:PartyLegalEntity/cbc:RegistrationName) = 1 (:NABT-59 Row 68 Tab 'Invoice, Credit Note':)"`
+
+## User runtime error messages
+
+When there are no Schematron errors reported when the build process is completed, the XSLT stylesheets created from the data integrity Schematron schemas are used to detect any violations in a given XML document. Violations are reported with the XPath address which includes the same spreadsheet citation as follows:
+
+```
+1. Payee name is not specified or exists more than once. /Invoice/cac:PayeeParty[1] /
+count(cac:PartyLegalEntity/cbc:RegistrationName) = 1 (:NABT-59 Row 68 Tab 'Invoice, Credit Note':)
+2. Amount Due for Payment (NABT-115) is not equal to the total amount with tax (NABT-112)
+minus PrePaid Amount (NABT-113) plus Rounding Amount (NABT-114). 
+/Invoice/cac:LegalMonetaryTotal[1]/cbc:PayableAmount[1] / 
+bpc:compareAmountsEqual( ., sum( ( ../cbc:TaxInclusiveAmount, -1 * ../cbc:PrepaidAmount,
+../cbc:PayableRoundingAmount ) ) ) (:NABT-115 Row 166 Tab 'Invoice, Credit Note':)
+Count of errors: 2
+Error in xsl:value-of/@select on line 93 column 67 of testSVRL4UBLerrors.xsl:
+  XTMM9000: Processing terminated by xsl:message at line 93 in testSVRL4UBLerrors.xsl
+Processing terminated by xsl:message at line 93 in testSVRL4UBLerrors.xsl
+```
+
+It is important to note that the "Error" cited at the end of the report for line 93 of the `testSVRL4UBLerrors.xsl` stylesheet is the mechanism by which the stylesheet signals that there are data integrity violations. There actually is no error on line 93 of the stylesheet, just the directive to exit with error.
 
 ## Documentation and demonstration - using the validation results
 

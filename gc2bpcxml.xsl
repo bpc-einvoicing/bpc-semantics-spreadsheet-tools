@@ -109,8 +109,8 @@
             <xsl:for-each select="current-group()">
               <customization worksheetRow="{
          (2 + count(preceding-sibling::Row[bpc:col(.,'WorksheetTab')=$tab]))}">
-                <xsl:for-each select="(bpc:col(.,'Customization'),'core')[1]">
-                  <xsl:attribute name="custID" select="."/>
+                <xsl:for-each select="bpc:col(.,'Customization')">
+                  <xsl:attribute name="custID" select="normalize-space(.)"/>
                 </xsl:for-each>
                 <modelcardinalities>
                   <xsl:analyze-string select="bpc:col(.,'ModelCardinality')"
@@ -183,10 +183,20 @@
     <xsl:copy-of select="$worksheet"/>
   </worksheets>
   <!--determine if there were any problems with the inputs based on outputs-->
-  <xsl:variable name="worksheetError" as="xsd:string?">
+  <xsl:variable name="worksheetError" as="xsd:string*">
     <xsl:if test="empty($worksheet)">
       <xsl:text>There appear not to be any worksheets in the input spreadsheet that describe any BPC data integrity constraints. At least one row in the worksheet must have a value in all of the following columns (by compacted name): "BPCID", "UBLDictionaryEntryName", "UBLCardinality", "SchematronAssertion", "ErrorMessage", "DataIntegrityRules"'</xsl:text>
     </xsl:if>  
+    <xsl:for-each select="$worksheet//customization">
+      <xsl:if test="normalize-space(@custID) = ''">
+        <xsl:value-of>
+          <xsl:text>Missing customization information: row=</xsl:text>
+          <xsl:value-of select="@worksheetRow"/>
+          <xsl:text>, tab=</xsl:text>
+          <xsl:value-of select="ancestor::worksheet[1]/@tab"/>
+        </xsl:value-of>
+      </xsl:if>
+    </xsl:for-each>
   </xsl:variable>
   <xsl:variable name="analysis" as="element(analysis)*">
     <xsl:for-each select="$worksheet">
@@ -198,7 +208,7 @@
           <xsl:variable name="worksheetRows" 
                         select="if( ends-with($bpcID,'TBD' ) )
                                 then @worksheetRow else ../@worksheetRows"/>
-          <xsl:variable name="thisProcess" select="."/>
+          <xsl:variable name="thisCustomization" select="."/>
           <xsl:variable name="semanticErrors">
             <!--check that the stated Dictionary Entry Names exist in UBL-->
             <xsl:variable name="denErrorMessage">
@@ -243,7 +253,7 @@
                                    then doctypes/doctype else 'xxxxx'">
               <xsl:variable name="doctypeCompressed"
                             select="replace(.,'\s+','')"/>
-              <xsl:for-each select="$thisProcess">
+              <xsl:for-each select="$thisCustomization">
                 <!--build the expected cardinalities from the UBL model-->
                 <xsl:variable name="ublDefinedCardinalities" as="element()">
                   <ublcardinalities>
@@ -279,13 +289,13 @@
                      <xsl:for-each select="1 to
                                        count(ublcardinalities/ublcardinality)">
                        <xsl:if test="not(bpc:checkConstraints(
-    $thisProcess/ublcardinalities/ublcardinality[position()=current()],
-    $thisProcess/modelcardinalities/modelcardinality[position()=current()]))">
+    $thisCustomization/ublcardinalities/ublcardinality[position()=current()],
+    $thisCustomization/modelcardinalities/modelcardinality[position()=current()]))">
                          <xsl:value-of select="concat(
         'The model cannot constrain UBL''s cardinality of ',
-        $thisProcess/ublcardinalities/ublcardinality[position()=current()],
+        $thisCustomization/ublcardinalities/ublcardinality[position()=current()],
         ' using ',
-        $thisProcess/modelcardinalities/modelcardinality[position()=current()],
+        $thisCustomization/modelcardinalities/modelcardinality[position()=current()],
         '.&#xa;')"/>
                        </xsl:if>
                      </xsl:for-each>
@@ -314,9 +324,10 @@
     </xsl:for-each>
   </xsl:variable>
   <xsl:if test="( some $a in $analysis satisfies normalize-space($a) ) or
-                normalize-space($worksheetError)">
+                exists($worksheetError)">
     <xsl:result-document href="{document-uri(.)}.errors.txt" method="text">
-      <xsl:value-of select="$worksheetError"/>
+      <xsl:value-of select="for $each in $worksheetError
+                            return concat($each,'&#xa;')" separator=""/>
       <xsl:for-each select="$analysis[normalize-space(.)]">
         <xsl:value-of select="@banner"/>
         <xsl:text>&#xa;</xsl:text>

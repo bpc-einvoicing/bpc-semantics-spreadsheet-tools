@@ -250,12 +250,10 @@ tofile="${dir}/bpc-semantics-${BPCversion}-${dateTime}/model/BPC-Semantics-Sprea
     <echo message="Creating customization-specific Schematron for all customizations..."/>
     <property name="antStaticScriptURI"
               location="${dir}/prepareBPCartefacts.xml"/>
-    <move file="${dir}/bpcCustomizations.xml"
-          todir="${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc"/>
     <java append="true" classname="net.sf.saxon.Transform">
       <arg value="--suppressXsltNamespaceCheck:on"/>
       <arg value="-xsl:bpcCustomization2sch.xsl"/>
-      <arg value="-s:${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/bpcCustomizations.xml"/>
+      <arg value="-it:start"/>
       <arg value="-o:${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/junk.out"/>
        <arg value=
 "+semanticsSummary=${dir}/bpc-semantics-${BPCversion}-${dateTime}/model/BPC-Semantics-Spreadsheet-${BPCversion}-${dateTime}.xml"/>

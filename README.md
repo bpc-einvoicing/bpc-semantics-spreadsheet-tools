@@ -46,6 +46,8 @@ _Please note that at this time the subset schemas are not being produced; this i
 
 The semantics spreadsheet produces a Schematron pattern for each of the identified customizations.
 
+**Important note**: A non-conformant convention is being used in the "UBL Context" column of the spreadsheet. The use of the '`#`' (octothorpe, hash, tic-tac-toe) character is an indication to replace the character with the document type. And the use of "`/#`" at the beginning of the string presumes the need for a namespace prefix. So the context string "`/#/cac:#Line`" because "`/Invoice:Invoice/cac:InvoiceLine`" or "`/CreditNote:CreditNote/cac:CreditNoteLine`" in the Schematron script. This is **not** a Schematron facility, but merely a typing shortcut in the BPC spreadsheet for specifying different expressions for different document types. The use of this does not work properly when used in the "Schematron Assertion" column, and so it is required to use "`/*/`" to specify the document element and not "`/#/`".  
+
 ## Triggering the creation of a new set of artifacts from the spreadsheet
 
 The artifacts are created from the Google spreadsheet whenever a change in the repository is committed and pushed. However, in many cases the spreadsheet will change but not the repository and so artifacts are not automatically created.

@@ -104,19 +104,6 @@ file="${utilitydir}Crane-cva2sch-${cva2sch}/utility/iso_schematron_assembly.xsl"
     <param name="target" value="${dir}/readme-testSVRL4UBLerrors.html"/>
   </antcall>
 
-  <uptodate targetfile="${dir}/readme-bpc-artifacts.html"
-            property="readme-bpc-artifacts-okay">
-    <srcfiles dir=".">
-      <include name="readme-bpc-artifacts.xml"/>
-      <include name="README-subset.svg"/>
-    </srcfiles>
-  </uptodate>
-  <antcall target="-make-doc">
-    <param name="okay"   value="readme-bpc-artifacts-okay"/>
-    <param name="source" value="readme-bpc-artifacts.xml"/>
-    <param name="target" value="${dir}/readme-bpc-artifacts.html"/>
-  </antcall>
-
   <!--start with the raw files-->
   <copy preservelastmodified="true" todir="${dir}/bpc-semantics-${BPCversion}-${dateTime}">
     <fileset dir="${rawdir}">
@@ -135,6 +122,25 @@ file="${utilitydir}Crane-cva2sch-${cva2sch}/utility/iso_schematron_assembly.xsl"
       <exclude name="**/${rawdir}/**"/>
     </fileset>
   </copy>
+
+  <!--moving the publishing of the readme to the production directory
+      requires the support of the publishing environment to be copied-->
+  <copy preservelastmodified="true" todir="${dir}">
+    <fileset dir=".">
+      <include name="**/utilities/article/**"/>
+      <include name="**/utilities/xslstyle/**"/>
+    </fileset>
+  </copy>
+  <echo file="${dir}/readme-bpc-artifacts-timestamp.txt"
+        message="${dateTime}"/>
+  <antcall target="-make-doc">
+    <param name="okay"   value="readme-bpc-artifacts-okay"/>
+    <param name="source" value="${dir}/readme-bpc-artifacts.xml"/>
+    <param name="target" value="${dir}/readme-bpc-artifacts.html"/>
+  </antcall>
+  <!--publishing tools no longer needed-->
+  <delete dir="${dir}/utilities"/>
+
   <!--add generated files into the distribution directory-->
   <copy preservelastmodified="true"
         todir="${dir}/bpc-semantics-${BPCversion}-${dateTime}/val">

@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl"
                  href="utilities/article/article-html.xsl"?>
+<!DOCTYPE article [
+<!ENTITY stamp SYSTEM "readme-bpc-artifacts-timestamp.txt">
+]>
 <article conformance="ids ebuzzwords quotes">
   <title>BPC Semantic Model Validation Artifacts - v0.3</title>
   <articleinfo>
-    <pubdate>2021-11-23 01:50z</pubdate>
+    <pubdate>&stamp;</pubdate>
     <copyright>
       <year>2021</year>
       <year>Business Payments Coalition</year>

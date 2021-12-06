@@ -98,9 +98,6 @@
 			<cac:PartyIdentification>
 				<cbc:ID schemeID="ZZZ">345KS5324</cbc:ID>
 			</cac:PartyIdentification>
-			<cac:PartyName>
-				<cbc:Name>Buyercompany ltd</cbc:Name>
-			</cac:PartyName>
 			<cac:PostalAddress>
 				<cbc:ID schemeID="GLN" schemeAgencyID="9">1238764941386</cbc:ID>
 				<cbc:Postbox>123</cbc:Postbox>
@@ -169,6 +166,7 @@
 			</cac:Country>
 		</cac:PostalAddress>
 		<cac:PartyLegalEntity>
+		  <cbc:RegistrationName>Scrooge Industries</cbc:RegistrationName>
 			<cbc:CompanyID schemeID="UK:CH" schemeAgencyID="ZZZ">6411982340</cbc:CompanyID>
 		</cac:PartyLegalEntity>
 	</cac:PayeeParty>
@@ -198,9 +196,7 @@
 		<cac:PayeeFinancialAccount>
 			<cbc:ID>DK1212341234123412</cbc:ID>
 			<cac:FinancialInstitutionBranch>
-				<cac:FinancialInstitution>
-					<cbc:ID>DKDKABCD</cbc:ID>
-				</cac:FinancialInstitution>
+				<cbc:ID>DKDKABCD</cbc:ID>
 			</cac:FinancialInstitutionBranch>
 		</cac:PayeeFinancialAccount>
 	</cac:PaymentMeans>

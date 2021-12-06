@@ -101,13 +101,15 @@ The existence of the file `ERROR-RUNNING-RESULTING-XSLT-FOR-ZZZ-WWWWWWW.txt` ind
 When there are no Schematron errors reported when the build process is completed, the XSLT stylesheets created from the data integrity Schematron schemas are used to detect any violations in a given XML document. Violations are reported with the XPath address which includes the same spreadsheet citation as follows:
 
 ```
-1. Payee name is not specified or exists more than once. /Invoice/cac:PayeeParty[1] /
-count(cac:PartyLegalEntity/cbc:RegistrationName) = 1 (:NABT-59 Row 68 Tab 'Invoice, Credit Note':)
-2. Amount Due for Payment (NABT-115) is not equal to the total amount with tax (NABT-112)
-minus PrePaid Amount (NABT-113) plus Rounding Amount (NABT-114). 
-/Invoice/cac:LegalMonetaryTotal[1]/cbc:PayableAmount[1] / 
-bpc:compareAmountsEqual( ., sum( ( ../cbc:TaxInclusiveAmount, -1 * ../cbc:PrepaidAmount,
-../cbc:PayableRoundingAmount ) ) ) (:NABT-115 Row 166 Tab 'Invoice, Credit Note':)
+1. Fewer or more than one trading name. /Invoice/cac:AccountingCustomerParty[1]
+ / count(cac:Party/cac:PartyName/cbc:Name) = 1 (:NABT-045 Row 84 Tab
+  'Invoice, Credit Note':)
+2. Amount Due for Payment (NABT-115) is not equal to the total amount with tax
+ (NABT-112) minus PrePaid Amount (NABT-113) plus Rounding Amount (NABT-114).
+ /Invoice/cac:LegalMonetaryTotal[1]/cbc:PayableAmount[1] /
+ bpc:compareAmountsEqual( ., sum( ( ../cbc:TaxInclusiveAmount,
+ -1 * ../cbc:PrepaidAmount, ../cbc:PayableRoundingAmount ) ) )
+ (:NABT-115 Row 165 Tab 'Invoice, Credit Note':)
 Count of errors: 2
 Error in xsl:value-of/@select on line 93 column 67 of testSVRL4UBLerrors.xsl:
   XTMM9000: Processing terminated by xsl:message at line 93 in testSVRL4UBLerrors.xsl

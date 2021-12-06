@@ -128,7 +128,7 @@
         </xsl:result-document>
         <!--this is the embedded pattern schematron-->
         <xsl:variable name="patternOutURI"
-                      select="concat($custID,'/BPC-',$custID,'-v',
+                      select="concat($custID,'/support/BPC-',$custID,'-v',
                               $BPCversion,'-',$thisDoctypeName,
                               '-Assertions.pattern.sch')"/>
         <xsl:result-document href="{$patternOutURI}">
@@ -145,15 +145,15 @@
 <xsl:comment>
   Wrapper invocation stylesheet for BPC Semantics customization:
   <xsl:value-of select="
-            bpc:formatCustomizationInfo('{bpc:title} from worksheet {bpc:worksheet}',
+      bpc:formatCustomizationInfo('{bpc:title} from worksheet {bpc:worksheet}',
                                   .,$thisDoctype)"/>
   incorporating the code list functions for XPath use.
 </xsl:comment>
             <xsl:text>&#xa;</xsl:text>
             <xslo:import href=
-"BPC-{$custID}-v{$BPCversion}-{$thisDoctypeName}-Data-Integrity-Constraints.xsl"/>
-            <xslo:import href="BPC-v{$BPCversion}-Code-Lists.xsl"/>
-            <xslo:import href="BPC-Schematron-Support.xsl"/>
+"support/BPC-{$custID}-v{$BPCversion}-{$thisDoctypeName}-Data-Integrity-Constraints.xsl"/>
+            <xslo:import href="support/BPC-v{$BPCversion}-Code-Lists.xsl"/>
+            <xslo:import href="support/BPC-Schematron-Support.xsl"/>
           </xslo:stylesheet>
         </xsl:result-document>
       </xsl:for-each>
@@ -369,9 +369,7 @@
 
     <xsl:for-each-group group-by="." select="
          $worksheet/semantics/semantic/
-         customization[ if(count(distinct-values(../customization/@custID))=1)
-                  then @custID=('core',$custID)
-                  else @custID=$custID ]/
+         customization[ $custID = tokenize( @custID, '\s+' ) ]/
          data/contextPrototype
          (:a customization that has an assertion for the semantic:)
          [ exists( ../assertionPrototype ) ]

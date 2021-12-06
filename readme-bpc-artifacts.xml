@@ -222,7 +222,7 @@ where options include:
         <para><literal>Invoice-test-bad-data.xml</literal> - a document with one BPC data integrity for customization ‘core’ and two BPC data integrity errors for customization ‘extended’:</para>
         <itemizedlist>
           <listitem>
-            <para>the registration name for the payee party is absent</para>
+            <para>the trading name for the payee party is absent</para>
           </listitem>
           <listitem>
             <para>the payable rounding amount is absent and so the arithmetic for the payable amount calculation is incorrect</para>
@@ -283,8 +283,8 @@ Exception in thread "main" java.lang.NullPointerException
 Attempting well-formed, namespace-aware parse
 Fatal error:file:///Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/
  results/bpc-semantics-tools-0.3-test/bpc-semantics-0.3-test/val/
- Invoice-test-bad-syntax.xml:10:2:The end-tag for element type "cbc:ID" must
- end with a '>' delimiter.
+ Invoice-test-bad-syntax.xml:10:2:The end-tag for element type "cbc:ID"
+ must end with a '>' delimiter.
 
 ############################################################
 Validating using customization "core": Invoice-test-bad-model.xml
@@ -305,13 +305,16 @@ Validating using customization "core": Invoice-test-bad-data.xml
 ===== Phase 1: XSD schema validation =====
 No schema validation errors.
 ===== Phase 2: BPC customization "core" data integrity validation =====
-1. Amount Due for Payment (NABT-115) is not equal to the total amount with tax
+1. Fewer or more than one trading name. /Invoice/cac:AccountingCustomerParty[1] /
+ count(cac:Party/cac:PartyName/cbc:Name) = 1 (:NABT-045 Row 84 Tab
+ 'Invoice, Credit Note':)
+2. Amount Due for Payment (NABT-115) is not equal to the total amount with tax
  (NABT-112) minus PrePaid Amount (NABT-113) plus Rounding Amount (NABT-114).
  /Invoice/cac:LegalMonetaryTotal[1]/cbc:PayableAmount[1] /
  bpc:compareAmountsEqual( ., sum( ( ../cbc:TaxInclusiveAmount,
  -1 * ../cbc:PrepaidAmount, ../cbc:PayableRoundingAmount ) ) )
- (:NABT-115 Row 166 Tab 'Invoice, Credit Note':)
-Count of errors: 1
+ (:NABT-115 Row 165 Tab 'Invoice, Credit Note':)
+Count of errors: 2
 Error in xsl:value-of/@select on line 93 column 67 of testSVRL4UBLerrors.xsl:
   XTMM9000: Processing terminated by xsl:message at line 93 in testSVRL4UBLerrors.xsl
 Processing terminated by xsl:message at line 93 in testSVRL4UBLerrors.xsl

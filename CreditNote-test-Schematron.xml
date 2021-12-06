@@ -194,9 +194,7 @@
 		<cac:PayeeFinancialAccount>
 			<cbc:ID>DK1212341234123412</cbc:ID>
 			<cac:FinancialInstitutionBranch>
-				<cac:FinancialInstitution>
-					<cbc:ID>DKDKABCD</cbc:ID>
-				</cac:FinancialInstitution>
+				<cbc:ID>DKDKABCD</cbc:ID>
 			</cac:FinancialInstitutionBranch>
 		</cac:PayeeFinancialAccount>
 	</cac:PaymentMeans>

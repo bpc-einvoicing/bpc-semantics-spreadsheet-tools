@@ -1,7 +1,7 @@
 @echo off
-call validate   ..\ubl\xsd\maindoc\UBL-ApplicationResponse-2.3.xsd core ApplicationResponse ApplicationResponse-test-bad-data-1.xml
-call validate   ..\ubl\xsd\maindoc\UBL-ApplicationResponse-2.3.xsd core ApplicationResponse ApplicationResponse-test-bad-data-2.xml
-call validate   ..\ubl\xsd\maindoc\UBL-ApplicationResponse-2.3.xsd core ApplicationResponse ApplicationResponse-test-good.xml
+call validate   ..\ubl\xsd\maindoc\UBL-ApplicationResponse-2.3.xsd minimum ApplicationResponse ApplicationResponse-test-bad-data-1.xml
+call validate   ..\ubl\xsd\maindoc\UBL-ApplicationResponse-2.3.xsd minimum ApplicationResponse ApplicationResponse-test-bad-data-2.xml
+call validate   ..\ubl\xsd\maindoc\UBL-ApplicationResponse-2.3.xsd minimum ApplicationResponse ApplicationResponse-test-good.xml
 
 call validate   ..\ubl\xsd\maindoc\UBL-DocumentStatus-2.3.xsd invoiceStatus DocumentStatus InvoiceDocumentStatus-test-bad-data-1.xml
 call validate   ..\ubl\xsd\maindoc\UBL-DocumentStatus-2.3.xsd invoiceStatus DocumentStatus InvoiceDocumentStatus-test-bad-data-2.xml

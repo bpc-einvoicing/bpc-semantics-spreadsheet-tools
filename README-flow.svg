@@ -15,8 +15,8 @@
    preserveAspectRatio="none"
    height="418.44199"
    inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
-   sodipodi:docname="DocumentExchangeSummary-20211115-0210z.svg"
-   inkscape:export-filename="/Users/admin/s/companies/bpc/DocumentExchangeSummary-20211115-0210z.png"
+   sodipodi:docname="DocumentExchangeSummary-20211206-1740z.svg"
+   inkscape:export-filename="/Users/admin/s/companies/bpc/DocumentExchangeSummary-20211206-1740z.png"
    inkscape:export-xdpi="300.08334"
    inkscape:export-ydpi="300.08334">
   <sodipodi:namedview
@@ -33,7 +33,7 @@
      id="namedview9"
      showgrid="false"
      inkscape:zoom="1.8186512"
-     inkscape:cx="256.87349"
+     inkscape:cx="194.18967"
      inkscape:cy="209.221"
      inkscape:window-x="0"
      inkscape:window-y="23"
@@ -47,7 +47,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -454,90 +454,75 @@
      xml:space="preserve"
      style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:condensed;font-size:53.33333206px;line-height:120.00000477%;font-family:'Arial Narrow';-inkscape-font-specification:'Arial Narrow, Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:6.66666651px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
      x="411.81708"
-     y="479.85645"
+     y="538.508"
      id="text380"><tspan
        sodipodi:role="line"
        id="tspan378"
        x="411.81708"
-       y="479.85645"
+       y="538.508"
        style="font-style:italic;stroke-width:6.66666651px">(only one document at a time; not</tspan><tspan
        sodipodi:role="line"
        x="411.81708"
-       y="543.98602"
+       y="602.63757"
        style="font-style:italic;stroke-width:6.66666651px"
        id="tspan382">all of these in any one interaction)</tspan><tspan
        sodipodi:role="line"
        x="411.81708"
-       y="607.98602"
+       y="666.63757"
        style="stroke-width:6.66666651px"
        id="tspan384">BS-S Invoice</tspan><tspan
        sodipodi:role="line"
        x="411.81708"
-       y="671.98602"
+       y="730.63757"
        style="stroke-width:6.66666651px"
-       id="tspan386">BS-S Credit Memo</tspan><tspan
-       sodipodi:role="line"
-       x="411.81708"
-       y="735.98602"
-       style="stroke-width:6.66666651px"
-       id="tspan388">BS-S Document Status Request</tspan></text>
+       id="tspan388">BS-S Credit Memo</tspan></text>
   <text
      id="text400"
-     y="529.99078"
+     y="588.64233"
      x="1282.0045"
      style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:condensed;font-size:53.33333206px;line-height:120.00000477%;font-family:'Arial Narrow';-inkscape-font-specification:'Arial Narrow, Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:6.66666651px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
      xml:space="preserve"><tspan
        id="tspan398"
        style="stroke-width:6.66666651px"
-       y="576.69769"
+       y="635.34924"
        x="1282.0045"
        sodipodi:role="line" /><tspan
        style="font-style:italic;stroke-width:6.66666651px"
-       y="640.82721"
+       y="699.47882"
        x="1282.0045"
        sodipodi:role="line"
        id="tspan413">(only the one corresponding document)</tspan><tspan
        style="stroke-width:6.66666651px"
-       y="704.82721"
+       y="763.47882"
        x="1282.0045"
        sodipodi:role="line"
        id="tspan415">BPC UBL Invoice</tspan><tspan
        style="stroke-width:6.66666651px"
-       y="768.82721"
+       y="827.47882"
        x="1282.0045"
        sodipodi:role="line"
-       id="tspan417">BPC UBL Credit Memo</tspan><tspan
-       style="stroke-width:6.66666651px"
-       y="832.82721"
-       x="1282.0045"
-       sodipodi:role="line"
-       id="tspan419">BPC UBL Document Status Request</tspan></text>
+       id="tspan419">BPC UBL Credit Memo</tspan></text>
   <text
      xml:space="preserve"
      style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:condensed;font-size:53.33333206px;line-height:120.00000477%;font-family:'Arial Narrow';-inkscape-font-specification:'Arial Narrow, Condensed';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:6.66666651px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
      x="2202.3262"
-     y="1017.0093"
+     y="1075.6608"
      id="text431"><tspan
        id="tspan429"
        sodipodi:role="line"
        x="2202.3262"
-       y="1017.0093"
+       y="1075.6608"
        style="font-style:italic;stroke-width:6.66666651px">(only the one corresponding document)</tspan><tspan
        sodipodi:role="line"
        x="2202.3262"
-       y="1081.0093"
+       y="1139.6608"
        style="stroke-width:6.66666651px"
        id="tspan447">BS-R Invoice</tspan><tspan
        sodipodi:role="line"
        x="2202.3262"
-       y="1145.0093"
+       y="1203.6608"
        style="stroke-width:6.66666651px"
-       id="tspan449">BS-R Credit Memo</tspan><tspan
-       sodipodi:role="line"
-       x="2202.3262"
-       y="1209.0093"
-       style="stroke-width:6.66666651px"
-       id="tspan451">BS-R Document Status Request</tspan></text>
+       id="tspan451">BS-R Credit Memo</tspan></text>
   <text
      id="text461"
      y="1210.6384"
@@ -690,7 +675,7 @@
        y="2761.2192"
        x="3036.7878"
        sodipodi:role="line"
-       id="tspan995">2021-11-15 02:10z</tspan></text>
+       id="tspan995">20211206-1740z</tspan></text>
   <text
      id="text574"
      y="-3290.3096"

@@ -159,7 +159,7 @@
       </xsl:for-each>
     </xsl:for-each>
   </xsl:for-each>
-      
+
   <!--next create the Ant script that will act on each of the Schematron
       schemas to create XSLT stylesheets-->
   <xsl:result-document href="{$antDynamicScriptURI}" xmlns="">
@@ -197,6 +197,26 @@
     </target>
       
     </project>
+  </xsl:result-document>
+
+  <!--next, create the summary list of customization identifiers-->
+  <xsl:result-document href="summary-customization-identifiers.txt"
+                       method="text">
+    <xsl:for-each select="$semanticsSummary/worksheets/worksheet">
+      <xsl:variable name="worksheet" select="."/>
+      <xsl:for-each select="distinct-values(
+                 semantics/semantic/customization/tokenize( @custID, '\s+') )">
+        <xsl:variable name="custID" select="."/>
+        <xsl:for-each select="$worksheet/doctypes/doctype">
+          <xsl:variable name="thisDoctype" select="."/>
+          <xsl:variable name="thisDoctypeName" select="translate(.,' ','')"/>
+          <xsl:value-of select="concat(
+                               'urn:oasis:names:specification:ubl:schema:xsd:',
+                               $thisDoctypeName,'-2::',$thisDoctypeName,
+                               '##bpc-0.3-data-',$custID,'&#xa;')"/>
+        </xsl:for-each>
+      </xsl:for-each>
+    </xsl:for-each>
   </xsl:result-document>
 </xsl:template>
   

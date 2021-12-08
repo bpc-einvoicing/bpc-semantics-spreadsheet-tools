@@ -125,7 +125,7 @@
                 <data>
                   <contextPrototype>
                     <xsl:value-of select="
-                                  normalize-space(bpc:col(.,'UBLContext'))"/>
+                             normalize-space(bpc:col(.,'SchematronContext'))"/>
                   </contextPrototype>
                   <xsl:for-each select="bpc:col(.,'SchematronAssertion')">
                     <assertionPrototype>

@@ -218,7 +218,16 @@
                     <xsl:when test="contains(.,'#')">
                       <xsl:variable name="proto" select="."/>
                       <xsl:for-each select="$theseDoctypes">
-                        <xsl:sequence select="replace($proto,'#',.)"/>
+                        <xsl:sequence select="
+                                     replace(
+                                       replace(
+                                         replace(
+                                           replace(
+                                             replace($proto,'\\\\','&#xfffc;'),
+                                                   '\\#','&#xfffd;'),
+                                                 '#',.),
+                                               '&#xfffd;','#'),
+                                             '&#xfffc;','\\')"/>
                       </xsl:for-each>
                     </xsl:when>
                     <xsl:otherwise>

@@ -3,10 +3,10 @@
 	xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2"
 	xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2">
 	<cbc:UBLVersionID>2.1</cbc:UBLVersionID>
-  <cbc:CustomizationID>TBD BPC Customization Identifier</cbc:CustomizationID>
-  <cbc:ProfileID>TBD BPC Profile Identifier</cbc:ProfileID>
+  <cbc:CustomizationID>urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##bpc-0.3-data-Core</cbc:CustomizationID>
+  <cbc:ProfileID>bpc-0.3-process#Invoice</cbc:ProfileID>
   <cbc:ProfileExecutionID>a123</cbc:ProfileExecutionID>
-	<cbc:IDxxxxxxx>TOSL108</cbc:IDxxxxxxx>
+	<cbc:ID>TOSL108</cbc:ID>
 	<cbc:IssueDate>2009-12-15</cbc:IssueDate>
   <cbc:InvoiceTypeCode>380</cbc:InvoiceTypeCode>
 	<cbc:Note languageID="en">Ordered in our booth at the convention.</cbc:Note>
@@ -169,6 +169,7 @@
 			</cac:Country>
 		</cac:PostalAddress>
 		<cac:PartyLegalEntity>
+		  <cbc:RegistrationName>Scrooge Industries</cbc:RegistrationName>
 			<cbc:CompanyID schemeID="UK:CH" schemeAgencyID="ZZZ">6411982340</cbc:CompanyID>
 		</cac:PartyLegalEntity>
 	</cac:PayeeParty>

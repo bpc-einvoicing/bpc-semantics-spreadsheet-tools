@@ -1,23 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Invoice xmlns="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2"
+<CreditNote xmlns="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2"
 	xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2"
 	xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2">
 	<cbc:UBLVersionID>2.1</cbc:UBLVersionID>
-  <cbc:CustomizationID>TBD BPC Customization Identifier</cbc:CustomizationID>
-  <cbc:ProfileID>TBD BPC Profile Identifier</cbc:ProfileID>
+  <cbc:CustomizationID>urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##bpc-0.3-data-Minimum</cbc:CustomizationID>
+  <cbc:ProfileID>bpc-0.3-process#CreditNote</cbc:ProfileID>
   <cbc:ProfileExecutionID>a123</cbc:ProfileExecutionID>
 	<cbc:ID>TOSL108</cbc:ID>
 	<cbc:IssueDate>2009-12-15</cbc:IssueDate>
-  <cbc:InvoiceTypeCode>380</cbc:InvoiceTypeCode>
-	<cbc:Note languageID="en">Ordered in our booth at the convention.</cbc:Note>
 	<cbc:TaxPointDate>2009-11-30</cbc:TaxPointDate>
+  <cbc:CreditNoteTypeCode>380</cbc:CreditNoteTypeCode>
+	<cbc:Note languageID="en">Ordered in our booth at the convention.</cbc:Note>
 	<cbc:DocumentCurrencyCode listID="ISO 4217 Alpha" listAgencyID="5"
 		>EUR</cbc:DocumentCurrencyCode>
 	<cbc:AccountingCost>Project cost code 123</cbc:AccountingCost>
-	<cac:InvoicePeriod>
-		<cbc:StartDate>2009-11-01</cbc:StartDate>
-		<cbc:EndDate>2009-11-30</cbc:EndDate>
-	</cac:InvoicePeriod>
 	<cac:OrderReference>
 		<cbc:ID>123</cbc:ID>
 	</cac:OrderReference>
@@ -98,9 +94,6 @@
 			<cac:PartyIdentification>
 				<cbc:ID schemeID="ZZZ">345KS5324</cbc:ID>
 			</cac:PartyIdentification>
-			<cac:PartyName>
-				<cbc:Name>Buyercompany ltd</cbc:Name>
-			</cac:PartyName>
 			<cac:PostalAddress>
 				<cbc:ID schemeID="GLN" schemeAgencyID="9">1238764941386</cbc:ID>
 				<cbc:Postbox>123</cbc:Postbox>
@@ -262,18 +255,20 @@
 		<cbc:AllowanceTotalAmount currencyID="EUR">100</cbc:AllowanceTotalAmount>
 		<cbc:ChargeTotalAmount currencyID="EUR">100</cbc:ChargeTotalAmount>
 		<cbc:PrepaidAmount currencyID="EUR">1000</cbc:PrepaidAmount>
-		<cbc:PayableRoundingAmount currencyID="EUR">0.30</cbc:PayableRoundingAmount>
 		<cbc:PayableAmount currencyID="EUR">729</cbc:PayableAmount>
 	</cac:LegalMonetaryTotal>
-	<cac:InvoiceLine>
+	<cac:CreditNoteLine>
 		<cbc:ID>1</cbc:ID>
 		<cbc:Note>Scratch on box</cbc:Note>
-		<cbc:InvoicedQuantity unitCode="C62">1</cbc:InvoicedQuantity>
+		<cbc:CreditedQuantity unitCode="C62">1</cbc:CreditedQuantity>
 		<cbc:LineExtensionAmount currencyID="EUR">1273</cbc:LineExtensionAmount>
 		<cbc:AccountingCost>BookingCode001</cbc:AccountingCost>
 		<cac:OrderLineReference>
 			<cbc:LineID>1</cbc:LineID>
 		</cac:OrderLineReference>
+		<cac:TaxTotal>
+			<cbc:TaxAmount currencyID="EUR">254.6</cbc:TaxAmount>
+		</cac:TaxTotal>
 		<cac:AllowanceCharge>
 			<cbc:ChargeIndicator>false</cbc:ChargeIndicator>
 			<cbc:AllowanceChargeReason>Damage</cbc:AllowanceChargeReason>
@@ -284,9 +279,6 @@
 			<cbc:AllowanceChargeReason>Testing</cbc:AllowanceChargeReason>
 			<cbc:Amount currencyID="EUR">10</cbc:Amount>
 		</cac:AllowanceCharge>
-		<cac:TaxTotal>
-			<cbc:TaxAmount currencyID="EUR">254.6</cbc:TaxAmount>
-		</cac:TaxTotal>
 		<cac:Item>
 			<cbc:Description languageID="EN">Processor: Intel Core 2 Duo SU9400 LV (1.4GHz). RAM:
 				3MB. Screen 1440x900</cbc:Description>
@@ -332,11 +324,11 @@
 				<cbc:BaseAmount currencyID="EUR">1500</cbc:BaseAmount>
 			</cac:AllowanceCharge>
 		</cac:Price>
-	</cac:InvoiceLine>
-	<cac:InvoiceLine>
+	</cac:CreditNoteLine>
+	<cac:CreditNoteLine>
 		<cbc:ID>2</cbc:ID>
 		<cbc:Note>Cover is slightly damaged.</cbc:Note>
-		<cbc:InvoicedQuantity unitCode="C62">-1</cbc:InvoicedQuantity>
+		<cbc:CreditedQuantity unitCode="C62">-1</cbc:CreditedQuantity>
 		<cbc:LineExtensionAmount currencyID="EUR">-3.96</cbc:LineExtensionAmount>
 		<cac:OrderLineReference>
 			<cbc:LineID>5</cbc:LineID>
@@ -376,10 +368,10 @@
 			<cbc:PriceAmount currencyID="EUR">3.96</cbc:PriceAmount>
 			<cbc:BaseQuantity unitCode="C62">1</cbc:BaseQuantity>
 		</cac:Price>
-	</cac:InvoiceLine>
-	<cac:InvoiceLine>
+	</cac:CreditNoteLine>
+	<cac:CreditNoteLine>
 		<cbc:ID>3</cbc:ID>
-		<cbc:InvoicedQuantity unitCode="C62">2</cbc:InvoicedQuantity>
+		<cbc:CreditedQuantity unitCode="C62">2</cbc:CreditedQuantity>
 		<cbc:LineExtensionAmount currencyID="EUR">4.96</cbc:LineExtensionAmount>
 		<cac:OrderLineReference>
 			<cbc:LineID>3</cbc:LineID>
@@ -426,10 +418,10 @@
 				<cbc:BaseAmount currencyID="EUR">2.75</cbc:BaseAmount>
 			</cac:AllowanceCharge>
 		</cac:Price>
-	</cac:InvoiceLine>
-	<cac:InvoiceLine>
+	</cac:CreditNoteLine>
+	<cac:CreditNoteLine>
 		<cbc:ID>4</cbc:ID>
-		<cbc:InvoicedQuantity unitCode="C62">-1</cbc:InvoicedQuantity>
+		<cbc:CreditedQuantity unitCode="C62">-1</cbc:CreditedQuantity>
 		<cbc:LineExtensionAmount currencyID="EUR">-25</cbc:LineExtensionAmount>
 		<cac:OrderLineReference>
 			<cbc:LineID>2</cbc:LineID>
@@ -469,10 +461,10 @@
 			<cbc:PriceAmount currencyID="EUR">25</cbc:PriceAmount>
 			<cbc:BaseQuantity unitCode="C62">1</cbc:BaseQuantity>
 		</cac:Price>
-	</cac:InvoiceLine>
-	<cac:InvoiceLine>
+	</cac:CreditNoteLine>
+	<cac:CreditNoteLine>
 		<cbc:ID>5</cbc:ID>
-		<cbc:InvoicedQuantity unitCode="C62">250</cbc:InvoicedQuantity>
+		<cbc:CreditedQuantity unitCode="C62">250</cbc:CreditedQuantity>
 		<cbc:LineExtensionAmount currencyID="EUR">187.5</cbc:LineExtensionAmount>
 		<cbc:AccountingCost>BookingCode002</cbc:AccountingCost>
 		<cac:OrderLineReference>
@@ -517,5 +509,5 @@
 			<cbc:PriceAmount currencyID="EUR">0.75</cbc:PriceAmount>
 			<cbc:BaseQuantity unitCode="C62">1</cbc:BaseQuantity>
 		</cac:Price>
-	</cac:InvoiceLine>
-</Invoice>
+	</cac:CreditNoteLine>
+</CreditNote>

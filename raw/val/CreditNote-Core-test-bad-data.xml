@@ -3,12 +3,13 @@
 	xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2"
 	xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2">
 	<cbc:UBLVersionID>2.1</cbc:UBLVersionID>
-  <cbc:CustomizationID>TBD BPC Customization Identifier</cbc:CustomizationID>
-  <cbc:ProfileID>TBD BPC Profile Identifier</cbc:ProfileID>
+  <cbc:CustomizationID>urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##bpc-0.3-data-Core</cbc:CustomizationID>
+  <cbc:ProfileID>bpc-0.3-process#CreditNote</cbc:ProfileID>
   <cbc:ProfileExecutionID>a123</cbc:ProfileExecutionID>
 	<cbc:ID>TOSL108</cbc:ID>
 	<cbc:IssueDate>2009-12-15</cbc:IssueDate>
-  <cbc:CreditNoteTypeCode>380</cbc:CreditNoteTypeCode>
+  <cbc:TaxPointDate>2009-11-30</cbc:TaxPointDate>
+	<cbc:CreditNoteTypeCode>380</cbc:CreditNoteTypeCode>
 	<cbc:Note languageID="en">Ordered in our booth at the convention.</cbc:Note>
 	<cbc:DocumentCurrencyCode listID="ISO 4217 Alpha" listAgencyID="5"
 		>EUR</cbc:DocumentCurrencyCode>
@@ -93,9 +94,6 @@
 			<cac:PartyIdentification>
 				<cbc:ID schemeID="ZZZ">345KS5324</cbc:ID>
 			</cac:PartyIdentification>
-			<cac:PartyName>
-				<cbc:Name>Buyercompany ltd</cbc:Name>
-			</cac:PartyName>
 			<cac:PostalAddress>
 				<cbc:ID schemeID="GLN" schemeAgencyID="9">1238764941386</cbc:ID>
 				<cbc:Postbox>123</cbc:Postbox>
@@ -257,7 +255,6 @@
 		<cbc:AllowanceTotalAmount currencyID="EUR">100</cbc:AllowanceTotalAmount>
 		<cbc:ChargeTotalAmount currencyID="EUR">100</cbc:ChargeTotalAmount>
 		<cbc:PrepaidAmount currencyID="EUR">1000</cbc:PrepaidAmount>
-		<cbc:PayableRoundingAmount currencyID="EUR">0.30</cbc:PayableRoundingAmount>
 		<cbc:PayableAmount currencyID="EUR">729</cbc:PayableAmount>
 	</cac:LegalMonetaryTotal>
 	<cac:CreditNoteLine>
@@ -269,6 +266,9 @@
 		<cac:OrderLineReference>
 			<cbc:LineID>1</cbc:LineID>
 		</cac:OrderLineReference>
+		<cac:TaxTotal>
+			<cbc:TaxAmount currencyID="EUR">254.6</cbc:TaxAmount>
+		</cac:TaxTotal>
 		<cac:AllowanceCharge>
 			<cbc:ChargeIndicator>false</cbc:ChargeIndicator>
 			<cbc:AllowanceChargeReason>Damage</cbc:AllowanceChargeReason>

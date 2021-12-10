@@ -429,8 +429,16 @@
                        namespace="http://purl.oclc.org/dsdl/schematron">
                 <xsl:attribute name="test"
                                select="concat(
-              replace(normalize-space(../assertionPrototype),'#',$doctypeName),
-              ' ','(',':',
+                      replace(
+                        replace(
+                          replace(
+                            replace(
+                              replace(../assertionPrototype,'\\\\','&#xfffc;'),
+                                    '\\#','&#xfffd;'),
+                                  '#',$doctypeName),
+                                '&#xfffd;','#'),
+                              '&#xfffc;','\\'),
+                                               ' ','(',':',
               ancestor::semantic/@bpcID,
               ' Row ',ancestor::customization/@worksheetRow,
               ' Tab ''',$worksheet/@tab,''':',')')"/>

@@ -293,6 +293,9 @@ tofile="${dir}/bpc-semantics-${BPCversion}-${dateTime}/model/BPC-Semantics-Sprea
         into the PXX directories-->
     <delete file="${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/BPC-v${BPCversion}-Code-Lists.xsl"/>
 
+    <!--trash the known future-use subdirectory-->
+    <delete dir="${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/OtherStatus"/>
+
   </sequential>
 
   <!--download the XLS spreadsheet version-->
@@ -436,25 +439,32 @@ destfile="${dir}/bpc-semantics-tools-${BPCversion}-${dateTime}/bpc-semantics-${B
     process-->
 
 <target name="-sch4bpc" unless="${okay}">
-  <echo message="Creating shell Schematron for ${customization}"/>
-  <copy file="${dir}/bpc-semantics-${BPCversion}-${dateTime}/ubl/UBL-DocumentConstraints-2.3.pattern.sch"
-        todir="${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/${customization}/support"/>
-  <copy file="${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/BPC-v${BPCversion}-Code-Lists.xsl"
-        todir="${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/${customization}/support"/>
-  <copy file="${dir}/BPC-Schematron-Support.xsl"
-        todir="${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/${customization}/support"/>
-  <antcall target="-sch2xsl">
-    <param name="schin" value=
-"${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/${customization}/BPC-${customization}-v${BPCversion}-${doctype}-Data-Integrity-Constraints.sch"/>
-    <param name="xslout" value=
-"${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/${customization}/support/BPC-${customization}-v${BPCversion}-${doctype}-Data-Integrity-Constraints.xsl"/>
-    <param name="xslin" value=
-"${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/${customization}/BPC-${customization}-${doctype}-Data-Integrity-Constraints.xsl"/>
-    <param name="svrlin" value=
-"${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/${customization}/BPC-${customization}-v${BPCversion}-${doctype}-Data-Integrity-Constraints.svrl.xml"/>
-    <param name="svrlout" value=
-"${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/${customization}/BPC-${customization}-v${BPCversion}-${doctype}-Data-Integrity-Constraints.svrl.txt"/>
-  </antcall>
+  <available property="test-${doctype}-${customization}"
+             file="${dir}/${doctype}-${customization}-test-Schematron.xml"/>
+  <echo unless:set="test-${doctype}-${customization}"
+        message="Creating shell Schematron skipped due to absence of file: ${dir}/${doctype}-${customization}-test-Schematron.xml"/>
+
+  <sequential if:set="test-${doctype}-${customization}">
+    <echo message="Creating shell Schematron for ${doctype} ${customization}"/>
+    <copy file="${dir}/bpc-semantics-${BPCversion}-${dateTime}/ubl/UBL-DocumentConstraints-2.3.pattern.sch"
+          todir="${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/${customization}/support"/>
+    <copy file="${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/BPC-v${BPCversion}-Code-Lists.xsl"
+          todir="${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/${customization}/support"/>
+    <copy file="${dir}/BPC-Schematron-Support.xsl"
+          todir="${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/${customization}/support"/>
+    <antcall target="-sch2xsl">
+      <param name="schin" value=
+  "${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/${customization}/BPC-${customization}-v${BPCversion}-${doctype}-Data-Integrity-Constraints.sch"/>
+      <param name="xslout" value=
+  "${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/${customization}/support/BPC-${customization}-v${BPCversion}-${doctype}-Data-Integrity-Constraints.xsl"/>
+      <param name="xslin" value=
+  "${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/${customization}/BPC-${customization}-${doctype}-Data-Integrity-Constraints.xsl"/>
+      <param name="svrlin" value=
+  "${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/${customization}/BPC-${customization}-v${BPCversion}-${doctype}-Data-Integrity-Constraints.svrl.xml"/>
+      <param name="svrlout" value=
+  "${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/${customization}/BPC-${customization}-v${BPCversion}-${doctype}-Data-Integrity-Constraints.svrl.txt"/>
+    </antcall>
+  </sequential>
 </target>
 
 <target name="-sch2xsl" unless="${okay}">
@@ -486,13 +496,13 @@ destfile="${dir}/bpc-semantics-tools-${BPCversion}-${dateTime}/bpc-semantics-${B
   </java>
   <echo message="Deleting intermediate XSLT..."/>
   <delete file="${xslout}.temp.xsl"/>
-  
+
   <echo message="Validating ${xslout} using ${xslin}..."/>
   <java resultproperty="returnXSLTtest" fork="true"
         jar="${saxon9heJar}"
         errorproperty="errorXSLTtest">
    <arg value="-xsl:${xslin}"/>
-   <arg value= "-s:${dir}/${doctype}-test-Schematron.xml"/>
+   <arg value= "-s:${dir}/${doctype}-${customization}-test-Schematron.xml"/>
    <arg value="-o:${svrlin}"/>
   </java>
   <length property="lengthErrorXSLTtest"
@@ -507,7 +517,7 @@ destfile="${dir}/bpc-semantics-tools-${BPCversion}-${dateTime}/bpc-semantics-${B
    <arg value="-s:${svrlin}"/>
    <arg value="-o:${svrlout}"/>
   </java>
-  
+
   <condition property="xsl${customization}${doctype}created">
     <and>
       <isset property="returnXSLTtest"/>

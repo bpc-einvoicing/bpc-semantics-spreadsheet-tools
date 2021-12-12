@@ -211,9 +211,9 @@
           <xsl:variable name="thisDoctype" select="."/>
           <xsl:variable name="thisDoctypeName" select="translate(.,' ','')"/>
           <xsl:value-of select="concat(
-                               'urn:oasis:names:specification:ubl:schema:xsd:',
-                               $thisDoctypeName,'-2::',$thisDoctypeName,
-                               '##bpc-0.3-data-',$custID,'&#xa;')"/>
+                              'urn:oasis:names:specification:ubl:schema:xsd:',
+                              $thisDoctypeName,'-2::',$thisDoctypeName,
+                              '##bpc-',$BPCversion,'-data-',$custID,'&#xa;')"/>
         </xsl:for-each>
       </xsl:for-each>
     </xsl:for-each>

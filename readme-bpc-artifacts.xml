@@ -263,14 +263,12 @@ sh test.sh</programlisting>
     </itemizedlist>
     <para>The following is a transcript of the output of running the demonstration:</para>
     <programlisting>############################################################
-Validating using customization "core": Invoice-test-bad-syntax.xml
+Validating using customization "Core": Invoice-Core-test-bad-syntax.xml
 ############################################################
 ===== Phase 1: XSD schema validation =====
-org.xml.sax.SAXParseException; systemId: file:///Users/admin/u/git/bpc/
- bpc-semantics-spreadsheet-tools/results/bpc-semantics-tools-0.3-test/
- bpc-semantics-0.3-test/val/Invoice-test-bad-syntax.xml; lineNumber: 10;
- columnNumber: 2; The end-tag for element type "cbc:ID" must end with a
- '>' delimiter.
+org.xml.sax.SAXParseException; systemId: val/Invoice-Core-test-bad-syntax.xml;
+ lineNumber: 10; columnNumber: 2; The end-tag for element type "cbc:ID" must
+ end with a '>' delimiter.
 	at org.apache.xerces.parsers.AbstractSAXParser.parse(Unknown Source)
 	at org.apache.xerces.jaxp.SAXParserImpl$JAXPSAXParser.parse(Unknown Source)
 	at org.apache.xerces.jaxp.SAXParserImpl.parse(Unknown Source)
@@ -284,51 +282,48 @@ Exception in thread "main" java.lang.NullPointerException
 	at com.nwalsh.parsers.XJParse.run(Unknown Source)
 	at com.nwalsh.parsers.XJParse.main(Unknown Source)
 Attempting well-formed, namespace-aware parse
-Fatal error:file:///Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/
- results/bpc-semantics-tools-0.3-test/bpc-semantics-0.3-test/val/
- Invoice-test-bad-syntax.xml:10:2:The end-tag for element type "cbc:ID"
- must end with a '>' delimiter.
+Fatal error:val/Invoice-Core-test-bad-syntax.xml:10:2:The end-tag for element
+ type "cbc:ID" must end with a '>' delimiter.
 
 ############################################################
-Validating using customization "core": Invoice-test-bad-model.xml
+Validating using customization "Core": Invoice-Core-test-bad-model.xml
 ############################################################
 ===== Phase 1: XSD schema validation =====
 Attempting well-formed, namespace-aware parse
-Error:file:///Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/
- results/bpc-semantics-tools-0.3-test/bpc-semantics-0.3-test/val/
- Invoice-test-bad-model.xml:9:17:cvc-complex-type.2.4.a: Invalid content
- was found starting with element 'cbc:IDxxxxxxx'. One of
+Error:val/Invoice-Core-test-bad-model.xml:9:17:cvc-complex-type.2.4.a:
+ Invalid content was found starting with element 'cbc:IDxxxxxxx'. One of
  '{"urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2":ID}'
  is expected.
-Parse succeeded (0.17) with 1 error and no warnings.
+Parse succeeded (0.18) with 1 error and no warnings.
 
 ############################################################
-Validating using customization "core": Invoice-test-bad-data.xml
+Validating using customization "Core": Invoice-Core-test-bad-data.xml
 ############################################################
 ===== Phase 1: XSD schema validation =====
 No schema validation errors.
-===== Phase 2: BPC customization "core" data integrity validation =====
-1. Fewer or more than one trading name. /Invoice/cac:AccountingCustomerParty[1] /
- count(cac:Party/cac:PartyName/cbc:Name) = 1 (:NABT-045 Row 84 Tab
+===== Phase 2: BPC customization "Core" data integrity validation =====
+1. Fewer or more than one trading name. /Invoice/cac:AccountingCustomerParty[1]
+ / count(cac:Party/cac:PartyName/cbc:Name) = 1 (:NABT-045 Row 108 Tab
  'Invoice, Credit Note':)
-2. Amount Due for Payment (NABT-115) is not equal to the total amount with tax
- (NABT-112) minus PrePaid Amount (NABT-113) plus Rounding Amount (NABT-114).
+2. Amount Due for Payment (NABT-115) is not equal to the total amount with
+ tax (NABT-112) minus PrePaid Amount (NABT-113) plus Rounding Amount (NABT-114).
  /Invoice/cac:LegalMonetaryTotal[1]/cbc:PayableAmount[1] /
  bpc:compareAmountsEqual( ., sum( ( ../cbc:TaxInclusiveAmount,
  -1 * ../cbc:PrepaidAmount, ../cbc:PayableRoundingAmount ) ) )
- (:NABT-115 Row 165 Tab 'Invoice, Credit Note':)
+ (:NABT-115 Row 189 Tab 'Invoice, Credit Note':)
 Count of errors: 2
 Error in xsl:value-of/@select on line 93 column 67 of testSVRL4UBLerrors.xsl:
-  XTMM9000: Processing terminated by xsl:message at line 93 in testSVRL4UBLerrors.xsl
+  XTMM9000: Processing terminated by xsl:message at line 93 in
+  testSVRL4UBLerrors.xsl
 Processing terminated by xsl:message at line 93 in testSVRL4UBLerrors.xsl
 
 ############################################################
-Validating using customization "core": Invoice-test-good.xml
+Validating using customization "Core": Invoice-Core-test-good.xml
 ############################################################
 ===== Phase 1: XSD schema validation =====
 No schema validation errors.
-===== Phase 2: BPC customization "core" data integrity validation =====
-No data integrity validation errors.</programlisting>
+===== Phase 2: BPC customization "Core" data integrity validation =====
+No data integrity validation errors</programlisting>
     <para>Also included is a script to run all of the document types in both of the customizations for both “good” and “bad” test files:</para>
     <itemizedlist>
       <listitem>

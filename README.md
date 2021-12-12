@@ -124,3 +124,18 @@ The `readme-bpc-artifacts.html` file in the downloaded ZIP describes the use of 
 
 Note that the programmer's documentation of each of the XSLT stylesheets used in the generation is found in the `archive-only-not-in-final-distribution` directory of the downloaded ZIP. The Ant script governing the generation process also is found in that directory.
 
+## Check list for bumping version number of the release
+
+When it comes time to change the version number of an X.Y release, such as from 0.3 to 0.4, these are the issues that need to be remembered (please add to the list if anything is missing):
+
+1. Copy the spreadsheet for archive purposes, remove "Copy of" from the copy's name, and ensure as few people as possible have the rights to change the archived content
+1. Create a GitHub branch and modify the `prepareBPCartefacts.sh` to point to the archived spreadsheet URL (in case there are maintenance releases needed); test the new branch
+1. Change the name and the title of the original spreadsheet to the new version number (this preserves the spreadsheet URL for artefact production)
+1. Update the version number in the Schematron assertion columns of all worksheets for business terms NABT-023, NABT-024, NABT-1003, and NABT-2003
+1. Update the sample XML instances in the GitHub base directory
+1. Update the sample XML instances in the `raw/val` subdirectory
+1. Update the title of the `readme-bpc-artifacts.xml` document
+1. Update the version number in the GitHub production invocation script `prepareBPCartefacts.sh`
+
+
+

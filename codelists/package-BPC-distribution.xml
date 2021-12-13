@@ -1,0 +1,44 @@
+<project default="make" xmlns:if="ant:if" xmlns:unless="ant:unless">
+
+<target name="make">
+  <delete dir="${dir}code-lists-bpc-${BPC}-${version}"/>
+  <mkdir dir="${dir}code-lists-bpc-${BPC}-${version}"/>
+  <copy todir="${dir}code-lists-bpc-${BPC}-${version}">
+    <fileset dir=".">
+      <include name="master-code-list-BPC-${BPC}.xml"/>
+    </fileset>
+  </copy>
+  <mkdir dir="${dir}code-lists-bpc-${BPC}-${version}/cl"/>
+  <mkdir dir="${dir}code-lists-bpc-${BPC}-${version}/cl/gc"/>
+  <mkdir dir="${dir}code-lists-bpc-${BPC}-${version}/cl/gc/default"/>
+  <copy todir="${dir}code-lists-bpc-${BPC}-${version}/cl/gc/default">
+    <fileset dir="${stage}">
+     <include name="**"/>
+    </fileset>
+  </copy>
+
+  <delete file="${dir}code-lists-bpc-${BPC}-${version}.zip"/>
+  <touch datetime="${datetimelocal}" pattern="yyyyMMdd-HHmm">
+    <fileset dir="${dir}code-lists-bpc-${BPC}-${version}"/>
+  </touch>
+
+  <zip destfile="${dir}code-lists-bpc-${BPC}-${version}.zip"
+       basedir="${dir}" includes="code-lists-bpc-${BPC}-${version}/**"/>
+  <delete dir="${dir}code-lists-bpc-${BPC}-${version}"/>
+  <unzip src="${dir}code-lists-bpc-${BPC}-${version}.zip" 
+         dest="${dir}"/>
+
+  <touch datetime="${datetimelocal}" pattern="yyyyMMdd-HHmm">
+    <fileset dir="${dir}">
+      <include name="code-lists-bpc-${BPC}-${version}.zip"/>
+    </fileset>
+  </touch>
+
+  <!--documentation-->
+  <echo message="stage=${stage}"/>
+  <echo message="version=${version}"/>
+  <echo message="datetimelocal=${datetimelocal}"/>
+  
+</target>
+
+</project>

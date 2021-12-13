@@ -1,0 +1,272 @@
+<lists>
+  <!--
+    Master code list for BPC distributions
+    
+    Note 1: Five lists come from one ZIP:
+            http://www.unece.org/cefact/xml_schemas/index
+            - download ZIP to confirm root directory filename for alternate
+              format location - was: D19B.zip!/uncefact/...
+            - repeat for all occurrences of version (9 - search ".zip")
+              and date (5 - search for ddMMMyy as above - first five lists)
+              - note that the XSD version may differ from the ZIP version
+                but that usually isn't determined until the process is run
+                and errors are reported; if you wish, you could check first
+                by downloading the ZIP and checking each of the 5 by doing
+                a "find all" of the string "uncefact/codelist/standard"
+    Note 2: Use the reviewuri= (11) for eyeball check for the latest revision
+            that may necessitate a change to the AlternateFormatLocationUri
+            and possibly even the transformation requirement
+    Note 3: Remember to hand-edit all <Version> elements to update the values
+            (where $VERSION will be replaced by the transformations)
+    Note 4: Update https://service.unece.org/trade/untdid/d21b/tred/tred3055.htm
+            (11 times) if newer version is available by hunt and peck (or
+            indicated in https://unece.org/trade/uncefact/xml-schemas with
+            the name UNECE_AgencyIdentificationCode suffixed by version)
+  -->
+
+<!--
+    These ten lists are from one ZIP file
+
+https://service.unece.org/trade/untdid/d21b/tred/tred1001.htm
+https://service.unece.org/trade/untdid/d21b/tred/tred1373.htm
+https://service.unece.org/trade/untdid/d21b/tred/tred4451.htm
+https://service.unece.org/trade/untdid/d21b/tred/tred4461.htm
+https://service.unece.org/trade/untdid/d21b/tred/tred5153.htm
+https://service.unece.org/trade/untdid/d21b/tred/tred5189.htm
+https://service.unece.org/trade/untdid/d21b/tred/tred5305.htm
+    
+-->
+
+  <list outuri="UNECE-1001-DocumentNameCode.gc" method="XSD"
+        inuri="DocumentNameCode.xsd"
+        reviewuri="http://www.unece.org/cefact/xml_schemas/index">
+   <Identification>
+      <ShortName>DocumentNameCode</ShortName>
+      <LongName xml:lang="en">Document Name Code</LongName>
+      <LongName Identifier="listID">UNECE-1001</LongName>
+      <Version>21A</Version>
+      <CanonicalUri>urn:un:unece:uncefact:codelist:standard:UNECE:DocumentNameCode</CanonicalUri>
+      <CanonicalVersionUri>urn:un:unece:uncefact:codelist:standard:UNECE:DocumentNameCode:D21A</CanonicalVersionUri>
+      <AlternateFormatLocationUri>https://service.unece.org/trade/untdid/d21b/tred/tred1001.htm</AlternateFormatLocationUri>
+      <AlternateFormatLocationUri MimeType="text/xml">jar:https://unece.org/sites/default/files/2021-12/XMLSchemas-D21B_1.zip!/uncefact/codelist/standard/UNECE_DocumentNameCode_D21A.xsd</AlternateFormatLocationUri>
+      <Agency>
+         <LongName xml:lang="en">United Nations Economic Commission for Europe</LongName>
+         <Identifier Identifier="https://service.unece.org/trade/untdid/d21b/tred/tred3055.htm">6</Identifier>
+      </Agency>
+   </Identification>
+  </list>
+  <list outuri="UNECE-1373-DocumentStatusCode.gc" method="XSD"
+        inuri="DocumentStatusCode.xsd"
+        reviewuri="http://www.unece.org/cefact/xml_schemas/index">
+   <Identification>
+      <ShortName>DocumentStatusCode</ShortName>
+      <LongName xml:lang="en">Document Status Code</LongName>
+      <LongName Identifier="listID">UNECE-1373</LongName>
+      <Version>21A</Version>
+      <CanonicalUri>urn:un:unece:uncefact:codelist:standard:UNECE:DocumentStatusCode</CanonicalUri>
+      <CanonicalVersionUri>urn:un:unece:uncefact:codelist:standard:UNECE:DocumentStatusCode:D21A</CanonicalVersionUri>
+      <AlternateFormatLocationUri>https://service.unece.org/trade/untdid/d21b/tred/tred1373.htm</AlternateFormatLocationUri>
+      <AlternateFormatLocationUri MimeType="text/xml">jar:https://unece.org/sites/default/files/2021-12/XMLSchemas-D21B_1.zip!/uncefact/codelist/standard/UNECE_DocumentStatusCode_D21A.xsd</AlternateFormatLocationUri>
+      <Agency>
+         <LongName xml:lang="en">United Nations Economic Commission for Europe</LongName>
+         <Identifier Identifier="https://service.unece.org/trade/untdid/d21b/tred/tred3055.htm">6</Identifier>
+      </Agency>
+   </Identification>
+  </list>
+  <list outuri="UNECE-4451-Textsubjectcodequalifier.gc" method="XSD"
+        inuri="Textsubjectcodequalifier.xsd"
+        reviewuri="http://www.unece.org/cefact/xml_schemas/index">
+   <Identification>
+      <ShortName>Textsubjectcodequalifier</ShortName>
+      <LongName xml:lang="en">Text subject code qualifier</LongName>
+      <LongName Identifier="listID">UNECE-4451</LongName>
+      <Version>21A</Version>
+      <CanonicalUri>urn:un:unece:uncefact:codelist:standard:UNECE:Textsubjectcodequalifier</CanonicalUri>
+      <CanonicalVersionUri>urn:un:unece:uncefact:codelist:standard:UNECE:Textsubjectcodequalifier:D21A</CanonicalVersionUri>
+      <AlternateFormatLocationUri>https://service.unece.org/trade/untdid/d21b/tred/tred4451.htm</AlternateFormatLocationUri>
+      <AlternateFormatLocationUri MimeType="text/xml">jar:https://unece.org/sites/default/files/2021-12/XMLSchemas-D21B_1.zip!/uncefact/codelist/standard/UNECE_Textsubjectcodequalifier_D21A.xsd</AlternateFormatLocationUri>
+      <Agency>
+         <LongName xml:lang="en">United Nations Economic Commission for Europe</LongName>
+         <Identifier Identifier="https://service.unece.org/trade/untdid/d21b/tred/tred3055.htm">6</Identifier>
+      </Agency>
+   </Identification>
+  </list>
+  <list outuri="UNECE-4461-PaymentMeansCode.gc" method="XSD"
+        inuri="PaymentMeansCode.xsd"
+        reviewuri="http://www.unece.org/cefact/xml_schemas/index">
+   <Identification>
+      <ShortName>PaymentMeansCode</ShortName>
+      <LongName xml:lang="en">Payment Means Code</LongName>
+      <LongName Identifier="listID">UNECE-4461</LongName>
+      <Version>21A</Version>
+      <CanonicalUri>urn:un:unece:uncefact:codelist:standard:UNECE:PaymentMeansCode</CanonicalUri>
+      <CanonicalVersionUri>urn:un:unece:uncefact:codelist:standard:UNECE:PaymentMeansCode:D21A</CanonicalVersionUri>
+      <AlternateFormatLocationUri>https://service.unece.org/trade/untdid/d21b/tred/tred4461.htm</AlternateFormatLocationUri>
+      <AlternateFormatLocationUri MimeType="text/xml">jar:https://unece.org/sites/default/files/2021-12/XMLSchemas-D21B_1.zip!/uncefact/codelist/standard/UNECE_PaymentMeansCode_D21A.xsd</AlternateFormatLocationUri>
+      <Agency>
+         <LongName xml:lang="en">United Nations Economic Commission for Europe</LongName>
+         <Identifier Identifier="https://service.unece.org/trade/untdid/d21b/tred/tred3055.htm">6</Identifier>
+      </Agency>
+   </Identification>
+  </list>
+  <list outuri="UNECE-5153-DutyTaxFeeTypeCode.gc" method="XSD"
+        inuri="DutyTaxFeeTypeCode.xsd"
+        reviewuri="http://www.unece.org/cefact/xml_schemas/index">
+   <Identification>
+      <ShortName>DutyTaxFeeTypeCode</ShortName>
+      <LongName xml:lang="en">Duty or tax or fee type name code</LongName>
+      <LongName Identifier="listID">UNECE-5153</LongName>
+      <Version>21A</Version>
+      <CanonicalUri>urn:un:unece:uncefact:codelist:standard:UNECE:DutyTaxFeeTypeCode</CanonicalUri>
+      <CanonicalVersionUri>urn:un:unece:uncefact:codelist:standard:UNECE:DutyTaxFeeTypeCode:D21A</CanonicalVersionUri>
+      <AlternateFormatLocationUri>https://service.unece.org/trade/untdid/d21b/tred/tred5153.htm</AlternateFormatLocationUri>
+      <AlternateFormatLocationUri MimeType="text/xml">jar:https://unece.org/sites/default/files/2021-12/XMLSchemas-D21B_1.zip!/uncefact/codelist/standard/UNECE_DutyTaxFeeTypeCode_D21A.xsd</AlternateFormatLocationUri>
+      <Agency>
+         <LongName xml:lang="en">United Nations Economic Commission for Europe</LongName>
+         <Identifier Identifier="https://service.unece.org/trade/untdid/d21b/tred/tred3055.htm">6</Identifier>
+      </Agency>
+   </Identification>
+  </list>
+  <list outuri="UNECE-5189-AllowanceChargeIdentificationCode.gc" method="XSD"
+        inuri="AllowanceChargeIdentificationCode.xsd"
+        reviewuri="http://www.unece.org/cefact/xml_schemas/index">
+   <Identification>
+      <ShortName>AllowanceChargeIdentificationCode</ShortName>
+      <LongName xml:lang="en">Allowance or Charge Identification Code</LongName>
+      <LongName Identifier="listID">UNECE-5189</LongName>
+      <Version>21A</Version>
+      <CanonicalUri>urn:un:unece:uncefact:codelist:standard:UNECE:AllowanceChargeIdentificationCode</CanonicalUri>
+      <CanonicalVersionUri>urn:un:unece:uncefact:codelist:standard:UNECE:AllowanceChargeIdentificationCode:D21A</CanonicalVersionUri>
+      <AlternateFormatLocationUri>https://service.unece.org/trade/untdid/d21b/tred/tred5189.htm</AlternateFormatLocationUri>
+      <AlternateFormatLocationUri MimeType="text/xml">jar:https://unece.org/sites/default/files/2021-12/XMLSchemas-D21B_1.zip!/uncefact/codelist/standard/UNECE_AllowanceChargeIdentificationCode_D21A.xsd</AlternateFormatLocationUri>
+      <Agency>
+         <LongName xml:lang="en">United Nations Economic Commission for Europe</LongName>
+         <Identifier Identifier="https://service.unece.org/trade/untdid/d21b/tred/tred3055.htm">6</Identifier>
+      </Agency>
+   </Identification>
+  </list>
+  <list outuri="UNECE-5305-DutyorTaxorFeeCategoryCode.gc" method="XSD"
+        inuri="DutyorTaxorFeeCategoryCode.xsd"
+        reviewuri="http://www.unece.org/cefact/xml_schemas/index">
+   <Identification>
+      <ShortName>DutyorTaxorFeeCategoryCode</ShortName>
+      <LongName xml:lang="en">Duty or tax or fee category code</LongName>
+      <LongName Identifier="listID">UNECE-5305</LongName>
+      <Version>21A</Version>
+      <CanonicalUri>urn:un:unece:uncefact:codelist:standard:UNECE:DutyorTaxorFeeCategoryCode</CanonicalUri>
+      <CanonicalVersionUri>urn:un:unece:uncefact:codelist:standard:UNECE:DutyorTaxorFeeCategoryCode:D21A</CanonicalVersionUri>
+      <AlternateFormatLocationUri>https://service.unece.org/trade/untdid/d21b/tred/tred5305.htm</AlternateFormatLocationUri>
+      <AlternateFormatLocationUri MimeType="text/xml">jar:https://unece.org/sites/default/files/2021-12/XMLSchemas-D21B_1.zip!/uncefact/codelist/standard/UNECE_DutyorTaxorFeeCategoryCode_D21A.xsd</AlternateFormatLocationUri>
+      <Agency>
+         <LongName xml:lang="en">United Nations Economic Commission for Europe</LongName>
+         <Identifier Identifier="https://service.unece.org/trade/untdid/d21b/tred/tred3055.htm">6</Identifier>
+      </Agency>
+   </Identification>
+  </list>
+
+<!--
+    These lists need to be individually checked for the most up-to-date
+-->
+
+  <list outuri="IANA-Media-Types-BinaryObjectMimeCode-incl-deprecated.gc" method="Mime"
+        filteruri="IANA-Media-Types-BinaryObjectMimeCode.gc" 
+        inuri="mime-codes.xml"
+        reviewuri="http://www.iana.org/assignments/media-types/">
+    <!--
+      Ant script transforms alternate format using Crane-mimetype2gc.xsl
+    -->
+   <Identification>
+      <ShortName>BinaryObjectMimeCode</ShortName>
+      <LongName xml:lang="en">Binary Object Mime Code</LongName>
+      <LongName Identifier="listID">IANA-Media-Types</LongName>
+      <Version>$VERSION</Version>
+      <CanonicalUri>IANA:BinaryObjectMimeCode</CanonicalUri>
+      <CanonicalVersionUri>IANA:BinaryObjectMimeCode:2021-12-07</CanonicalVersionUri>
+      <LocationUri>http://www.iana.org/assignments/media-types/media-types.xml</LocationUri>
+      <AlternateFormatLocationUri MimeType="text/xml">http://www.iana.org/assignments/media-types/media-types.xml</AlternateFormatLocationUri>
+      <Agency>
+         <LongName xml:lang="en">Internet Assigned Numbers Authority</LongName>
+         <Identifier Identifier="https://service.unece.org/trade/untdid/d21b/tred/tred3055.htm">379</Identifier>
+      </Agency>
+   </Identification>
+  </list>
+  <list outuri="ISO-3166-CountryIdentificationCode.gc" method="Country"
+        inuri="country-codes.txt"
+        reviewuri="https://www.iso.org/obp/ui/#search/code/">
+    <!--
+    Visit alternate format location using Firefox.
+    Set 300 results per page (only one page)
+    Order by the English name (note this recently moved Côte d'Ivoire to end
+      of "C" and others due to the sorting of accented letters now being wrong
+    Using File/Save Page As..., select the type using Format: Text Files
+    (be sure to use .txt as a file extension, overriding .html if prompted)
+    The end result should start and end like:
+<#home>
+Online Browsing Platform (OBP)
+...
+English short name
+	French short name
+	Alpha-2 code
+	Alpha-3 code
+	Numeric
+
+Afghanistan	Afghanistan (l')	AF	AFG	004
+Albania	Albanie (l')	AL	ALB	008
+Algeria	Algérie (l')	DZ	DZA	012
+...
+Zimbabwe	Zimbabwe (le)	ZW	ZWE	716
+Åland Islands	Åland(les Îles)	AX	ALA	248
+    -->
+   <Identification>
+      <ShortName>CountryIdentificationCode</ShortName>
+      <LongName xml:lang="en">Country Identification Code</LongName>
+      <LongName Identifier="listID">ISO-3166</LongName>
+      <Version>$VERSION</Version>
+      <CanonicalUri>urn:iso:std:iso:3166</CanonicalUri>
+      <CanonicalVersionUri>urn:iso:std:iso:3166:$VERSION</CanonicalVersionUri>
+      <AlternateFormatLocationUri MimeType="text/html">https://www.iso.org/obp/ui/#search/code/</AlternateFormatLocationUri>
+      <Agency>
+         <LongName xml:lang="en">International Organization for Standardization</LongName>
+         <Identifier Identifier="https://service.unece.org/trade/untdid/d21b/tred/tred3055.htm">5</Identifier>
+      </Agency>
+   </Identification>
+  </list>
+  <list outuri="ISO-4217-CurrencyCode.gc" method="Currency"
+        inuri="currency-codes.xml"
+        reviewuri="http://www.currency-iso.org/dam/downloads/lists/list_one.xml">
+        <!--yes, the XML is the review file, not http://www.currency-iso.org -->
+   <Identification>
+      <ShortName>CurrencyCode</ShortName>
+      <LongName xml:lang="en">Currency Code</LongName>
+      <LongName Identifier="listID">ISO-4217</LongName>
+      <Version>$VERSION</Version>
+      <CanonicalUri>urn:iso:std:iso:4217</CanonicalUri>
+      <CanonicalVersionUri>urn:iso:std:iso:4217:$VERSION</CanonicalVersionUri>
+      <AlternateFormatLocationUri MimeType="text/xml">http://www.currency-iso.org/dam/downloads/lists/list_one.xml</AlternateFormatLocationUri>
+      <Agency>
+         <LongName xml:lang="en">International Organization for Standardization</LongName>
+         <Identifier Identifier="https://service.unece.org/trade/untdid/d21b/tred/tred3055.htm">5</Identifier>
+      </Agency>
+   </Identification>
+  </list>
+  <list outuri="UNECE-Rec-20-UnitOfMeasureCode-incl-deleted.gc" method="Unit"
+        filteruri="UNECE-Rec-20-UnitOfMeasureCode.gc"
+        inuri="rec20_Rev15e-2020.xml"
+        reviewuri="https://www.unece.org/uncefact/codelistrecs.html">
+    <!--download https://www.unece.org/fileadmin/DAM/cefact/recommendations/rec20/rec20.zip
+        and confirm name of xls file in attribute above and text below-->
+   <Identification>
+      <ShortName>UnitOfMeasureCode</ShortName>
+      <LongName xml:lang="en">Unit Of Measure Code</LongName>
+      <LongName Identifier="listID">UNECE-Rec-20</LongName>
+      <Version>15e-2020</Version>
+      <CanonicalUri>urn:un:unece:uncefact:codelist:standard:UNECE:UnitOfMeasureCode</CanonicalUri>
+      <CanonicalVersionUri>urn:un:unece:uncefact:codelist:standard:UNECE:UnitOfMeasureCode:15e-2020</CanonicalVersionUri>
+      <AlternateFormatLocationUri MimeType="application/vnd.ms-excel">jar:https://www.unece.org/fileadmin/DAM/cefact/recommendations/rec20/rec20.zip!/rec20_Rev15e-2020.xls</AlternateFormatLocationUri>
+      <Agency>
+         <LongName xml:lang="en">United Nations Economic Commission for Europe</LongName>
+         <Identifier Identifier="https://service.unece.org/trade/untdid/d21b/tred/tred3055.htm">6</Identifier>
+      </Agency>
+   </Identification>
+  </list>
+</lists>

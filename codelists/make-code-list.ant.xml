@@ -1,0 +1,443 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:if="ant:if" xmlns:unless="ant:unless" default="make">
+   <target name="make">
+      <delete dir="work/"/>
+      <mkdir dir="work/"/>
+      <echo/>
+      <echo message="Preparing: DocumentNameCode"/>
+      <get src="jar:https://unece.org/sites/default/files/2021-12/XMLSchemas-D21B_1.zip!/uncefact/codelist/standard/UNECE_DocumentNameCode_D21A.xsd"
+           dest="work/DocumentNameCode.xsd"/>
+      <available file="work/DocumentNameCode.xsd" property="DocumentNameCode.exists"/>
+      <fail unless="DocumentNameCode.exists"
+            message="Cannot create intermediate file"/>
+      <echo message="Converting intermediate file into result genericode..."/>
+      <java failonerror="true" classname="net.sf.saxon.Transform">
+         <arg value="-xsl:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/Crane-cefactxsd2gc.xsl"/>
+         <arg value="-o:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/out/UNECE-1001-DocumentNameCode.gc"/>
+         <arg value="-s:work/DocumentNameCode.xsd"/>
+         <arg value="list-uri=file:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/master-code-list-BPC-0.3.xml"/>
+         <arg value="out-uri=UNECE-1001-DocumentNameCode.gc"/>
+         <arg value="--suppressXsltNamespaceCheck:on"/>
+      </java>
+      <echo message="Validating with Schema: UNECE-1001-DocumentNameCode.gc"/>
+      <java failonerror="true" classname="com.nwalsh.parsers.XJParse">
+         <arg value="-S"/>
+         <arg value="../utilities/genericode/xsd/genericode.xsd"/>
+         <arg value="out/UNECE-1001-DocumentNameCode.gc"/>
+      </java>
+      <echo message="Validating with Schematron: UNECE-1001-DocumentNameCode.gc"/>
+      <java failonerror="true" classname="net.sf.saxon.Transform">
+         <arg value="-xsl:../utilities/genericode/oasis-genericode.sch.xsl"/>
+         <arg value="-o:work/DocumentNameCode.xsd.svrl.xml"/>
+         <arg value="-s:out/UNECE-1001-DocumentNameCode.gc"/>
+         <arg value="--suppressXsltNamespaceCheck:on"/>
+      </java>
+      <java failonerror="true" classname="net.sf.saxon.Transform">
+         <arg value="-xsl:../utilities/genericode/Message-Schematron-terminator-for-SVRL.xsl"/>
+         <arg value="-s:work/DocumentNameCode.xsd.svrl.xml"/>
+         <arg value="--suppressXsltNamespaceCheck:on"/>
+      </java>
+      <echo/>
+      <echo message="Preparing: DocumentStatusCode"/>
+      <get src="jar:https://unece.org/sites/default/files/2021-12/XMLSchemas-D21B_1.zip!/uncefact/codelist/standard/UNECE_DocumentStatusCode_D21A.xsd"
+           dest="work/DocumentStatusCode.xsd"/>
+      <available file="work/DocumentStatusCode.xsd" property="DocumentStatusCode.exists"/>
+      <fail unless="DocumentStatusCode.exists"
+            message="Cannot create intermediate file"/>
+      <echo message="Converting intermediate file into result genericode..."/>
+      <java failonerror="true" classname="net.sf.saxon.Transform">
+         <arg value="-xsl:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/Crane-cefactxsd2gc.xsl"/>
+         <arg value="-o:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/out/UNECE-1373-DocumentStatusCode.gc"/>
+         <arg value="-s:work/DocumentStatusCode.xsd"/>
+         <arg value="list-uri=file:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/master-code-list-BPC-0.3.xml"/>
+         <arg value="out-uri=UNECE-1373-DocumentStatusCode.gc"/>
+         <arg value="--suppressXsltNamespaceCheck:on"/>
+      </java>
+      <echo message="Validating with Schema: UNECE-1373-DocumentStatusCode.gc"/>
+      <java failonerror="true" classname="com.nwalsh.parsers.XJParse">
+         <arg value="-S"/>
+         <arg value="../utilities/genericode/xsd/genericode.xsd"/>
+         <arg value="out/UNECE-1373-DocumentStatusCode.gc"/>
+      </java>
+      <echo message="Validating with Schematron: UNECE-1373-DocumentStatusCode.gc"/>
+      <java failonerror="true" classname="net.sf.saxon.Transform">
+         <arg value="-xsl:../utilities/genericode/oasis-genericode.sch.xsl"/>
+         <arg value="-o:work/DocumentStatusCode.xsd.svrl.xml"/>
+         <arg value="-s:out/UNECE-1373-DocumentStatusCode.gc"/>
+         <arg value="--suppressXsltNamespaceCheck:on"/>
+      </java>
+      <java failonerror="true" classname="net.sf.saxon.Transform">
+         <arg value="-xsl:../utilities/genericode/Message-Schematron-terminator-for-SVRL.xsl"/>
+         <arg value="-s:work/DocumentStatusCode.xsd.svrl.xml"/>
+         <arg value="--suppressXsltNamespaceCheck:on"/>
+      </java>
+      <echo/>
+      <echo message="Preparing: Textsubjectcodequalifier"/>
+      <get src="jar:https://unece.org/sites/default/files/2021-12/XMLSchemas-D21B_1.zip!/uncefact/codelist/standard/UNECE_Textsubjectcodequalifier_D21A.xsd"
+           dest="work/Textsubjectcodequalifier.xsd"/>
+      <available file="work/Textsubjectcodequalifier.xsd"
+                 property="Textsubjectcodequalifier.exists"/>
+      <fail unless="Textsubjectcodequalifier.exists"
+            message="Cannot create intermediate file"/>
+      <echo message="Converting intermediate file into result genericode..."/>
+      <java failonerror="true" classname="net.sf.saxon.Transform">
+         <arg value="-xsl:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/Crane-cefactxsd2gc.xsl"/>
+         <arg value="-o:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/out/UNECE-4451-Textsubjectcodequalifier.gc"/>
+         <arg value="-s:work/Textsubjectcodequalifier.xsd"/>
+         <arg value="list-uri=file:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/master-code-list-BPC-0.3.xml"/>
+         <arg value="out-uri=UNECE-4451-Textsubjectcodequalifier.gc"/>
+         <arg value="--suppressXsltNamespaceCheck:on"/>
+      </java>
+      <echo message="Validating with Schema: UNECE-4451-Textsubjectcodequalifier.gc"/>
+      <java failonerror="true" classname="com.nwalsh.parsers.XJParse">
+         <arg value="-S"/>
+         <arg value="../utilities/genericode/xsd/genericode.xsd"/>
+         <arg value="out/UNECE-4451-Textsubjectcodequalifier.gc"/>
+      </java>
+      <echo message="Validating with Schematron: UNECE-4451-Textsubjectcodequalifier.gc"/>
+      <java failonerror="true" classname="net.sf.saxon.Transform">
+         <arg value="-xsl:../utilities/genericode/oasis-genericode.sch.xsl"/>
+         <arg value="-o:work/Textsubjectcodequalifier.xsd.svrl.xml"/>
+         <arg value="-s:out/UNECE-4451-Textsubjectcodequalifier.gc"/>
+         <arg value="--suppressXsltNamespaceCheck:on"/>
+      </java>
+      <java failonerror="true" classname="net.sf.saxon.Transform">
+         <arg value="-xsl:../utilities/genericode/Message-Schematron-terminator-for-SVRL.xsl"/>
+         <arg value="-s:work/Textsubjectcodequalifier.xsd.svrl.xml"/>
+         <arg value="--suppressXsltNamespaceCheck:on"/>
+      </java>
+      <echo/>
+      <echo message="Preparing: PaymentMeansCode"/>
+      <get src="jar:https://unece.org/sites/default/files/2021-12/XMLSchemas-D21B_1.zip!/uncefact/codelist/standard/UNECE_PaymentMeansCode_D21A.xsd"
+           dest="work/PaymentMeansCode.xsd"/>
+      <available file="work/PaymentMeansCode.xsd" property="PaymentMeansCode.exists"/>
+      <fail unless="PaymentMeansCode.exists"
+            message="Cannot create intermediate file"/>
+      <echo message="Converting intermediate file into result genericode..."/>
+      <java failonerror="true" classname="net.sf.saxon.Transform">
+         <arg value="-xsl:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/Crane-cefactxsd2gc.xsl"/>
+         <arg value="-o:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/out/UNECE-4461-PaymentMeansCode.gc"/>
+         <arg value="-s:work/PaymentMeansCode.xsd"/>
+         <arg value="list-uri=file:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/master-code-list-BPC-0.3.xml"/>
+         <arg value="out-uri=UNECE-4461-PaymentMeansCode.gc"/>
+         <arg value="--suppressXsltNamespaceCheck:on"/>
+      </java>
+      <echo message="Validating with Schema: UNECE-4461-PaymentMeansCode.gc"/>
+      <java failonerror="true" classname="com.nwalsh.parsers.XJParse">
+         <arg value="-S"/>
+         <arg value="../utilities/genericode/xsd/genericode.xsd"/>
+         <arg value="out/UNECE-4461-PaymentMeansCode.gc"/>
+      </java>
+      <echo message="Validating with Schematron: UNECE-4461-PaymentMeansCode.gc"/>
+      <java failonerror="true" classname="net.sf.saxon.Transform">
+         <arg value="-xsl:../utilities/genericode/oasis-genericode.sch.xsl"/>
+         <arg value="-o:work/PaymentMeansCode.xsd.svrl.xml"/>
+         <arg value="-s:out/UNECE-4461-PaymentMeansCode.gc"/>
+         <arg value="--suppressXsltNamespaceCheck:on"/>
+      </java>
+      <java failonerror="true" classname="net.sf.saxon.Transform">
+         <arg value="-xsl:../utilities/genericode/Message-Schematron-terminator-for-SVRL.xsl"/>
+         <arg value="-s:work/PaymentMeansCode.xsd.svrl.xml"/>
+         <arg value="--suppressXsltNamespaceCheck:on"/>
+      </java>
+      <echo/>
+      <echo message="Preparing: DutyTaxFeeTypeCode"/>
+      <get src="jar:https://unece.org/sites/default/files/2021-12/XMLSchemas-D21B_1.zip!/uncefact/codelist/standard/UNECE_DutyTaxFeeTypeCode_D21A.xsd"
+           dest="work/DutyTaxFeeTypeCode.xsd"/>
+      <available file="work/DutyTaxFeeTypeCode.xsd" property="DutyTaxFeeTypeCode.exists"/>
+      <fail unless="DutyTaxFeeTypeCode.exists"
+            message="Cannot create intermediate file"/>
+      <echo message="Converting intermediate file into result genericode..."/>
+      <java failonerror="true" classname="net.sf.saxon.Transform">
+         <arg value="-xsl:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/Crane-cefactxsd2gc.xsl"/>
+         <arg value="-o:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/out/UNECE-5153-DutyTaxFeeTypeCode.gc"/>
+         <arg value="-s:work/DutyTaxFeeTypeCode.xsd"/>
+         <arg value="list-uri=file:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/master-code-list-BPC-0.3.xml"/>
+         <arg value="out-uri=UNECE-5153-DutyTaxFeeTypeCode.gc"/>
+         <arg value="--suppressXsltNamespaceCheck:on"/>
+      </java>
+      <echo message="Validating with Schema: UNECE-5153-DutyTaxFeeTypeCode.gc"/>
+      <java failonerror="true" classname="com.nwalsh.parsers.XJParse">
+         <arg value="-S"/>
+         <arg value="../utilities/genericode/xsd/genericode.xsd"/>
+         <arg value="out/UNECE-5153-DutyTaxFeeTypeCode.gc"/>
+      </java>
+      <echo message="Validating with Schematron: UNECE-5153-DutyTaxFeeTypeCode.gc"/>
+      <java failonerror="true" classname="net.sf.saxon.Transform">
+         <arg value="-xsl:../utilities/genericode/oasis-genericode.sch.xsl"/>
+         <arg value="-o:work/DutyTaxFeeTypeCode.xsd.svrl.xml"/>
+         <arg value="-s:out/UNECE-5153-DutyTaxFeeTypeCode.gc"/>
+         <arg value="--suppressXsltNamespaceCheck:on"/>
+      </java>
+      <java failonerror="true" classname="net.sf.saxon.Transform">
+         <arg value="-xsl:../utilities/genericode/Message-Schematron-terminator-for-SVRL.xsl"/>
+         <arg value="-s:work/DutyTaxFeeTypeCode.xsd.svrl.xml"/>
+         <arg value="--suppressXsltNamespaceCheck:on"/>
+      </java>
+      <echo/>
+      <echo message="Preparing: AllowanceChargeIdentificationCode"/>
+      <get src="jar:https://unece.org/sites/default/files/2021-12/XMLSchemas-D21B_1.zip!/uncefact/codelist/standard/UNECE_AllowanceChargeIdentificationCode_D21A.xsd"
+           dest="work/AllowanceChargeIdentificationCode.xsd"/>
+      <available file="work/AllowanceChargeIdentificationCode.xsd"
+                 property="AllowanceChargeIdentificationCode.exists"/>
+      <fail unless="AllowanceChargeIdentificationCode.exists"
+            message="Cannot create intermediate file"/>
+      <echo message="Converting intermediate file into result genericode..."/>
+      <java failonerror="true" classname="net.sf.saxon.Transform">
+         <arg value="-xsl:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/Crane-cefactxsd2gc.xsl"/>
+         <arg value="-o:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/out/UNECE-5189-AllowanceChargeIdentificationCode.gc"/>
+         <arg value="-s:work/AllowanceChargeIdentificationCode.xsd"/>
+         <arg value="list-uri=file:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/master-code-list-BPC-0.3.xml"/>
+         <arg value="out-uri=UNECE-5189-AllowanceChargeIdentificationCode.gc"/>
+         <arg value="--suppressXsltNamespaceCheck:on"/>
+      </java>
+      <echo message="Validating with Schema: UNECE-5189-AllowanceChargeIdentificationCode.gc"/>
+      <java failonerror="true" classname="com.nwalsh.parsers.XJParse">
+         <arg value="-S"/>
+         <arg value="../utilities/genericode/xsd/genericode.xsd"/>
+         <arg value="out/UNECE-5189-AllowanceChargeIdentificationCode.gc"/>
+      </java>
+      <echo message="Validating with Schematron: UNECE-5189-AllowanceChargeIdentificationCode.gc"/>
+      <java failonerror="true" classname="net.sf.saxon.Transform">
+         <arg value="-xsl:../utilities/genericode/oasis-genericode.sch.xsl"/>
+         <arg value="-o:work/AllowanceChargeIdentificationCode.xsd.svrl.xml"/>
+         <arg value="-s:out/UNECE-5189-AllowanceChargeIdentificationCode.gc"/>
+         <arg value="--suppressXsltNamespaceCheck:on"/>
+      </java>
+      <java failonerror="true" classname="net.sf.saxon.Transform">
+         <arg value="-xsl:../utilities/genericode/Message-Schematron-terminator-for-SVRL.xsl"/>
+         <arg value="-s:work/AllowanceChargeIdentificationCode.xsd.svrl.xml"/>
+         <arg value="--suppressXsltNamespaceCheck:on"/>
+      </java>
+      <echo/>
+      <echo message="Preparing: DutyorTaxorFeeCategoryCode"/>
+      <get src="jar:https://unece.org/sites/default/files/2021-12/XMLSchemas-D21B_1.zip!/uncefact/codelist/standard/UNECE_DutyorTaxorFeeCategoryCode_D21A.xsd"
+           dest="work/DutyorTaxorFeeCategoryCode.xsd"/>
+      <available file="work/DutyorTaxorFeeCategoryCode.xsd"
+                 property="DutyorTaxorFeeCategoryCode.exists"/>
+      <fail unless="DutyorTaxorFeeCategoryCode.exists"
+            message="Cannot create intermediate file"/>
+      <echo message="Converting intermediate file into result genericode..."/>
+      <java failonerror="true" classname="net.sf.saxon.Transform">
+         <arg value="-xsl:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/Crane-cefactxsd2gc.xsl"/>
+         <arg value="-o:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/out/UNECE-5305-DutyorTaxorFeeCategoryCode.gc"/>
+         <arg value="-s:work/DutyorTaxorFeeCategoryCode.xsd"/>
+         <arg value="list-uri=file:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/master-code-list-BPC-0.3.xml"/>
+         <arg value="out-uri=UNECE-5305-DutyorTaxorFeeCategoryCode.gc"/>
+         <arg value="--suppressXsltNamespaceCheck:on"/>
+      </java>
+      <echo message="Validating with Schema: UNECE-5305-DutyorTaxorFeeCategoryCode.gc"/>
+      <java failonerror="true" classname="com.nwalsh.parsers.XJParse">
+         <arg value="-S"/>
+         <arg value="../utilities/genericode/xsd/genericode.xsd"/>
+         <arg value="out/UNECE-5305-DutyorTaxorFeeCategoryCode.gc"/>
+      </java>
+      <echo message="Validating with Schematron: UNECE-5305-DutyorTaxorFeeCategoryCode.gc"/>
+      <java failonerror="true" classname="net.sf.saxon.Transform">
+         <arg value="-xsl:../utilities/genericode/oasis-genericode.sch.xsl"/>
+         <arg value="-o:work/DutyorTaxorFeeCategoryCode.xsd.svrl.xml"/>
+         <arg value="-s:out/UNECE-5305-DutyorTaxorFeeCategoryCode.gc"/>
+         <arg value="--suppressXsltNamespaceCheck:on"/>
+      </java>
+      <java failonerror="true" classname="net.sf.saxon.Transform">
+         <arg value="-xsl:../utilities/genericode/Message-Schematron-terminator-for-SVRL.xsl"/>
+         <arg value="-s:work/DutyorTaxorFeeCategoryCode.xsd.svrl.xml"/>
+         <arg value="--suppressXsltNamespaceCheck:on"/>
+      </java>
+      <echo/>
+      <echo message="Preparing: BinaryObjectMimeCode"/>
+      <get src="http://www.iana.org/assignments/media-types/media-types.xml"
+           dest="work/mime-codes.xml"/>
+      <available file="work/mime-codes.xml" property="BinaryObjectMimeCode.exists"/>
+      <fail unless="BinaryObjectMimeCode.exists"
+            message="Cannot create intermediate file"/>
+      <echo message="Converting intermediate file into result genericode..."/>
+      <java failonerror="true" classname="net.sf.saxon.Transform">
+         <arg value="-xsl:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/Crane-mimetype2gc.xsl"/>
+         <arg value="-o:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/out/IANA-Media-Types-BinaryObjectMimeCode-incl-deprecated.gc"/>
+         <arg value="-s:work/mime-codes.xml"/>
+         <arg value="list-uri=file:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/master-code-list-BPC-0.3.xml"/>
+         <arg value="out-uri=IANA-Media-Types-BinaryObjectMimeCode-incl-deprecated.gc"/>
+         <arg value="--suppressXsltNamespaceCheck:on"/>
+      </java>
+      <echo message="Validating with Schema: IANA-Media-Types-BinaryObjectMimeCode-incl-deprecated.gc"/>
+      <java failonerror="true" classname="com.nwalsh.parsers.XJParse">
+         <arg value="-S"/>
+         <arg value="../utilities/genericode/xsd/genericode.xsd"/>
+         <arg value="out/IANA-Media-Types-BinaryObjectMimeCode-incl-deprecated.gc"/>
+      </java>
+      <echo message="Validating with Schematron: IANA-Media-Types-BinaryObjectMimeCode-incl-deprecated.gc"/>
+      <java failonerror="true" classname="net.sf.saxon.Transform">
+         <arg value="-xsl:../utilities/genericode/oasis-genericode.sch.xsl"/>
+         <arg value="-o:work/mime-codes.xml.svrl.xml"/>
+         <arg value="-s:out/IANA-Media-Types-BinaryObjectMimeCode-incl-deprecated.gc"/>
+         <arg value="--suppressXsltNamespaceCheck:on"/>
+      </java>
+      <java failonerror="true" classname="net.sf.saxon.Transform">
+         <arg value="-xsl:../utilities/genericode/Message-Schematron-terminator-for-SVRL.xsl"/>
+         <arg value="-s:work/mime-codes.xml.svrl.xml"/>
+         <arg value="--suppressXsltNamespaceCheck:on"/>
+      </java>
+      <echo message="Validating with Schema: IANA-Media-Types-BinaryObjectMimeCode.gc"/>
+      <java failonerror="true" classname="com.nwalsh.parsers.XJParse">
+         <arg value="-S"/>
+         <arg value="../utilities/genericode/xsd/genericode.xsd"/>
+         <arg value="out/IANA-Media-Types-BinaryObjectMimeCode.gc"/>
+      </java>
+      <echo message="Validating with Schematron: IANA-Media-Types-BinaryObjectMimeCode.gc"/>
+      <java failonerror="true" classname="net.sf.saxon.Transform">
+         <arg value="-xsl:../utilities/genericode/oasis-genericode.sch.xsl"/>
+         <arg value="-o:work/mime-codes.xml.svrl.xml"/>
+         <arg value="-s:out/IANA-Media-Types-BinaryObjectMimeCode.gc"/>
+         <arg value="--suppressXsltNamespaceCheck:on"/>
+      </java>
+      <java failonerror="true" classname="net.sf.saxon.Transform">
+         <arg value="-xsl:../utilities/genericode/Message-Schematron-terminator-for-SVRL.xsl"/>
+         <arg value="-s:work/mime-codes.xml.svrl.xml"/>
+         <arg value="--suppressXsltNamespaceCheck:on"/>
+      </java>
+      <echo/>
+      <echo message="Preparing: CountryIdentificationCode"/>
+      <copy file="/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/raw/country-codes.txt"
+            todir="work/"/>
+      <echo message="Converting raw text file into intermediate HTML soup..."/>
+      <java failonerror="true" classname="net.sf.saxon.Transform">
+         <arg value="-xsl:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/Crane-country2htmlxml.xsl"/>
+         <arg value="-o:work/country-codes.txt.xml"/>
+         <arg value="-it:start"/>
+         <arg value="text-uri=work/country-codes.txt"/>
+         <arg value="--suppressXsltNamespaceCheck:on"/>
+      </java>
+      <available file="work/country-codes.txt.xml"
+                 property="CountryIdentificationCode.exists"/>
+      <fail unless="CountryIdentificationCode.exists"
+            message="Cannot create intermediate file"/>
+      <echo message="Converting intermediate file into result genericode..."/>
+      <java failonerror="true" classname="net.sf.saxon.Transform">
+         <arg value="-xsl:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/Crane-country2gc.xsl"/>
+         <arg value="-o:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/out/ISO-3166-CountryIdentificationCode.gc"/>
+         <arg value="-s:work/country-codes.txt.xml"/>
+         <arg value="list-uri=file:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/master-code-list-BPC-0.3.xml"/>
+         <arg value="out-uri=ISO-3166-CountryIdentificationCode.gc"/>
+         <arg value="--suppressXsltNamespaceCheck:on"/>
+      </java>
+      <echo message="Validating with Schema: ISO-3166-CountryIdentificationCode.gc"/>
+      <java failonerror="true" classname="com.nwalsh.parsers.XJParse">
+         <arg value="-S"/>
+         <arg value="../utilities/genericode/xsd/genericode.xsd"/>
+         <arg value="out/ISO-3166-CountryIdentificationCode.gc"/>
+      </java>
+      <echo message="Validating with Schematron: ISO-3166-CountryIdentificationCode.gc"/>
+      <java failonerror="true" classname="net.sf.saxon.Transform">
+         <arg value="-xsl:../utilities/genericode/oasis-genericode.sch.xsl"/>
+         <arg value="-o:work/country-codes.txt.svrl.xml"/>
+         <arg value="-s:out/ISO-3166-CountryIdentificationCode.gc"/>
+         <arg value="--suppressXsltNamespaceCheck:on"/>
+      </java>
+      <java failonerror="true" classname="net.sf.saxon.Transform">
+         <arg value="-xsl:../utilities/genericode/Message-Schematron-terminator-for-SVRL.xsl"/>
+         <arg value="-s:work/country-codes.txt.svrl.xml"/>
+         <arg value="--suppressXsltNamespaceCheck:on"/>
+      </java>
+      <echo/>
+      <echo message="Preparing: CurrencyCode"/>
+      <get src="http://www.currency-iso.org/dam/downloads/lists/list_one.xml"
+           dest="work/currency-codes.xml"/>
+      <available file="work/currency-codes.xml" property="CurrencyCode.exists"/>
+      <fail unless="CurrencyCode.exists" message="Cannot create intermediate file"/>
+      <echo message="Converting intermediate file into result genericode..."/>
+      <java failonerror="true" classname="net.sf.saxon.Transform">
+         <arg value="-xsl:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/Crane-currency2gc.xsl"/>
+         <arg value="-o:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/out/ISO-4217-CurrencyCode.gc"/>
+         <arg value="-s:work/currency-codes.xml"/>
+         <arg value="list-uri=file:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/master-code-list-BPC-0.3.xml"/>
+         <arg value="out-uri=ISO-4217-CurrencyCode.gc"/>
+         <arg value="--suppressXsltNamespaceCheck:on"/>
+      </java>
+      <echo message="Validating with Schema: ISO-4217-CurrencyCode.gc"/>
+      <java failonerror="true" classname="com.nwalsh.parsers.XJParse">
+         <arg value="-S"/>
+         <arg value="../utilities/genericode/xsd/genericode.xsd"/>
+         <arg value="out/ISO-4217-CurrencyCode.gc"/>
+      </java>
+      <echo message="Validating with Schematron: ISO-4217-CurrencyCode.gc"/>
+      <java failonerror="true" classname="net.sf.saxon.Transform">
+         <arg value="-xsl:../utilities/genericode/oasis-genericode.sch.xsl"/>
+         <arg value="-o:work/currency-codes.xml.svrl.xml"/>
+         <arg value="-s:out/ISO-4217-CurrencyCode.gc"/>
+         <arg value="--suppressXsltNamespaceCheck:on"/>
+      </java>
+      <java failonerror="true" classname="net.sf.saxon.Transform">
+         <arg value="-xsl:../utilities/genericode/Message-Schematron-terminator-for-SVRL.xsl"/>
+         <arg value="-s:work/currency-codes.xml.svrl.xml"/>
+         <arg value="--suppressXsltNamespaceCheck:on"/>
+      </java>
+      <echo/>
+      <echo message="Preparing: UnitOfMeasureCode"/>
+      <get src="jar:https://www.unece.org/fileadmin/DAM/cefact/recommendations/rec20/rec20.zip!/rec20_Rev15e-2020.xls"
+           dest="work/rec20_Rev15e-2020.xml.xls"/>
+      <exec executable="soffice">
+         <arg value="--headless"/>
+         <arg value="--convert-to"/>
+         <arg value="ods"/>
+         <arg value="--outdir"/>
+         <arg value="work/"/>
+         <arg value="-env:UserInstallation=file:///Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/work/codelistlibreoffice"/>
+         <arg value="work/rec20_Rev15e-2020.xml.xls"/>
+      </exec>
+      <unzip src="work/rec20_Rev15e-2020.xml.ods" dest="work/">
+         <patternset>
+            <include name="content.xml"/>
+         </patternset>
+         <mapper type="glob" from="content.xml" to="rec20_Rev15e-2020.xml"/>
+      </unzip>
+      <available file="work/rec20_Rev15e-2020.xml" property="UnitOfMeasureCode.exists"/>
+      <fail unless="UnitOfMeasureCode.exists"
+            message="Cannot create intermediate file"/>
+      <echo message="Converting intermediate file into result genericode..."/>
+      <java failonerror="true" classname="net.sf.saxon.Transform">
+         <arg value="-xsl:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/Crane-unit2gc.xsl"/>
+         <arg value="-o:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/out/UNECE-Rec-20-UnitOfMeasureCode-incl-deleted.gc"/>
+         <arg value="-s:work/rec20_Rev15e-2020.xml"/>
+         <arg value="list-uri=file:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/master-code-list-BPC-0.3.xml"/>
+         <arg value="out-uri=UNECE-Rec-20-UnitOfMeasureCode-incl-deleted.gc"/>
+         <arg value="--suppressXsltNamespaceCheck:on"/>
+      </java>
+      <echo message="Validating with Schema: UNECE-Rec-20-UnitOfMeasureCode-incl-deleted.gc"/>
+      <java failonerror="true" classname="com.nwalsh.parsers.XJParse">
+         <arg value="-S"/>
+         <arg value="../utilities/genericode/xsd/genericode.xsd"/>
+         <arg value="out/UNECE-Rec-20-UnitOfMeasureCode-incl-deleted.gc"/>
+      </java>
+      <echo message="Validating with Schematron: UNECE-Rec-20-UnitOfMeasureCode-incl-deleted.gc"/>
+      <java failonerror="true" classname="net.sf.saxon.Transform">
+         <arg value="-xsl:../utilities/genericode/oasis-genericode.sch.xsl"/>
+         <arg value="-o:work/rec20_Rev15e-2020.xml.svrl.xml"/>
+         <arg value="-s:out/UNECE-Rec-20-UnitOfMeasureCode-incl-deleted.gc"/>
+         <arg value="--suppressXsltNamespaceCheck:on"/>
+      </java>
+      <java failonerror="true" classname="net.sf.saxon.Transform">
+         <arg value="-xsl:../utilities/genericode/Message-Schematron-terminator-for-SVRL.xsl"/>
+         <arg value="-s:work/rec20_Rev15e-2020.xml.svrl.xml"/>
+         <arg value="--suppressXsltNamespaceCheck:on"/>
+      </java>
+      <echo message="Validating with Schema: UNECE-Rec-20-UnitOfMeasureCode.gc"/>
+      <java failonerror="true" classname="com.nwalsh.parsers.XJParse">
+         <arg value="-S"/>
+         <arg value="../utilities/genericode/xsd/genericode.xsd"/>
+         <arg value="out/UNECE-Rec-20-UnitOfMeasureCode.gc"/>
+      </java>
+      <echo message="Validating with Schematron: UNECE-Rec-20-UnitOfMeasureCode.gc"/>
+      <java failonerror="true" classname="net.sf.saxon.Transform">
+         <arg value="-xsl:../utilities/genericode/oasis-genericode.sch.xsl"/>
+         <arg value="-o:work/rec20_Rev15e-2020.xml.svrl.xml"/>
+         <arg value="-s:out/UNECE-Rec-20-UnitOfMeasureCode.gc"/>
+         <arg value="--suppressXsltNamespaceCheck:on"/>
+      </java>
+      <java failonerror="true" classname="net.sf.saxon.Transform">
+         <arg value="-xsl:../utilities/genericode/Message-Schematron-terminator-for-SVRL.xsl"/>
+         <arg value="-s:work/rec20_Rev15e-2020.xml.svrl.xml"/>
+         <arg value="--suppressXsltNamespaceCheck:on"/>
+      </java>
+   </target>
+</project>

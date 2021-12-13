@@ -11,7 +11,7 @@
   <cbc:InvoiceTypeCode>380</cbc:InvoiceTypeCode>
 	<cbc:Note languageID="en">Ordered in our booth at the convention.</cbc:Note>
 	<cbc:TaxPointDate>2009-11-30</cbc:TaxPointDate>
-	<cbc:DocumentCurrencyCode listID="ISO 4217 Alpha" listAgencyID="5"
+	<cbc:DocumentCurrencyCode listID="ISO-4217" listAgencyID="5"
 		>EUR</cbc:DocumentCurrencyCode>
 	<cbc:AccountingCost>Project cost code 123</cbc:AccountingCost>
 	<cac:InvoicePeriod>
@@ -58,7 +58,7 @@
 				<cbc:PostalZone>54321</cbc:PostalZone>
 				<cbc:CountrySubentityCode>RegionA</cbc:CountrySubentityCode>
 				<cac:Country>
-					<cbc:IdentificationCode listID="ISO 3166" listAgencyID="5"
+					<cbc:IdentificationCode listID="ISO-3166" listAgencyID="5"
 						>DK</cbc:IdentificationCode>
 				</cac:Country>
 			</cac:PostalAddress>
@@ -112,7 +112,7 @@
 				<cbc:PostalZone>101</cbc:PostalZone>
 				<cbc:CountrySubentity>RegionB</cbc:CountrySubentity>
 				<cac:Country>
-					<cbc:IdentificationCode listID="ISO 3166" listAgencyID="5"
+					<cbc:IdentificationCode listID="ISO-3166" listAgencyID="5"
 						>BE</cbc:IdentificationCode>
 				</cac:Country>
 			</cac:PostalAddress>
@@ -164,7 +164,7 @@
 			<cbc:PostalZone>101</cbc:PostalZone>
 			<cbc:CountrySubentity>RegionB</cbc:CountrySubentity>
 			<cac:Country>
-				<cbc:IdentificationCode listID="ISO 3166" listAgencyID="5"
+				<cbc:IdentificationCode listID="ISO-3166" listAgencyID="5"
 					>BE</cbc:IdentificationCode>
 			</cac:Country>
 		</cac:PostalAddress>

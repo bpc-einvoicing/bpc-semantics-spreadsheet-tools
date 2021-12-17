@@ -2,12 +2,10 @@
   <!--
     Master code list for BPC distributions
     
-    Note 1: Five lists come from one ZIP:
+    Note 1: seven lists come from one ZIP:
             http://www.unece.org/cefact/xml_schemas/index
             - download ZIP to confirm root directory filename for alternate
               format location - was: D19B.zip!/uncefact/...
-            - repeat for all occurrences of version (9 - search ".zip")
-              and date (5 - search for ddMMMyy as above - first five lists)
               - note that the XSD version may differ from the ZIP version
                 but that usually isn't determined until the process is run
                 and errors are reported; if you wish, you could check first
@@ -22,10 +20,14 @@
             (11 times) if newer version is available by hunt and peck (or
             indicated in https://unece.org/trade/uncefact/xml-schemas with
             the name UNECE_AgencyIdentificationCode suffixed by version)
+    Note 5: The URI strings combine the abbreviated list identifier to the
+            left of a double hyphen, followed by an explanatory title
+    Note 6: These have to be copied manually into the "raw/codelists" directory
+            for them to be acted upon in the build process
   -->
 
 <!--
-    These ten lists are from one ZIP file
+    These seven lists are from one ZIP file
 
 https://service.unece.org/trade/untdid/d21b/tred/tred1001.htm
 https://service.unece.org/trade/untdid/d21b/tred/tred1373.htm
@@ -37,7 +39,7 @@ https://service.unece.org/trade/untdid/d21b/tred/tred5305.htm
     
 -->
 
-  <list outuri="UNECE-1001-DocumentNameCode.gc" method="XSD"
+  <list outuri="UNECE-1001--DocumentNameCode.gc" method="XSD"
         inuri="DocumentNameCode.xsd"
         reviewuri="http://www.unece.org/cefact/xml_schemas/index">
    <Identification>
@@ -55,7 +57,7 @@ https://service.unece.org/trade/untdid/d21b/tred/tred5305.htm
       </Agency>
    </Identification>
   </list>
-  <list outuri="UNECE-1373-DocumentStatusCode.gc" method="XSD"
+  <list outuri="UNECE-1373--DocumentStatusCode.gc" method="XSD"
         inuri="DocumentStatusCode.xsd"
         reviewuri="http://www.unece.org/cefact/xml_schemas/index">
    <Identification>
@@ -73,7 +75,7 @@ https://service.unece.org/trade/untdid/d21b/tred/tred5305.htm
       </Agency>
    </Identification>
   </list>
-  <list outuri="UNECE-4451-Textsubjectcodequalifier.gc" method="XSD"
+  <list outuri="UNECE-4451--Textsubjectcodequalifier.gc" method="XSD"
         inuri="Textsubjectcodequalifier.xsd"
         reviewuri="http://www.unece.org/cefact/xml_schemas/index">
    <Identification>
@@ -91,7 +93,7 @@ https://service.unece.org/trade/untdid/d21b/tred/tred5305.htm
       </Agency>
    </Identification>
   </list>
-  <list outuri="UNECE-4461-PaymentMeansCode.gc" method="XSD"
+  <list outuri="UNECE-4461--PaymentMeansCode.gc" method="XSD"
         inuri="PaymentMeansCode.xsd"
         reviewuri="http://www.unece.org/cefact/xml_schemas/index">
    <Identification>
@@ -109,7 +111,7 @@ https://service.unece.org/trade/untdid/d21b/tred/tred5305.htm
       </Agency>
    </Identification>
   </list>
-  <list outuri="UNECE-5153-DutyTaxFeeTypeCode.gc" method="XSD"
+  <list outuri="UNECE-5153--DutyTaxFeeTypeCode.gc" method="XSD"
         inuri="DutyTaxFeeTypeCode.xsd"
         reviewuri="http://www.unece.org/cefact/xml_schemas/index">
    <Identification>
@@ -127,7 +129,7 @@ https://service.unece.org/trade/untdid/d21b/tred/tred5305.htm
       </Agency>
    </Identification>
   </list>
-  <list outuri="UNECE-5189-AllowanceChargeIdentificationCode.gc" method="XSD"
+  <list outuri="UNECE-5189--AllowanceChargeIdentificationCode.gc" method="XSD"
         inuri="AllowanceChargeIdentificationCode.xsd"
         reviewuri="http://www.unece.org/cefact/xml_schemas/index">
    <Identification>
@@ -145,7 +147,7 @@ https://service.unece.org/trade/untdid/d21b/tred/tred5305.htm
       </Agency>
    </Identification>
   </list>
-  <list outuri="UNECE-5305-DutyorTaxorFeeCategoryCode.gc" method="XSD"
+  <list outuri="UNECE-5305--DutyorTaxorFeeCategoryCode.gc" method="XSD"
         inuri="DutyorTaxorFeeCategoryCode.xsd"
         reviewuri="http://www.unece.org/cefact/xml_schemas/index">
    <Identification>
@@ -168,8 +170,8 @@ https://service.unece.org/trade/untdid/d21b/tred/tred5305.htm
     These lists need to be individually checked for the most up-to-date
 -->
 
-  <list outuri="IANA-Media-Types-BinaryObjectMimeCode-incl-deprecated.gc" method="Mime"
-        filteruri="IANA-Media-Types-BinaryObjectMimeCode.gc" 
+  <list outuri="IANA-Media-Types-Including-Deprecated--BinaryObjectMimeCode-incl-deprecated.gc" method="Mime"
+        filteruri="IANA-Media-Types--BinaryObjectMimeCode.gc" 
         inuri="mime-codes.xml"
         reviewuri="http://www.iana.org/assignments/media-types/">
     <!--
@@ -190,7 +192,7 @@ https://service.unece.org/trade/untdid/d21b/tred/tred5305.htm
       </Agency>
    </Identification>
   </list>
-  <list outuri="ISO-3166-CountryIdentificationCode.gc" method="Country"
+  <list outuri="ISO-3166--CountryIdentificationCode.gc" method="Country"
         inuri="country-codes.txt"
         reviewuri="https://www.iso.org/obp/ui/#search/code/">
     <!--
@@ -231,7 +233,7 @@ Zimbabwe	Zimbabwe (le)	ZW	ZWE	716
       </Agency>
    </Identification>
   </list>
-  <list outuri="ISO-4217-CurrencyCode.gc" method="Currency"
+  <list outuri="ISO-4217--CurrencyCode.gc" method="Currency"
         inuri="currency-codes.xml"
         reviewuri="http://www.currency-iso.org/dam/downloads/lists/list_one.xml">
         <!--yes, the XML is the review file, not http://www.currency-iso.org -->
@@ -249,8 +251,8 @@ Zimbabwe	Zimbabwe (le)	ZW	ZWE	716
       </Agency>
    </Identification>
   </list>
-  <list outuri="UNECE-Rec-20-UnitOfMeasureCode-incl-deleted.gc" method="Unit"
-        filteruri="UNECE-Rec-20-UnitOfMeasureCode.gc"
+  <list outuri="UNECE-Rec-20-Including-Deleted--UnitOfMeasureCode-incl-deleted.gc" method="Unit"
+        filteruri="UNECE-Rec-20--UnitOfMeasureCode.gc"
         inuri="rec20_Rev15e-2020.xml"
         reviewuri="https://www.unece.org/uncefact/codelistrecs.html">
     <!--download https://www.unece.org/fileadmin/DAM/cefact/recommendations/rec20/rec20.zip

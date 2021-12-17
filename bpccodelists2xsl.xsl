@@ -166,7 +166,7 @@
 <xsl:function name="bpc:listId" as="xsd:string">
   <xsl:param name="doc" as="document-node()"/>
   <xsl:sequence select="replace(document-uri($doc),
-                                '^.+/(.+?)(\.[^\.]*)?$','$1')"/>
+                                '^.+/(.+?)--(.+?\.[^\.]*)?$','$1')"/>
 </xsl:function>
 <!--========================================================================-->
 <xs:doc>

@@ -446,8 +446,8 @@
                 <xsl:text> </xsl:text>
                 <xsl:value-of select="concat
                          ('(',':',ancestor::semantic/@bpcID,
-                          ''' Row ',ancestor::customization/@worksheetRow, 
-                          ' Tab ''',$worksheet/@tab,':',')')"/>
+                          ' Row ',ancestor::customization/@worksheetRow, 
+                          ' Tab ''',$worksheet/@tab,''':',')')"/>
               </xsl:element>
             </xsl:for-each>
           </xsl:element>

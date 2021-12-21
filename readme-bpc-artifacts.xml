@@ -46,18 +46,24 @@
   </section>
   <section id="S-DATA-FLOWS-AND-VALIDATION-ARTIFACTS">
     <title>Data flows and validation artifacts</title>
-    <para>In <xref linkend="F-XML-DOCUMENT-EGRESS-GENERATION-AND-INGRESS-INGESTION"/> the two validation artifacts, the complete UBL schema and data integrity constraint checking, used by Corner 3 in the two-phase validation are depicted with the labels ① and ③ at the bottom right.</para>
-    <figure id="F-XML-DOCUMENT-EGRESS-GENERATION-AND-INGRESS-INGESTION">
-      <title>XML document egress (generation) and ingress (ingestion)</title>
+    <para>In <xref linkend="F-XML-DOCUMENT-INGRESS-INGESTION"/> the two validation artifacts, the complete UBL W3C XML schema and the data integrity constraint checking Schematron schema, used by Corner 3 in the two-phase validation are depicted.</para>
+    <figure id="F-XML-DOCUMENT-INGRESS-INGESTION">
+      <title>XML document ingress (ingestion)</title>
       <mediaobject>
         <imageobject>
-          <imagedata role="html-embed" fileref="README-subset.svg"/>
+          <imagedata role="html-embed" fileref="README-Corner-3.svg"/>
         </imageobject>
       </mediaobject>
     </figure>
-    <para>These two artifacts fulfill the only required steps in the egress and ingress of documents from Corner 2 to Corner 3. Also depicted in the diagram, with the label ②, is the minimum subset schema representing the repertoire of UBL semantics selected by the BPC to represent sufficient
-      information to be sent across the network. Using the subset schema is discretionary as Corner 2 may have different means by which the BPC subset of UBL semantics is represented during code generation. Using that schema and the same BPC constraint checking as used by Corner 3, depicted in both
-      corners with the label ③, Corner 2 can pre-validate the outgoing XML content as a self-check so as not to violate its governance commitment to send only BPC-valid content.</para>
+    <para>One-time preparation (before receiving first business document):</para>
+    <para>&#x2460; - the OASIS committee has created a W3C XSD XML schema for all UBL documents</para>
+    <para>&#x2461; - the BPC has created a Schematron (ISO/IEC 19757-3) schema for BPC data integrity rules</para>
+    <para>&#x2462; - the BPC has created an XSLT runtime script for BPC data integrity rules</para>
+    <para>Run-time processing (does not require changes to one-time files):</para>
+    <para>&#x2463; - the BPC business document in UBL XML format from Corner 2 arrives successfully at Corner 3 according to the AS4 transport protocol and AS4 receipt acknowledgement (AS4 processes not depicted)</para>
+    <para>&#x2464; - using W3C XSD XML Schema validation, if the BPC XML breaks any UBL structural or lexical constraints then an “SV” (syntax validation) rejection BPC XML message is sent back to Corner 2 and the work of Corner 3 is done</para>
+    <para>&#x2465; - using XSLT transformation, if the BPC XML breaks any BPC data integrity constraints then a “BV” (data integrity violation) rejection BPC XML message is sent back to Corner 2 and the work of Corner 3 is done</para>
+    <para>&#x2466; - Corner 3 rearranges the business document information from UBL XML format to Corner 4’s private data format and forwards it to Corner 4 and the work of Corner 3 is done</para>
     <para>A UBL document sent by Corner 2 across the network may include schema-valid representations of additional semantics beyond the BPC repertoire, but Corner 3 is only obliged to recognize the BPC suite. Corner 3 may choose to support more, but Corner 2 cannot rely on Corner 3 supporting more
       than the BPC repertoire.</para>
     <para>In this section, <literal>WWWWWWW</literal> refers to the document type, <literal>X.Y</literal> refers to the version number, and <literal>ZZZ</literal> refers to the customization (at this point either “core” or “extended”).</para>
@@ -175,16 +181,19 @@
     <para>The demonstration directory is the <literal>val/</literal> directory (see <xref linkend="S-DEMONSTRATION-EXECUTION"/> for details):</para>
     <itemizedlist>
       <listitem>
-        <para><literal>*.jar</literal> - open-source project Java executables implementing validation and transformation (see the included notices for open-source details)</para>
+        <para><literal>*.xml</literal> - demonstration test files</para>
       </listitem>
       <listitem>
-        <para><literal>*.bat</literal> - Windows-based invocations in a DOS command box</para>
+        <para><literal>*.jar</literal> - open-source project Java executables implementing validation and transformation (see the included notices for open-source details)</para>
       </listitem>
       <listitem>
         <para><literal>*.sh</literal> - shell-based invocations in a *nix terminal</para>
       </listitem>
       <listitem>
-        <para><literal>*.xml</literal> - demonstration test files</para>
+        <para><literal>*.bat</literal> - Windows-based invocations in a DOS command box</para>
+      </listitem>
+      <listitem>
+        <para><literal>windows-drag-n-drop/*.bat</literal> - Windows-based invocations using drag-n-drop functionality supporting dropping the XML file to be validated onto the batch file in Windows Explorer</para>
       </listitem>
     </itemizedlist>
   </section>
@@ -352,10 +361,29 @@ sh testall.sh</programlisting>
   </section>
   <section id="S-VALIDATING-ONES-OWN-TEST-FILES">
     <title>Validating one’s own test files</title>
-    <para>To validate a test document of one’s own that is found in the <literal>val/</literal> directory there is a Java-based invocation for each of the Windows and Shell environments:</para>
+    <para>To validate a test document of one’s own that is found in your local computer file system there is a Java-based invocation for each of the Windows and Shell environments:</para>
     <itemizedlist>
       <listitem>
-        <para>Windows:</para>
+        <para>Windows drag-n-drop:</para>
+        <itemizedlist>
+          <listitem>
+            <para>open the <literal>val/windows-drag-n-drop/</literal> directory to reveal the available invocations</para>
+          </listitem>
+          <listitem>
+            <para>drag your XML file from Windows Explorer from where it is being edited, and drop it onto the corresponding invocation batch file performing the desired validation</para>
+            <figure id="F-WINDOWS-DRAG-N-DROP">
+              <title>Windows Drag-n-Drop</title>
+              <mediaobject>
+                <imageobject>
+                  <imagedata role="html-embed" fileref="README-drop.svg"/>
+                </imageobject>
+              </mediaobject>
+            </figure>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+      <listitem>
+        <para>Windows DOS prompt:</para>
         <itemizedlist>
           <listitem>
             <para><programlisting>validate.bat  ubl-schema-file  customization  document-type  ubl-xml-file</programlisting>for example from the <literal>test.bat</literal> demonstration:</para>

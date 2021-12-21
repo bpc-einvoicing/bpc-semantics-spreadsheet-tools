@@ -1,24 +1,30 @@
 # A repository for tools related to the BPC Semantics spreadsheet
 
-The [BPC Semantics Group spreadsheet](https://docs.google.com/spreadsheets/d/1qAz_aAbJ99ikA4zUk97FyjyDLcsQ3B3vqjEK-b3C_h8/view) is an artifact used to capture decisions by the Semantics Group regarding the document model and associated data integrity constraints imposed on corners 2 and 3 in the 4-corner model for semantic interoperability in data.
-
-Various artifacts need to be created to help in the generation and validation of UBL documents in conformance with the subset and data integrity constraints defined by the BPC e-Invoicing Semantics Group.
+The [BPC Semantics Group spreadsheet](https://docs.google.com/spreadsheets/d/1qAz_aAbJ99ikA4zUk97FyjyDLcsQ3B3vqjEK-b3C_h8/view) is an artifact used to capture decisions by the Semantics Group regarding the document model and associated data integrity constraints imposed on Corner 2 and validated by Corner 3 in the 4-corner model for semantic interoperability in data.
 
 _*IMPORTANT: This repository maintains the raw materials used to create the validation artifacts and not the validation artifacts themselves. Download the actual artefact files from [this repository's Actions tab](https://github.com/bpc-einvoicing/bpc-semantics-spreadsheet-tools/actions) using the most recent ZIP file. See below for triggering the creation of a new set of artifacts.*_
 
 Find in the [BPC public directory](https://drive.google.com/drive/folders/1tvEwgiWcBaIr8GmE2_2RTy33vJsagn8M?usp=sharing) snapshot deliveries of the resulting artifacts created in the Actions tab.
 
-This diagram outlines the role of a subset of UBL schemas in the generation of XML documents, independent of the role of the full UBL schemas when ingesting XML documents:
+This diagram outlines the role of the two validation artifacts, the UBL W3C XML schema and the BPC Schematron schema, in the validation of XML documents:
 
-![The role of a UBL subset schema](README-subset.png "The role of a UBL subset schema")
+![The validation artifacts](README-Corner-3.png "The role of a UBL subset schema")
 
-The three sets of artifacts identified in the diagram are numbered as follows:
+One-time preparation (before receiving first business document):
 
-1. The full UBL schemas without being subset.
-1. The subset UBL schemas supporting only the constructs needed for XML generation, optionally used to structurally-validate the output before it is sent to the recipient.
-1. The additional value constraints expressed in XSLT and authored using technologies such as ISO/IEC 19757-3 Schematron, OASIS Context/Value Association (CVA), OASIS genericode, or other means, used both to pre-validate the value constraints before the document is sent to the recipient, and to validate the value constraints after the document is received by the recipient.
+1. the OASIS committee has created a W3C XSD XML schema for all UBL documents
+1. the BPC has created a Schematron (ISO/IEC 19757-3) schema for BPC data integrity rules
+1. the BPC has created an XSLT runtime script for BPC data integrity rules
 
-The artifact labeled (1) comes from the OASIS UBL Technical Committee. The artifacts labeled (2) and (3) are created, respectively, indirectly and directly from the semantics spreadsheet.
+Run-time processing (does not require changes to one-time files):
+
+4. the BPC business document in UBL XML format from Corner 2 arrives successfully at Corner 3 according to the AS4 transport protocol and AS4 receipt acknowledgement (AS4 processes not depicted)
+4. using W3C XSD XML Schema validation, if the BPC XML breaks any UBL structural or lexical constraints then an 'SV' (syntax validation) rejection BPC XML message is sent back to Corner 2 and the work of Corner 3 is done
+4. using XSLT transformation, if the BPC XML breaks any BPC data integrity constraints then a 'BV' (data integrity violation) rejection BPC XML message is sent back to Corner 2 and the work of Corner 3 is done
+4. Corner 3 rearranges the business document information from UBL XML format to Corner 4's private data format and forwards it to Corner 4 and the work of Corner 3 is done
+
+
+The artifact labeled (1) comes from the OASIS UBL Technical Committee. The artifacts labeled (2) and (3) are created, respectively, directly and indirectly from the semantics spreadsheet.
 
 ## Message flow
 
@@ -121,6 +127,8 @@ It is important to note that the "Error" cited at the end of the report for line
 ## Documentation and demonstration - using the validation results
 
 The `readme-bpc-artifacts.html` file in the downloaded ZIP describes the use of the validation artifacts that are produced by this process.
+
+Included in the documentation are instructions for using the unzipped "`val/windows-drag-n-drop/`" directory.
 
 Note that the programmer's documentation of each of the XSLT stylesheets used in the generation is found in the `archive-only-not-in-final-distribution` directory of the downloaded ZIP. The Ant script governing the generation process also is found in that directory.
 

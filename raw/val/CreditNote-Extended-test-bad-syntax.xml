@@ -8,12 +8,16 @@
   <cbc:ProfileExecutionID>a123</cbc:ProfileExecutionID>
 	<cbc:ID>TOSL108</cbc:ID
 	<cbc:IssueDate>2009-12-15</cbc:IssueDate>
-	<cbc:TaxPointDate>2009-11-30</cbc:TaxPointDate>
   <cbc:CreditNoteTypeCode>380</cbc:CreditNoteTypeCode>
 	<cbc:Note languageID="en">Ordered in our booth at the convention.</cbc:Note>
+	<cbc:TaxPointDate>2009-11-30</cbc:TaxPointDate>
 	<cbc:DocumentCurrencyCode listID="ISO 4217 Alpha" listAgencyID="5"
 		>EUR</cbc:DocumentCurrencyCode>
 	<cbc:AccountingCost>Project cost code 123</cbc:AccountingCost>
+	<cac:CreditNotePeriod>
+		<cbc:StartDate>2009-11-01</cbc:StartDate>
+		<cbc:EndDate>2009-11-30</cbc:EndDate>
+	</cac:CreditNotePeriod>
 	<cac:OrderReference>
 		<cbc:ID>123</cbc:ID>
 	</cac:OrderReference>
@@ -269,9 +273,6 @@
 		<cac:OrderLineReference>
 			<cbc:LineID>1</cbc:LineID>
 		</cac:OrderLineReference>
-		<cac:TaxTotal>
-			<cbc:TaxAmount currencyID="EUR">254.6</cbc:TaxAmount>
-		</cac:TaxTotal>
 		<cac:AllowanceCharge>
 			<cbc:ChargeIndicator>false</cbc:ChargeIndicator>
 			<cbc:AllowanceChargeReason>Damage</cbc:AllowanceChargeReason>
@@ -282,6 +283,9 @@
 			<cbc:AllowanceChargeReason>Testing</cbc:AllowanceChargeReason>
 			<cbc:Amount currencyID="EUR">10</cbc:Amount>
 		</cac:AllowanceCharge>
+		<cac:TaxTotal>
+			<cbc:TaxAmount currencyID="EUR">254.6</cbc:TaxAmount>
+		</cac:TaxTotal>
 		<cac:Item>
 			<cbc:Description languageID="EN">Processor: Intel Core 2 Duo SU9400 LV (1.4GHz). RAM:
 				3MB. Screen 1440x900</cbc:Description>

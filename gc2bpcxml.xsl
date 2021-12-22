@@ -77,19 +77,51 @@
                  select="'UBL model input is not a genericode file'"/>
   </xsl:if>
 
+  <xsl:variable name="problemRows" as="xsd:string*">
+    <xsl:for-each select="/*/SimpleCodeList/Row
+                          [exists(bpc:col(.,'SchematronAssertion')) or
+                           exists(bpc:col(.,'ErrorMessage')) or
+                           exists(bpc:col(.,'DataIntegrityRules'))]">
+      <xsl:if test="not(exists(bpc:col(.,'BPCID')) and
+                        exists(bpc:col(.,'SchematronContext')) and
+                        exists(bpc:col(.,'SchematronAssertion')) and
+                        exists(bpc:col(.,'ErrorMessage')) and
+                        exists(bpc:col(.,'DataIntegrityRules')))">
+        <xsl:variable name="tab" select="bpc:col(.,'WorksheetTab')"/>
+        <xsl:value-of>
+          <xsl:text>Incomplete Schematron information for tab '</xsl:text>
+          <xsl:value-of select="$tab"/>
+          <xsl:text>' row </xsl:text>
+          <xsl:value-of select="2 +
+               count(preceding-sibling::Row[bpc:col(.,'WorksheetTab')=$tab])"/>
+          <xsl:text> BPC ID </xsl:text>
+          <xsl:value-of select="bpc:col(.,'BPCID')"/>
+        </xsl:value-of>
+      </xsl:if>
+    </xsl:for-each>
+  </xsl:variable>
+  <xsl:if test="exists($problemRows)">
+    <xsl:result-document href="../spreadsheet.errors.txt" method="text">
+      <xsl:value-of select="$problemRows" separator="&#xa;"/>
+      <xsl:text>&#xa;</xsl:text>
+    </xsl:result-document>
+    <xsl:message>
+      <xsl:value-of select="$problemRows" separator="&#xa;"/>
+      <xsl:text>&#xa;</xsl:text>
+    </xsl:message>
+  </xsl:if>
+
   <xsl:variable name="worksheet" as="element(worksheet)*">
   <!--handle each worksheet tab separately-->
-    <xsl:for-each-group select="/*/SimpleCodeList/Row"
-                        group-by="bpc:col(.,'WorksheetTab')">
-     <!--does this worksheet have semantics to express?-->
-     <xsl:if test="some $row in current-group() satisfies exists(
-                        $row[exists(bpc:col(.,'BPCID')) and
-                             exists(bpc:col(.,'UBLDictionaryEntryName')) and
-                             exists(bpc:col(.,'UBLCardinality')) and
+    <xsl:for-each-group select="/*/SimpleCodeList/Row
+                            (:group only the rows that create rules:)
+                            [exists(bpc:col(.,'BPCID')) and
+                             exists(bpc:col(.,'SchematronContext')) and
                              exists(bpc:col(.,'SchematronAssertion')) and
                              exists(bpc:col(.,'ErrorMessage')) and
-                             exists(bpc:col(.,'DataIntegrityRules'))])">
-      <worksheet>
+                             exists(bpc:col(.,'DataIntegrityRules'))]"
+                        group-by="bpc:col(.,'WorksheetTab')">
+     <worksheet>
       <xsl:variable name="tab" select="current-grouping-key()"/>
       <xsl:message select="'Harvesting spreadsheet tab:',$tab"/>
       <xsl:attribute name="tab" select="$tab"/>
@@ -173,7 +205,6 @@
         </xsl:for-each-group>
         </semantics>
       </worksheet>
-     </xsl:if>
     </xsl:for-each-group>
   </xsl:variable>
 

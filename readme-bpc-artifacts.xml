@@ -226,7 +226,7 @@ where options include:
         <para><literal>Invoice-test-bad-model.xml</literal> - a document with a UBL model error on line 9</para>
         <itemizedlist>
           <listitem>
-            <para>the <literal>cbc:ID</literal> element is misspelled as <literal>cbc:IDxxxxxxx</literal></para>
+            <para>the <literal>cbc:ID</literal> element is misspelled as <literal>cbc:IDxxxxx</literal></para>
           </listitem>
         </itemizedlist>
       </listitem>
@@ -234,10 +234,10 @@ where options include:
         <para><literal>Invoice-test-bad-data.xml</literal> - a document with one BPC data integrity for customization ‘core’ and two BPC data integrity errors for customization ‘extended’:</para>
         <itemizedlist>
           <listitem>
-            <para>the trading name for the payee party is absent</para>
+            <para>the first error is a UBL error violating the rule that all elements never are allowed to be empty</para>
           </listitem>
           <listitem>
-            <para>the payable rounding amount is absent and so the arithmetic for the payable amount calculation is incorrect</para>
+            <para>the second error is a BPC error violating the rule that a party’s name cannot be absent nor is there allowed to be more than one name for a party</para>
           </listitem>
         </itemizedlist>
       </listitem>
@@ -272,12 +272,14 @@ sh test.sh</programlisting>
     </itemizedlist>
     <para>The following is a transcript of the output of running the demonstration:</para>
     <programlisting>############################################################
-Validating using customization "Core": Invoice-Core-test-bad-syntax.xml
+Validating using customization "Core" and type "Invoice": "Invoice-Core-test-bad-syntax.xml"
 ############################################################
 ===== Phase 1: XSD schema validation =====
-org.xml.sax.SAXParseException; systemId: val/Invoice-Core-test-bad-syntax.xml;
- lineNumber: 10; columnNumber: 2; The end-tag for element type "cbc:ID" must
- end with a '>' delimiter.
+org.xml.sax.SAXParseException; systemId: file:///Users/admin/u/git/bpc/
+ bpc-semantics-spreadsheet-tools/results/bpc-semantics-tools-0.3-test/
+ bpc-semantics-0.3-test/val/Invoice-Core-test-bad-syntax.xml;
+ lineNumber: 10; columnNumber: 2; The end-tag for element type "cbc:ID"
+ must end with a '>' delimiter.
 	at org.apache.xerces.parsers.AbstractSAXParser.parse(Unknown Source)
 	at org.apache.xerces.jaxp.SAXParserImpl$JAXPSAXParser.parse(Unknown Source)
 	at org.apache.xerces.jaxp.SAXParserImpl.parse(Unknown Source)
@@ -291,48 +293,46 @@ Exception in thread "main" java.lang.NullPointerException
 	at com.nwalsh.parsers.XJParse.run(Unknown Source)
 	at com.nwalsh.parsers.XJParse.main(Unknown Source)
 Attempting well-formed, namespace-aware parse
-Fatal error:val/Invoice-Core-test-bad-syntax.xml:10:2:The end-tag for element
- type "cbc:ID" must end with a '>' delimiter.
+Fatal error:file:///Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/results/
+ bpc-semantics-tools-0.3-test/bpc-semantics-0.3-test/val/
+ Invoice-Core-test-bad-syntax.xml:10:2:The end-tag for element type "cbc:ID"
+ must end with a '>' delimiter.
 
 ############################################################
-Validating using customization "Core": Invoice-Core-test-bad-model.xml
+Validating using customization "Core" and type "Invoice": "Invoice-Core-test-bad-model.xml"
 ############################################################
 ===== Phase 1: XSD schema validation =====
 Attempting well-formed, namespace-aware parse
-Error:val/Invoice-Core-test-bad-model.xml:9:17:cvc-complex-type.2.4.a:
- Invalid content was found starting with element 'cbc:IDxxxxxxx'. One of
- '{"urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2":ID}'
- is expected.
-Parse succeeded (0.18) with 1 error and no warnings.
+Error:file:///Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/results/
+ bpc-semantics-tools-0.3-test/bpc-semantics-0.3-test/val/
+ Invoice-Core-test-bad-model.xml:9:16:cvc-complex-type.2.4.a: Invalid content
+ was found starting with element 'cbc:IDxxxxx'. One of
+ '{"urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2":ID}' is expected.
+Parse succeeded (0.9) with 1 error and no warnings.
 
 ############################################################
-Validating using customization "Core": Invoice-Core-test-bad-data.xml
+Validating using customization "Core" and type "Invoice": "Invoice-Core-test-bad-data.xml"
 ############################################################
 ===== Phase 1: XSD schema validation =====
 No schema validation errors.
 ===== Phase 2: BPC customization "Core" data integrity validation =====
-1. Fewer or more than one trading name. /Invoice/cac:AccountingCustomerParty[1]
- / count(cac:Party/cac:PartyName/cbc:Name) = 1 (:NABT-045 Row 108 Tab
+1. [IND5] Elements SHALL NOT be empty/Invoice/cac:AccountingCustomerParty[1]/
+ cac:Party[1]/cac:PostalAddress[1]/cbc:PostalZone[1] / true()
+2. Fewer or more than one trading name. /Invoice/cac:AccountingCustomerParty[1] /
+ count(cac:Party/cac:PartyName/cbc:Name) = 1 (:NABT-045 Row 105 Tab
  'Invoice, Credit Note':)
-2. Amount Due for Payment (NABT-115) is not equal to the total amount with
- tax (NABT-112) minus PrePaid Amount (NABT-113) plus Rounding Amount (NABT-114).
- /Invoice/cac:LegalMonetaryTotal[1]/cbc:PayableAmount[1] /
- bpc:compareAmountsEqual( ., sum( ( ../cbc:TaxInclusiveAmount,
- -1 * ../cbc:PrepaidAmount, ../cbc:PayableRoundingAmount ) ) )
- (:NABT-115 Row 189 Tab 'Invoice, Credit Note':)
 Count of errors: 2
 Error in xsl:value-of/@select on line 93 column 67 of testSVRL4UBLerrors.xsl:
-  XTMM9000: Processing terminated by xsl:message at line 93 in
-  testSVRL4UBLerrors.xsl
+  XTMM9000: Processing terminated by xsl:message at line 93 in testSVRL4UBLerrors.xsl
 Processing terminated by xsl:message at line 93 in testSVRL4UBLerrors.xsl
 
 ############################################################
-Validating using customization "Core": Invoice-Core-test-good.xml
+Validating using customization "Core" and type "Invoice": "Invoice-Core-test-good.xml"
 ############################################################
 ===== Phase 1: XSD schema validation =====
 No schema validation errors.
 ===== Phase 2: BPC customization "Core" data integrity validation =====
-No data integrity validation errors</programlisting>
+No data integrity validation errors.</programlisting>
     <para>Also included is a script to run all of the document types in both of the customizations for both “good” and “bad” test files:</para>
     <itemizedlist>
       <listitem>
@@ -367,12 +367,26 @@ sh testall.sh</programlisting>
         <para>Windows drag-n-drop:</para>
         <itemizedlist>
           <listitem>
-            <para>open the <literal>val/windows-drag-n-drop/</literal> directory to reveal the available invocations</para>
+            <para>fully extract the nested ZIP files into your file system because drag-n-drop does not work from inside ZIP extractor virtual directories</para>
           </listitem>
           <listitem>
-            <para>drag your XML file from Windows Explorer from where it is being edited, and drop it onto the corresponding invocation batch file performing the desired validation</para>
+            <para>open the unzipped <literal>val/windows-drag-n-drop/</literal> directory in Windows Explorer to reveal the available invocations</para>
+          </listitem>
+          <listitem>
+            <para>drag your XML file from Windows Explorer where it is being edited, and drop it onto the corresponding invocation batch file performing the desired validation</para>
             <figure id="F-WINDOWS-DRAG-N-DROP">
               <title>Windows Drag-n-Drop</title>
+              <mediaobject>
+                <imageobject>
+                  <imagedata role="html-embed" fileref="README-drag.svg"/>
+                </imageobject>
+              </mediaobject>
+            </figure>
+          </listitem>
+          <listitem>
+            <para>a command window will open up revealing the results until a key is pressed to make the window disappear</para>
+            <figure id="F-WINDOWS-DROP-EXECUTION">
+              <title>Windows Drop Execution</title>
               <mediaobject>
                 <imageobject>
                   <imagedata role="html-embed" fileref="README-drop.svg"/>
@@ -386,8 +400,8 @@ sh testall.sh</programlisting>
         <para>Windows DOS prompt:</para>
         <itemizedlist>
           <listitem>
-            <para><programlisting>validate.bat  ubl-schema-file  customization  document-type  ubl-xml-file</programlisting>for example from the <literal>test.bat</literal> demonstration:</para>
-            <programlisting>validate.bat  ..\ubl\xsd\maindoc\UBL-Invoice-2.3.xsd core Invoice Invoice-test-good.xml</programlisting>
+            <para><programlisting>validate.bat  customization  document-type  ubl-xml-file</programlisting>for example from the <literal>test.bat</literal> demonstration:</para>
+            <programlisting>validate.bat  Core Invoice Invoice-test-good.xml</programlisting>
           </listitem>
         </itemizedlist>
       </listitem>
@@ -395,8 +409,8 @@ sh testall.sh</programlisting>
         <para>Shell:</para>
         <itemizedlist>
           <listitem>
-            <para><programlisting>sh validate.sh  ubl-schema-file  customization  document-type  ubl-xml-file</programlisting>for example from the <literal>test.sh</literal> demonstration:</para>
-            <programlisting>sh validate.sh  ../ubl/xsd/maindoc/UBL-Invoice-2.3.xsd core Invoice Invoice-test-good.xml</programlisting>
+            <para><programlisting>sh validate.sh  customization  document-type  ubl-xml-file</programlisting>for example from the <literal>test.sh</literal> demonstration:</para>
+            <programlisting>sh validate.sh  Core Invoice Invoice-test-good.xml</programlisting>
           </listitem>
         </itemizedlist>
       </listitem>
@@ -404,11 +418,11 @@ sh testall.sh</programlisting>
     <para>When there is an error of any kind, the script creates a file named by adding the “<literal>.error.txt</literal>” suffix to the input file name and records the error information in that file.</para>
     <para>When there is a data integrity error, the script also creates a file named by adding the “<literal>.svrl.xml</literal>” suffix to the input file name and records the Schematron SVRL record information in that file.</para>
     <para>For example, if one has a test file for customization ‘core’ named <literal>myCreditNoteTest.xml</literal> in the <literal>val\</literal> directory then in Windows one would use:</para>
-    <para><programlisting>validate.bat ..\ubl\xsd\maindoc\UBL-CreditNote-2.3.xsd core CreditNote myCreditNoteTest.xml</programlisting>and when running from another directory one need only point to the invocation and schema:</para>
-    <programlisting>bpc-semantics-0.1-20211121-074957z\val\validate.bat bpc-semantics-0.1-20211121-074957z\ubl\xsd\maindoc\UBL-CreditNote-2.3.xsd core CreditNote myCreditNoteTest.xml</programlisting>
+    <para><programlisting>validate.bat Core CreditNote myCreditNoteTest.xml</programlisting>and when running from another directory one need only point to the invocation and schema:</para>
+    <programlisting>bpc-semantics-0.3-20211221-023232z\val\validate.bat Core CreditNote myCreditNoteTest.xml</programlisting>
     <para>And if one is using Shell in the <literal>val/</literal> directory one would use:</para>
-    <para><programlisting>sh validate.sh ../ubl/xsd/maindoc/UBL-CreditNote-2.3.xsd core CreditNote myCreditNoteTest.xml</programlisting>and when running from another directory one need only point to the invocation and schema:</para>
-    <programlisting>sh bpc-semantics-0.1-20211121-074957z/val/validate.sh bpc-semantics-0.1-20211121-074957z/ubl/xsd/maindoc/UBL-CreditNote-2.3.xsd core CreditNote myCreditNoteTest.xml</programlisting>
+    <para><programlisting>sh validate.sh Core CreditNote myCreditNoteTest.xml</programlisting>and when running from another directory one need only point to the invocation and schema:</para>
+    <programlisting>sh bpc-semantics-0.3-20211221-023232z/val/validate.sh Core CreditNote myCreditNoteTest.xml</programlisting>
   </section>
   <!--  <bibliography>
     <para>See article-bibliography.xml for bibliographic entries.</para>

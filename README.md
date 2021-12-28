@@ -42,7 +42,13 @@ The semantics spreadsheet produces a Schematron pattern for each of the identifi
 
 ## The GitHub Action process creating the artifacts used at runtime
 
-Each push to GitHub triggers a GitHub Action that builds the set of artefacts from the source spreadsheets. 
+Each push to GitHub triggers a GitHub Action that builds the set of artefacts from the source spreadsheets. The action is defined in the `.github/workflows/build.yml` file. This simply establishes a build timestamp and it invokes the `prepareBPCartefacts-github.sh` bash script.
+
+That bash script passes its arguments to the `prepareBPCartefacts.sh` bash script. At this time that is all that is being done, but the level of indirection leaves some flexibility in the future.
+
+While the other bash scripts should not require any modifications, this bash script, in turn, may need to be edited to establish all of the variable parameters that describe the properties of the current build process. For example, version numbers and the base address of the Google spreadsheet (among other properties). Its final step is to invoke the `prepareBPCartefacts-common.sh` bash script. 
+
+This final bash script, in turn, produces the results by invoking the `prepareBPCartefacts.xml` Apache Ant script and packaging the results.
 
 In the following, these abbreviations are used:
 - `WWWWWWW` - the document type e.g. Invoice
@@ -54,7 +60,7 @@ In the following, these abbreviations are used:
 1. The Google spreadsheet is exported as an ODF file.
 1. The worksheets are extracted from the ODF file to create a genericode XML file of rows and columns.
 1. The worksheets are analyzed to create for each customization of each document type two Schematron scripts: the shell `bpc/ZZZ/BPC-ZZZ-vX.Y-WWWWWWWW-Data-Integrity-Constraints.sch` script that imports other Schematron scripts, the detailed assertions `bpc/ZZZ/support/BPC-ZZZ-vX.Y-WWWWWWWW-Assertions.pattern.sch` script that is one of the scripts being imported, and the shell `bpc/ZZZ/BPC-ZZZ-WWWWWWWW-Data-Integrity-Constraints.xsl` XSLT runtime invocation artifact 
-1. The other Schematron script that is imported is the `bpc/ZZZ/support/UBL-DocumentConstraints-2.3-pattern.sch` set of assertions obtained from the http://docs.oasis-open.org/ubl/os-UBL-2.3/cva/ directory
+1. The other Schematron script that is imported is the `bpc/ZZZ/support/UBL-DocumentConstraints-2.3-pattern.sch` set of assertions obtained from the [http://docs.oasis-open.org/ubl/os-UBL-2.3/cva/](http://docs.oasis-open.org/ubl/os-UBL-2.3/cva/) directory
 1. The Schematron assembly process interprets the `<sch:include>` directives and creates a monolithic Schematron expression of all assertions.
 1. The Schematron transformation process interprets the Schematron assertions to create the runtime artefact  `bpc/ZZZ/support/BPC-ZZZ-vX.Y-WWWWWWWW-Data-Integrity-Constraints.xsl` to be imported by the shell invocation stylesheet
 1. The two support stylesheets are maintained separately: the `bpc/ZZZ/support/BPC-vX.Y-Code-Lists.xsl` fragment (synthesized as part of the GitHub Action processing; not depicted in this diagram) and the `bpc/ZZZ/support/BPC-Schematron-Support.xsl` fragment (authored by hand), both of which satisfy the custom BPC function invocations utilized in the authored spreadsheet expressions.
@@ -150,7 +156,7 @@ When it comes time to change the version number of an X.Y release, such as from 
 1. Update the sample XML instances in the GitHub base directory
 1. Update the sample XML instances in the `raw/val` subdirectory
 1. Update the title of the `readme-bpc-artifacts.xml` document
-1. Update the version number in the GitHub production invocation script `prepareBPCartefacts.sh`
+1. Update the version number in the GitHub production invocation script `prepareBPCartefacts.sh` (see [GitHub Actions](#the-github-action-process-creating-the-artifacts-used-at-runtime) above for more information)
 
 
 

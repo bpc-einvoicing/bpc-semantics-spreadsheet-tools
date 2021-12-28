@@ -34,25 +34,32 @@ In the flow labeled (1) the sender of the document acting as Corner 1 sends the 
 
 Many, but not all, document types will trigger the need shown in the flow labeled (4) for the receiver trading partner to return to the sender a status of the document that was received when the receiver was acting as Corner 4. To do so, the receiver now acts as the new Corner 1 in the flow labeled (4), sending the document status in a private format to their access point now acting as the new Corner 2. In the flow labeled (5) the new Corner 2 sends the document status information wrapped in UBL syntax to the original sender’s access point now acting as the new Corner 3. In the two flows labeled (6) the new Corner 3 either (a) returns a failure message back to the new Corner 2 due to a failure interpreting the UBL syntax or violating the BPC data integrity constraints, or (b) passes the semantic content found in the UBL syntax to the original sender acting as the new Corner 4 wrapped using whatever format is compatible with Corner 4’s business system and Corner 4 agrees to use.
 
-## Customization definitions
-
-At this time there are only two customization definitions, both found in the semantic library data model.
-
-The "core" customization definition and data model is a minimum expected set of semantic components expected to be understood by all participants. The 'Customization' column is empty for a row that is part of the core customization.
-
-The "extended" customization definition and data model is a collection of other semantic components from UBL identified by the semantic group in its many months of operation. The 'Customization' column has the value 'extended' for this customization.
-
-## Subset constraints XSD schema
-
-The semantics spreadsheet produces a genericode input file that is used indirectly to a schema subsetting process to create the XSD schemas according to the subset specification for each of the identified business customizations.
-
-_Please note that at this time the subset schemas are not being produced; this is a future sub-project._
-
 ## Value constraints Schematron schema
 
 The semantics spreadsheet produces a Schematron pattern for each of the identified customizations.
 
 **Important note**: A non-conformant convention is being used in the "UBL Context" column of the spreadsheet. The use of the '`#`' (octothorpe, hash, tic-tac-toe) character is an indication to replace the character with the document type. And the use of "`/#`" at the beginning of the string presumes the need for a namespace prefix. So the context string "`/#/cac:#Line`" because "`/Invoice:Invoice/cac:InvoiceLine`" or "`/CreditNote:CreditNote/cac:CreditNoteLine`" in the Schematron script. This is **not** a Schematron facility, but merely a typing shortcut in the BPC spreadsheet for specifying different expressions for different document types. The use of this does not work properly when used in the "Schematron Assertion" column, and so it is required to use "`/*/`" to specify the document element and not "`/#/`". When you need to use the literal `#` untouched, use `\#`. When you need to use the literal `\` untouched, use `\\`.
+
+## The GitHub Action process creating the artifacts used at runtime
+
+Each push to GitHub triggers a GitHub Action that builds the set of artefacts from the source spreadsheets. 
+
+In the following, these abbreviations are used:
+- `WWWWWWW` - the document type e.g. Invoice
+- `X.Y` - the version of the semantic library e.g. 0.3
+- `ZZZ` - the customization name e.g. core, e.g. extended
+
+![The GitHub Action process](README-make.png "The GitHub Action process")
+
+1. The Google spreadsheet is exported as an ODF file.
+1. The worksheets are extracted from the ODF file to create a genericode XML file of rows and columns.
+1. The worksheets are analyzed to create for each customization of each document type two Schematron scripts: the shell `bpc/ZZZ/BPC-ZZZ-vX.Y-WWWWWWWW-Data-Integrity-Constraints.sch` script that imports other Schematron scripts, the detailed assertions `bpc/ZZZ/support/BPC-ZZZ-vX.Y-WWWWWWWW-Assertions.pattern.sch` script that is one of the scripts being imported, and the shell `bpc/ZZZ/BPC-ZZZ-WWWWWWWW-Data-Integrity-Constraints.xsl` XSLT runtime invocation artifact 
+1. The other Schematron script that is imported is the `bpc/ZZZ/support/UBL-DocumentConstraints-2.3-pattern.sch` set of assertions obtained from the http://docs.oasis-open.org/ubl/os-UBL-2.3/cva/ directory
+1. The Schematron assembly process interprets the `<sch:include>` directives and creates a monolithic Schematron expression of all assertions.
+1. The Schematron transformation process interprets the Schematron assertions to create the runtime artefact  `bpc/ZZZ/support/BPC-ZZZ-vX.Y-WWWWWWWW-Data-Integrity-Constraints.xsl` to be imported by the shell invocation stylesheet
+1. The two support stylesheets are maintained separately: the `bpc/ZZZ/support/BPC-vX.Y-Code-Lists.xsl` fragment (synthesized as part of the GitHub Action processing; not depicted in this diagram) and the `bpc/ZZZ/support/BPC-Schematron-Support.xsl` fragment (authored by hand), both of which satisfy the custom BPC function invocations utilized in the authored spreadsheet expressions.
+1. At runtime execution the XML to be analyzed is transformed into an XML instance of the Schematron Validation Results Language (SVRL) vocabulary using the `bpc/ZZZ/BPC-ZZZ-WWWWWWWW-Data-Integrity-Constraints.xsl` invocation stylesheet.
+1. The `val/testSVRL4UBLerrors.xsl` XSLT stylesheet is used to interpret the SVRL results in the context of the demonstration validation test environment. Users can create their own interpretation of SVRL for their own production environment.
 
 ## Triggering the creation of a new set of artifacts from the spreadsheet
 

@@ -66,7 +66,7 @@
     <para>&#x2466; - Corner 3 rearranges the business document information from UBL XML format to Corner 4’s private data format and forwards it to Corner 4 and the work of Corner 3 is done</para>
     <para>A UBL document sent by Corner 2 across the network may include schema-valid representations of additional semantics beyond the BPC repertoire, but Corner 3 is only obliged to recognize the BPC suite. Corner 3 may choose to support more, but Corner 2 cannot rely on Corner 3 supporting more
       than the BPC repertoire.</para>
-    <para>In this section, <literal>WWWWWWW</literal> refers to the document type, <literal>X.Y</literal> refers to the version number, and <literal>ZZZ</literal> refers to the customization (at this point either “core” or “extended”).</para>
+    <para>In this section, <literal>WWWWWWW</literal> refers to the document type, <literal>X.Y</literal> refers to the version number, and <literal>ZZZ</literal> refers to the customization (at this point either “minimum”, “core”, or “extended”).</para>
     <para>This package named “<literal>bpc-semantics-vX.Y-{revision-date}.zip</literal>” contains the following developer-referenced files in the indicated subdirectories:</para>
     <itemizedlist>
       <listitem>
@@ -234,7 +234,7 @@ where options include:
         <para><literal>Invoice-test-bad-data.xml</literal> - a document with one BPC data integrity for customization ‘core’ and two BPC data integrity errors for customization ‘extended’:</para>
         <itemizedlist>
           <listitem>
-            <para>the first error is a UBL error violating the rule that all elements never are allowed to be empty</para>
+            <para>the first error is a UBL error violating the rule that all elements must have some content, either text or other elements (but not both), and never can be empty</para>
           </listitem>
           <listitem>
             <para>the second error is a BPC error violating the rule that a party’s name cannot be absent nor is there allowed to be more than one name for a party</para>

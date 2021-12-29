@@ -7,6 +7,7 @@
 <schema xmlns="http://purl.oclc.org/dsdl/schematron" queryBinding="xslt2">
   <title>BPC Schematron Constraints for customization {bpc:title}</title>
   <ns prefix="{bpc:doctype}" uri="urn:oasis:names:specification:ubl:schema:xsd:{bpc:doctype}-2"/>
+  <ns prefix="xsd" uri="http://www.w3.org/2001/XMLSchema"/>
   <ns prefix="ext"
 uri="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2"/>
   <ns prefix="cac" 

@@ -60,10 +60,9 @@ In the following, these abbreviations are used:
 1. The Google spreadsheet is exported as an ODF file.
 1. The worksheets are extracted from the ODF file to create a genericode XML file of rows and columns.
 1. The worksheets are analyzed to create for each customization of each document type two Schematron scripts: the shell `bpc/ZZZ/BPC-ZZZ-vX.Y-WWWWWWWW-Data-Integrity-Constraints.sch` script that imports other Schematron scripts, the detailed assertions `bpc/ZZZ/support/BPC-ZZZ-vX.Y-WWWWWWWW-Assertions.pattern.sch` script that is one of the scripts being imported, and the shell `bpc/ZZZ/BPC-ZZZ-WWWWWWWW-Data-Integrity-Constraints.xsl` XSLT runtime invocation artifact 
-1. The other Schematron script that is imported is the `bpc/ZZZ/support/UBL-DocumentConstraints-2.3-pattern.sch` set of assertions obtained from the [http://docs.oasis-open.org/ubl/os-UBL-2.3/cva/](http://docs.oasis-open.org/ubl/os-UBL-2.3/cva/) directory
-1. The Schematron assembly process interprets the `<sch:include>` directives and creates a monolithic Schematron expression of all assertions.
-1. The Schematron transformation process interprets the Schematron assertions to create the runtime artefact  `bpc/ZZZ/support/BPC-ZZZ-vX.Y-WWWWWWWW-Data-Integrity-Constraints.xsl` to be imported by the shell invocation stylesheet
-1. The two support stylesheets are maintained separately: the `bpc/ZZZ/support/BPC-vX.Y-Code-Lists.xsl` fragment (synthesized as part of the GitHub Action processing; not depicted in this diagram) and the `bpc/ZZZ/support/BPC-Schematron-Support.xsl` fragment (authored by hand), both of which satisfy the custom BPC function invocations utilized in the authored spreadsheet expressions.
+1. The other Schematron script that is imported is the `bpc/ZZZ/support/UBL-DocumentConstraints-2.3-pattern.sch` set of assertions obtained from the [http://docs.oasis-open.org/ubl/os-UBL-2.3/cva/](http://docs.oasis-open.org/ubl/os-UBL-2.3/cva/) directory.
+1. The Schematron transformation process `pipeline-for-svrl.xsl` from the SchXSLT GitHub project at [https://github.com/schxslt/schxslt](https://github.com/schxslt/schxslt) interprets the Schematron scripts to create the runtime artefact  `bpc/ZZZ/support/BPC-ZZZ-vX.Y-WWWWWWWW-Data-Integrity-Constraints.xsl` to be imported by the shell invocation stylesheet.
+1. The two support stylesheets are maintained separately: the `bpc/ZZZ/support/BPC-vX.Y-Code-Lists.xsl` fragment (synthesized with `bpccodelists2xsl.xsl` as part of the GitHub Action processing; not depicted in this diagram) and the `bpc/ZZZ/support/BPC-Schematron-Support.xsl` fragment (authored by hand), both of which satisfy the custom BPC function invocations utilized in the authored spreadsheet expressions.
 1. At runtime execution the XML to be analyzed is transformed into an XML instance of the Schematron Validation Results Language (SVRL) vocabulary using the `bpc/ZZZ/BPC-ZZZ-WWWWWWWW-Data-Integrity-Constraints.xsl` invocation stylesheet.
 1. The `val/testSVRL4UBLerrors.xsl` XSLT stylesheet is used to interpret the SVRL results in the context of the demonstration validation test environment. Users can create their own interpretation of SVRL for their own production environment.
 
@@ -104,7 +103,7 @@ The existence of the file `VALID-SEMANTICS-XML-FILE-NOT-GENERATED.txt` indicates
 In the following, these abbreviations are used:
 - `WWWWWWW` - the document type e.g. Invoice
 - `X.Y` - the version of the semantic library e.g. 0.3
-- `ZZZ` - the customization name e.g. core, e.g. extended
+- `ZZZ` - the customization name e.g. Core, e.g. Extended, e.g. Minimum
 
 The existence of the file `ERROR-RUNNING-RESULTING-XSLT-FOR-ZZZ-WWWWWWW.txt` indicates a problem in the XPath of the Schematron generated. This file contains the report of the problems, as well as the file `bpc/ZZZ/BPC-ZZZ-WWWWWWW-Data-Integrity-Constraints.error.txt`. Two steps are needed to determine where to fix the XPath problem:
 

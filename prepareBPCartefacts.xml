@@ -80,18 +80,6 @@ file="${utilitydir}Crane-cva2sch-${cva2sch}/utility/iso_schematron_assembly.xsl"
     <param name="target" value="${dir}/readme-bpccodelists2xsl.html"/>
   </antcall>
 
-  <uptodate targetfile="${dir}/readme-massageXSLT4Schematron.html"
-            property="readme-massageXSLT4Schematron-okay">
-    <srcfiles dir=".">
-      <include name="massageXSLT4Schematron.xsl"/>
-    </srcfiles>
-  </uptodate>
-  <antcall target="-make-doc">
-    <param name="okay"   value="readme-massageXSLT4Schematron-okay"/>
-    <param name="source" value="massageXSLT4Schematron.xsl"/>
-    <param name="target" value="${dir}/readme-massageXSLT4Schematron.html"/>
-  </antcall>
-
   <uptodate targetfile="${dir}/readme-testSVRL4UBLerrors.html"
             property="readme-testSVRL4UBLerrors-okay">
     <srcfiles dir=".">
@@ -470,33 +458,13 @@ destfile="${dir}/bpc-semantics-tools-${BPCversion}-${dateTime}/bpc-semantics-${B
 
 <target name="-sch2xsl" unless="${okay}">
   <delete file="${xslout}"/>
+
   <echo message="Creating ${xslout} from ${schin}..."/>
-  <echo message="Assembling fragmented Schematron into whole..."/>
-  <java append="true" classname="com.icl.saxon.StyleSheet">
-     <arg value="-o"/>
-     <arg value="${xslout}.temp.sch"/>
-     <arg value="${schin}"/>
-     <arg value="${utilitydir}schematron/code/iso_dsdl_include.xsl"/>
-  </java>
-  
-  <echo message="Transforming whole Schematron into intermediate XSLT..."/>
-  <java append="true" classname="com.icl.saxon.StyleSheet">
-     <arg value="-o"/>
-     <arg value="${xslout}.temp.xsl"/>
-     <arg value="${xslout}.temp.sch"/>
-     <arg value="${utilitydir}schematron/code/iso_svrl_for_xslt2.xsl"/>
-  </java>
-  
-  <echo message="Deleting intermediate whole..."/>
-  <delete file="${xslout}.temp.sch"/>
-  <echo message="Massaging intermediate XSLT for attribute contexts..."/>
   <java append="true" classname="net.sf.saxon.Transform">
      <arg value="-o:${xslout}"/>
-     <arg value="-s:${xslout}.temp.xsl"/>
-     <arg value="-xsl:${dir}/massageXSLT4Schematron.xsl"/>
+     <arg value="-s:${schin}"/>
+     <arg value="-xsl:${utilitydir}schematron/schxslt/2.0/pipeline-for-svrl.xsl"/>
   </java>
-  <echo message="Deleting intermediate XSLT..."/>
-  <delete file="${xslout}.temp.xsl"/>
 
   <echo message="Validating ${xslout} using ${xslin}..."/>
   <java resultproperty="returnXSLTtest" fork="true"

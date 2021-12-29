@@ -66,7 +66,7 @@
     <para>&#x2466; - Corner 3 rearranges the business document information from UBL XML format to Corner 4’s private data format and forwards it to Corner 4 and the work of Corner 3 is done</para>
     <para>A UBL document sent by Corner 2 across the network may include schema-valid representations of additional semantics beyond the BPC repertoire, but Corner 3 is only obliged to recognize the BPC suite. Corner 3 may choose to support more, but Corner 2 cannot rely on Corner 3 supporting more
       than the BPC repertoire.</para>
-    <para>In this section, <literal>WWWWWWW</literal> refers to the document type, <literal>X.Y</literal> refers to the version number, and <literal>ZZZ</literal> refers to the customization (at this point either “minimum”, “core”, or “extended”).</para>
+    <para>In this section, <literal>WWWWWWW</literal> refers to the document type (e.g. Invoice), <literal>X.Y</literal> refers to the version number (e.g. 0.3), and <literal>ZZZ</literal> refers to the customization (at this point either “Minimum”, “Core”, or “Extended” for the Invoice).</para>
     <para>This package named “<literal>bpc-semantics-vX.Y-{revision-date}.zip</literal>” contains the following developer-referenced files in the indicated subdirectories:</para>
     <itemizedlist>
       <listitem>
@@ -316,15 +316,15 @@ Validating using customization "Core" and type "Invoice": "Invoice-Core-test-bad
 ===== Phase 1: XSD schema validation =====
 No schema validation errors.
 ===== Phase 2: BPC customization "Core" data integrity validation =====
-1. [IND5] Elements SHALL NOT be empty/Invoice/cac:AccountingCustomerParty[1]/
+1. [IND5] Elements SHALL NOT be empty /Invoice/cac:AccountingCustomerParty[1]/
  cac:Party[1]/cac:PostalAddress[1]/cbc:PostalZone[1] / true()
 2. Fewer or more than one trading name. /Invoice/cac:AccountingCustomerParty[1] /
  count(cac:Party/cac:PartyName/cbc:Name) = 1 (:NABT-045 Row 105 Tab
  'Invoice, Credit Note':)
 Count of errors: 2
-Error in xsl:value-of/@select on line 93 column 67 of testSVRL4UBLerrors.xsl:
-  XTMM9000: Processing terminated by xsl:message at line 93 in testSVRL4UBLerrors.xsl
-Processing terminated by xsl:message at line 93 in testSVRL4UBLerrors.xsl
+Error in xsl:value-of/@select on line 97 column 67 of testSVRL4UBLerrors.xsl:
+  XTMM9000: Processing terminated by xsl:message at line 97 in testSVRL4UBLerrors.xsl
+Processing terminated by xsl:message at line 97 in testSVRL4UBLerrors.xsl
 
 ############################################################
 Validating using customization "Core" and type "Invoice": "Invoice-Core-test-good.xml"

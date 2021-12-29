@@ -22,7 +22,7 @@
   <para>
     The location contexts are massaged when UBL namespaces are recognized so
     that the end result uses familiar cac:, cbc:, and ext: prefixes, and no
-    prefix on the document element.
+    prefix nor predicate on the document element.
   </para>
   <para>
     Standard output can be ignored as all messages are sent to standard error.
@@ -68,19 +68,23 @@
     <!--report all of the errors-->
     <xsl:for-each select="$failures">
       <!--massage the location based on knowledge of UBL namespaces-->
-      <xsl:variable name="location"
-                 select="replace(@location,'^/\*:([^\[]+?)\[.*?\]\[1\]','/$1')"/>
       <xsl:variable name="location" select="
-replace($location,'\*:([^\[]+?)\[namespace-uri\(\)=''urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2''\]','cac:$1')"/>
+replace(@location,'Q\{urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2\}','cac:$1')"/>
       <xsl:variable name="location" select="
-replace($location,'\*:([^\[]+?)\[namespace-uri\(\)=''urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2''\]','cbc:$1')"/>
+replace($location,'Q\{urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2\}','cbc:$1')"/>
       <xsl:variable name="location" select="
-replace($location,'\*:([^\[]+?)\[namespace-uri\(\)=''urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2''\]','ext:$1')"/>
+replace($location,'Q\{urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2\}','ext:$1')"/>
+      <xsl:variable name="location" select="
+replace($location,'Q\{urn:oasis:names:specification:ubl:schema:xsd:[^-]+-2\}([^\[]+)\[1\]','$1')"/>
       <!--compose message-->
       <xsl:variable name="message">
         <xsl:value-of select="position()"/>
         <xsl:text>. </xsl:text>
-        <xsl:value-of select="replace( svrl:text, '\(:.*?:\)', '' )"/>
+        <xsl:value-of select="replace( 
+                                  (:remove spreadsheet info from context:)
+                                  replace( svrl:text, '\(:.*?:\)', '' ),
+                                  (:ensure a single space at end of message:)
+                                  '(.)\s*$','$1 ')"/>
         <xsl:value-of select="$location"/>
         <xsl:text> / </xsl:text>
         <xsl:value-of select="@test"/>

@@ -265,7 +265,7 @@ test.bat</programlisting>
             <para>double-click on <literal>test.bat</literal> to execute the program in a pop-up window (the batch file will pause at the end)</para>
           </listitem>
           <listitem>
-            <para>note that lengthy reports will scroll out of the history of window lines so they may not appear when scrolling back to find them</para>
+            <para>note that lengthy reports will scroll out of the history of window lines so they may not appear when scrolling back to find them (see <xref linkend="S-CONFIGURING-WINDOWS-DOS-BOX-HISTORY"/> for details on increasing the length of the history)</para>
           </listitem>
         </itemizedlist>
       </listitem>
@@ -364,7 +364,7 @@ testall.bat</programlisting>
             <para>double-click on <literal>testall.bat</literal> to execute the program in a pop-up window (the batch file will pause at the end)</para>
           </listitem>
           <listitem>
-            <para>note that lengthy reports will scroll out of the history of window lines so they may not appear when scrolling back to find them</para>
+            <para>note that lengthy reports will scroll out of the history of window lines so they may not appear when scrolling back to find them (see <xref linkend="S-CONFIGURING-WINDOWS-DOS-BOX-HISTORY"/> for details on increasing the length of the history)</para>
           </listitem>
         </itemizedlist>
       </listitem>
@@ -392,7 +392,8 @@ sh testall.sh</programlisting>
             <para>fully extract the nested ZIP files into your file system because drag-n-drop does not work from inside ZIP extractor virtual directories</para>
           </listitem>
           <listitem>
-            <para>open the unzipped <literal>val/windows-drag-n-drop/</literal> directory in Windows Explorer to reveal the available invocations</para>
+            <para>open the unzipped <literal>val/windows-drag-n-drop/</literal> directory in Windows Explorer to reveal the available invocations<emphasis> (pro tip: pre-click once on the batch file you intend to use so that it is highlighted when the time comes to drop a file on it; this will make
+                it easier to locate in the list for dropping)</emphasis></para>
           </listitem>
           <listitem>
             <para>drag your XML file from Windows Explorer where it is being edited, and drop it onto the corresponding invocation batch file performing the desired validation</para>
@@ -406,7 +407,7 @@ sh testall.sh</programlisting>
             </figure>
           </listitem>
           <listitem>
-            <para>a command window will open up revealing the results until a key is pressed to make the window disappear</para>
+            <para>a dynamic command DOS box window will open up revealing the results until a key is pressed to make the window disappear (see <xref linkend="S-CONFIGURING-WINDOWS-DOS-BOX-HISTORY"/> for details on adjusting the length of the history)</para>
             <figure id="F-WINDOWS-DROP-EXECUTION">
               <title>Windows Drop Execution</title>
               <mediaobject>
@@ -449,7 +450,36 @@ sh testall.sh</programlisting>
   <section id="S-EXAMPLES">
     <title>Examples</title>
     <para>The <literal>examples/</literal> subdirectory has a number of example BPC UBL XML instances. The <literal>val/test-examples.bat</literal> and <literal>val/test-examples.sh</literal> invocations check each of these examples. In Windows Explorer, double-click on
-        <literal>test-examples.bat</literal> to execute the program in a pop-up window (the batch file will pause at the end). Note that lengthy reports will scroll out of the history of window lines so they may not appear when scrolling back to find them</para>
+        <literal>test-examples.bat</literal> to execute the program in a pop-up window (the batch file will pause at the end). Note that lengthy reports will scroll out of the history of window lines so they may not appear when scrolling back to find them (see <xref
+        linkend="S-CONFIGURING-WINDOWS-DOS-BOX-HISTORY"/> for details on increasing the length of the history).</para>
+  </section>
+  <section id="S-CONFIGURING-WINDOWS-DOS-BOX-HISTORY">
+    <title>Configuring Windows DOS box history</title>
+    <para>Should the dynamic command DOS box history be too short for a long report, the height of the box window (dictating the history) can be increased as follows:</para>
+    <itemizedlist>
+      <listitem>
+        <para>execute any of the Windows batch files so that the dynamic DOS box is presented on the screen (do not press any key when the batch file finishes executing)</para>
+      </listitem>
+      <listitem>
+        <para>either left-click on the DOS box icon in the title bar, or right-click anywhere on the title bar</para>
+      </listitem>
+      <listitem>
+        <para>select “Properties”</para>
+      </listitem>
+      <listitem>
+        <para>click on the “Layout” tab</para>
+      </listitem>
+      <listitem>
+        <para>in the “Screen Buffer Size” set of values, change the “Height” value typing in a large number such as “2000”</para>
+      </listitem>
+      <listitem>
+        <para>click on the “OK” button</para>
+      </listitem>
+      <listitem>
+        <para>when the batch file finishes executing, press any key to exit</para>
+      </listitem>
+    </itemizedlist>
+    <para>The next time the dynamic command DOS box is used, the new setting for the height will be in play. When the batch file completes execution, one can scroll up through the history to see the complete report.</para>
   </section>
   <!--  <bibliography>
     <para>See article-bibliography.xml for bibliographic entries.</para>

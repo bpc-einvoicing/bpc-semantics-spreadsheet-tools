@@ -248,13 +248,24 @@ where options include:
     <para>To run the demonstration there is an invocation for each of the Windows and Shell environments:</para>
     <itemizedlist>
       <listitem>
-        <para>Windows:</para>
+        <para>Windows command line:</para>
         <itemizedlist>
           <listitem>
             <para>
               <programlisting>cd val\
 test.bat</programlisting>
             </para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+      <listitem>
+        <para>Windows explorer:</para>
+        <itemizedlist>
+          <listitem>
+            <para>double-click on <literal>test.bat</literal> to execute the program in a pop-up window (the batch file will pause at the end)</para>
+          </listitem>
+          <listitem>
+            <para>note that lengthy reports will scroll out of the history of window lines so they may not appear when scrolling back to find them</para>
           </listitem>
         </itemizedlist>
       </listitem>
@@ -336,13 +347,24 @@ No data integrity validation errors.</programlisting>
     <para>Also included is a script to run all of the document types in both of the customizations for both “good” and “bad” test files:</para>
     <itemizedlist>
       <listitem>
-        <para>Windows:</para>
+        <para>Windows command line:</para>
         <itemizedlist>
           <listitem>
             <para>
               <programlisting>cd val\
 testall.bat</programlisting>
             </para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+      <listitem>
+        <para>Windows explorer:</para>
+        <itemizedlist>
+          <listitem>
+            <para>double-click on <literal>testall.bat</literal> to execute the program in a pop-up window (the batch file will pause at the end)</para>
+          </listitem>
+          <listitem>
+            <para>note that lengthy reports will scroll out of the history of window lines so they may not appear when scrolling back to find them</para>
           </listitem>
         </itemizedlist>
       </listitem>
@@ -426,7 +448,8 @@ sh testall.sh</programlisting>
   </section>
   <section id="S-EXAMPLES">
     <title>Examples</title>
-    <para>The <literal>examples/</literal> subdirectory has a number of example BPC UBL XML instances. The <literal>val/test-examples.bat</literal> and <literal>val/test-examples.sh</literal> invocations check each of these examples.</para>
+    <para>The <literal>examples/</literal> subdirectory has a number of example BPC UBL XML instances. The <literal>val/test-examples.bat</literal> and <literal>val/test-examples.sh</literal> invocations check each of these examples. In Windows Explorer, double-click on
+        <literal>test-examples.bat</literal> to execute the program in a pop-up window (the batch file will pause at the end). Note that lengthy reports will scroll out of the history of window lines so they may not appear when scrolling back to find them</para>
   </section>
   <!--  <bibliography>
     <para>See article-bibliography.xml for bibliographic entries.</para>

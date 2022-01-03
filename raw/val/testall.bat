@@ -37,3 +37,7 @@ call validate Extended CreditNote CreditNote-Extended-test-bad-syntax.xml
 call validate Extended CreditNote CreditNote-Extended-test-bad-model.xml
 call validate Extended CreditNote CreditNote-Extended-test-bad-data.xml
 call validate Extended CreditNote CreditNote-Extended-test-good.xml
+
+echo.
+echo.
+pause

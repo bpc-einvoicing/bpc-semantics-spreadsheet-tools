@@ -424,6 +424,10 @@ sh testall.sh</programlisting>
     <para><programlisting>sh validate.sh Core CreditNote myCreditNoteTest.xml</programlisting>and when running from another directory one need only point to the invocation and schema:</para>
     <programlisting>sh bpc-semantics-0.3-20211221-023232z/val/validate.sh Core CreditNote myCreditNoteTest.xml</programlisting>
   </section>
+  <section id="S-EXAMPLES">
+    <title>Examples</title>
+    <para>The <literal>examples/</literal> subdirectory has a number of example BPC UBL XML instances. The <literal>val/test-examples.bat</literal> and <literal>val/test-examples.sh</literal> invocations check each of these examples.</para>
+  </section>
   <!--  <bibliography>
     <para>See article-bibliography.xml for bibliographic entries.</para>
   </bibliography>-->

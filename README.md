@@ -119,22 +119,25 @@ The existence of the file `ERROR-RUNNING-RESULTING-XSLT-FOR-ZZZ-WWWWWWW.txt` ind
 When there are no Schematron errors reported when the build process is completed, the XSLT stylesheets created from the data integrity Schematron schemas are used to detect any violations in a given XML document. Violations are reported with the XPath address which includes the same spreadsheet citation as follows:
 
 ```
-1. Fewer or more than one trading name. /Invoice/cac:AccountingCustomerParty[1]
- / count(cac:Party/cac:PartyName/cbc:Name) = 1 (:NABT-045 Row 84 Tab
-  'Invoice, Credit Note':)
-2. Amount Due for Payment (NABT-115) is not equal to the total amount with tax
- (NABT-112) minus PrePaid Amount (NABT-113) plus Rounding Amount (NABT-114).
- /Invoice/cac:LegalMonetaryTotal[1]/cbc:PayableAmount[1] /
- bpc:compareAmountsEqual( ., sum( ( ../cbc:TaxInclusiveAmount,
- -1 * ../cbc:PrepaidAmount, ../cbc:PayableRoundingAmount ) ) )
- (:NABT-115 Row 165 Tab 'Invoice, Credit Note':)
-Count of errors: 2
-Error in xsl:value-of/@select on line 93 column 67 of testSVRL4UBLerrors.xsl:
-  XTMM9000: Processing terminated by xsl:message at line 93 in testSVRL4UBLerrors.xsl
-Processing terminated by xsl:message at line 93 in testSVRL4UBLerrors.xsl
+1. [IND5] Elements SHALL NOT be empty /Invoice/cac:AccountingCustomerParty[1]/
+ cac:Party[1]/cac:PostalAddress[1]/cbc:PostalZone[1] / true()
+2. Fewer or more than one trading name. /Invoice/cac:AccountingCustomerParty[1]
+ / count(cac:Party/cac:PartyName/cbc:Name) = 1 (:NABT-045 Row 105 Tab
+ 'Invoice, Credit Note':)
+Count of data errors: 2
+
+INTERNAL ERROR 1. Suppressed rule: /Invoice:Invoice/cac:InvoiceLine (:NABG-026
+ Row 249 Tab 'Invoice, Credit Note':)
+Count of internal errors to be reported: 1
+
+
+The following error report is simply the exit mechanism and can be ignored:
+Error in xsl:message/@terminate on line 120 column 34 of testSVRL4UBLerrors.xsl:
+  XTMM9000: Processing terminated by xsl:message at line 120 in testSVRL4UBLerrors.xsl
+Processing terminated by xsl:message at line 120 in testSVRL4UBLerrors.xsl
 ```
 
-It is important to note that the "Error" cited at the end of the report for line 93 of the `testSVRL4UBLerrors.xsl` stylesheet is the mechanism by which the stylesheet signals that there are data integrity violations. There actually is no error on line 93 of the stylesheet, just the directive to exit with error.
+An internal error reports a fault in the original BPC semantics spreadsheet leading to ambiguous matching contexts resulting in only the first of the contexts' rules being tested and not any of the rules of the matching contexts. End users are encouraged to report such internal errors back to the BPC Semantics Technical Subgroup to be addressed in the semantics spreadsheet.
 
 ## Documentation and demonstration - using the validation results
 

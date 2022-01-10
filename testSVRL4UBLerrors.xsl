@@ -69,7 +69,9 @@
     <xsl:for-each select="$failures">
       <!--massage the location based on knowledge of UBL namespaces-->
       <xsl:variable name="location" select="
-replace(@location,'Q\{urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2\}','cac:$1')"/>
+replace(@location,'@Q\{.*?\}','@')"/>
+      <xsl:variable name="location" select="
+replace($location,'Q\{urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2\}','cac:$1')"/>
       <xsl:variable name="location" select="
 replace($location,'Q\{urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2\}','cbc:$1')"/>
       <xsl:variable name="location" select="

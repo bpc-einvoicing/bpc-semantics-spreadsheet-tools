@@ -62,14 +62,30 @@
   <xsl:variable name="metadata"
                 select="$bpc:metdata/codeList[@lookupID=$lookupID]"/>
   <xsl:for-each select="$element">
+    <!--this diagnostic code can be engaged changing false() to true()-->
+    <xsl:if test="$lookupID='ISO-3166' and false()">
+      <xsl:message select="count(@*)"/>
+      <xsl:message select="$metadata"/>
+      <xsl:message select="(@listID,@schemeID,@unitCodeListID)[1]"/>
+      <xsl:message select="$metadata/Identification/LongName[@Identifier='listID']"/>
+      <xsl:message select="."/>
+      <xsl:message terminate="yes" select="(:1:) exists($metadata) , 
+         (:2:) not((@listName,@schemeName)[1]!=$metadata/Identification/LongName[not(@Identifier='listID')]) ,
+         (:3:) not((@listID,@schemeID,@unitCodeListID)[1]!=$metadata/Identification/LongName[@Identifier='listID']) ,
+         (:4:) not((@listVersionID,@schemeVersionID)[1]!=$metadata/Identification/Version) ,
+         (:5:) not((@listSchemeURI,@schemeURI)[1]!=$metadata/Identification/CanonicalUri) ,
+         (:6:) not((@listAgencyName,@schemeAgencyName,@unitCodeListAgencyName)[1]!=$metadata/Identification/Agency/LongName) ,
+         (:7:) not((@listAgencyID,@schemeAgencyID,@unitCodeListAgencyName)[1]!=$metadata/Identification/Agency/Identifier) , 
+         (:8:) ( some $code in $values satisfies normalize-space((@unitCode,.)[1])=$code )                         "/>
+    </xsl:if>
     <xsl:sequence select="exists($metadata)
-and not(@listName!=$metadata/Identification/LongName[not(@Identifier='listID')])
-and not(@listID!=$metadata/Identification/LongName[@Identifier='listID'])
-and not(@listVersionID!=$metadata/Identification/Version)
-and not(@listSchemeURI!=$metadata/Identification/CanonicalUri)
-and not(@listAgencyName!=$metadata/Identification/Agency/LongName)
-and not(@listAgencyID!=$metadata/Identification/Agency/Identifier)
-and ( some $code in $values satisfies normalize-space(.)=$code )
+and not((@listName,@schemeName)[1]!=$metadata/Identification/LongName[not(@Identifier='listID')])
+and not((@listID,@schemeID,@unitCodeListID)[1]!=$metadata/Identification/LongName[@Identifier='listID'])
+and not((@listVersionID,@schemeVersionID)[1]!=$metadata/Identification/Version)
+and not((@listSchemeURI,@schemeURI)[1]!=$metadata/Identification/CanonicalUri)
+and not((@listAgencyName,@schemeAgencyName,@unitCodeListAgencyName)[1]!=$metadata/Identification/Agency/LongName)
+and not((@listAgencyID,@schemeAgencyID,@unitCodeListAgencyName)[1]!=$metadata/Identification/Agency/Identifier)
+and ( some $code in $values satisfies normalize-space((@unitCode,.)[1])=$code )
                         "/>
   </xsl:for-each>
 </xsl:function>

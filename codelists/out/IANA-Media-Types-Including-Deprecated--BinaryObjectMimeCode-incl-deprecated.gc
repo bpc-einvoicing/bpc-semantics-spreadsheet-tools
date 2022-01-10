@@ -4,7 +4,7 @@
       <ShortName>BinaryObjectMimeCode</ShortName>
       <LongName xml:lang="en">Binary Object Mime Code</LongName>
       <LongName Identifier="listID">IANA-Media-Types</LongName>
-      <Version>2021-12-07</Version>
+      <Version>2022-01-07</Version>
       <CanonicalUri>IANA:BinaryObjectMimeCode</CanonicalUri>
       <CanonicalVersionUri>IANA:BinaryObjectMimeCode:2021-12-07</CanonicalVersionUri>
       <LocationUri>http://www.iana.org/assignments/media-types/media-types.xml</LocationUri>
@@ -7120,6 +7120,9 @@
          <Value ColumnRef="rfc1">
             <SimpleValue>rfc2660</SimpleValue>
          </Value>
+         <Value ColumnRef="uri1">
+            <SimpleValue>https://datatracker.ietf.org/doc/status-change-http-experiments-to-historic</SimpleValue>
+         </Value>
          <Value ColumnRef="template">
             <SimpleValue>message/s-http</SimpleValue>
          </Value>
@@ -11308,7 +11311,7 @@
             <SimpleValue>application/vnd.debian.binary-package</SimpleValue>
          </Value>
          <Value ColumnRef="person1">
-            <SimpleValue>Charles_Plessy</SimpleValue>
+            <SimpleValue>Debian_Policy_mailing_list</SimpleValue>
          </Value>
          <Value ColumnRef="template">
             <SimpleValue>application/vnd.debian.binary-package</SimpleValue>
@@ -12691,6 +12694,17 @@
       </Row>
       <Row>
          <Value ColumnRef="code">
+            <SimpleValue>application/vnd.eu.kasparian.car+json</SimpleValue>
+         </Value>
+         <Value ColumnRef="person1">
+            <SimpleValue>Hervé_Kasparian</SimpleValue>
+         </Value>
+         <Value ColumnRef="template">
+            <SimpleValue>application/vnd.eu.kasparian.car+json</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="code">
             <SimpleValue>application/vnd.eudora.data</SimpleValue>
          </Value>
          <Value ColumnRef="person1">
@@ -13836,6 +13850,28 @@
          </Value>
          <Value ColumnRef="template">
             <SimpleValue>application/vnd.hhe.lesson-player</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="code">
+            <SimpleValue>application/vnd.hl7cda+xml</SimpleValue>
+         </Value>
+         <Value ColumnRef="person1">
+            <SimpleValue>Marc_Duteau</SimpleValue>
+         </Value>
+         <Value ColumnRef="template">
+            <SimpleValue>application/vnd.hl7cda+xml</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="code">
+            <SimpleValue>application/vnd.hl7v2+xml</SimpleValue>
+         </Value>
+         <Value ColumnRef="person1">
+            <SimpleValue>Marc_Duteau</SimpleValue>
+         </Value>
+         <Value ColumnRef="template">
+            <SimpleValue>application/vnd.hl7v2+xml</SimpleValue>
          </Value>
       </Row>
       <Row>

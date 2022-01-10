@@ -218,6 +218,19 @@ Algeria	Algérie (l')	DZ	DZA	012
 ...
 Zimbabwe	Zimbabwe (le)	ZW	ZWE	716
 Åland Islands	Åland(les Îles)	AX	ALA	248
+
+    Check the significant rows for any row that starts with lower-case, as it
+    likely will be a wrapped-line entry. If the line wraps at an upper-case
+    character, this, too, is a problem. The following elaborate steps work in
+    oXygenXML:
+     - regex search for the following, replacing all with +++++$0
+         ^([^+\t\n]+)\t([^\t\n]+)\t([^\t\n]+)\t([^\t\n]+)\t([^\n]+)\n
+     - the lines not prefixed with plus signs are wrapped-over lines
+     - repair manually and repeat replace all until no more are founmd (note
+       when joining lines that some joins are spaces and some are line feeds)
+     - regex search for the following to find any unfinished business
+         ^[^+]
+     - remove all "+++++" from the file
     -->
    <Identification>
       <ShortName>CountryIdentificationCode</ShortName>

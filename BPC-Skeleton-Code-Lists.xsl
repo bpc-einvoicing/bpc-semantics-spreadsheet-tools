@@ -32,8 +32,16 @@
       <xsl:when test="$item instance of element()">
         <xsl:sequence select="$item"/>
       </xsl:when>
+      <xsl:when test="$item instance of attribute()">
+        <placebo>
+          <xsl:copy-of select="$item/../@*"/>
+          <xsl:value-of select="$item"/>
+        </placebo>
+      </xsl:when>
       <xsl:otherwise>
-        <placebo><xsl:value-of select="$item"/></placebo>
+        <placebo>
+          <xsl:value-of select="$item"/>
+        </placebo>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
@@ -63,7 +71,7 @@
                 select="$bpc:metdata/codeList[@lookupID=$lookupID]"/>
   <xsl:for-each select="$element">
     <!--this diagnostic code can be engaged changing false() to true()-->
-    <xsl:if test="$lookupID='ISO-3166' and false()">
+    <xsl:if test="$lookupID='UNECE-Rec-20' and false()">
       <xsl:message select="count(@*)"/>
       <xsl:message select="$metadata"/>
       <xsl:message select="(@listID,@schemeID,@unitCodeListID)[1]"/>

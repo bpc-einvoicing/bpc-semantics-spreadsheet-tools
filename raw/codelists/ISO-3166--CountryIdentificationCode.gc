@@ -4,9 +4,9 @@
       <ShortName>CountryIdentificationCode</ShortName>
       <LongName xml:lang="en">Country Identification Code</LongName>
       <LongName Identifier="listID">ISO-3166</LongName>
-      <Version>2021-12-13</Version>
+      <Version>2022-01-10</Version>
       <CanonicalUri>urn:iso:std:iso:3166</CanonicalUri>
-      <CanonicalVersionUri>urn:iso:std:iso:3166:2021-12-13</CanonicalVersionUri>
+      <CanonicalVersionUri>urn:iso:std:iso:3166:2022-01-10</CanonicalVersionUri>
       <AlternateFormatLocationUri MimeType="text/html">https://www.iso.org/obp/ui/#search/code/</AlternateFormatLocationUri>
       <Agency>
          <LongName xml:lang="en">International Organization for Standardization</LongName>
@@ -569,6 +569,23 @@
       </Row>
       <Row>
          <Value ColumnRef="code">
+            <SimpleValue>IO</SimpleValue>
+         </Value>
+         <Value ColumnRef="name">
+            <SimpleValue>British Indian Ocean Territory (the)</SimpleValue>
+         </Value>
+         <Value ColumnRef="numericcode">
+            <SimpleValue>086</SimpleValue>
+         </Value>
+         <Value ColumnRef="french">
+            <SimpleValue>Indien (le Territoire britannique de l'océan)</SimpleValue>
+         </Value>
+         <Value ColumnRef="ref">
+            <SimpleValue>IOT</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="code">
             <SimpleValue>BN</SimpleValue>
          </Value>
          <Value ColumnRef="name">
@@ -807,6 +824,23 @@
       </Row>
       <Row>
          <Value ColumnRef="code">
+            <SimpleValue>CC</SimpleValue>
+         </Value>
+         <Value ColumnRef="name">
+            <SimpleValue>Cocos (Keeling) Islands (the)</SimpleValue>
+         </Value>
+         <Value ColumnRef="numericcode">
+            <SimpleValue>166</SimpleValue>
+         </Value>
+         <Value ColumnRef="french">
+            <SimpleValue>Cocos (les Îles)/Keeling (les Îles)</SimpleValue>
+         </Value>
+         <Value ColumnRef="ref">
+            <SimpleValue>CCK</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="code">
             <SimpleValue>CO</SimpleValue>
          </Value>
          <Value ColumnRef="name">
@@ -837,6 +871,23 @@
          </Value>
          <Value ColumnRef="ref">
             <SimpleValue>COM</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="code">
+            <SimpleValue>CD</SimpleValue>
+         </Value>
+         <Value ColumnRef="name">
+            <SimpleValue>Congo (the Democratic Republic of the)</SimpleValue>
+         </Value>
+         <Value ColumnRef="numericcode">
+            <SimpleValue>180</SimpleValue>
+         </Value>
+         <Value ColumnRef="french">
+            <SimpleValue>Congo (la République démocratique du)</SimpleValue>
+         </Value>
+         <Value ColumnRef="ref">
+            <SimpleValue>COD</SimpleValue>
          </Value>
       </Row>
       <Row>
@@ -1198,6 +1249,23 @@
       </Row>
       <Row>
          <Value ColumnRef="code">
+            <SimpleValue>FK</SimpleValue>
+         </Value>
+         <Value ColumnRef="name">
+            <SimpleValue>Falkland Islands (the) [Malvinas]</SimpleValue>
+         </Value>
+         <Value ColumnRef="numericcode">
+            <SimpleValue>238</SimpleValue>
+         </Value>
+         <Value ColumnRef="french">
+            <SimpleValue>Falkland (les Îles)/Malouines (les Îles)</SimpleValue>
+         </Value>
+         <Value ColumnRef="ref">
+            <SimpleValue>FLK</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="code">
             <SimpleValue>FO</SimpleValue>
          </Value>
          <Value ColumnRef="name">
@@ -1296,6 +1364,23 @@
          </Value>
          <Value ColumnRef="ref">
             <SimpleValue>PYF</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="code">
+            <SimpleValue>TF</SimpleValue>
+         </Value>
+         <Value ColumnRef="name">
+            <SimpleValue>French Southern Territories (the)</SimpleValue>
+         </Value>
+         <Value ColumnRef="numericcode">
+            <SimpleValue>260</SimpleValue>
+         </Value>
+         <Value ColumnRef="french">
+            <SimpleValue>Terres australes françaises (les)</SimpleValue>
+         </Value>
+         <Value ColumnRef="ref">
+            <SimpleValue>ATF</SimpleValue>
          </Value>
       </Row>
       <Row>
@@ -1946,6 +2031,23 @@
       </Row>
       <Row>
          <Value ColumnRef="code">
+            <SimpleValue>KP</SimpleValue>
+         </Value>
+         <Value ColumnRef="name">
+            <SimpleValue>Korea (the Democratic People's Republic of)</SimpleValue>
+         </Value>
+         <Value ColumnRef="numericcode">
+            <SimpleValue>408</SimpleValue>
+         </Value>
+         <Value ColumnRef="french">
+            <SimpleValue>Corée (la République populaire démocratique de)</SimpleValue>
+         </Value>
+         <Value ColumnRef="ref">
+            <SimpleValue>PRK</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="code">
             <SimpleValue>KR</SimpleValue>
          </Value>
          <Value ColumnRef="name">
@@ -1993,6 +2095,23 @@
          </Value>
          <Value ColumnRef="ref">
             <SimpleValue>KGZ</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="code">
+            <SimpleValue>LA</SimpleValue>
+         </Value>
+         <Value ColumnRef="name">
+            <SimpleValue>Lao People's Democratic Republic (the)</SimpleValue>
+         </Value>
+         <Value ColumnRef="numericcode">
+            <SimpleValue>418</SimpleValue>
+         </Value>
+         <Value ColumnRef="french">
+            <SimpleValue>Lao (la République démocratique populaire)</SimpleValue>
+         </Value>
+         <Value ColumnRef="ref">
+            <SimpleValue>LAO</SimpleValue>
          </Value>
       </Row>
       <Row>
@@ -3068,6 +3187,23 @@
       </Row>
       <Row>
          <Value ColumnRef="code">
+            <SimpleValue>SH</SimpleValue>
+         </Value>
+         <Value ColumnRef="name">
+            <SimpleValue>Saint Helena, Ascension and Tristan da Cunha</SimpleValue>
+         </Value>
+         <Value ColumnRef="numericcode">
+            <SimpleValue>654</SimpleValue>
+         </Value>
+         <Value ColumnRef="french">
+            <SimpleValue>Sainte-Hélène, Ascension et Tristan da Cunha</SimpleValue>
+         </Value>
+         <Value ColumnRef="ref">
+            <SimpleValue>SHN</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="code">
             <SimpleValue>KN</SimpleValue>
          </Value>
          <Value ColumnRef="name">
@@ -3404,6 +3540,23 @@
          </Value>
          <Value ColumnRef="ref">
             <SimpleValue>ZAF</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="code">
+            <SimpleValue>GS</SimpleValue>
+         </Value>
+         <Value ColumnRef="name">
+            <SimpleValue>South Georgia and the South Sandwich Islands</SimpleValue>
+         </Value>
+         <Value ColumnRef="numericcode">
+            <SimpleValue>239</SimpleValue>
+         </Value>
+         <Value ColumnRef="french">
+            <SimpleValue>Géorgie du Sud-et-les Îles Sandwich du Sud (la)</SimpleValue>
+         </Value>
+         <Value ColumnRef="ref">
+            <SimpleValue>SGS</SimpleValue>
          </Value>
       </Row>
       <Row>
@@ -3850,6 +4003,40 @@
       </Row>
       <Row>
          <Value ColumnRef="code">
+            <SimpleValue>GB</SimpleValue>
+         </Value>
+         <Value ColumnRef="name">
+            <SimpleValue>United Kingdom of Great Britain and Northern Ireland (the)</SimpleValue>
+         </Value>
+         <Value ColumnRef="numericcode">
+            <SimpleValue>826</SimpleValue>
+         </Value>
+         <Value ColumnRef="french">
+            <SimpleValue>Royaume-Uni de Grande-Bretagne et d'Irlande du Nord (le)</SimpleValue>
+         </Value>
+         <Value ColumnRef="ref">
+            <SimpleValue>GBR</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="code">
+            <SimpleValue>UM</SimpleValue>
+         </Value>
+         <Value ColumnRef="name">
+            <SimpleValue>United States Minor Outlying Islands (the)</SimpleValue>
+         </Value>
+         <Value ColumnRef="numericcode">
+            <SimpleValue>581</SimpleValue>
+         </Value>
+         <Value ColumnRef="french">
+            <SimpleValue>Îles mineures éloignées des États-Unis (les)</SimpleValue>
+         </Value>
+         <Value ColumnRef="ref">
+            <SimpleValue>UMI</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="code">
             <SimpleValue>US</SimpleValue>
          </Value>
          <Value ColumnRef="name">
@@ -3914,6 +4101,23 @@
          </Value>
          <Value ColumnRef="ref">
             <SimpleValue>VUT</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="code">
+            <SimpleValue>VE</SimpleValue>
+         </Value>
+         <Value ColumnRef="name">
+            <SimpleValue>Venezuela (Bolivarian Republic of)</SimpleValue>
+         </Value>
+         <Value ColumnRef="numericcode">
+            <SimpleValue>862</SimpleValue>
+         </Value>
+         <Value ColumnRef="french">
+            <SimpleValue>Venezuela (République bolivarienne du)</SimpleValue>
+         </Value>
+         <Value ColumnRef="ref">
+            <SimpleValue>VEN</SimpleValue>
          </Value>
       </Row>
       <Row>
@@ -4598,6 +4802,23 @@
       </Row>
       <Row>
          <Value ColumnRef="code">
+            <SimpleValue>IOT</SimpleValue>
+         </Value>
+         <Value ColumnRef="name">
+            <SimpleValue>British Indian Ocean Territory (the)</SimpleValue>
+         </Value>
+         <Value ColumnRef="numericcode">
+            <SimpleValue>086</SimpleValue>
+         </Value>
+         <Value ColumnRef="french">
+            <SimpleValue>Indien (le Territoire britannique de l'océan)</SimpleValue>
+         </Value>
+         <Value ColumnRef="ref">
+            <SimpleValue>IO</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="code">
             <SimpleValue>BRN</SimpleValue>
          </Value>
          <Value ColumnRef="name">
@@ -4836,6 +5057,23 @@
       </Row>
       <Row>
          <Value ColumnRef="code">
+            <SimpleValue>CCK</SimpleValue>
+         </Value>
+         <Value ColumnRef="name">
+            <SimpleValue>Cocos (Keeling) Islands (the)</SimpleValue>
+         </Value>
+         <Value ColumnRef="numericcode">
+            <SimpleValue>166</SimpleValue>
+         </Value>
+         <Value ColumnRef="french">
+            <SimpleValue>Cocos (les Îles)/Keeling (les Îles)</SimpleValue>
+         </Value>
+         <Value ColumnRef="ref">
+            <SimpleValue>CC</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="code">
             <SimpleValue>COL</SimpleValue>
          </Value>
          <Value ColumnRef="name">
@@ -4866,6 +5104,23 @@
          </Value>
          <Value ColumnRef="ref">
             <SimpleValue>KM</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="code">
+            <SimpleValue>COD</SimpleValue>
+         </Value>
+         <Value ColumnRef="name">
+            <SimpleValue>Congo (the Democratic Republic of the)</SimpleValue>
+         </Value>
+         <Value ColumnRef="numericcode">
+            <SimpleValue>180</SimpleValue>
+         </Value>
+         <Value ColumnRef="french">
+            <SimpleValue>Congo (la République démocratique du)</SimpleValue>
+         </Value>
+         <Value ColumnRef="ref">
+            <SimpleValue>CD</SimpleValue>
          </Value>
       </Row>
       <Row>
@@ -5227,6 +5482,23 @@
       </Row>
       <Row>
          <Value ColumnRef="code">
+            <SimpleValue>FLK</SimpleValue>
+         </Value>
+         <Value ColumnRef="name">
+            <SimpleValue>Falkland Islands (the) [Malvinas]</SimpleValue>
+         </Value>
+         <Value ColumnRef="numericcode">
+            <SimpleValue>238</SimpleValue>
+         </Value>
+         <Value ColumnRef="french">
+            <SimpleValue>Falkland (les Îles)/Malouines (les Îles)</SimpleValue>
+         </Value>
+         <Value ColumnRef="ref">
+            <SimpleValue>FK</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="code">
             <SimpleValue>FRO</SimpleValue>
          </Value>
          <Value ColumnRef="name">
@@ -5325,6 +5597,23 @@
          </Value>
          <Value ColumnRef="ref">
             <SimpleValue>PF</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="code">
+            <SimpleValue>ATF</SimpleValue>
+         </Value>
+         <Value ColumnRef="name">
+            <SimpleValue>French Southern Territories (the)</SimpleValue>
+         </Value>
+         <Value ColumnRef="numericcode">
+            <SimpleValue>260</SimpleValue>
+         </Value>
+         <Value ColumnRef="french">
+            <SimpleValue>Terres australes françaises (les)</SimpleValue>
+         </Value>
+         <Value ColumnRef="ref">
+            <SimpleValue>TF</SimpleValue>
          </Value>
       </Row>
       <Row>
@@ -5975,6 +6264,23 @@
       </Row>
       <Row>
          <Value ColumnRef="code">
+            <SimpleValue>PRK</SimpleValue>
+         </Value>
+         <Value ColumnRef="name">
+            <SimpleValue>Korea (the Democratic People's Republic of)</SimpleValue>
+         </Value>
+         <Value ColumnRef="numericcode">
+            <SimpleValue>408</SimpleValue>
+         </Value>
+         <Value ColumnRef="french">
+            <SimpleValue>Corée (la République populaire démocratique de)</SimpleValue>
+         </Value>
+         <Value ColumnRef="ref">
+            <SimpleValue>KP</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="code">
             <SimpleValue>KOR</SimpleValue>
          </Value>
          <Value ColumnRef="name">
@@ -6022,6 +6328,23 @@
          </Value>
          <Value ColumnRef="ref">
             <SimpleValue>KG</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="code">
+            <SimpleValue>LAO</SimpleValue>
+         </Value>
+         <Value ColumnRef="name">
+            <SimpleValue>Lao People's Democratic Republic (the)</SimpleValue>
+         </Value>
+         <Value ColumnRef="numericcode">
+            <SimpleValue>418</SimpleValue>
+         </Value>
+         <Value ColumnRef="french">
+            <SimpleValue>Lao (la République démocratique populaire)</SimpleValue>
+         </Value>
+         <Value ColumnRef="ref">
+            <SimpleValue>LA</SimpleValue>
          </Value>
       </Row>
       <Row>
@@ -7097,6 +7420,23 @@
       </Row>
       <Row>
          <Value ColumnRef="code">
+            <SimpleValue>SHN</SimpleValue>
+         </Value>
+         <Value ColumnRef="name">
+            <SimpleValue>Saint Helena, Ascension and Tristan da Cunha</SimpleValue>
+         </Value>
+         <Value ColumnRef="numericcode">
+            <SimpleValue>654</SimpleValue>
+         </Value>
+         <Value ColumnRef="french">
+            <SimpleValue>Sainte-Hélène, Ascension et Tristan da Cunha</SimpleValue>
+         </Value>
+         <Value ColumnRef="ref">
+            <SimpleValue>SH</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="code">
             <SimpleValue>KNA</SimpleValue>
          </Value>
          <Value ColumnRef="name">
@@ -7433,6 +7773,23 @@
          </Value>
          <Value ColumnRef="ref">
             <SimpleValue>ZA</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="code">
+            <SimpleValue>SGS</SimpleValue>
+         </Value>
+         <Value ColumnRef="name">
+            <SimpleValue>South Georgia and the South Sandwich Islands</SimpleValue>
+         </Value>
+         <Value ColumnRef="numericcode">
+            <SimpleValue>239</SimpleValue>
+         </Value>
+         <Value ColumnRef="french">
+            <SimpleValue>Géorgie du Sud-et-les Îles Sandwich du Sud (la)</SimpleValue>
+         </Value>
+         <Value ColumnRef="ref">
+            <SimpleValue>GS</SimpleValue>
          </Value>
       </Row>
       <Row>
@@ -7879,6 +8236,40 @@
       </Row>
       <Row>
          <Value ColumnRef="code">
+            <SimpleValue>GBR</SimpleValue>
+         </Value>
+         <Value ColumnRef="name">
+            <SimpleValue>United Kingdom of Great Britain and Northern Ireland (the)</SimpleValue>
+         </Value>
+         <Value ColumnRef="numericcode">
+            <SimpleValue>826</SimpleValue>
+         </Value>
+         <Value ColumnRef="french">
+            <SimpleValue>Royaume-Uni de Grande-Bretagne et d'Irlande du Nord (le)</SimpleValue>
+         </Value>
+         <Value ColumnRef="ref">
+            <SimpleValue>GB</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="code">
+            <SimpleValue>UMI</SimpleValue>
+         </Value>
+         <Value ColumnRef="name">
+            <SimpleValue>United States Minor Outlying Islands (the)</SimpleValue>
+         </Value>
+         <Value ColumnRef="numericcode">
+            <SimpleValue>581</SimpleValue>
+         </Value>
+         <Value ColumnRef="french">
+            <SimpleValue>Îles mineures éloignées des États-Unis (les)</SimpleValue>
+         </Value>
+         <Value ColumnRef="ref">
+            <SimpleValue>UM</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="code">
             <SimpleValue>USA</SimpleValue>
          </Value>
          <Value ColumnRef="name">
@@ -7943,6 +8334,23 @@
          </Value>
          <Value ColumnRef="ref">
             <SimpleValue>VU</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="code">
+            <SimpleValue>VEN</SimpleValue>
+         </Value>
+         <Value ColumnRef="name">
+            <SimpleValue>Venezuela (Bolivarian Republic of)</SimpleValue>
+         </Value>
+         <Value ColumnRef="numericcode">
+            <SimpleValue>862</SimpleValue>
+         </Value>
+         <Value ColumnRef="french">
+            <SimpleValue>Venezuela (République bolivarienne du)</SimpleValue>
+         </Value>
+         <Value ColumnRef="ref">
+            <SimpleValue>VE</SimpleValue>
          </Value>
       </Row>
       <Row>

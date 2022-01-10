@@ -112,6 +112,9 @@
     <cbc:ID>1</cbc:ID>
     <cbc:InvoicedQuantity>10</cbc:InvoicedQuantity>
     <cbc:LineExtensionAmount currencyID="USD">8990.00</cbc:LineExtensionAmount>
+    <cac:OrderLineReference>
+      <cbc:LineID>1</cbc:LineID>
+    </cac:OrderLineReference>
     <cac:Item>
       <cbc:Description>Surface Pro 128 GB</cbc:Description>
       <cbc:Name>Surface Pro 128 GB</cbc:Name>
@@ -127,6 +130,9 @@
     <cbc:ID>1</cbc:ID>
     <cbc:InvoicedQuantity>1</cbc:InvoicedQuantity>
     <cbc:LineExtensionAmount currencyID="USD">95.00</cbc:LineExtensionAmount>
+    <cac:OrderLineReference>
+      <cbc:LineID>2</cbc:LineID>
+    </cac:OrderLineReference>
     <cac:Item>
       <cbc:Description>Freight</cbc:Description>
       <cbc:Name>Freight</cbc:Name>

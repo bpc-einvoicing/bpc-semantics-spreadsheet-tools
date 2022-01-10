@@ -354,6 +354,8 @@
   <xsl:param name="custID" as="xsd:string" tunnel="yes"/>
   <xsl:param name="worksheet" as="element(worksheet)" tunnel="yes"/>
   <xsl:param name="doctype" as="element(doctype)" tunnel="yes"/>
+  <xsl:variable name="doctypeName" 
+                select="translate($doctype,' ','')"/>
   <!--first, preserve the pattern itself and its existing content-->
   <xsl:copy>
     <xsl:copy-of select="@*"/>
@@ -387,7 +389,9 @@
     </xsl:comment>
     <xsl:text>&#xa;</xsl:text>
 
-    <xsl:for-each-group group-by="." select="
+    <xsl:for-each-group
+      group-by="bpc:translateContext(.,$doctypeName)" 
+       select="
          $worksheet/semantics/semantic/
          customization[ $custID = tokenize( @custID, '\s+' ) ]/
          data/contextPrototype
@@ -396,7 +400,7 @@
          [ (:is a relative context:)
            not( starts-with(.,'/') )
         or (:is an absolute context of an expected doctype:)
-           starts-with(.,concat('/',$doctype) )
+           starts-with(.,concat('/',$doctypeName) )
         or (:is a prototype context and one of the document
              types for the customization matches one of the document
              types for the worksheet:)
@@ -406,24 +410,18 @@
           that matches the document element name when the context expression
           is absolute and does not already contain a colon (presuming the
           author already is using a namespace-qualified name-->
-      <xsl:variable name="contextPrototype"
-                    select="if( matches(.,'^/[^:/]:') ) then .
-                            else replace(.,'^/([^/]+)','/$1:$1')"/>
-      <xsl:for-each select="$doctype">
-        <xsl:variable name="doctypeName" 
-                      select="translate(.,' ','')"/>
         <!--only execute once unless there is a prototype replacement-->
-        <xsl:if test="position()=1 or contains($contextPrototype,'#')">
           <xsl:element name="rule"
                    namespace="http://purl.oclc.org/dsdl/schematron">
             <xsl:attribute name="context"
                            select="concat(
-   replace(normalize-space($contextPrototype),'#',$doctypeName),' ',
+   current-grouping-key(),' ',
    concat('(',':',string-join(distinct-values(
                               current-group()/ancestor::semantic/@bpcID),' ' ),
-    ' Row ',string-join(current-group()/ancestor::customization/@worksheetRow,' '),
-    ' Tab ''',$worksheet/@tab,
-    ''':',')') )"/>
+   ' Row ',
+   string-join(current-group()/ancestor::customization/@worksheetRow,' '),
+   ' Tab ''',$worksheet/@tab,
+   ''':',')') )"/>
             <xsl:for-each select="current-group()">
               <xsl:element name="assert"
                        namespace="http://purl.oclc.org/dsdl/schematron">
@@ -442,7 +440,7 @@
               ancestor::semantic/@bpcID,
               ' Row ',ancestor::customization/@worksheetRow,
               ' Tab ''',$worksheet/@tab,''':',')')"/>
-                <xsl:value-of select="replace(../message, '#',$doctypeName)"/>
+                <xsl:value-of select="../message"/>
                 <xsl:text> </xsl:text>
                 <xsl:value-of select="concat
                          ('(',':',ancestor::semantic/@bpcID,
@@ -451,12 +449,37 @@
               </xsl:element>
             </xsl:for-each>
           </xsl:element>
-        </xsl:if>
-      </xsl:for-each>
     </xsl:for-each-group>
 
     <xsl:text>&#xa;</xsl:text>
   </xsl:copy>
 </xsl:template>
+
+<xs:function>
+  <para>
+    Translate a context prototype into a context string based on document type
+  </para>
+  <xs:param name="prototype">
+    <para>
+      The prototypical context string that may contain "#" characters
+      representing the compressed document type name.
+    </para>
+  </xs:param>
+  <xs:param name="doctypeName">
+    <para>
+      The compressed document type name.
+    </para>
+  </xs:param>
+</xs:function>
+<xsl:function name="bpc:translateContext" as="xsd:string">
+  <xsl:param name="prototype" as="xsd:string"/>
+  <xsl:param name="doctypeName" as="xsd:string"/>
+  <xsl:variable name="contextPrototype"
+                select="if( matches($prototype,'^/[^:/]:') ) then $prototype
+                        else replace($prototype,'^/([^/]+)','/$1:$1')"/>
+  <xsl:value-of
+        select="replace(normalize-space($contextPrototype),'#',$doctypeName)"/>
+  
+</xsl:function>
 
 </xsl:stylesheet>

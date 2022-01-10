@@ -92,9 +92,34 @@ replace($location,'Q\{urn:oasis:names:specification:ubl:schema:xsd:[^-]+-2\}([^\
       <!--log message-->
       <xsl:message select="$message"/>
     </xsl:for-each>
+    <xsl:message select="'Count of data errors:',count($failures)"/>
+    <xsl:message/>
+  </xsl:if>
+  
+  <xsl:variable name="internals"
+                select="distinct-values(//svrl:suppressed-rule/@context)"/>
+  <xsl:if test="$internals">
+    <!--report all of the internal errors-->
+    <xsl:for-each select="$internals">
+      <xsl:variable name="message">
+        <xsl:value-of select="'INTERNAL ERROR',position()"/>
+        <xsl:text>. Suppressed rule: </xsl:text>
+        <xsl:value-of select="."/>
+      </xsl:variable>
+      <!--log message-->
+      <xsl:message select="$message"/>
+    </xsl:for-each>
+    <xsl:message select="'Count of internal errors to be reported:',
+                         count($internals)"/>
+    <xsl:message/>
+  </xsl:if>
+
+  <xsl:if test="$failures or $internals">
     <!--terminate with an error since there was at least one problem-->
+    <xsl:message/>
     <xsl:message terminate="yes">
-      <xsl:value-of select="'Count of errors:',count($failures)"/>
+      <xsl:text>The following error report is simply the exit </xsl:text>
+      <xsl:text>mechanism and can be ignored:</xsl:text>
     </xsl:message>
   </xsl:if>
 </xsl:template>

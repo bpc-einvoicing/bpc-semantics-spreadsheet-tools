@@ -151,31 +151,22 @@
         <para><literal>xsd/common/*.xsd</literal> - support schema expressions of the UBL semantics (these XSD fragments have no facility when used on their own)</para>
       </listitem>
     </itemizedlist>
-    <para>The following code list files in OASIS genericode format support the validation of coded value domains:</para>
+    <para>The <literal>codelists/</literal> directory contains code list files in OASIS genericode format to support the validation of coded value domains. The file name is composed in parts:</para>
     <itemizedlist>
       <listitem>
-        <para><literal>codelist/IANA-Media-Types.gc</literal> - MIME types</para>
+        <para>the code list identifier as used in the XML <literal>listID=</literal> attribute- e.g. <literal>ISO-3166</literal></para>
       </listitem>
       <listitem>
-        <para><literal>codelist/ISO-3166.gc</literal> - country codes</para>
+        <para>a separator of two dashes</para>
       </listitem>
       <listitem>
-        <para><literal>codelist/ISO-4217.gc</literal> - currency codes</para>
+        <para>a descriptor of the nature of the code list - e.g. <literal>CountryIdentificationCode</literal></para>
       </listitem>
       <listitem>
-        <para><literal>codelist/UNECE-4461.gc</literal> - payment means</para>
+        <para>the file extension <literal>.gc</literal></para>
       </listitem>
       <listitem>
-        <para><literal>codelist/UNECE-5153.gc</literal> - tax type</para>
-      </listitem>
-      <listitem>
-        <para><literal>codelist/UNECE-5189.gc</literal> - allowance/charge reason code</para>
-      </listitem>
-      <listitem>
-        <para><literal>codelist/UNECE-5305.gc</literal> - tax category</para>
-      </listitem>
-      <listitem>
-        <para><literal>codelist/UNECE-Rec-20.gc</literal> - Units of measure</para>
+        <para>fully composed name: <literal>codelists/ISO-3166--CountryIdentificationCode.gc</literal></para>
       </listitem>
     </itemizedlist>
     <para>The demonstration directory is the <literal>val/</literal> directory (see <xref linkend="S-DEMONSTRATION-EXECUTION"/> for details):</para>
@@ -332,10 +323,13 @@ No schema validation errors.
 2. Fewer or more than one trading name. /Invoice/cac:AccountingCustomerParty[1] /
  count(cac:Party/cac:PartyName/cbc:Name) = 1 (:NABT-045 Row 105 Tab
  'Invoice, Credit Note':)
-Count of errors: 2
-Error in xsl:value-of/@select on line 97 column 67 of testSVRL4UBLerrors.xsl:
-  XTMM9000: Processing terminated by xsl:message at line 97 in testSVRL4UBLerrors.xsl
-Processing terminated by xsl:message at line 97 in testSVRL4UBLerrors.xsl
+Count of data errors: 2
+
+
+The following error report is simply the exit mechanism and can be ignored:
+Error in xsl:message/@terminate on line 120 column 34 of testSVRL4UBLerrors.xsl:
+  XTMM9000: Processing terminated by xsl:message at line 120 in testSVRL4UBLerrors.xsl
+Processing terminated by xsl:message at line 120 in testSVRL4UBLerrors.xsl
 
 ############################################################
 Validating using customization "Core" and type "Invoice": "Invoice-Core-test-good.xml"
@@ -380,6 +374,23 @@ sh testall.sh</programlisting>
         </itemizedlist>
       </listitem>
     </itemizedlist>
+  </section>
+  <section id="S-DATA-ERRORS-AND-INTERNAL-ERRORS">
+    <title>Data errors and internal errors</title>
+    <para>There are two kinds of data error reports emitted and one kind of internal error report emitted.</para>
+    <para>A UBL data constraint error report begins with a square-bracketed UBL conformance rule reference such as the following:</para>
+    <programlisting>1. [IND5] Elements SHALL NOT be empty /Invoice/cac:AccountingCustomerParty[1]/
+ cac:Party[1]/cac:PostalAddress[1]/cbc:PostalZone[1] / true()</programlisting>
+    <para>A BPC data integrity constraint error includes references into the spreadsheet where more information may be found regarding the problem. In this example, the user would refer to the North American Business Term (NABT) numbered 45 that is found on row 105 in the worksheet tab “Invoice,
+      Credit Note” of the BPC Semantic Model spreadsheet:</para>
+    <programlisting>2. Fewer or more than one trading name. /Invoice/cac:AccountingCustomerParty[1]
+ / count(cac:Party/cac:PartyName/cbc:Name) = 1 (:NABT-045 Row 105 Tab
+ 'Invoice, Credit Note':)</programlisting>
+    <para>Internal errors are of particular importance to the BPC Semantic technical subgroup, as these reflect previously-undetected errors in the spreadsheet that should be repaired readily. Without the repair, the Schematron rule for the identified semantic component is not being performed, and
+      so there is no confidence that the suppressed rule is or is not being violated.</para>
+    <programlisting>INTERNAL ERROR 1. Suppressed rule: /Invoice:Invoice/cac:InvoiceLine
+ (:NABG-026 Row 249 Tab 'Invoice, Credit Note':)</programlisting>
+    <para>Please consider taking the time to forward to the BPC Semantic technical subgroup an anonymized version of the XML document that triggers the internal errors as this will assist the team in repairing the semantic spreadsheet faults.</para>
   </section>
   <section id="S-VALIDATING-ONES-OWN-TEST-FILES">
     <title>Validating one’s own test files</title>

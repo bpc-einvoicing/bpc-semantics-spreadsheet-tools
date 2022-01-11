@@ -3,7 +3,7 @@
   xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2"
   xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2">
   <cbc:UBLVersionID>2.3</cbc:UBLVersionID>
-  <cbc:CustomizationID>urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##bpc-0.3-data-Extended</cbc:CustomizationID>
+  <cbc:CustomizationID>urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##bpc-0.3-data-Core</cbc:CustomizationID>
   <cbc:ProfileID>bpc-0.3-process#Invoice</cbc:ProfileID>
   <cbc:ProfileExecutionID>A1234</cbc:ProfileExecutionID>
   <cbc:ID>3099123</cbc:ID>

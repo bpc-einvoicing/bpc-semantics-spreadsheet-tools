@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Invoice xmlns="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2">
+<cbc:UBLVersionID>2.3</cbc:UBLVersionID>
+<cbc:CustomizationID>urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##bpc-0.3-data-Core</cbc:CustomizationID>
+<cbc:ProfileID>bpc-0.3-process#Invoice</cbc:ProfileID>
+<cbc:ID>22004218-RI10656</cbc:ID>
+<cbc:IssueDate>2022-01-05</cbc:IssueDate>
+<cbc:DueDate>2022-02-04</cbc:DueDate>
+<cbc:InvoiceTypeCode>380</cbc:InvoiceTypeCode>
+<cbc:Note>00</cbc:Note>
+<cbc:TaxPointDate>2022-01-05</cbc:TaxPointDate>
+<cbc:DocumentCurrencyCode>GBP</cbc:DocumentCurrencyCode>
+<cac:OrderReference>
+<cbc:ID>R2191788D</cbc:ID>
+<cbc:SalesOrderID schemeID="1V">12345678</cbc:SalesOrderID>
+</cac:OrderReference>
+<cac:AccountingSupplierParty>
+<cac:Party>
+<cbc:EndpointID schemeID="0088">5014492400000</cbc:EndpointID>
+<cac:PartyIdentification>
+<cbc:ID schemeID="GLN">5014492400000</cbc:ID>
+</cac:PartyIdentification>
+<cac:PartyName>
+<cbc:Name>Test Supplier</cbc:Name>
+</cac:PartyName>
+<cac:PostalAddress>
+<cbc:StreetName>Test Street</cbc:StreetName>
+<cbc:AdditionalStreetName>Down the lane</cbc:AdditionalStreetName>
+<cbc:CityName>Berkshire</cbc:CityName>
+<cbc:PostalZone>RG40 4EW</cbc:PostalZone>
+<cbc:CountrySubentity>Berkshire</cbc:CountrySubentity>
+<cac:Country>
+<cbc:IdentificationCode>GB</cbc:IdentificationCode>
+</cac:Country>
+</cac:PostalAddress>
+<cac:PartyTaxScheme>
+<cbc:CompanyID>GB1234567</cbc:CompanyID>
+<cac:TaxScheme>
+<cbc:ID>VAT</cbc:ID>
+</cac:TaxScheme>
+</cac:PartyTaxScheme>
+<cac:PartyLegalEntity>
+<cbc:RegistrationName>Test Supplier Ltd</cbc:RegistrationName>
+</cac:PartyLegalEntity>
+<cac:Contact>
+<cbc:Name>Test Supplier, Customer Service</cbc:Name>
+<cbc:Telephone>0800 / 1234567</cbc:Telephone>
+<cbc:ElectronicMail>CustomerService@ghxtest.com</cbc:ElectronicMail>
+</cac:Contact>
+</cac:Party>
+</cac:AccountingSupplierParty>
+<cac:AccountingCustomerParty>
+<cac:Party>
+<cbc:EndpointID schemeID="0088">1234567891011</cbc:EndpointID>
+<cac:PartyIdentification>
+<cbc:ID schemeID="GLN">1234567891011</cbc:ID>
+</cac:PartyIdentification>
+<cac:PartyName>
+<cbc:Name>Test Hospital</cbc:Name>
+</cac:PartyName>
+<cac:PostalAddress>
+<cbc:StreetName>ACCOUNTS PAYABLE </cbc:StreetName>
+<cbc:AdditionalStreetName>Accounts </cbc:AdditionalStreetName>
+<cbc:CityName>WYMONDHAM</cbc:CityName>
+<cbc:PostalZone>NR18 8DL</cbc:PostalZone>
+<cbc:CountrySubentity>WYMONDHAM</cbc:CountrySubentity>
+<cac:Country>
+<cbc:IdentificationCode>GB</cbc:IdentificationCode>
+</cac:Country>
+</cac:PostalAddress>
+<cac:PartyLegalEntity>
+<cbc:RegistrationName>Test Hospital</cbc:RegistrationName>
+</cac:PartyLegalEntity>
+<cac:Contact>
+<cbc:Name>Administrator</cbc:Name>
+</cac:Contact>
+</cac:Party>
+</cac:AccountingCustomerParty>
+<cac:Delivery>
+<cac:DeliveryLocation>
+<cbc:ID>ST1234567</cbc:ID>
+<cac:Address>
+<cbc:StreetName>Test DISTRIBUTION CENTRE</cbc:StreetName>
+<cbc:AdditionalStreetName>Test Road</cbc:AdditionalStreetName>
+<cbc:CityName>UPTON</cbc:CityName>
+<cbc:PostalZone>CH49 5PE</cbc:PostalZone>
+<cbc:CountrySubentity>UPTON</cbc:CountrySubentity>
+<cac:Country>
+<cbc:IdentificationCode>GB</cbc:IdentificationCode>
+</cac:Country>
+</cac:Address>
+</cac:DeliveryLocation>
+<cac:DeliveryParty>
+<cac:PartyName>
+<cbc:Name>Test Hospital</cbc:Name>
+</cac:PartyName>
+</cac:DeliveryParty>
+</cac:Delivery>
+<cac:PaymentMeans>
+<cbc:PaymentMeansCode>1</cbc:PaymentMeansCode>
+</cac:PaymentMeans>
+<cac:PaymentTerms>
+<cbc:Note>PaymentTerms Note</cbc:Note>
+</cac:PaymentTerms>
+<cac:TaxTotal>
+<cbc:TaxAmount currencyID="GBP">28.09</cbc:TaxAmount>
+<cac:TaxSubtotal>
+<cbc:TaxableAmount currencyID="GBP">140.43</cbc:TaxableAmount>
+<cbc:TaxAmount currencyID="GBP">28.09</cbc:TaxAmount>
+<cac:TaxCategory>
+<cbc:ID schemeID="UNECE-5305">S</cbc:ID>
+<cbc:Percent>20.0</cbc:Percent>
+<cac:TaxScheme>
+<cbc:ID>VAT</cbc:ID>
+</cac:TaxScheme>
+</cac:TaxCategory>
+</cac:TaxSubtotal>
+</cac:TaxTotal>
+<cac:LegalMonetaryTotal>
+<cbc:LineExtensionAmount currencyID="GBP">140.43</cbc:LineExtensionAmount>
+<cbc:TaxExclusiveAmount currencyID="GBP">140.43</cbc:TaxExclusiveAmount>
+<cbc:TaxInclusiveAmount currencyID="GBP">168.52</cbc:TaxInclusiveAmount>
+<cbc:PayableAmount currencyID="GBP">168.52</cbc:PayableAmount>
+</cac:LegalMonetaryTotal>
+<cac:InvoiceLine>
+<cbc:ID>1</cbc:ID>
+<cbc:Note>Scalpel Set</cbc:Note>
+<cbc:InvoicedQuantity unitCode="XBX">3.0</cbc:InvoicedQuantity>
+<cbc:LineExtensionAmount currencyID="GBP">24.9</cbc:LineExtensionAmount>
+<cac:OrderLineReference>
+<cbc:LineID>1</cbc:LineID>
+</cac:OrderLineReference>
+<cac:Item>
+<cbc:Description>Scalpel Set</cbc:Description>
+<cbc:Name>Scalpel Set</cbc:Name>
+<cac:SellersItemIdentification>
+<cbc:ID>DEF123</cbc:ID>
+</cac:SellersItemIdentification>
+<cac:StandardItemIdentification>
+<cbc:ID schemeID="0160">07611819281080</cbc:ID>
+</cac:StandardItemIdentification>
+<cac:ClassifiedTaxCategory>
+<cbc:ID schemeID="UNECE-5305">S</cbc:ID>
+<cbc:Percent>20.0</cbc:Percent>
+<cac:TaxScheme>
+<cbc:ID>VAT</cbc:ID>
+</cac:TaxScheme>
+</cac:ClassifiedTaxCategory>
+</cac:Item>
+<cac:Price>
+<cbc:PriceAmount currencyID="GBP">8.3</cbc:PriceAmount>
+</cac:Price>
+</cac:InvoiceLine>
+<cac:InvoiceLine>
+<cbc:ID>2</cbc:ID>
+<cbc:Note>Gloves</cbc:Note>
+<cbc:InvoicedQuantity unitCode="XBX">2.0</cbc:InvoicedQuantity>
+<cbc:LineExtensionAmount currencyID="GBP">16.6</cbc:LineExtensionAmount>
+<cac:OrderLineReference>
+<cbc:LineID>2</cbc:LineID>
+</cac:OrderLineReference>
+<cac:Item>
+<cbc:Description>Gloves set</cbc:Description>
+<cbc:Name>Gloves set</cbc:Name>
+<cac:SellersItemIdentification>
+<cbc:ID>BCD123</cbc:ID>
+</cac:SellersItemIdentification>
+<cac:StandardItemIdentification>
+<cbc:ID schemeID="0160">07611819281080</cbc:ID>
+</cac:StandardItemIdentification>
+<cac:ClassifiedTaxCategory>
+<cbc:ID schemeID="UNECE-5305">S</cbc:ID>
+<cbc:Percent>20.0</cbc:Percent>
+<cac:TaxScheme>
+<cbc:ID>VAT</cbc:ID>
+</cac:TaxScheme>
+</cac:ClassifiedTaxCategory>
+</cac:Item>
+<cac:Price>
+<cbc:PriceAmount currencyID="GBP">8.3</cbc:PriceAmount>
+</cac:Price>
+</cac:InvoiceLine>
+<cac:InvoiceLine>
+<cbc:ID>3</cbc:ID>
+<cbc:Note>Surgical Masks</cbc:Note>
+<cbc:InvoicedQuantity unitCode="XBX">1.0</cbc:InvoicedQuantity>
+<cbc:LineExtensionAmount currencyID="GBP">9.22</cbc:LineExtensionAmount>
+<cac:OrderLineReference>
+<cbc:LineID>3</cbc:LineID>
+</cac:OrderLineReference>
+<cac:Item>
+<cbc:Description>Surgical Masks</cbc:Description>
+<cbc:Name>Surgical Masks</cbc:Name>
+<cac:SellersItemIdentification>
+<cbc:ID>ABC81012</cbc:ID>
+</cac:SellersItemIdentification>
+<cac:StandardItemIdentification>
+<cbc:ID schemeID="0160">07611819281080</cbc:ID>
+</cac:StandardItemIdentification>
+<cac:ClassifiedTaxCategory>
+<cbc:ID schemeID="UNECE-5305">S</cbc:ID>
+<cbc:Percent>20.0</cbc:Percent>
+<cac:TaxScheme>
+<cbc:ID>VAT</cbc:ID>
+</cac:TaxScheme>
+</cac:ClassifiedTaxCategory>
+</cac:Item>
+<cac:Price>
+<cbc:PriceAmount currencyID="GBP">9.22</cbc:PriceAmount>
+</cac:Price>
+</cac:InvoiceLine>
+<cac:InvoiceLine>
+<cbc:ID>4</cbc:ID>
+<cbc:Note>Shoulder heads</cbc:Note>
+<cbc:InvoicedQuantity unitCode="XBX">1.0</cbc:InvoicedQuantity>
+<cbc:LineExtensionAmount currencyID="GBP">43.86</cbc:LineExtensionAmount>
+<cac:OrderLineReference>
+<cbc:LineID>4</cbc:LineID>
+</cac:OrderLineReference>
+<cac:Item>
+<cbc:Description>Shoulder heads</cbc:Description>
+<cbc:Name>Shoulder heads</cbc:Name>
+<cac:SellersItemIdentification>
+<cbc:ID>ABC246</cbc:ID>
+</cac:SellersItemIdentification>
+<cac:StandardItemIdentification>
+<cbc:ID schemeID="0160">07611819281080</cbc:ID>
+</cac:StandardItemIdentification>
+<cac:ClassifiedTaxCategory>
+<cbc:ID schemeID="UNECE-5305">S</cbc:ID>
+<cbc:Percent>20.0</cbc:Percent>
+<cac:TaxScheme>
+<cbc:ID>VAT</cbc:ID>
+</cac:TaxScheme>
+</cac:ClassifiedTaxCategory>
+</cac:Item>
+<cac:Price>
+<cbc:PriceAmount currencyID="GBP">43.86</cbc:PriceAmount>
+</cac:Price>
+</cac:InvoiceLine>
+<cac:InvoiceLine>
+<cbc:ID>5</cbc:ID>
+<cbc:Note>Screws</cbc:Note>
+<cbc:InvoicedQuantity unitCode="XBX">5.0</cbc:InvoicedQuantity>
+<cbc:LineExtensionAmount currencyID="GBP">45.85</cbc:LineExtensionAmount>
+<cac:OrderLineReference>
+<cbc:LineID>5</cbc:LineID>
+</cac:OrderLineReference>
+<cac:Item>
+<cbc:Description>Screws</cbc:Description>
+<cbc:Name>Secrews</cbc:Name>
+<cac:SellersItemIdentification>
+<cbc:ID>ABC123</cbc:ID>
+</cac:SellersItemIdentification>
+<cac:StandardItemIdentification>
+<cbc:ID schemeID="0160">07611819281080</cbc:ID>
+</cac:StandardItemIdentification>
+<cac:ClassifiedTaxCategory>
+<cbc:ID schemeID="UNECE-5305">S</cbc:ID>
+<cbc:Percent>20.0</cbc:Percent>
+<cac:TaxScheme>
+<cbc:ID>VAT</cbc:ID>
+</cac:TaxScheme>
+</cac:ClassifiedTaxCategory>
+</cac:Item>
+<cac:Price>
+<cbc:PriceAmount currencyID="GBP">9.17</cbc:PriceAmount>
+</cac:Price>
+</cac:InvoiceLine>
+</Invoice>

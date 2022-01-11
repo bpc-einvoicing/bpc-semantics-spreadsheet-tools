@@ -374,8 +374,8 @@
       </java>
       <echo/>
       <echo message="Preparing: UnitOfMeasureCode"/>
-      <get src="jar:https://www.unece.org/fileadmin/DAM/cefact/recommendations/rec20/rec20.zip!/rec20_Rev15e-2020.xls"
-           dest="work/rec20_Rev15e-2020.xml.xls"/>
+      <get src="https://unece.org/sites/default/files/2021-06/rec20_Rev17e-2021.xlsx"
+           dest="work/rec20_Rev17e-2021.xml.xls"/>
       <exec executable="soffice">
          <arg value="--headless"/>
          <arg value="--convert-to"/>
@@ -383,22 +383,22 @@
          <arg value="--outdir"/>
          <arg value="work/"/>
          <arg value="-env:UserInstallation=file:///Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/work/codelistlibreoffice"/>
-         <arg value="work/rec20_Rev15e-2020.xml.xls"/>
+         <arg value="work/rec20_Rev17e-2021.xml.xls"/>
       </exec>
-      <unzip src="work/rec20_Rev15e-2020.xml.ods" dest="work/">
+      <unzip src="work/rec20_Rev17e-2021.xml.ods" dest="work/">
          <patternset>
             <include name="content.xml"/>
          </patternset>
-         <mapper type="glob" from="content.xml" to="rec20_Rev15e-2020.xml"/>
+         <mapper type="glob" from="content.xml" to="rec20_Rev17e-2021.xml"/>
       </unzip>
-      <available file="work/rec20_Rev15e-2020.xml" property="UnitOfMeasureCode.exists"/>
+      <available file="work/rec20_Rev17e-2021.xml" property="UnitOfMeasureCode.exists"/>
       <fail unless="UnitOfMeasureCode.exists"
             message="Cannot create intermediate file"/>
       <echo message="Converting intermediate file into result genericode..."/>
       <java failonerror="true" classname="net.sf.saxon.Transform">
-         <arg value="-xsl:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/Crane-unit2gc.xsl"/>
+         <arg value="-xsl:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/Crane-20unit2gc.xsl"/>
          <arg value="-o:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/out/UNECE-Rec-20-Including-Deleted--UnitOfMeasureCode-incl-deleted.gc"/>
-         <arg value="-s:work/rec20_Rev15e-2020.xml"/>
+         <arg value="-s:work/rec20_Rev17e-2021.xml"/>
          <arg value="list-uri=file:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/master-code-list-BPC-0.3.xml"/>
          <arg value="out-uri=UNECE-Rec-20-Including-Deleted--UnitOfMeasureCode-incl-deleted.gc"/>
          <arg value="--suppressXsltNamespaceCheck:on"/>
@@ -412,13 +412,13 @@
       <echo message="Validating with Schematron: UNECE-Rec-20-Including-Deleted--UnitOfMeasureCode-incl-deleted.gc"/>
       <java failonerror="true" classname="net.sf.saxon.Transform">
          <arg value="-xsl:../utilities/genericode/oasis-genericode.sch.xsl"/>
-         <arg value="-o:work/rec20_Rev15e-2020.xml.svrl.xml"/>
+         <arg value="-o:work/rec20_Rev17e-2021.xml.svrl.xml"/>
          <arg value="-s:out/UNECE-Rec-20-Including-Deleted--UnitOfMeasureCode-incl-deleted.gc"/>
          <arg value="--suppressXsltNamespaceCheck:on"/>
       </java>
       <java failonerror="true" classname="net.sf.saxon.Transform">
          <arg value="-xsl:../utilities/genericode/Message-Schematron-terminator-for-SVRL.xsl"/>
-         <arg value="-s:work/rec20_Rev15e-2020.xml.svrl.xml"/>
+         <arg value="-s:work/rec20_Rev17e-2021.xml.svrl.xml"/>
          <arg value="--suppressXsltNamespaceCheck:on"/>
       </java>
       <echo message="Validating with Schema: UNECE-Rec-20--UnitOfMeasureCode.gc"/>
@@ -430,13 +430,138 @@
       <echo message="Validating with Schematron: UNECE-Rec-20--UnitOfMeasureCode.gc"/>
       <java failonerror="true" classname="net.sf.saxon.Transform">
          <arg value="-xsl:../utilities/genericode/oasis-genericode.sch.xsl"/>
-         <arg value="-o:work/rec20_Rev15e-2020.xml.svrl.xml"/>
+         <arg value="-o:work/rec20_Rev17e-2021.xml.svrl.xml"/>
          <arg value="-s:out/UNECE-Rec-20--UnitOfMeasureCode.gc"/>
          <arg value="--suppressXsltNamespaceCheck:on"/>
       </java>
       <java failonerror="true" classname="net.sf.saxon.Transform">
          <arg value="-xsl:../utilities/genericode/Message-Schematron-terminator-for-SVRL.xsl"/>
-         <arg value="-s:work/rec20_Rev15e-2020.xml.svrl.xml"/>
+         <arg value="-s:work/rec20_Rev17e-2021.xml.svrl.xml"/>
+         <arg value="--suppressXsltNamespaceCheck:on"/>
+      </java>
+      <echo/>
+      <echo message="Preparing: PackagingCode"/>
+      <get src="https://unece.org/sites/default/files/2021-06/rec21_Rev12e_Annex-V-VI_2021.xls"
+           dest="work/rec21_Rev12e_Annex-V-VI_2021.xml.xls"/>
+      <exec executable="soffice">
+         <arg value="--headless"/>
+         <arg value="--convert-to"/>
+         <arg value="ods"/>
+         <arg value="--outdir"/>
+         <arg value="work/"/>
+         <arg value="-env:UserInstallation=file:///Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/work/codelistlibreoffice"/>
+         <arg value="work/rec21_Rev12e_Annex-V-VI_2021.xml.xls"/>
+      </exec>
+      <unzip src="work/rec21_Rev12e_Annex-V-VI_2021.xml.ods" dest="work/">
+         <patternset>
+            <include name="content.xml"/>
+         </patternset>
+         <mapper type="glob"
+                 from="content.xml"
+                 to="rec21_Rev12e_Annex-V-VI_2021.xml"/>
+      </unzip>
+      <available file="work/rec21_Rev12e_Annex-V-VI_2021.xml"
+                 property="PackagingCode.exists"/>
+      <fail unless="PackagingCode.exists" message="Cannot create intermediate file"/>
+      <echo message="Converting intermediate file into result genericode..."/>
+      <java failonerror="true" classname="net.sf.saxon.Transform">
+         <arg value="-xsl:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/Crane-21unit2gc.xsl"/>
+         <arg value="-o:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/out/UNECE-Rec-21-Including-Deleted--PackagingCode-incl-deleted.gc"/>
+         <arg value="-s:work/rec21_Rev12e_Annex-V-VI_2021.xml"/>
+         <arg value="list-uri=file:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/master-code-list-BPC-0.3.xml"/>
+         <arg value="out-uri=UNECE-Rec-21-Including-Deleted--PackagingCode-incl-deleted.gc"/>
+         <arg value="--suppressXsltNamespaceCheck:on"/>
+      </java>
+      <echo message="Validating with Schema: UNECE-Rec-21-Including-Deleted--PackagingCode-incl-deleted.gc"/>
+      <java failonerror="true" classname="com.nwalsh.parsers.XJParse">
+         <arg value="-S"/>
+         <arg value="../utilities/genericode/xsd/genericode.xsd"/>
+         <arg value="out/UNECE-Rec-21-Including-Deleted--PackagingCode-incl-deleted.gc"/>
+      </java>
+      <echo message="Validating with Schematron: UNECE-Rec-21-Including-Deleted--PackagingCode-incl-deleted.gc"/>
+      <java failonerror="true" classname="net.sf.saxon.Transform">
+         <arg value="-xsl:../utilities/genericode/oasis-genericode.sch.xsl"/>
+         <arg value="-o:work/rec21_Rev12e_Annex-V-VI_2021.xml.svrl.xml"/>
+         <arg value="-s:out/UNECE-Rec-21-Including-Deleted--PackagingCode-incl-deleted.gc"/>
+         <arg value="--suppressXsltNamespaceCheck:on"/>
+      </java>
+      <java failonerror="true" classname="net.sf.saxon.Transform">
+         <arg value="-xsl:../utilities/genericode/Message-Schematron-terminator-for-SVRL.xsl"/>
+         <arg value="-s:work/rec21_Rev12e_Annex-V-VI_2021.xml.svrl.xml"/>
+         <arg value="--suppressXsltNamespaceCheck:on"/>
+      </java>
+      <echo message="Validating with Schema: UNECE-Rec-21--PackagingCode.gc"/>
+      <java failonerror="true" classname="com.nwalsh.parsers.XJParse">
+         <arg value="-S"/>
+         <arg value="../utilities/genericode/xsd/genericode.xsd"/>
+         <arg value="out/UNECE-Rec-21--PackagingCode.gc"/>
+      </java>
+      <echo message="Validating with Schematron: UNECE-Rec-21--PackagingCode.gc"/>
+      <java failonerror="true" classname="net.sf.saxon.Transform">
+         <arg value="-xsl:../utilities/genericode/oasis-genericode.sch.xsl"/>
+         <arg value="-o:work/rec21_Rev12e_Annex-V-VI_2021.xml.svrl.xml"/>
+         <arg value="-s:out/UNECE-Rec-21--PackagingCode.gc"/>
+         <arg value="--suppressXsltNamespaceCheck:on"/>
+      </java>
+      <java failonerror="true" classname="net.sf.saxon.Transform">
+         <arg value="-xsl:../utilities/genericode/Message-Schematron-terminator-for-SVRL.xsl"/>
+         <arg value="-s:work/rec21_Rev12e_Annex-V-VI_2021.xml.svrl.xml"/>
+         <arg value="--suppressXsltNamespaceCheck:on"/>
+      </java>
+      <echo/>
+      <echo message="Preparing: UnitOfMeasurePackagingCode"/>
+      <available file="/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/out/UNECE-Rec-20--UnitOfMeasureCode.gc"
+                 property="base.exists"/>
+      <fail unless="base.exists"
+            message="Cannot find generated File20 GC file /Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/out/UNECE-Rec-20--UnitOfMeasureCode.gc"/>
+      <available file="/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/out/UNECE-Rec-21--PackagingCode.gc"
+                 property="extra.exists"/>
+      <fail unless="extra.exists"
+            message="Cannot find generated File21 GC file /Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/out/UNECE-Rec-21--PackagingCode.gc"/>
+      <echo message="Combining into result genericode..."/>
+      <java failonerror="true" classname="net.sf.saxon.Transform">
+         <arg value="-xsl:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/Crane-combine2021.xsl"/>
+         <arg value="-o:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/out/UNECE-Rec-20-21-Including-Deleted--UnitOfMeasureCode-PackagingCode-combined.gc"/>
+         <arg value="-it:start"/>
+         <arg value="list-uri=file:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/master-code-list-BPC-0.3.xml"/>
+         <arg value="out-uri=UNECE-Rec-20-21-Including-Deleted--UnitOfMeasureCode-PackagingCode-combined.gc"/>
+         <arg value="output-uri-prefix=out/"/>
+         <arg value="--suppressXsltNamespaceCheck:on"/>
+      </java>
+      <echo message="Validating with Schema: UNECE-Rec-20-21-Including-Deleted--UnitOfMeasureCode-PackagingCode-combined.gc"/>
+      <java failonerror="true" classname="com.nwalsh.parsers.XJParse">
+         <arg value="-S"/>
+         <arg value="../utilities/genericode/xsd/genericode.xsd"/>
+         <arg value="out/UNECE-Rec-20-21-Including-Deleted--UnitOfMeasureCode-PackagingCode-combined.gc"/>
+      </java>
+      <echo message="Validating with Schematron: UNECE-Rec-20-21-Including-Deleted--UnitOfMeasureCode-PackagingCode-combined.gc"/>
+      <java failonerror="true" classname="net.sf.saxon.Transform">
+         <arg value="-xsl:../utilities/genericode/oasis-genericode.sch.xsl"/>
+         <arg value="-o:work/.svrl.xml"/>
+         <arg value="-s:out/UNECE-Rec-20-21-Including-Deleted--UnitOfMeasureCode-PackagingCode-combined.gc"/>
+         <arg value="--suppressXsltNamespaceCheck:on"/>
+      </java>
+      <java failonerror="true" classname="net.sf.saxon.Transform">
+         <arg value="-xsl:../utilities/genericode/Message-Schematron-terminator-for-SVRL.xsl"/>
+         <arg value="-s:work/.svrl.xml"/>
+         <arg value="--suppressXsltNamespaceCheck:on"/>
+      </java>
+      <echo message="Validating with Schema: UNECE-Rec-20-21--UnitOfMeasureCode-PackagingCode-combined.gc"/>
+      <java failonerror="true" classname="com.nwalsh.parsers.XJParse">
+         <arg value="-S"/>
+         <arg value="../utilities/genericode/xsd/genericode.xsd"/>
+         <arg value="out/UNECE-Rec-20-21--UnitOfMeasureCode-PackagingCode-combined.gc"/>
+      </java>
+      <echo message="Validating with Schematron: UNECE-Rec-20-21--UnitOfMeasureCode-PackagingCode-combined.gc"/>
+      <java failonerror="true" classname="net.sf.saxon.Transform">
+         <arg value="-xsl:../utilities/genericode/oasis-genericode.sch.xsl"/>
+         <arg value="-o:work/.svrl.xml"/>
+         <arg value="-s:out/UNECE-Rec-20-21--UnitOfMeasureCode-PackagingCode-combined.gc"/>
+         <arg value="--suppressXsltNamespaceCheck:on"/>
+      </java>
+      <java failonerror="true" classname="net.sf.saxon.Transform">
+         <arg value="-xsl:../utilities/genericode/Message-Schematron-terminator-for-SVRL.xsl"/>
+         <arg value="-s:work/.svrl.xml"/>
          <arg value="--suppressXsltNamespaceCheck:on"/>
       </java>
    </target>

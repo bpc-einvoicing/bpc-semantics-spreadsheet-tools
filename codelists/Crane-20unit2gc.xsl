@@ -19,8 +19,8 @@
   <para>
     Convert an instance of unit of measure codes (Annex II and III) ODS XML converted from
     <ulink
-url="jjar:https://www.unece.org/fileadmin/DAM/cefact/recommendations/rec20/rec20.zip!/rec20/rec20_Rev12e_2016.xls"
->jar:https://www.unece.org/fileadmin/DAM/cefact/recommendations/rec20/rec20.zip!/rec20/rec20_Rev12e_2016.xls</ulink>
+url="https://unece.org/sites/default/files/2021-06/rec20_Rev17e-2021.xlsx"
+>https://unece.org/sites/default/files/2021-06/rec20_Rev17e-2021.xlsx</ulink>
     to OASIS genericode using metadata supplied by the list of lists.
   </para>
   <programlisting>

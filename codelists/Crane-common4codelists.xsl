@@ -91,7 +91,7 @@ CODE FOR ANY PURPOSE.
     process once or twice (twice if there is also filtered output).
   </para>
 </xs:template>
-<xsl:template match="/">
+<xsl:template match="/" name="start">
   <xsl:variable name="identification"
                select="doc($list-uri)//list[@outuri=$out-uri]
                /Identification"/>
@@ -106,7 +106,12 @@ CODE FOR ANY PURPOSE.
   <gc:CodeList
              xmlns:gc="http://docs.oasis-open.org/codelist/ns/genericode/1.0/">
     <xsl:apply-templates select="$identification" mode="c:identification"/>
-    <xsl:call-template name="c:columnsAndRows"/>
+    <xsl:call-template name="c:columnsAndRows">
+      <xsl:with-param name="file20uri" tunnel="yes"
+                      select="$identification/../@file20deleted"/>
+      <xsl:with-param name="file21uri" tunnel="yes"
+                      select="$identification/../@file21deleted"/>
+    </xsl:call-template>
   </gc:CodeList>
   <xsl:if test="exists($identification/../@filteruri)">
     <!--need to work with the same inputs again to produce a filtered output-->
@@ -116,6 +121,10 @@ CODE FOR ANY PURPOSE.
         <xsl:apply-templates select="$identification" mode="c:identification"/>
         <xsl:call-template name="c:columnsAndRows">
           <xsl:with-param name="filtered" select="true()"/>
+          <xsl:with-param name="file20uri" tunnel="yes"
+                          select="$identification/../@file20"/>
+          <xsl:with-param name="file21uri" tunnel="yes"
+                          select="$identification/../@file21"/>
         </xsl:call-template>
       </gc:CodeList>
     </xsl:result-document>

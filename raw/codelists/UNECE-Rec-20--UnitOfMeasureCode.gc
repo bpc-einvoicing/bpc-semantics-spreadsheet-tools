@@ -4,10 +4,10 @@
       <ShortName>UnitOfMeasureCode</ShortName>
       <LongName xml:lang="en">Unit Of Measure Code</LongName>
       <LongName Identifier="listID">UNECE-Rec-20</LongName>
-      <Version>15e-2020</Version>
+      <Version>17e-2021</Version>
       <CanonicalUri>urn:un:unece:uncefact:codelist:standard:UNECE:UnitOfMeasureCode</CanonicalUri>
-      <CanonicalVersionUri>urn:un:unece:uncefact:codelist:standard:UNECE:UnitOfMeasureCode:15e-2020</CanonicalVersionUri>
-      <AlternateFormatLocationUri MimeType="application/vnd.ms-excel">jar:https://www.unece.org/fileadmin/DAM/cefact/recommendations/rec20/rec20.zip!/rec20_Rev15e-2020.xls</AlternateFormatLocationUri>
+      <CanonicalVersionUri>urn:un:unece:uncefact:codelist:standard:UNECE:UnitOfMeasureCode:17e-2021</CanonicalVersionUri>
+      <AlternateFormatLocationUri MimeType="application/vnd.ms-excel">https://unece.org/sites/default/files/2021-06/rec20_Rev17e-2021.xlsx</AlternateFormatLocationUri>
       <Agency>
          <LongName xml:lang="en">United Nations Economic Commission for Europe</LongName>
          <Identifier Identifier="https://service.unece.org/trade/untdid/d21b/tred/tred3055.htm">6</Identifier>
@@ -6354,7 +6354,7 @@
             <SimpleValue>centimetre</SimpleValue>
          </Value>
          <Value ColumnRef="levelcategory">
-            <SimpleValue>1S 3.5</SimpleValue>
+            <SimpleValue>1S_x000D_ 3.5</SimpleValue>
          </Value>
          <Value ColumnRef="symbol">
             <SimpleValue>cm</SimpleValue>
@@ -6374,7 +6374,7 @@
             <SimpleValue>A unit of count defining the number of hundred-packs (hundred-pack: set of one hundred items packaged together).</SimpleValue>
          </Value>
          <Value ColumnRef="levelcategory">
-            <SimpleValue>3.2 3.8</SimpleValue>
+            <SimpleValue>3.2_x000D_ 3.8</SimpleValue>
          </Value>
       </Row>
       <Row>
@@ -8091,7 +8091,7 @@
             <SimpleValue>Synonym: centner, metric 100 kg; quintal, metric 100 kg</SimpleValue>
          </Value>
          <Value ColumnRef="levelcategory">
-            <SimpleValue>1M 3.5</SimpleValue>
+            <SimpleValue>1M_x000D_ 3.5</SimpleValue>
          </Value>
          <Value ColumnRef="symbol">
             <SimpleValue>dt or dtn</SimpleValue>
@@ -22139,7 +22139,7 @@
             <SimpleValue>foot (U.S. survey)</SimpleValue>
          </Value>
          <Value ColumnRef="description">
-            <SimpleValue>Unit commonly used in the United States for ordnance survey.</SimpleValue>
+            <SimpleValue>Unit commonly used in the United States for ordnance survey._x000D_</SimpleValue>
          </Value>
          <Value ColumnRef="levelcategory">
             <SimpleValue>2</SimpleValue>
@@ -29966,6 +29966,324 @@
          </Value>
          <Value ColumnRef="levelcategory">
             <SimpleValue>3.9</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="code">
+            <SimpleValue>MRW</SimpleValue>
+         </Value>
+         <Value ColumnRef="name">
+            <SimpleValue>Metre Week</SimpleValue>
+         </Value>
+         <Value ColumnRef="description">
+            <SimpleValue>Unit for measuring physical dimensions and time, as required by DIN 18451</SimpleValue>
+         </Value>
+         <Value ColumnRef="levelcategory">
+            <SimpleValue>3.2</SimpleValue>
+         </Value>
+         <Value ColumnRef="symbol">
+            <SimpleValue>m·wk</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="code">
+            <SimpleValue>MKW</SimpleValue>
+         </Value>
+         <Value ColumnRef="name">
+            <SimpleValue>Square Metre Week</SimpleValue>
+         </Value>
+         <Value ColumnRef="description">
+            <SimpleValue>Unit for measuring physical dimensions and time as required by DIN 18451</SimpleValue>
+         </Value>
+         <Value ColumnRef="levelcategory">
+            <SimpleValue>3.2</SimpleValue>
+         </Value>
+         <Value ColumnRef="symbol">
+            <SimpleValue>m²· wk</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="code">
+            <SimpleValue>MQW</SimpleValue>
+         </Value>
+         <Value ColumnRef="name">
+            <SimpleValue>Cubic Metre Week</SimpleValue>
+         </Value>
+         <Value ColumnRef="description">
+            <SimpleValue>Unit for measuring physical dimensions and time as required by DIN 18451</SimpleValue>
+         </Value>
+         <Value ColumnRef="levelcategory">
+            <SimpleValue>3.2</SimpleValue>
+         </Value>
+         <Value ColumnRef="symbol">
+            <SimpleValue>m³·wk</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="code">
+            <SimpleValue>HWE</SimpleValue>
+         </Value>
+         <Value ColumnRef="name">
+            <SimpleValue>Piece Week</SimpleValue>
+         </Value>
+         <Value ColumnRef="description">
+            <SimpleValue>Unit for measuring the item amount and time as required by DIN 18451</SimpleValue>
+         </Value>
+         <Value ColumnRef="levelcategory">
+            <SimpleValue>3.2</SimpleValue>
+         </Value>
+         <Value ColumnRef="symbol">
+            <SimpleValue>piece·k</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="code">
+            <SimpleValue>MRD</SimpleValue>
+         </Value>
+         <Value ColumnRef="name">
+            <SimpleValue>Metre Day</SimpleValue>
+         </Value>
+         <Value ColumnRef="description">
+            <SimpleValue>Unit for measuring physical dimensions and time as required by DIN 18451</SimpleValue>
+         </Value>
+         <Value ColumnRef="levelcategory">
+            <SimpleValue>3.2</SimpleValue>
+         </Value>
+         <Value ColumnRef="symbol">
+            <SimpleValue>m·day</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="code">
+            <SimpleValue>MKD</SimpleValue>
+         </Value>
+         <Value ColumnRef="name">
+            <SimpleValue>Square Metre Day</SimpleValue>
+         </Value>
+         <Value ColumnRef="description">
+            <SimpleValue>Unit for measuring physical dimensions and time as required by DIN 18451</SimpleValue>
+         </Value>
+         <Value ColumnRef="levelcategory">
+            <SimpleValue>3.2</SimpleValue>
+         </Value>
+         <Value ColumnRef="symbol">
+            <SimpleValue>m²·d</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="code">
+            <SimpleValue>MQD</SimpleValue>
+         </Value>
+         <Value ColumnRef="name">
+            <SimpleValue>Cubic Metre Day</SimpleValue>
+         </Value>
+         <Value ColumnRef="description">
+            <SimpleValue>Unit for measuring physical dimensions and time as required by DIN 18451</SimpleValue>
+         </Value>
+         <Value ColumnRef="levelcategory">
+            <SimpleValue>3.2</SimpleValue>
+         </Value>
+         <Value ColumnRef="symbol">
+            <SimpleValue>m³·d</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="code">
+            <SimpleValue>HAD</SimpleValue>
+         </Value>
+         <Value ColumnRef="name">
+            <SimpleValue>Piece Day</SimpleValue>
+         </Value>
+         <Value ColumnRef="description">
+            <SimpleValue>Unit for measuring the item amount and time as required by DIN 18451</SimpleValue>
+         </Value>
+         <Value ColumnRef="levelcategory">
+            <SimpleValue>3.2</SimpleValue>
+         </Value>
+         <Value ColumnRef="symbol">
+            <SimpleValue>piece·d</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="code">
+            <SimpleValue>MRM</SimpleValue>
+         </Value>
+         <Value ColumnRef="name">
+            <SimpleValue>Metre Month</SimpleValue>
+         </Value>
+         <Value ColumnRef="description">
+            <SimpleValue>Unit for measuring physical dimensions and time as required by DIN 18451</SimpleValue>
+         </Value>
+         <Value ColumnRef="levelcategory">
+            <SimpleValue>3.2</SimpleValue>
+         </Value>
+         <Value ColumnRef="symbol">
+            <SimpleValue>m·mo</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="code">
+            <SimpleValue>MKM</SimpleValue>
+         </Value>
+         <Value ColumnRef="name">
+            <SimpleValue>Square Metre Month</SimpleValue>
+         </Value>
+         <Value ColumnRef="description">
+            <SimpleValue>Unit for measuring physical dimensions and time as required by DIN 18451</SimpleValue>
+         </Value>
+         <Value ColumnRef="levelcategory">
+            <SimpleValue>3.2</SimpleValue>
+         </Value>
+         <Value ColumnRef="symbol">
+            <SimpleValue>m²·mo</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="code">
+            <SimpleValue>MQM</SimpleValue>
+         </Value>
+         <Value ColumnRef="name">
+            <SimpleValue>Cubic Metre Month</SimpleValue>
+         </Value>
+         <Value ColumnRef="description">
+            <SimpleValue>Unit for measuring physical dimensions and time as required by DIN 18451</SimpleValue>
+         </Value>
+         <Value ColumnRef="levelcategory">
+            <SimpleValue>3.2</SimpleValue>
+         </Value>
+         <Value ColumnRef="symbol">
+            <SimpleValue>m³·mo</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="code">
+            <SimpleValue>HMO</SimpleValue>
+         </Value>
+         <Value ColumnRef="name">
+            <SimpleValue>Piece Month</SimpleValue>
+         </Value>
+         <Value ColumnRef="description">
+            <SimpleValue>Unit for measuring the item amount and time as required by DIN 18451</SimpleValue>
+         </Value>
+         <Value ColumnRef="levelcategory">
+            <SimpleValue>3.2</SimpleValue>
+         </Value>
+         <Value ColumnRef="symbol">
+            <SimpleValue>piece·mo</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="code">
+            <SimpleValue>DBW</SimpleValue>
+         </Value>
+         <Value ColumnRef="name">
+            <SimpleValue>Decibel watt</SimpleValue>
+         </Value>
+         <Value ColumnRef="description">
+            <SimpleValue>The decibel watt or dBW is a unit for the measurement of the strength of a signal expressed in decibels relative to one watt.</SimpleValue>
+         </Value>
+         <Value ColumnRef="levelcategory">
+            <SimpleValue>3.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="symbol">
+            <SimpleValue>dBW</SimpleValue>
+         </Value>
+         <Value ColumnRef="conversionfactor">
+            <SimpleValue>10^[Power in dBW/10] W</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="code">
+            <SimpleValue>DBM</SimpleValue>
+         </Value>
+         <Value ColumnRef="name">
+            <SimpleValue>Decibel-milliwatts</SimpleValue>
+         </Value>
+         <Value ColumnRef="description">
+            <SimpleValue>dBm (sometimes dBmW or decibel-milliwatts) is unit of level used to indicate that a power ratio is expressed in decibels (dB) with reference to one milliwatt (mW).</SimpleValue>
+         </Value>
+         <Value ColumnRef="levelcategory">
+            <SimpleValue>3.1</SimpleValue>
+         </Value>
+         <Value ColumnRef="symbol">
+            <SimpleValue>dBm</SimpleValue>
+         </Value>
+         <Value ColumnRef="conversionfactor">
+            <SimpleValue>10^[(Power in dBm-30)/10] W</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="code">
+            <SimpleValue>FNU</SimpleValue>
+         </Value>
+         <Value ColumnRef="name">
+            <SimpleValue>Formazin nephelometric unit</SimpleValue>
+         </Value>
+         <Value ColumnRef="description">
+            <SimpleValue>Formazin nephelometric unit (FNU) is used for water turbidity level evaluation</SimpleValue>
+         </Value>
+         <Value ColumnRef="levelcategory">
+            <SimpleValue>3.5</SimpleValue>
+         </Value>
+         <Value ColumnRef="symbol">
+            <SimpleValue>FNU</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="code">
+            <SimpleValue>NTU</SimpleValue>
+         </Value>
+         <Value ColumnRef="name">
+            <SimpleValue>Nephelometric turbidity unit</SimpleValue>
+         </Value>
+         <Value ColumnRef="description">
+            <SimpleValue>Nephelometric turbidity unit (NTU) is used for water turbidity level evaluation</SimpleValue>
+         </Value>
+         <Value ColumnRef="levelcategory">
+            <SimpleValue>3.5</SimpleValue>
+         </Value>
+         <Value ColumnRef="symbol">
+            <SimpleValue>NTU</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="code">
+            <SimpleValue>MTZ</SimpleValue>
+         </Value>
+         <Value ColumnRef="name">
+            <SimpleValue>millihertz</SimpleValue>
+         </Value>
+         <Value ColumnRef="description">
+            <SimpleValue>A unit of frequency equal to 0.001 cycle per second</SimpleValue>
+         </Value>
+         <Value ColumnRef="levelcategory">
+            <SimpleValue>1S</SimpleValue>
+         </Value>
+         <Value ColumnRef="symbol">
+            <SimpleValue>mHz </SimpleValue>
+         </Value>
+         <Value ColumnRef="conversionfactor">
+            <SimpleValue>10-3 Hz</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="code">
+            <SimpleValue>Z9</SimpleValue>
+         </Value>
+         <Value ColumnRef="name">
+            <SimpleValue>nanomole</SimpleValue>
+         </Value>
+         <Value ColumnRef="description">
+            <SimpleValue>An SI unit of amount of substance equal to 10−9 moles</SimpleValue>
+         </Value>
+         <Value ColumnRef="levelcategory">
+            <SimpleValue>1S</SimpleValue>
+         </Value>
+         <Value ColumnRef="symbol">
+            <SimpleValue>nmol</SimpleValue>
+         </Value>
+         <Value ColumnRef="conversionfactor">
+            <SimpleValue>10-9 mol</SimpleValue>
          </Value>
       </Row>
    </SimpleCodeList>

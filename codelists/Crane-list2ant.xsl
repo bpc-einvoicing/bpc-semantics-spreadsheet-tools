@@ -342,8 +342,8 @@ CODE FOR ANY PURPOSE.
 <xs:template>
   <para>Convert a unit of measurement XLS file into genericode</para>
 </xs:template>
-<!--<xsl:template match="list[@method='Unit']" priority="10"/>-->
-<xsl:template match="list[@method='Unit']">
+<!--<xsl:template match="list[@method='Unit20']" priority="10"/>-->
+<xsl:template match="list[@method='Unit20']">
   
   <get src="{Identification/AlternateFormatLocationUri[last()]}"
        dest="{$intermediate-uri-prefix}{@inuri}.xls"/>
@@ -370,11 +370,77 @@ CODE FOR ANY PURPOSE.
         message="Cannot create intermediate file"/>
   <echo message="Converting intermediate file into result genericode..."/>
   <java failonerror="true" classname="net.sf.saxon.Transform">
-     <arg value="-xsl:{$c:baseURI}Crane-unit2gc.xsl"/>
+     <arg value="-xsl:{$c:baseURI}Crane-20unit2gc.xsl"/>
      <arg value="-o:{$c:baseURI}{$output-uri-prefix}{@outuri}"/>
      <arg value="-s:{$intermediate-uri-prefix}{@inuri}"/>
      <arg value="list-uri={document-uri(/)}"/>
      <arg value="out-uri={@outuri}"/>
+     <arg value="--suppressXsltNamespaceCheck:on"/>
+  </java>
+</xsl:template>
+
+<xs:template>
+  <para>Convert a packaging codes XLS file into genericode</para>
+</xs:template>
+<!--<xsl:template match="list[@method='Unit21']" priority="10"/>-->
+<xsl:template match="list[@method='Unit21']">
+  
+  <get src="{Identification/AlternateFormatLocationUri[last()]}"
+       dest="{$intermediate-uri-prefix}{@inuri}.xls"/>
+  <exec executable="soffice">
+    <arg value="--headless"/>
+    <arg value="--convert-to"/>
+    <arg value="ods"/>
+    <arg value="--outdir"/>
+    <arg value="{$intermediate-uri-prefix}"/>
+    <arg value="-env:UserInstallation=file://{$c:baseURI}{$intermediate-uri-prefix}codelistlibreoffice"/>
+    <arg value="{$intermediate-uri-prefix}{@inuri}.xls"/>
+  </exec>
+  
+  <unzip src="{$intermediate-uri-prefix}{@inuri}.ods"
+         dest="{$intermediate-uri-prefix}">
+    <patternset>
+      <include name="content.xml"/>
+    </patternset>
+    <mapper type="glob" from="content.xml" to="{@inuri}"/>
+  </unzip>
+  <available file="{$intermediate-uri-prefix}{@inuri}"
+             property="{Identification/ShortName}.exists"/>
+  <fail unless="{Identification/ShortName}.exists"
+        message="Cannot create intermediate file"/>
+  <echo message="Converting intermediate file into result genericode..."/>
+  <java failonerror="true" classname="net.sf.saxon.Transform">
+     <arg value="-xsl:{$c:baseURI}Crane-21unit2gc.xsl"/>
+     <arg value="-o:{$c:baseURI}{$output-uri-prefix}{@outuri}"/>
+     <arg value="-s:{$intermediate-uri-prefix}{@inuri}"/>
+     <arg value="list-uri={document-uri(/)}"/>
+     <arg value="out-uri={@outuri}"/>
+     <arg value="--suppressXsltNamespaceCheck:on"/>
+  </java>
+</xsl:template>
+
+<xs:template>
+  <para>Combine two genericode files into one genericode file</para>
+</xs:template>
+<!--<xsl:template match="list[@method='Combine2021']" priority="10"/>-->
+<xsl:template match="list[@method='Combine2021']">
+  
+  <available file="{$c:baseURI}{$output-uri-prefix}{@file20}"
+             property="base.exists"/>
+  <fail unless="base.exists" message=
+"Cannot find generated File20 GC file {$c:baseURI}{$output-uri-prefix}{@file20}"/>
+  <available file="{$c:baseURI}{$output-uri-prefix}{@file21}"
+             property="extra.exists"/>
+  <fail unless="extra.exists" message=
+"Cannot find generated File21 GC file {$c:baseURI}{$output-uri-prefix}{@file21}"/>
+  <echo message="Combining into result genericode..."/>
+  <java failonerror="true" classname="net.sf.saxon.Transform">
+     <arg value="-xsl:{$c:baseURI}Crane-combine2021.xsl"/>
+     <arg value="-o:{$c:baseURI}{$output-uri-prefix}{@outuri}"/>
+     <arg value="-it:start"/>
+     <arg value="list-uri={document-uri(/)}"/>
+     <arg value="out-uri={@outuri}"/>
+     <arg value="output-uri-prefix={$output-uri-prefix}"/>
      <arg value="--suppressXsltNamespaceCheck:on"/>
   </java>
 </xsl:template>

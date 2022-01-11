@@ -18,7 +18,6 @@ fi
 
 rm -r work
 rm -r out
-rm -r results
 
 java -jar $saxon -xsl:Crane-list2ant.xsl -s:master-code-list-BPC-$1.xml -o:make-code-list.ant.xml "raw-uri-prefix=raw/" "intermediate-uri-prefix=work/" "output-uri-prefix=out/"
 

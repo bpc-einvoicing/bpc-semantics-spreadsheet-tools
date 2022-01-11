@@ -264,20 +264,56 @@ Zimbabwe	Zimbabwe (le)	ZW	ZWE	716
       </Agency>
    </Identification>
   </list>
-  <list outuri="UNECE-Rec-20-Including-Deleted--UnitOfMeasureCode-incl-deleted.gc" method="Unit"
+  
+  <list outuri="UNECE-Rec-20-Including-Deleted--UnitOfMeasureCode-incl-deleted.gc" method="Unit20"
         filteruri="UNECE-Rec-20--UnitOfMeasureCode.gc"
-        inuri="rec20_Rev15e-2020.xml"
+        inuri="rec20_Rev17e-2021.xml"
         reviewuri="https://www.unece.org/uncefact/codelistrecs.html">
-    <!--download https://www.unece.org/fileadmin/DAM/cefact/recommendations/rec20/rec20.zip
-        and confirm name of xls file in attribute above and text below-->
    <Identification>
       <ShortName>UnitOfMeasureCode</ShortName>
       <LongName xml:lang="en">Unit Of Measure Code</LongName>
       <LongName Identifier="listID">UNECE-Rec-20</LongName>
-      <Version>15e-2020</Version>
+      <Version>17e-2021</Version>
       <CanonicalUri>urn:un:unece:uncefact:codelist:standard:UNECE:UnitOfMeasureCode</CanonicalUri>
-      <CanonicalVersionUri>urn:un:unece:uncefact:codelist:standard:UNECE:UnitOfMeasureCode:15e-2020</CanonicalVersionUri>
-      <AlternateFormatLocationUri MimeType="application/vnd.ms-excel">jar:https://www.unece.org/fileadmin/DAM/cefact/recommendations/rec20/rec20.zip!/rec20_Rev15e-2020.xls</AlternateFormatLocationUri>
+      <CanonicalVersionUri>urn:un:unece:uncefact:codelist:standard:UNECE:UnitOfMeasureCode:17e-2021</CanonicalVersionUri>
+      <AlternateFormatLocationUri MimeType="application/vnd.ms-excel">https://unece.org/sites/default/files/2021-06/rec20_Rev17e-2021.xlsx</AlternateFormatLocationUri>
+      <Agency>
+         <LongName xml:lang="en">United Nations Economic Commission for Europe</LongName>
+         <Identifier Identifier="https://service.unece.org/trade/untdid/d21b/tred/tred3055.htm">6</Identifier>
+      </Agency>
+   </Identification>
+  </list>
+  <list outuri="UNECE-Rec-21-Including-Deleted--PackagingCode-incl-deleted.gc" method="Unit21"
+        filteruri="UNECE-Rec-21--PackagingCode.gc"
+        inuri="rec21_Rev12e_Annex-V-VI_2021.xml"
+        reviewuri="https://www.unece.org/uncefact/codelistrecs.html">
+   <Identification>
+      <ShortName>PackagingCode</ShortName>
+      <LongName xml:lang="en">Packaging Code</LongName>
+      <LongName Identifier="listID">UNECE-Rec-21</LongName>
+      <Version>12e_Annex-V-VI_2021</Version>
+      <CanonicalUri>urn:un:unece:uncefact:codelist:standard:UNECE:PackagingCode</CanonicalUri>
+      <CanonicalVersionUri>urn:un:unece:uncefact:codelist:standard:UNECE:PackagingCode:12e_Annex-V-VI_2021</CanonicalVersionUri>
+      <AlternateFormatLocationUri MimeType="application/vnd.ms-excel">https://unece.org/sites/default/files/2021-06/rec21_Rev12e_Annex-V-VI_2021.xls</AlternateFormatLocationUri>
+      <Agency>
+         <LongName xml:lang="en">United Nations Economic Commission for Europe</LongName>
+         <Identifier Identifier="https://service.unece.org/trade/untdid/d21b/tred/tred3055.htm">6</Identifier>
+      </Agency>
+   </Identification>
+  </list>
+  <list outuri="UNECE-Rec-20-21-Including-Deleted--UnitOfMeasureCode-PackagingCode-combined.gc" method="Combine2021"
+        filteruri="UNECE-Rec-20-21--UnitOfMeasureCode-PackagingCode-combined.gc"
+        file20deleted="UNECE-Rec-20-Including-Deleted--UnitOfMeasureCode-incl-deleted.gc"
+        file20="UNECE-Rec-20--UnitOfMeasureCode.gc"
+        file21deleted="UNECE-Rec-21-Including-Deleted--PackagingCode-incl-deleted.gc"
+        file21="UNECE-Rec-21--PackagingCode.gc">
+   <Identification>
+      <ShortName>UnitOfMeasurePackagingCode</ShortName>
+      <LongName xml:lang="en">Unit Of Measure Packaging-Code</LongName>
+      <LongName Identifier="listID">UNECE-Rec-20-21</LongName>
+      <Version>Rev17e-2021-12e_Annex-V-VI_2021</Version>
+      <CanonicalUri>urn:un:unece:uncefact:codelist:standard:UNECE:UnitOfMeasureCode</CanonicalUri>
+      <CanonicalVersionUri>urn:un:unece:uncefact:codelist:standard:UNECE:UnitOfMeasureCode:Rev17e-2021-12e_Annex-V-VI_2021</CanonicalVersionUri>
       <Agency>
          <LongName xml:lang="en">United Nations Economic Commission for Europe</LongName>
          <Identifier Identifier="https://service.unece.org/trade/untdid/d21b/tred/tred3055.htm">6</Identifier>

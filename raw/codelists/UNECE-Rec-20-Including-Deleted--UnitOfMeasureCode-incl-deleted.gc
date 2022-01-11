@@ -4,10 +4,10 @@
       <ShortName>UnitOfMeasureCode</ShortName>
       <LongName xml:lang="en">Unit Of Measure Code</LongName>
       <LongName Identifier="listID">UNECE-Rec-20</LongName>
-      <Version>15e-2020</Version>
+      <Version>17e-2021</Version>
       <CanonicalUri>urn:un:unece:uncefact:codelist:standard:UNECE:UnitOfMeasureCode</CanonicalUri>
-      <CanonicalVersionUri>urn:un:unece:uncefact:codelist:standard:UNECE:UnitOfMeasureCode:15e-2020</CanonicalVersionUri>
-      <AlternateFormatLocationUri MimeType="application/vnd.ms-excel">jar:https://www.unece.org/fileadmin/DAM/cefact/recommendations/rec20/rec20.zip!/rec20_Rev15e-2020.xls</AlternateFormatLocationUri>
+      <CanonicalVersionUri>urn:un:unece:uncefact:codelist:standard:UNECE:UnitOfMeasureCode:17e-2021</CanonicalVersionUri>
+      <AlternateFormatLocationUri MimeType="application/vnd.ms-excel">https://unece.org/sites/default/files/2021-06/rec20_Rev17e-2021.xlsx</AlternateFormatLocationUri>
       <Agency>
          <LongName xml:lang="en">United Nations Economic Commission for Europe</LongName>
          <Identifier Identifier="https://service.unece.org/trade/untdid/d21b/tred/tred3055.htm">6</Identifier>
@@ -8140,7 +8140,7 @@
             <SimpleValue>centimetre</SimpleValue>
          </Value>
          <Value ColumnRef="levelcategory">
-            <SimpleValue>1S 3.5</SimpleValue>
+            <SimpleValue>1S_x000D_ 3.5</SimpleValue>
          </Value>
          <Value ColumnRef="symbol">
             <SimpleValue>cm</SimpleValue>
@@ -8160,7 +8160,7 @@
             <SimpleValue>A unit of count defining the number of hundred-packs (hundred-pack: set of one hundred items packaged together).</SimpleValue>
          </Value>
          <Value ColumnRef="levelcategory">
-            <SimpleValue>3.2 3.8</SimpleValue>
+            <SimpleValue>3.2_x000D_ 3.8</SimpleValue>
          </Value>
       </Row>
       <Row>
@@ -9837,7 +9837,7 @@
             <SimpleValue>dyne per square centimetre</SimpleValue>
          </Value>
          <Value ColumnRef="levelcategory">
-            <SimpleValue>2 3.9</SimpleValue>
+            <SimpleValue>2_x000D_ 3.9</SimpleValue>
          </Value>
          <Value ColumnRef="symbol">
             <SimpleValue>dyn/cm²</SimpleValue>
@@ -10424,7 +10424,7 @@
             <SimpleValue>Synonym: centner, metric 100 kg; quintal, metric 100 kg</SimpleValue>
          </Value>
          <Value ColumnRef="levelcategory">
-            <SimpleValue>1M 3.5</SimpleValue>
+            <SimpleValue>1M_x000D_ 3.5</SimpleValue>
          </Value>
          <Value ColumnRef="symbol">
             <SimpleValue>dt or dtn</SimpleValue>
@@ -16278,7 +16278,7 @@
             <SimpleValue>A unit of mass equal to 2240 pounds. Refer International Convention on Tonnage measurement of Ships. Synonym: ton (UK) or long ton (US) (common code LTN)</SimpleValue>
          </Value>
          <Value ColumnRef="levelcategory">
-            <SimpleValue>3.1 3.4</SimpleValue>
+            <SimpleValue>3.1_x000D_ 3.4</SimpleValue>
          </Value>
       </Row>
       <Row>
@@ -25424,7 +25424,7 @@
             <SimpleValue>foot (U.S. survey)</SimpleValue>
          </Value>
          <Value ColumnRef="description">
-            <SimpleValue>Unit commonly used in the United States for ordnance survey.</SimpleValue>
+            <SimpleValue>Unit commonly used in the United States for ordnance survey._x000D_</SimpleValue>
          </Value>
          <Value ColumnRef="levelcategory">
             <SimpleValue>2</SimpleValue>
@@ -32528,6 +32528,23 @@
       </Row>
       <Row>
          <Value ColumnRef="code">
+            <SimpleValue>MNJ</SimpleValue>
+         </Value>
+         <Value ColumnRef="name">
+            <SimpleValue>Mega Joule per Normalised cubic Metre</SimpleValue>
+         </Value>
+         <Value ColumnRef="description">
+            <SimpleValue>Energy in Mega Joules per normalised cubic metre for gas (temperature 0°C and pressure 101325 millibars)</SimpleValue>
+         </Value>
+         <Value ColumnRef="levelcategory">
+            <SimpleValue>2</SimpleValue>
+         </Value>
+         <Value ColumnRef="symbol">
+            <SimpleValue>MJ/m³</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="code">
             <SimpleValue>Q3</SimpleValue>
          </Value>
          <Value ColumnRef="name">
@@ -35105,6 +35122,46 @@
          </Value>
          <Value ColumnRef="symbol">
             <SimpleValue>NTU</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="code">
+            <SimpleValue>MTZ</SimpleValue>
+         </Value>
+         <Value ColumnRef="name">
+            <SimpleValue>millihertz</SimpleValue>
+         </Value>
+         <Value ColumnRef="description">
+            <SimpleValue>A unit of frequency equal to 0.001 cycle per second</SimpleValue>
+         </Value>
+         <Value ColumnRef="levelcategory">
+            <SimpleValue>1S</SimpleValue>
+         </Value>
+         <Value ColumnRef="symbol">
+            <SimpleValue>mHz </SimpleValue>
+         </Value>
+         <Value ColumnRef="conversionfactor">
+            <SimpleValue>10-3 Hz</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="code">
+            <SimpleValue>Z9</SimpleValue>
+         </Value>
+         <Value ColumnRef="name">
+            <SimpleValue>nanomole</SimpleValue>
+         </Value>
+         <Value ColumnRef="description">
+            <SimpleValue>An SI unit of amount of substance equal to 10−9 moles</SimpleValue>
+         </Value>
+         <Value ColumnRef="levelcategory">
+            <SimpleValue>1S</SimpleValue>
+         </Value>
+         <Value ColumnRef="symbol">
+            <SimpleValue>nmol</SimpleValue>
+         </Value>
+         <Value ColumnRef="conversionfactor">
+            <SimpleValue>10-9 mol</SimpleValue>
          </Value>
       </Row>
    </SimpleCodeList>

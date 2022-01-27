@@ -151,14 +151,22 @@ Note that the programmer's documentation of each of the XSLT stylesheets used in
 
 When it comes time to change the version number of an X.Y release, such as from 0.3 to 0.4, these are the issues that need to be remembered (please add to the list if anything is missing):
 
-1. Copy the spreadsheet for archive purposes, remove "Copy of" from the copy's name, and ensure as few people as possible have the rights to change the archived content
-1. Create a GitHub branch and modify the `prepareBPCartefacts.sh` to point to the archived spreadsheet URL (in case there are maintenance releases needed); test the new branch
+1. Copy the spreadsheet for archive purposes, keeping "Copy of" in the copy's name
+1. Change sharing of the new copy to be public view access and as few people as possible with rights to change content
+1. Create and check out a GitHub branch named for the old version `Version X.Y` and modify the `prepareBPCartefacts.sh` in that branch to point to the new archived spreadsheet URL (in case there are maintenance releases needed); test the new branch
 1. Change the name and the title of the original spreadsheet to the new version number (this preserves the spreadsheet URL for artefact production)
+1. Remove "Copy of" from the archive copy's name and work with the archive old version now is complete
+1. Check in the new branch to make the final snapshot ZIP files and attach to the check-in
+1. Check out the main branch
 1. Update the version number in the Schematron assertion columns of all worksheets for business terms NABT-023, NABT-024, NABT-1003, and NABT-2003
 1. Update the sample XML instances in the GitHub base directory
 1. Update the sample XML instances in the `raw/val` subdirectory
+1. Update the sample XML instances in the `raw/examples` subdirectory
 1. Update the title of the `readme-bpc-artifacts.xml` document
 1. Update the version number in the GitHub production invocation script `prepareBPCartefacts.sh` (see [GitHub Actions](#the-github-action-process-creating-the-artifacts-used-at-runtime) above for more information)
+1. Update the code list creation environment for the new version number, recreate code lists using `sh make-BPC-code-lists.sh X.Y dateZ date`, and copy new code lists into raw directory
+1. Check all subdirectories for the old version number: `find . -exec grep -l "0\.3" {} \; 2>/dev/null | grep -v -E "(\.svg|\.gc|/utilities/|/.git/|\.md|\.xsd|\.html|\.jar|saxon)"`
+1. Check in the main branch
 
 
 

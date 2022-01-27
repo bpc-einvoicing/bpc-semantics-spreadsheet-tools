@@ -196,6 +196,7 @@ https://service.unece.org/trade/untdid/d21b/tred/tred5305.htm
         inuri="country-codes.txt"
         reviewuri="https://www.iso.org/obp/ui/#search/code/">
     <!--
+    Modify the identification metadata below for the date retrieving the data
     Visit alternate format location using Firefox.
     Set 300 results per page (only one page)
     Order by the English name (note this recently moved Côte d'Ivoire to end
@@ -236,9 +237,9 @@ Zimbabwe	Zimbabwe (le)	ZW	ZWE	716
       <ShortName>CountryIdentificationCode</ShortName>
       <LongName xml:lang="en">Country Identification Code</LongName>
       <LongName Identifier="listID">ISO-3166</LongName>
-      <Version>$VERSION</Version>
+      <Version>2022-01-10</Version>
       <CanonicalUri>urn:iso:std:iso:3166</CanonicalUri>
-      <CanonicalVersionUri>urn:iso:std:iso:3166:$VERSION</CanonicalVersionUri>
+      <CanonicalVersionUri>urn:iso:std:iso:3166:2022-01-10</CanonicalVersionUri>
       <AlternateFormatLocationUri MimeType="text/html">https://www.iso.org/obp/ui/#search/code/</AlternateFormatLocationUri>
       <Agency>
          <LongName xml:lang="en">International Organization for Standardization</LongName>

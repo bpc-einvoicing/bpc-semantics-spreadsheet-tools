@@ -1,0 +1,574 @@
+Buildfile: /Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/prepareBPCartefacts.xml
+
+make:
+     [echo] ods2obdgc=20211105-2030z
+     [echo] cva2sch=20130207-1940z
+     [echo] dir=results
+     [echo] utilitydir=/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/utilities/
+     [echo] thisdir=/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools
+     [echo] rawdir=raw
+     [echo] title=BPC Semantics Group
+     [echo] BPCversion=0.4
+     [echo] UBLversion=2.3-os
+     [echo] dateTime=test
+     [echo] ssGoogle=https://docs.google.com/spreadsheets/d/16Nj_hW5_T_2Z2Hgd_vJHGx47iwvW-RlA
+     [echo] wgettime=2022-01-28 15:19:49
+
+-make-doc:
+     [echo] Rebuilding "results/readme-gc2bpcxml.html" documentation...
+     [echo] Checking...
+     [grep] No match.
+
+-error-doc-html:
+     [echo] Clean build of: results/readme-gc2bpcxml.html
+
+-make-doc:
+     [echo] Rebuilding "results/readme-bpcCustomization2sch.html" documentation...
+     [echo] Checking...
+     [grep] No match.
+
+-error-doc-html:
+     [echo] Clean build of: results/readme-bpcCustomization2sch.html
+
+-make-doc:
+     [echo] Rebuilding "results/readme-bpccodelists2xsl.html" documentation...
+     [echo] Checking...
+     [grep] No match.
+
+-error-doc-html:
+     [echo] Clean build of: results/readme-bpccodelists2xsl.html
+
+-make-doc:
+     [echo] Rebuilding "results/readme-testSVRL4UBLerrors.html" documentation...
+     [echo] Checking...
+     [grep] No match.
+
+-error-doc-html:
+     [echo] Clean build of: results/readme-testSVRL4UBLerrors.html
+     [copy] Copying 273 files to /Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/results/bpc-semantics-0.4-test
+     [copy] Copied 16 empty directories to 1 empty directory under /Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/results/bpc-semantics-0.4-test
+     [copy] Copying 39 files to /Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/results
+     [copy] Copying 313 files to /Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/results
+
+-make-doc:
+     [echo] Rebuilding "results/readme-bpc-artifacts.html" documentation...
+     [echo] Checking...
+     [grep] No match.
+
+-error-doc-html:
+     [echo] Clean build of: results/readme-bpc-artifacts.html
+   [delete] Deleting directory /Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/results/utilities
+     [copy] Copying 2 files to /Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/results/bpc-semantics-0.4-test/val
+     [copy] Copying 1 file to /Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/results/bpc-semantics-0.4-test
+     [exec] --2022-01-28 15:19:54--  https://docs.google.com/spreadsheets/d/16Nj_hW5_T_2Z2Hgd_vJHGx47iwvW-RlA/export?format=ods
+     [exec] Resolving docs.google.com (docs.google.com)... 142.251.32.78
+     [exec] Connecting to docs.google.com (docs.google.com)|142.251.32.78|:443... connected.
+     [exec] HTTP request sent, awaiting response... 307 Temporary Redirect
+     [exec] Location: https://doc-0c-cc-sheets.googleusercontent.com/export/70cmver1f290kjsnpar5ku2h9g/mje7se5bud64ftasplgk0311rg/1643401195000/107318772792262222770/*/16Nj_hW5_T_2Z2Hgd_vJHGx47iwvW-RlA?format=ods [following]
+     [exec] Warning: wildcards not supported in HTTP.
+     [exec] --2022-01-28 15:19:55--  https://doc-0c-cc-sheets.googleusercontent.com/export/70cmver1f290kjsnpar5ku2h9g/mje7se5bud64ftasplgk0311rg/1643401195000/107318772792262222770/*/16Nj_hW5_T_2Z2Hgd_vJHGx47iwvW-RlA?format=ods
+     [exec] Resolving doc-0c-cc-sheets.googleusercontent.com (doc-0c-cc-sheets.googleusercontent.com)... 142.251.41.65
+     [exec] Connecting to doc-0c-cc-sheets.googleusercontent.com (doc-0c-cc-sheets.googleusercontent.com)|142.251.41.65|:443... connected.
+     [exec] HTTP request sent, awaiting response... 200 OK
+     [exec] Length: unspecified [application/vnd.oasis.opendocument.spreadsheet]
+     [exec] Saving to: ‘results/BPC-Semantics-Spreadsheet-Google.ods’
+     [exec] 
+     [exec]      0K .......... .......... .......... .......... ..........  521K
+     [exec]     50K .......... .........                                   6.42M=0.1s
+     [exec] 
+     [exec] 2022-01-28 15:20:04 (704 KB/s) - ‘results/BPC-Semantics-Spreadsheet-Google.ods’ saved [71333]
+     [exec] 
+
+-ods2gc:
+     [echo] Rebuilding "results/BPC-Semantics-Spreadsheet-0.4-test.gc" GC file...
+     [echo] Validating "results/BPC-Semantics-Spreadsheet-0.4-test.gc" GC file...
+   [delete] Deleting: /Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/results/BPC-Semantics-Spreadsheet-0.4-test.gc.error.txt
+     [copy] Copying 1 file to /Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/results/bpc-semantics-0.4-test/model
+     [echo] Creating subset model genericode...
+     [move] Moving 1 file to /Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/results/bpc-semantics-0.4-test/ubl
+     [java] Harvesting spreadsheet tab: Invoice, Credit Note
+     [java] Harvesting spreadsheet tab: Application Response
+     [java] Harvesting spreadsheet tab: Document Status
+     [copy] Copying 1 file to /Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/results/bpc-semantics-0.4-test/model
+     [move] Moving 1 file to /Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/results/bpc-semantics-0.4-test/model
+     [echo] Creating customization-specific Schematron for all customizations...
+     [java] Writing: Minimum/BPC-Minimum-v0.4-Invoice-Data-Integrity-Constraints.sch
+     [java] Writing: Minimum/BPC-Minimum-v0.4-CreditNote-Data-Integrity-Constraints.sch
+     [java] Writing: Core/BPC-Core-v0.4-Invoice-Data-Integrity-Constraints.sch
+     [java] Writing: Core/BPC-Core-v0.4-CreditNote-Data-Integrity-Constraints.sch
+     [java] Writing: Extended/BPC-Extended-v0.4-Invoice-Data-Integrity-Constraints.sch
+     [java] Writing: Extended/BPC-Extended-v0.4-CreditNote-Data-Integrity-Constraints.sch
+     [java] Writing: Minimum/BPC-Minimum-v0.4-ApplicationResponse-Data-Integrity-Constraints.sch
+     [java] Writing: InvoiceStatus/BPC-InvoiceStatus-v0.4-DocumentStatus-Data-Integrity-Constraints.sch
+     [java] Writing: OtherStatus/BPC-OtherStatus-v0.4-DocumentStatus-Data-Integrity-Constraints.sch
+     [echo] Creating the code list support stylesheet...
+
+make:
+     [echo] Invoking /Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/results/prepareBPCartefacts.xml for each customization
+
+-sch4bpc:
+     [echo] Creating shell Schematron for Invoice Minimum
+     [copy] Copying 1 file to /Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/results/bpc-semantics-0.4-test/bpc/Minimum/support
+     [copy] Copying 1 file to /Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/results/bpc-semantics-0.4-test/bpc/Minimum/support
+     [copy] Copying 1 file to /Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/results/bpc-semantics-0.4-test/bpc/Minimum/support
+
+-sch2xsl:
+     [echo] Creating results/bpc-semantics-0.4-test/bpc/Minimum/support/BPC-Minimum-v0.4-Invoice-Data-Integrity-Constraints.xsl from results/bpc-semantics-0.4-test/bpc/Minimum/BPC-Minimum-v0.4-Invoice-Data-Integrity-Constraints.sch...
+     [echo] Validating results/bpc-semantics-0.4-test/bpc/Minimum/support/BPC-Minimum-v0.4-Invoice-Data-Integrity-Constraints.xsl using results/bpc-semantics-0.4-test/bpc/Minimum/BPC-Minimum-Invoice-Data-Integrity-Constraints.xsl...
+     [echo] 
+     [echo] Analyzing SVRL output...
+   [delete] Deleting: /Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/results/bpc-semantics-0.4-test/bpc/Minimum/BPC-Minimum-v0.4-Invoice-Data-Integrity-Constraints.svrl.xml
+   [delete] Deleting: /Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/results/bpc-semantics-0.4-test/bpc/Minimum/BPC-Minimum-v0.4-Invoice-Data-Integrity-Constraints.svrl.txt
+
+-sch4bpc:
+     [echo] Creating shell Schematron for CreditNote Minimum
+
+-sch2xsl:
+     [echo] Creating results/bpc-semantics-0.4-test/bpc/Minimum/support/BPC-Minimum-v0.4-CreditNote-Data-Integrity-Constraints.xsl from results/bpc-semantics-0.4-test/bpc/Minimum/BPC-Minimum-v0.4-CreditNote-Data-Integrity-Constraints.sch...
+     [echo] Validating results/bpc-semantics-0.4-test/bpc/Minimum/support/BPC-Minimum-v0.4-CreditNote-Data-Integrity-Constraints.xsl using results/bpc-semantics-0.4-test/bpc/Minimum/BPC-Minimum-CreditNote-Data-Integrity-Constraints.xsl...
+     [echo] 
+     [echo] Analyzing SVRL output...
+   [delete] Deleting: /Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/results/bpc-semantics-0.4-test/bpc/Minimum/BPC-Minimum-v0.4-CreditNote-Data-Integrity-Constraints.svrl.xml
+   [delete] Deleting: /Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/results/bpc-semantics-0.4-test/bpc/Minimum/BPC-Minimum-v0.4-CreditNote-Data-Integrity-Constraints.svrl.txt
+
+-sch4bpc:
+     [echo] Creating shell Schematron for Invoice Core
+     [copy] Copying 1 file to /Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/results/bpc-semantics-0.4-test/bpc/Core/support
+     [copy] Copying 1 file to /Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/results/bpc-semantics-0.4-test/bpc/Core/support
+     [copy] Copying 1 file to /Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/results/bpc-semantics-0.4-test/bpc/Core/support
+
+-sch2xsl:
+     [echo] Creating results/bpc-semantics-0.4-test/bpc/Core/support/BPC-Core-v0.4-Invoice-Data-Integrity-Constraints.xsl from results/bpc-semantics-0.4-test/bpc/Core/BPC-Core-v0.4-Invoice-Data-Integrity-Constraints.sch...
+     [echo] Validating results/bpc-semantics-0.4-test/bpc/Core/support/BPC-Core-v0.4-Invoice-Data-Integrity-Constraints.xsl using results/bpc-semantics-0.4-test/bpc/Core/BPC-Core-Invoice-Data-Integrity-Constraints.xsl...
+     [echo] 
+     [echo] Analyzing SVRL output...
+   [delete] Deleting: /Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/results/bpc-semantics-0.4-test/bpc/Core/BPC-Core-v0.4-Invoice-Data-Integrity-Constraints.svrl.xml
+   [delete] Deleting: /Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/results/bpc-semantics-0.4-test/bpc/Core/BPC-Core-v0.4-Invoice-Data-Integrity-Constraints.svrl.txt
+
+-sch4bpc:
+     [echo] Creating shell Schematron for CreditNote Core
+
+-sch2xsl:
+     [echo] Creating results/bpc-semantics-0.4-test/bpc/Core/support/BPC-Core-v0.4-CreditNote-Data-Integrity-Constraints.xsl from results/bpc-semantics-0.4-test/bpc/Core/BPC-Core-v0.4-CreditNote-Data-Integrity-Constraints.sch...
+     [echo] Validating results/bpc-semantics-0.4-test/bpc/Core/support/BPC-Core-v0.4-CreditNote-Data-Integrity-Constraints.xsl using results/bpc-semantics-0.4-test/bpc/Core/BPC-Core-CreditNote-Data-Integrity-Constraints.xsl...
+     [echo] 
+     [echo] Analyzing SVRL output...
+   [delete] Deleting: /Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/results/bpc-semantics-0.4-test/bpc/Core/BPC-Core-v0.4-CreditNote-Data-Integrity-Constraints.svrl.xml
+   [delete] Deleting: /Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/results/bpc-semantics-0.4-test/bpc/Core/BPC-Core-v0.4-CreditNote-Data-Integrity-Constraints.svrl.txt
+
+-sch4bpc:
+     [echo] Creating shell Schematron for Invoice Extended
+     [copy] Copying 1 file to /Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/results/bpc-semantics-0.4-test/bpc/Extended/support
+     [copy] Copying 1 file to /Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/results/bpc-semantics-0.4-test/bpc/Extended/support
+     [copy] Copying 1 file to /Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/results/bpc-semantics-0.4-test/bpc/Extended/support
+
+-sch2xsl:
+     [echo] Creating results/bpc-semantics-0.4-test/bpc/Extended/support/BPC-Extended-v0.4-Invoice-Data-Integrity-Constraints.xsl from results/bpc-semantics-0.4-test/bpc/Extended/BPC-Extended-v0.4-Invoice-Data-Integrity-Constraints.sch...
+     [echo] Validating results/bpc-semantics-0.4-test/bpc/Extended/support/BPC-Extended-v0.4-Invoice-Data-Integrity-Constraints.xsl using results/bpc-semantics-0.4-test/bpc/Extended/BPC-Extended-Invoice-Data-Integrity-Constraints.xsl...
+     [echo] 
+     [echo] Analyzing SVRL output...
+   [delete] Deleting: /Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/results/bpc-semantics-0.4-test/bpc/Extended/BPC-Extended-v0.4-Invoice-Data-Integrity-Constraints.svrl.xml
+   [delete] Deleting: /Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/results/bpc-semantics-0.4-test/bpc/Extended/BPC-Extended-v0.4-Invoice-Data-Integrity-Constraints.svrl.txt
+
+-sch4bpc:
+     [echo] Creating shell Schematron for CreditNote Extended
+
+-sch2xsl:
+     [echo] Creating results/bpc-semantics-0.4-test/bpc/Extended/support/BPC-Extended-v0.4-CreditNote-Data-Integrity-Constraints.xsl from results/bpc-semantics-0.4-test/bpc/Extended/BPC-Extended-v0.4-CreditNote-Data-Integrity-Constraints.sch...
+     [echo] Validating results/bpc-semantics-0.4-test/bpc/Extended/support/BPC-Extended-v0.4-CreditNote-Data-Integrity-Constraints.xsl using results/bpc-semantics-0.4-test/bpc/Extended/BPC-Extended-CreditNote-Data-Integrity-Constraints.xsl...
+     [echo] 
+     [echo] Analyzing SVRL output...
+   [delete] Deleting: /Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/results/bpc-semantics-0.4-test/bpc/Extended/BPC-Extended-v0.4-CreditNote-Data-Integrity-Constraints.svrl.xml
+   [delete] Deleting: /Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/results/bpc-semantics-0.4-test/bpc/Extended/BPC-Extended-v0.4-CreditNote-Data-Integrity-Constraints.svrl.txt
+
+-sch4bpc:
+     [echo] Creating shell Schematron for ApplicationResponse Minimum
+
+-sch2xsl:
+     [echo] Creating results/bpc-semantics-0.4-test/bpc/Minimum/support/BPC-Minimum-v0.4-ApplicationResponse-Data-Integrity-Constraints.xsl from results/bpc-semantics-0.4-test/bpc/Minimum/BPC-Minimum-v0.4-ApplicationResponse-Data-Integrity-Constraints.sch...
+     [echo] Validating results/bpc-semantics-0.4-test/bpc/Minimum/support/BPC-Minimum-v0.4-ApplicationResponse-Data-Integrity-Constraints.xsl using results/bpc-semantics-0.4-test/bpc/Minimum/BPC-Minimum-ApplicationResponse-Data-Integrity-Constraints.xsl...
+     [echo] 
+     [echo] Analyzing SVRL output...
+   [delete] Deleting: /Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/results/bpc-semantics-0.4-test/bpc/Minimum/BPC-Minimum-v0.4-ApplicationResponse-Data-Integrity-Constraints.svrl.xml
+   [delete] Deleting: /Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/results/bpc-semantics-0.4-test/bpc/Minimum/BPC-Minimum-v0.4-ApplicationResponse-Data-Integrity-Constraints.svrl.txt
+
+-sch4bpc:
+     [echo] Creating shell Schematron for DocumentStatus InvoiceStatus
+     [copy] Copying 1 file to /Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/results/bpc-semantics-0.4-test/bpc/InvoiceStatus/support
+     [copy] Copying 1 file to /Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/results/bpc-semantics-0.4-test/bpc/InvoiceStatus/support
+     [copy] Copying 1 file to /Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/results/bpc-semantics-0.4-test/bpc/InvoiceStatus/support
+
+-sch2xsl:
+     [echo] Creating results/bpc-semantics-0.4-test/bpc/InvoiceStatus/support/BPC-InvoiceStatus-v0.4-DocumentStatus-Data-Integrity-Constraints.xsl from results/bpc-semantics-0.4-test/bpc/InvoiceStatus/BPC-InvoiceStatus-v0.4-DocumentStatus-Data-Integrity-Constraints.sch...
+     [echo] Validating results/bpc-semantics-0.4-test/bpc/InvoiceStatus/support/BPC-InvoiceStatus-v0.4-DocumentStatus-Data-Integrity-Constraints.xsl using results/bpc-semantics-0.4-test/bpc/InvoiceStatus/BPC-InvoiceStatus-DocumentStatus-Data-Integrity-Constraints.xsl...
+     [echo] 
+     [echo] Analyzing SVRL output...
+   [delete] Deleting: /Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/results/bpc-semantics-0.4-test/bpc/InvoiceStatus/BPC-InvoiceStatus-v0.4-DocumentStatus-Data-Integrity-Constraints.svrl.xml
+   [delete] Deleting: /Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/results/bpc-semantics-0.4-test/bpc/InvoiceStatus/BPC-InvoiceStatus-v0.4-DocumentStatus-Data-Integrity-Constraints.svrl.txt
+
+-sch4bpc:
+     [echo] Creating shell Schematron skipped due to absence of file: results/DocumentStatus-OtherStatus-test-Schematron.xml
+   [delete] Deleting: /Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/results/bpc-semantics-0.4-test/bpc/BPC-v0.4-Code-Lists.xsl
+   [delete] Deleting directory /Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/results/bpc-semantics-0.4-test/bpc/OtherStatus
+     [exec] --2022-01-28 15:20:23--  https://docs.google.com/spreadsheets/d/16Nj_hW5_T_2Z2Hgd_vJHGx47iwvW-RlA/export?format=xlsx
+     [exec] Resolving docs.google.com (docs.google.com)... 142.251.32.78
+     [exec] Connecting to docs.google.com (docs.google.com)|142.251.32.78|:443... connected.
+     [exec] HTTP request sent, awaiting response... 307 Temporary Redirect
+     [exec] Location: https://doc-0c-cc-sheets.googleusercontent.com/export/70cmver1f290kjsnpar5ku2h9g/lcshrrl2klejt67ca5a1lu8f0c/1643401220000/107318772792262222770/*/16Nj_hW5_T_2Z2Hgd_vJHGx47iwvW-RlA?format=xlsx [following]
+     [exec] Warning: wildcards not supported in HTTP.
+     [exec] --2022-01-28 15:20:23--  https://doc-0c-cc-sheets.googleusercontent.com/export/70cmver1f290kjsnpar5ku2h9g/lcshrrl2klejt67ca5a1lu8f0c/1643401220000/107318772792262222770/*/16Nj_hW5_T_2Z2Hgd_vJHGx47iwvW-RlA?format=xlsx
+     [exec] Resolving doc-0c-cc-sheets.googleusercontent.com (doc-0c-cc-sheets.googleusercontent.com)... 142.251.41.65
+     [exec] Connecting to doc-0c-cc-sheets.googleusercontent.com (doc-0c-cc-sheets.googleusercontent.com)|142.251.41.65|:443... connected.
+     [exec] HTTP request sent, awaiting response... 200 OK
+     [exec] Length: unspecified [application/vnd.openxmlformats-officedocument.spreadsheetml.sheet]
+     [exec] Saving to: ‘results/bpc-semantics-0.4-test/model/BPC-Semantics-Spreadsheet-0.4-test.xlsx’
+     [exec] 
+     [exec]      0K .......... .......... .......... .......... ..........  355K
+     [exec]     50K .......... .......... .......... .......                706K=0.2s
+     [exec] 
+     [exec] 2022-01-28 15:20:24 (451 KB/s) - ‘results/bpc-semantics-0.4-test/model/BPC-Semantics-Spreadsheet-0.4-test.xlsx’ saved [89481]
+     [exec] 
+
+-package:
+   [delete] Deleting directory /Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/results/bpc-semantics-tools-0.4-test
+    [mkdir] Created dir: /Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/results/bpc-semantics-tools-0.4-test
+     [move] Moving 48 files to /Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/results/bpc-semantics-tools-0.4-test/archive-only-not-in-final-distribution
+    [mkdir] Created dir: /Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/results/zipdir
+     [move] Moving 331 files to /Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/results/zipdir
+      [zip] Building zip: /Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/results/bpc-semantics-tools-0.4-test/bpc-semantics-0.4-test.zip
+      [zip] bpc-semantics-0.4-test/bpc/Core/BPC-Core-CreditNote-Data-Integrity-Constraints.xsl already added, skipping
+      [zip] bpc-semantics-0.4-test/bpc/Core/BPC-Core-Invoice-Data-Integrity-Constraints.xsl already added, skipping
+      [zip] bpc-semantics-0.4-test/bpc/Core/BPC-Core-v0.4-CreditNote-Data-Integrity-Constraints.sch already added, skipping
+      [zip] bpc-semantics-0.4-test/bpc/Core/BPC-Core-v0.4-Invoice-Data-Integrity-Constraints.sch already added, skipping
+      [zip] bpc-semantics-0.4-test/bpc/Core/support/BPC-Core-v0.4-CreditNote-Assertions.pattern.sch already added, skipping
+      [zip] bpc-semantics-0.4-test/bpc/Core/support/BPC-Core-v0.4-CreditNote-Data-Integrity-Constraints.xsl already added, skipping
+      [zip] bpc-semantics-0.4-test/bpc/Core/support/BPC-Core-v0.4-Invoice-Assertions.pattern.sch already added, skipping
+      [zip] bpc-semantics-0.4-test/bpc/Core/support/BPC-Core-v0.4-Invoice-Data-Integrity-Constraints.xsl already added, skipping
+      [zip] bpc-semantics-0.4-test/bpc/Core/support/BPC-Schematron-Support.xsl already added, skipping
+      [zip] bpc-semantics-0.4-test/bpc/Core/support/BPC-v0.4-Code-Lists.xsl already added, skipping
+      [zip] bpc-semantics-0.4-test/bpc/Core/support/UBL-DocumentConstraints-2.3.pattern.sch already added, skipping
+      [zip] bpc-semantics-0.4-test/bpc/Extended/BPC-Extended-CreditNote-Data-Integrity-Constraints.xsl already added, skipping
+      [zip] bpc-semantics-0.4-test/bpc/Extended/BPC-Extended-Invoice-Data-Integrity-Constraints.xsl already added, skipping
+      [zip] bpc-semantics-0.4-test/bpc/Extended/BPC-Extended-v0.4-CreditNote-Data-Integrity-Constraints.sch already added, skipping
+      [zip] bpc-semantics-0.4-test/bpc/Extended/BPC-Extended-v0.4-Invoice-Data-Integrity-Constraints.sch already added, skipping
+      [zip] bpc-semantics-0.4-test/bpc/Extended/support/BPC-Extended-v0.4-CreditNote-Assertions.pattern.sch already added, skipping
+      [zip] bpc-semantics-0.4-test/bpc/Extended/support/BPC-Extended-v0.4-CreditNote-Data-Integrity-Constraints.xsl already added, skipping
+      [zip] bpc-semantics-0.4-test/bpc/Extended/support/BPC-Extended-v0.4-Invoice-Assertions.pattern.sch already added, skipping
+      [zip] bpc-semantics-0.4-test/bpc/Extended/support/BPC-Extended-v0.4-Invoice-Data-Integrity-Constraints.xsl already added, skipping
+      [zip] bpc-semantics-0.4-test/bpc/Extended/support/BPC-Schematron-Support.xsl already added, skipping
+      [zip] bpc-semantics-0.4-test/bpc/Extended/support/BPC-v0.4-Code-Lists.xsl already added, skipping
+      [zip] bpc-semantics-0.4-test/bpc/Extended/support/UBL-DocumentConstraints-2.3.pattern.sch already added, skipping
+      [zip] bpc-semantics-0.4-test/bpc/InvoiceStatus/BPC-InvoiceStatus-DocumentStatus-Data-Integrity-Constraints.xsl already added, skipping
+      [zip] bpc-semantics-0.4-test/bpc/InvoiceStatus/BPC-InvoiceStatus-v0.4-DocumentStatus-Data-Integrity-Constraints.sch already added, skipping
+      [zip] bpc-semantics-0.4-test/bpc/InvoiceStatus/support/BPC-InvoiceStatus-v0.4-DocumentStatus-Assertions.pattern.sch already added, skipping
+      [zip] bpc-semantics-0.4-test/bpc/InvoiceStatus/support/BPC-InvoiceStatus-v0.4-DocumentStatus-Data-Integrity-Constraints.xsl already added, skipping
+      [zip] bpc-semantics-0.4-test/bpc/InvoiceStatus/support/BPC-Schematron-Support.xsl already added, skipping
+      [zip] bpc-semantics-0.4-test/bpc/InvoiceStatus/support/BPC-v0.4-Code-Lists.xsl already added, skipping
+      [zip] bpc-semantics-0.4-test/bpc/InvoiceStatus/support/UBL-DocumentConstraints-2.3.pattern.sch already added, skipping
+      [zip] bpc-semantics-0.4-test/bpc/Minimum/BPC-Minimum-ApplicationResponse-Data-Integrity-Constraints.xsl already added, skipping
+      [zip] bpc-semantics-0.4-test/bpc/Minimum/BPC-Minimum-CreditNote-Data-Integrity-Constraints.xsl already added, skipping
+      [zip] bpc-semantics-0.4-test/bpc/Minimum/BPC-Minimum-Invoice-Data-Integrity-Constraints.xsl already added, skipping
+      [zip] bpc-semantics-0.4-test/bpc/Minimum/BPC-Minimum-v0.4-ApplicationResponse-Data-Integrity-Constraints.sch already added, skipping
+      [zip] bpc-semantics-0.4-test/bpc/Minimum/BPC-Minimum-v0.4-CreditNote-Data-Integrity-Constraints.sch already added, skipping
+      [zip] bpc-semantics-0.4-test/bpc/Minimum/BPC-Minimum-v0.4-Invoice-Data-Integrity-Constraints.sch already added, skipping
+      [zip] bpc-semantics-0.4-test/bpc/Minimum/support/BPC-Minimum-v0.4-ApplicationResponse-Assertions.pattern.sch already added, skipping
+      [zip] bpc-semantics-0.4-test/bpc/Minimum/support/BPC-Minimum-v0.4-ApplicationResponse-Data-Integrity-Constraints.xsl already added, skipping
+      [zip] bpc-semantics-0.4-test/bpc/Minimum/support/BPC-Minimum-v0.4-CreditNote-Assertions.pattern.sch already added, skipping
+      [zip] bpc-semantics-0.4-test/bpc/Minimum/support/BPC-Minimum-v0.4-CreditNote-Data-Integrity-Constraints.xsl already added, skipping
+      [zip] bpc-semantics-0.4-test/bpc/Minimum/support/BPC-Minimum-v0.4-Invoice-Assertions.pattern.sch already added, skipping
+      [zip] bpc-semantics-0.4-test/bpc/Minimum/support/BPC-Minimum-v0.4-Invoice-Data-Integrity-Constraints.xsl already added, skipping
+      [zip] bpc-semantics-0.4-test/bpc/Minimum/support/BPC-Schematron-Support.xsl already added, skipping
+      [zip] bpc-semantics-0.4-test/bpc/Minimum/support/BPC-v0.4-Code-Lists.xsl already added, skipping
+      [zip] bpc-semantics-0.4-test/bpc/Minimum/support/UBL-DocumentConstraints-2.3.pattern.sch already added, skipping
+      [zip] bpc-semantics-0.4-test/bpc/summary-customization-identifiers.txt already added, skipping
+      [zip] bpc-semantics-0.4-test/codelists/IANA-Media-Types--BinaryObjectMimeCode.gc already added, skipping
+      [zip] bpc-semantics-0.4-test/codelists/IANA-Media-Types-Including-Deprecated--BinaryObjectMimeCode-incl-deprecated.gc already added, skipping
+      [zip] bpc-semantics-0.4-test/codelists/ISO-3166--CountryIdentificationCode.gc already added, skipping
+      [zip] bpc-semantics-0.4-test/codelists/ISO-4217--CurrencyCode.gc already added, skipping
+      [zip] bpc-semantics-0.4-test/codelists/UNECE-1001--DocumentNameCode.gc already added, skipping
+      [zip] bpc-semantics-0.4-test/codelists/UNECE-1373--DocumentStatusCode.gc already added, skipping
+      [zip] bpc-semantics-0.4-test/codelists/UNECE-4451--Textsubjectcodequalifier.gc already added, skipping
+      [zip] bpc-semantics-0.4-test/codelists/UNECE-4461--PaymentMeansCode.gc already added, skipping
+      [zip] bpc-semantics-0.4-test/codelists/UNECE-5153--DutyTaxFeeTypeCode.gc already added, skipping
+      [zip] bpc-semantics-0.4-test/codelists/UNECE-5189--AllowanceChargeIdentificationCode.gc already added, skipping
+      [zip] bpc-semantics-0.4-test/codelists/UNECE-5305--DutyorTaxorFeeCategoryCode.gc already added, skipping
+      [zip] bpc-semantics-0.4-test/codelists/UNECE-Rec-20--UnitOfMeasureCode.gc already added, skipping
+      [zip] bpc-semantics-0.4-test/codelists/UNECE-Rec-20-21--UnitOfMeasureCode-PackagingCode-combined.gc already added, skipping
+      [zip] bpc-semantics-0.4-test/codelists/UNECE-Rec-20-21-Including-Deleted--UnitOfMeasureCode-PackagingCode-combined.gc already added, skipping
+      [zip] bpc-semantics-0.4-test/codelists/UNECE-Rec-20-Including-Deleted--UnitOfMeasureCode-incl-deleted.gc already added, skipping
+      [zip] bpc-semantics-0.4-test/codelists/UNECE-Rec-21--PackagingCode.gc already added, skipping
+      [zip] bpc-semantics-0.4-test/codelists/UNECE-Rec-21-Including-Deleted--PackagingCode-incl-deleted.gc already added, skipping
+      [zip] bpc-semantics-0.4-test/examples/Acme3099123-core-invoice.xml already added, skipping
+      [zip] bpc-semantics-0.4-test/examples/Acme3099123.pdf already added, skipping
+      [zip] bpc-semantics-0.4-test/examples/MP-1-core-invoice.xml already added, skipping
+      [zip] bpc-semantics-0.4-test/examples/MP-2-core-invoice.xml already added, skipping
+      [zip] bpc-semantics-0.4-test/model/BPC-Semantics-Spreadsheet-0.4-test.gc already added, skipping
+      [zip] bpc-semantics-0.4-test/model/BPC-Semantics-Spreadsheet-0.4-test.ods already added, skipping
+      [zip] bpc-semantics-0.4-test/model/BPC-Semantics-Spreadsheet-0.4-test.xlsx already added, skipping
+      [zip] bpc-semantics-0.4-test/model/BPC-Semantics-Spreadsheet-0.4-test.xml already added, skipping
+      [zip] bpc-semantics-0.4-test/model/BPC-Semantics-Spreadsheet.xml already added, skipping
+      [zip] bpc-semantics-0.4-test/readme-bpc-artifacts.html already added, skipping
+      [zip] bpc-semantics-0.4-test/regression/Extended-Invoice-good.xml already added, skipping
+      [zip] bpc-semantics-0.4-test/regression/NABG-023-Core-Invoice-bad-tax-total-count.xml already added, skipping
+      [zip] bpc-semantics-0.4-test/regression/NABG-023-Extended-Invoice-bad-tax-info.xml already added, skipping
+      [zip] bpc-semantics-0.4-test/regression/NABG-990-Core-Invoice-bad-tax-totals.xml already added, skipping
+      [zip] bpc-semantics-0.4-test/regression/NABG-990-Extended-Invoice-bad-tax-totals.xml already added, skipping
+      [zip] bpc-semantics-0.4-test/regression/NABG-990-Extended-bad-tax-totals.xml already added, skipping
+      [zip] bpc-semantics-0.4-test/regression/NABG-999-Extended-Invoice-bad-missing-terms-1.xml already added, skipping
+      [zip] bpc-semantics-0.4-test/regression/NABT-003-Extended-Invoice-bad-type.xml already added, skipping
+      [zip] bpc-semantics-0.4-test/regression/NABT-005-Extended-Invoice-bad-value.xml already added, skipping
+      [zip] bpc-semantics-0.4-test/regression/NABT-006-Extended-Invoice-bad-value.xml already added, skipping
+      [zip] bpc-semantics-0.4-test/regression/NABT-073-Extended-Invoice-bad-date.xml already added, skipping
+      [zip] bpc-semantics-0.4-test/regression/NABT-074-Extended-Invoice-bad-date.xml already added, skipping
+      [zip] bpc-semantics-0.4-test/regression/NABT-074-Extended-Invoice-bad-time.xml already added, skipping
+      [zip] bpc-semantics-0.4-test/regression/NABT-081-Extended-Invoice-bad-code.xml already added, skipping
+      [zip] bpc-semantics-0.4-test/regression/NABT-081-Extended-Invoice-missing-account.xml already added, skipping
+      [zip] bpc-semantics-0.4-test/regression/NABT-086-Extended-Invoice-missing-branch.xml already added, skipping
+      [zip] bpc-semantics-0.4-test/regression/NABT-111-Extended-Invoice-bad-tax-total-currency.xml already added, skipping
+      [zip] bpc-semantics-0.4-test/regression/NABT-111-Extended-Invoice-bad-tax-total-document-currency.xml already added, skipping
+      [zip] bpc-semantics-0.4-test/regression/NABT-134-Extended-Invoice-bad-date.xml already added, skipping
+      [zip] bpc-semantics-0.4-test/regression/NABT-135-Extended-Invoice-bad-date.xml already added, skipping
+      [zip] bpc-semantics-0.4-test/regression/NABT-135-Extended-Invoice-bad-time.xml already added, skipping
+      [zip] bpc-semantics-0.4-test/regression/NABT-919-Extended-Invoice-bad-date.xml already added, skipping
+      [zip] bpc-semantics-0.4-test/regression/NABT-919-Extended-Invoice-bad-time.xml already added, skipping
+      [zip] bpc-semantics-0.4-test/regression/NABT-921-Extended-Invoice-bad-date.xml already added, skipping
+      [zip] bpc-semantics-0.4-test/regression/NABT-999-Extended-Invoice-bad-missing-id.xml already added, skipping
+      [zip] bpc-semantics-0.4-test/regression/expected/NABG-023-Core-Invoice-bad-tax-total-count.xml.error.txt already added, skipping
+      [zip] bpc-semantics-0.4-test/regression/expected/NABG-023-Extended-Invoice-bad-tax-info.xml.error.txt already added, skipping
+      [zip] bpc-semantics-0.4-test/regression/expected/NABG-990-Core-Invoice-bad-tax-totals.xml.error.txt already added, skipping
+      [zip] bpc-semantics-0.4-test/regression/expected/NABG-990-Extended-Invoice-bad-tax-totals.xml.error.txt already added, skipping
+      [zip] bpc-semantics-0.4-test/regression/expected/NABG-999-Extended-Invoice-bad-missing-terms-1.xml.error.txt already added, skipping
+      [zip] bpc-semantics-0.4-test/regression/expected/NABT-003-Extended-Invoice-bad-type.xml.error.txt already added, skipping
+      [zip] bpc-semantics-0.4-test/regression/expected/NABT-005-Extended-Invoice-bad-value.xml.error.txt already added, skipping
+      [zip] bpc-semantics-0.4-test/regression/expected/NABT-006-Extended-Invoice-bad-value.xml.error.txt already added, skipping
+      [zip] bpc-semantics-0.4-test/regression/expected/NABT-073-Extended-Invoice-bad-date.xml.error.txt already added, skipping
+      [zip] bpc-semantics-0.4-test/regression/expected/NABT-074-Extended-Invoice-bad-date.xml.error.txt already added, skipping
+      [zip] bpc-semantics-0.4-test/regression/expected/NABT-074-Extended-Invoice-bad-time.xml.error.txt already added, skipping
+      [zip] bpc-semantics-0.4-test/regression/expected/NABT-081-Extended-Invoice-bad-code.xml.error.txt already added, skipping
+      [zip] bpc-semantics-0.4-test/regression/expected/NABT-081-Extended-Invoice-missing-account.xml.error.txt already added, skipping
+      [zip] bpc-semantics-0.4-test/regression/expected/NABT-086-Extended-Invoice-missing-branch.xml.error.txt already added, skipping
+      [zip] bpc-semantics-0.4-test/regression/expected/NABT-111-Extended-Invoice-bad-tax-total-currency.xml.error.txt already added, skipping
+      [zip] bpc-semantics-0.4-test/regression/expected/NABT-134-Extended-Invoice-bad-date.xml.error.txt already added, skipping
+      [zip] bpc-semantics-0.4-test/regression/expected/NABT-135-Extended-Invoice-bad-date.xml.error.txt already added, skipping
+      [zip] bpc-semantics-0.4-test/regression/expected/NABT-135-Extended-Invoice-bad-time.xml.error.txt already added, skipping
+      [zip] bpc-semantics-0.4-test/regression/expected/NABT-919-Extended-Invoice-bad-date.xml.error.txt already added, skipping
+      [zip] bpc-semantics-0.4-test/regression/expected/NABT-919-Extended-Invoice-bad-time.xml.error.txt already added, skipping
+      [zip] bpc-semantics-0.4-test/regression/expected/NABT-921-Extended-Invoice-bad-date.xml.error.txt already added, skipping
+      [zip] bpc-semantics-0.4-test/regression/expected/NABT-999-Extended-Invoice-bad-missing-id.xml.error.txt already added, skipping
+      [zip] bpc-semantics-0.4-test/regression/one-regression.sh already added, skipping
+      [zip] bpc-semantics-0.4-test/regression/regression.sh already added, skipping
+      [zip] bpc-semantics-0.4-test/regression/results/NABG-023-Core-Invoice-bad-tax-total-count.xml.error.txt already added, skipping
+      [zip] bpc-semantics-0.4-test/regression/results/NABG-023-Extended-Invoice-bad-tax-info.xml.error.txt already added, skipping
+      [zip] bpc-semantics-0.4-test/regression/results/NABG-990-Core-Invoice-bad-tax-totals.xml.error.txt already added, skipping
+      [zip] bpc-semantics-0.4-test/regression/results/NABG-990-Extended-Invoice-bad-tax-totals.xml.error.txt already added, skipping
+      [zip] bpc-semantics-0.4-test/regression/results/NABG-999-Extended-Invoice-bad-missing-terms-1.xml.error.txt already added, skipping
+      [zip] bpc-semantics-0.4-test/regression/results/NABT-003-Extended-Invoice-bad-type.xml.error.txt already added, skipping
+      [zip] bpc-semantics-0.4-test/regression/results/NABT-005-Extended-Invoice-bad-value.xml.error.txt already added, skipping
+      [zip] bpc-semantics-0.4-test/regression/results/NABT-006-Extended-Invoice-bad-value.xml.error.txt already added, skipping
+      [zip] bpc-semantics-0.4-test/regression/results/NABT-073-Extended-Invoice-bad-date.xml.error.txt already added, skipping
+      [zip] bpc-semantics-0.4-test/regression/results/NABT-074-Extended-Invoice-bad-date.xml.error.txt already added, skipping
+      [zip] bpc-semantics-0.4-test/regression/results/NABT-074-Extended-Invoice-bad-time.xml.error.txt already added, skipping
+      [zip] bpc-semantics-0.4-test/regression/results/NABT-081-Extended-Invoice-bad-code.xml.error.txt already added, skipping
+      [zip] bpc-semantics-0.4-test/regression/results/NABT-081-Extended-Invoice-missing-account.xml.error.txt already added, skipping
+      [zip] bpc-semantics-0.4-test/regression/results/NABT-086-Extended-Invoice-missing-branch.xml.error.txt already added, skipping
+      [zip] bpc-semantics-0.4-test/regression/results/NABT-111-Extended-Invoice-bad-tax-total-currency.xml.error.txt already added, skipping
+      [zip] bpc-semantics-0.4-test/regression/results/NABT-134-Extended-Invoice-bad-date.xml.error.txt already added, skipping
+      [zip] bpc-semantics-0.4-test/regression/results/NABT-135-Extended-Invoice-bad-date.xml.error.txt already added, skipping
+      [zip] bpc-semantics-0.4-test/regression/results/NABT-135-Extended-Invoice-bad-time.xml.error.txt already added, skipping
+      [zip] bpc-semantics-0.4-test/regression/results/NABT-919-Extended-Invoice-bad-date.xml.error.txt already added, skipping
+      [zip] bpc-semantics-0.4-test/regression/results/NABT-919-Extended-Invoice-bad-time.xml.error.txt already added, skipping
+      [zip] bpc-semantics-0.4-test/regression/results/NABT-921-Extended-Invoice-bad-date.xml.error.txt already added, skipping
+      [zip] bpc-semantics-0.4-test/regression/results/NABT-999-Extended-Invoice-bad-missing-id.xml.error.txt already added, skipping
+      [zip] bpc-semantics-0.4-test/release-test.txt already added, skipping
+      [zip] bpc-semantics-0.4-test/release.txt already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/All-UBL-2.3-Documents.html already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/UBL-ApplicationResponse-2.3.html already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/UBL-CreditNote-2.3.html already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/UBL-DocumentConstraints-2.3.pattern.sch already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/UBL-DocumentStatus-2.3.html already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/UBL-Entities-2.3-os.gc already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/UBL-Invoice-2.3.html already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/common/BDNDR-CCTS_CCT_SchemaModule-1.1.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/common/BDNDR-UnqualifiedDataTypes-1.1.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/common/UBL-CommonAggregateComponents-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/common/UBL-CommonBasicComponents-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/common/UBL-CommonExtensionComponents-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/common/UBL-CommonSignatureComponents-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/common/UBL-ExtensionContentDataType-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/common/UBL-QualifiedDataTypes-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/common/UBL-SignatureAggregateComponents-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/common/UBL-SignatureBasicComponents-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/common/UBL-XAdES01903v132-201601-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/common/UBL-XAdES01903v141-201601-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/common/UBL-xmldsig-core-schema-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/common/UBL-xmldsig1-schema-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/common/UBL-xmldsig11-schema-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/maindoc/UBL-ApplicationResponse-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/maindoc/UBL-AttachedDocument-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/maindoc/UBL-AwardedNotification-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/maindoc/UBL-BillOfLading-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/maindoc/UBL-BusinessCard-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/maindoc/UBL-CallForTenders-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/maindoc/UBL-Catalogue-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/maindoc/UBL-CatalogueDeletion-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/maindoc/UBL-CatalogueItemSpecificationUpdate-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/maindoc/UBL-CataloguePricingUpdate-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/maindoc/UBL-CatalogueRequest-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/maindoc/UBL-CertificateOfOrigin-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/maindoc/UBL-CommonTransportationReport-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/maindoc/UBL-ContractAwardNotice-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/maindoc/UBL-ContractNotice-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/maindoc/UBL-CreditNote-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/maindoc/UBL-DebitNote-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/maindoc/UBL-DespatchAdvice-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/maindoc/UBL-DigitalAgreement-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/maindoc/UBL-DigitalCapability-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/maindoc/UBL-DocumentStatus-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/maindoc/UBL-DocumentStatusRequest-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/maindoc/UBL-Enquiry-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/maindoc/UBL-EnquiryResponse-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/maindoc/UBL-ExceptionCriteria-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/maindoc/UBL-ExceptionNotification-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/maindoc/UBL-ExportCustomsDeclaration-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/maindoc/UBL-ExpressionOfInterestRequest-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/maindoc/UBL-ExpressionOfInterestResponse-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/maindoc/UBL-Forecast-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/maindoc/UBL-ForecastRevision-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/maindoc/UBL-ForwardingInstructions-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/maindoc/UBL-FreightInvoice-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/maindoc/UBL-FulfilmentCancellation-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/maindoc/UBL-GoodsCertificate-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/maindoc/UBL-GoodsItemItinerary-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/maindoc/UBL-GoodsItemPassport-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/maindoc/UBL-GuaranteeCertificate-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/maindoc/UBL-ImportCustomsDeclaration-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/maindoc/UBL-InstructionForReturns-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/maindoc/UBL-InventoryReport-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/maindoc/UBL-Invoice-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/maindoc/UBL-ItemInformationRequest-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/maindoc/UBL-Manifest-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/maindoc/UBL-Order-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/maindoc/UBL-OrderCancellation-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/maindoc/UBL-OrderChange-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/maindoc/UBL-OrderResponse-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/maindoc/UBL-OrderResponseSimple-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/maindoc/UBL-PackingList-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/maindoc/UBL-PriorInformationNotice-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/maindoc/UBL-ProductActivity-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/maindoc/UBL-ProofOfReexportation-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/maindoc/UBL-ProofOfReexportationReminder-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/maindoc/UBL-ProofOfReexportationRequest-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/maindoc/UBL-QualificationApplicationRequest-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/maindoc/UBL-QualificationApplicationResponse-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/maindoc/UBL-Quotation-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/maindoc/UBL-ReceiptAdvice-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/maindoc/UBL-Reminder-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/maindoc/UBL-RemittanceAdvice-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/maindoc/UBL-RequestForQuotation-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/maindoc/UBL-RetailEvent-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/maindoc/UBL-SelfBilledCreditNote-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/maindoc/UBL-SelfBilledInvoice-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/maindoc/UBL-Statement-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/maindoc/UBL-StockAvailabilityReport-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/maindoc/UBL-Tender-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/maindoc/UBL-TenderContract-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/maindoc/UBL-TenderReceipt-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/maindoc/UBL-TenderStatus-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/maindoc/UBL-TenderStatusRequest-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/maindoc/UBL-TenderWithdrawal-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/maindoc/UBL-TendererQualification-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/maindoc/UBL-TendererQualificationResponse-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/maindoc/UBL-TradeItemLocationProfile-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/maindoc/UBL-TransitCustomsDeclaration-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/maindoc/UBL-TransportExecutionPlan-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/maindoc/UBL-TransportExecutionPlanRequest-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/maindoc/UBL-TransportProgressStatus-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/maindoc/UBL-TransportProgressStatusRequest-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/maindoc/UBL-TransportServiceDescription-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/maindoc/UBL-TransportServiceDescriptionRequest-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/maindoc/UBL-TransportationStatus-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/maindoc/UBL-TransportationStatusRequest-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/maindoc/UBL-UnawardedNotification-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/maindoc/UBL-UnsubscribeFromProcedureRequest-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/maindoc/UBL-UnsubscribeFromProcedureResponse-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/maindoc/UBL-UtilityStatement-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/maindoc/UBL-Waybill-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/ubl/xsd/maindoc/UBL-WeightStatement-2.3.xsd already added, skipping
+      [zip] bpc-semantics-0.4-test/val/ApplicationResponse-test-bad-data-1.xml already added, skipping
+      [zip] bpc-semantics-0.4-test/val/ApplicationResponse-test-bad-data-2.xml already added, skipping
+      [zip] bpc-semantics-0.4-test/val/ApplicationResponse-test-good.xml already added, skipping
+      [zip] bpc-semantics-0.4-test/val/CreditNote-Core-test-bad-data.xml already added, skipping
+      [zip] bpc-semantics-0.4-test/val/CreditNote-Core-test-bad-model.xml already added, skipping
+      [zip] bpc-semantics-0.4-test/val/CreditNote-Core-test-bad-syntax.xml already added, skipping
+      [zip] bpc-semantics-0.4-test/val/CreditNote-Core-test-good.xml already added, skipping
+      [zip] bpc-semantics-0.4-test/val/CreditNote-Extended-test-bad-data.xml already added, skipping
+      [zip] bpc-semantics-0.4-test/val/CreditNote-Extended-test-bad-model.xml already added, skipping
+      [zip] bpc-semantics-0.4-test/val/CreditNote-Extended-test-bad-syntax.xml already added, skipping
+      [zip] bpc-semantics-0.4-test/val/CreditNote-Extended-test-good.xml already added, skipping
+      [zip] bpc-semantics-0.4-test/val/CreditNote-Minimum-test-bad-data.xml already added, skipping
+      [zip] bpc-semantics-0.4-test/val/CreditNote-Minimum-test-bad-model.xml already added, skipping
+      [zip] bpc-semantics-0.4-test/val/CreditNote-Minimum-test-bad-syntax.xml already added, skipping
+      [zip] bpc-semantics-0.4-test/val/CreditNote-Minimum-test-good.xml already added, skipping
+      [zip] bpc-semantics-0.4-test/val/Invoice-Core-test-bad-data.xml already added, skipping
+      [zip] bpc-semantics-0.4-test/val/Invoice-Core-test-bad-model.xml already added, skipping
+      [zip] bpc-semantics-0.4-test/val/Invoice-Core-test-bad-syntax.xml already added, skipping
+      [zip] bpc-semantics-0.4-test/val/Invoice-Core-test-good.xml already added, skipping
+      [zip] bpc-semantics-0.4-test/val/Invoice-Extended-test-bad-data.xml already added, skipping
+      [zip] bpc-semantics-0.4-test/val/Invoice-Extended-test-bad-model.xml already added, skipping
+      [zip] bpc-semantics-0.4-test/val/Invoice-Extended-test-bad-syntax.xml already added, skipping
+      [zip] bpc-semantics-0.4-test/val/Invoice-Extended-test-good.xml already added, skipping
+      [zip] bpc-semantics-0.4-test/val/Invoice-Minimum-test-bad-data.xml already added, skipping
+      [zip] bpc-semantics-0.4-test/val/Invoice-Minimum-test-bad-model.xml already added, skipping
+      [zip] bpc-semantics-0.4-test/val/Invoice-Minimum-test-bad-syntax.xml already added, skipping
+      [zip] bpc-semantics-0.4-test/val/Invoice-Minimum-test-good.xml already added, skipping
+      [zip] bpc-semantics-0.4-test/val/InvoiceDocumentStatus-test-bad-data-1.xml already added, skipping
+      [zip] bpc-semantics-0.4-test/val/InvoiceDocumentStatus-test-bad-data-2.xml already added, skipping
+      [zip] bpc-semantics-0.4-test/val/InvoiceDocumentStatus-test-bad-data-3.xml already added, skipping
+      [zip] bpc-semantics-0.4-test/val/InvoiceDocumentStatus-test-good.xml already added, skipping
+      [zip] bpc-semantics-0.4-test/val/lib/commons-codec-1.3.jar already added, skipping
+      [zip] bpc-semantics-0.4-test/val/lib/commons-httpclient-3.1.jar already added, skipping
+      [zip] bpc-semantics-0.4-test/val/lib/commons-logging-1.1.1.jar already added, skipping
+      [zip] bpc-semantics-0.4-test/val/lib/serializer.jar already added, skipping
+      [zip] bpc-semantics-0.4-test/val/lib/xercesImpl.jar already added, skipping
+      [zip] bpc-semantics-0.4-test/val/lib/xml-apis.jar already added, skipping
+      [zip] bpc-semantics-0.4-test/val/lib/xmlresolver.jar already added, skipping
+      [zip] bpc-semantics-0.4-test/val/notices-saxon/CERN.txt already added, skipping
+      [zip] bpc-semantics-0.4-test/val/notices-saxon/JAMESCLARK.txt already added, skipping
+      [zip] bpc-semantics-0.4-test/val/notices-saxon/LICENSE.txt already added, skipping
+      [zip] bpc-semantics-0.4-test/val/notices-saxon/THAI.txt already added, skipping
+      [zip] bpc-semantics-0.4-test/val/notices-saxon/UNICODE.txt already added, skipping
+      [zip] bpc-semantics-0.4-test/val/notices-xjparse/APACHE-CODEC.txt already added, skipping
+      [zip] bpc-semantics-0.4-test/val/notices-xjparse/APACHE-HTTPCLIENT.txt already added, skipping
+      [zip] bpc-semantics-0.4-test/val/notices-xjparse/APACHE-LOGGING.txt already added, skipping
+      [zip] bpc-semantics-0.4-test/val/notices-xjparse/APACHE-XERCES.txt already added, skipping
+      [zip] bpc-semantics-0.4-test/val/readme-testSVRL4UBLerrors.html already added, skipping
+      [zip] bpc-semantics-0.4-test/val/saxon9he.jar already added, skipping
+      [zip] bpc-semantics-0.4-test/val/test-examples.bat already added, skipping
+      [zip] bpc-semantics-0.4-test/val/test-examples.sh already added, skipping
+      [zip] bpc-semantics-0.4-test/val/test.bat already added, skipping
+      [zip] bpc-semantics-0.4-test/val/test.sh already added, skipping
+      [zip] bpc-semantics-0.4-test/val/testSVRL4UBLerrors.xsl already added, skipping
+      [zip] bpc-semantics-0.4-test/val/testall.bat already added, skipping
+      [zip] bpc-semantics-0.4-test/val/testall.sh already added, skipping
+      [zip] bpc-semantics-0.4-test/val/validate.bat already added, skipping
+      [zip] bpc-semantics-0.4-test/val/validate.sh already added, skipping
+      [zip] bpc-semantics-0.4-test/val/w3cschema.bat already added, skipping
+      [zip] bpc-semantics-0.4-test/val/w3cschema.sh already added, skipping
+      [zip] bpc-semantics-0.4-test/val/windows-drag-n-drop/validate-Core-CreditNote.bat already added, skipping
+      [zip] bpc-semantics-0.4-test/val/windows-drag-n-drop/validate-Core-Invoice.bat already added, skipping
+      [zip] bpc-semantics-0.4-test/val/windows-drag-n-drop/validate-Extended-CreditNote.bat already added, skipping
+      [zip] bpc-semantics-0.4-test/val/windows-drag-n-drop/validate-Extended-Invoice.bat already added, skipping
+      [zip] bpc-semantics-0.4-test/val/windows-drag-n-drop/validate-InvoiceStatus-DocumentStatus.bat already added, skipping
+      [zip] bpc-semantics-0.4-test/val/windows-drag-n-drop/validate-Minimum-ApplicationResponse.bat already added, skipping
+      [zip] bpc-semantics-0.4-test/val/windows-drag-n-drop/validate-Minimum-CreditNote.bat already added, skipping
+      [zip] bpc-semantics-0.4-test/val/windows-drag-n-drop/validate-Minimum-Invoice.bat already added, skipping
+      [zip] bpc-semantics-0.4-test/val/xjparse.jar already added, skipping
+      [zip] bpc-semantics-0.4-test/val/xslt.bat already added, skipping
+      [zip] bpc-semantics-0.4-test/val/xslt.sh already added, skipping
+      [zip] bpc-semantics-0.4-test/version-0.4.txt already added, skipping
+      [zip] bpc-semantics-0.4-test/version.txt already added, skipping
+   [delete] Deleting directory /Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/results/zipdir
+     [echo] dateTime=test
+
+BUILD SUCCESSFUL
+Total time: 36 seconds

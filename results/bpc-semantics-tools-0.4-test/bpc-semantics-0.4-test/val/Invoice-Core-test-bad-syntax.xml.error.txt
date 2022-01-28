@@ -1,0 +1,2 @@
+Attempting well-formed, namespace-aware parse
+Fatal error:file:///Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/results/bpc-semantics-tools-0.4-test/bpc-semantics-0.4-test/val/Invoice-Core-test-bad-syntax.xml:10:2:The end-tag for element type "cbc:ID" must end with a '>' delimiter.

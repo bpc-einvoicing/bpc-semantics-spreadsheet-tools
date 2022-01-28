@@ -1,0 +1,521 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gc:CodeList xmlns:gc="http://docs.oasis-open.org/codelist/ns/genericode/1.0/">
+   <Identification>
+      <ShortName>DocumentStatusCode</ShortName>
+      <LongName xml:lang="en">Document Status Code</LongName>
+      <LongName Identifier="listID">UNECE-1373</LongName>
+      <Version>21A</Version>
+      <CanonicalUri>urn:un:unece:uncefact:codelist:standard:UNECE:DocumentStatusCode</CanonicalUri>
+      <CanonicalVersionUri>urn:un:unece:uncefact:codelist:standard:UNECE:DocumentStatusCode:D21A</CanonicalVersionUri>
+      <AlternateFormatLocationUri>https://service.unece.org/trade/untdid/d21b/tred/tred1373.htm</AlternateFormatLocationUri>
+      <AlternateFormatLocationUri MimeType="text/xml">jar:https://unece.org/sites/default/files/2021-12/XMLSchemas-D21B_1.zip!/uncefact/codelist/standard/UNECE_DocumentStatusCode_D21A.xsd</AlternateFormatLocationUri>
+      <Agency>
+         <LongName xml:lang="en">United Nations Economic Commission for Europe</LongName>
+         <Identifier Identifier="https://service.unece.org/trade/untdid/d21b/tred/tred3055.htm">6</Identifier>
+      </Agency>
+   </Identification>
+   <ColumnSet>
+      <Column Id="code" Use="required">
+         <ShortName>Code</ShortName>
+         <Data Type="normalizedString" Lang="en"/>
+      </Column>
+      <Column Id="name" Use="optional">
+         <ShortName>Name</ShortName>
+         <Data Type="string" Lang="en"/>
+      </Column>
+      <Column Id="description" Use="optional">
+         <ShortName>Description</ShortName>
+         <Data Type="string" Lang="en"/>
+      </Column>
+      <Key Id="codeKey">
+         <ShortName>CodeKey</ShortName>
+         <ColumnRef Ref="code"/>
+      </Key>
+   </ColumnSet>
+   <SimpleCodeList>
+      <Row>
+         <Value ColumnRef="code">
+            <SimpleValue>1</SimpleValue>
+         </Value>
+         <Value ColumnRef="name">
+            <SimpleValue>Accepted</SimpleValue>
+         </Value>
+         <Value ColumnRef="description">
+            <SimpleValue>The specified document is accepted.</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="code">
+            <SimpleValue>2</SimpleValue>
+         </Value>
+         <Value ColumnRef="name">
+            <SimpleValue>Accompanying goods</SimpleValue>
+         </Value>
+         <Value ColumnRef="description">
+            <SimpleValue>Notice that a specific document will be accompanying the goods.</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="code">
+            <SimpleValue>3</SimpleValue>
+         </Value>
+         <Value ColumnRef="name">
+            <SimpleValue>Conditionally accepted</SimpleValue>
+         </Value>
+         <Value ColumnRef="description">
+            <SimpleValue>The specified document is conditionally accepted.</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="code">
+            <SimpleValue>4</SimpleValue>
+         </Value>
+         <Value ColumnRef="name">
+            <SimpleValue>To arrive by separate EDI message</SimpleValue>
+         </Value>
+         <Value ColumnRef="description">
+            <SimpleValue>Notice that a specific document/message will be transmitted via a separate EDI message.</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="code">
+            <SimpleValue>5</SimpleValue>
+         </Value>
+         <Value ColumnRef="name">
+            <SimpleValue>Information only</SimpleValue>
+         </Value>
+         <Value ColumnRef="description">
+            <SimpleValue>Notice that the specific document or message is for information only.</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="code">
+            <SimpleValue>6</SimpleValue>
+         </Value>
+         <Value ColumnRef="name">
+            <SimpleValue>To arrive by manual means</SimpleValue>
+         </Value>
+         <Value ColumnRef="description">
+            <SimpleValue>Notice that a specific document or message will not be sent via EDI.</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="code">
+            <SimpleValue>7</SimpleValue>
+         </Value>
+         <Value ColumnRef="name">
+            <SimpleValue>To be raised and sent</SimpleValue>
+         </Value>
+         <Value ColumnRef="description">
+            <SimpleValue>Request for a specific message to be formatted and transmitted or a request for a specific document to be raised and sent.</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="code">
+            <SimpleValue>8</SimpleValue>
+         </Value>
+         <Value ColumnRef="name">
+            <SimpleValue>Rejected</SimpleValue>
+         </Value>
+         <Value ColumnRef="description">
+            <SimpleValue>The specified document is rejected.</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="code">
+            <SimpleValue>9</SimpleValue>
+         </Value>
+         <Value ColumnRef="name">
+            <SimpleValue>To be printed</SimpleValue>
+         </Value>
+         <Value ColumnRef="description">
+            <SimpleValue>The document or message is to be printed.</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="code">
+            <SimpleValue>10</SimpleValue>
+         </Value>
+         <Value ColumnRef="name">
+            <SimpleValue>Document currently valid</SimpleValue>
+         </Value>
+         <Value ColumnRef="description">
+            <SimpleValue>Specific document is currently valid.</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="code">
+            <SimpleValue>11</SimpleValue>
+         </Value>
+         <Value ColumnRef="name">
+            <SimpleValue>Document not available</SimpleValue>
+         </Value>
+         <Value ColumnRef="description">
+            <SimpleValue>Specified document is not available.</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="code">
+            <SimpleValue>12</SimpleValue>
+         </Value>
+         <Value ColumnRef="name">
+            <SimpleValue>Document exhausted by declaration and attached</SimpleValue>
+         </Value>
+         <Value ColumnRef="description">
+            <SimpleValue>Customs declaration to which the document is related completed or exhaust the allowance stated on the document. The document is attached to the Customs declaration.</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="code">
+            <SimpleValue>13</SimpleValue>
+         </Value>
+         <Value ColumnRef="name">
+            <SimpleValue>Document not exhausted by declaration and attached</SimpleValue>
+         </Value>
+         <Value ColumnRef="description">
+            <SimpleValue>Customs declaration to which the document is related does not complete or exhaust the allowance stated on the document . The document is not attached to the declaration but has already been lodged in the Customs station.</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="code">
+            <SimpleValue>14</SimpleValue>
+         </Value>
+         <Value ColumnRef="name">
+            <SimpleValue>Document exhausted by declaration and previously lodged</SimpleValue>
+         </Value>
+         <Value ColumnRef="description">
+            <SimpleValue>Customs declaration to which the document is related completed or exhaust the allowance stated on the document. The usage of the document is complete. The document is not attached to the declaration but has already been lodged in the Customs station.</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="code">
+            <SimpleValue>15</SimpleValue>
+         </Value>
+         <Value ColumnRef="name">
+            <SimpleValue>Document not exhausted by declaration and previously lodged</SimpleValue>
+         </Value>
+         <Value ColumnRef="description">
+            <SimpleValue>Customs declaration to which the document is related does not complete or exhaust the allowance stated on the document. The document can continue to be used for future declarations until the allowance is exhausted. The document is not attached to the declaration but has already been lodged in the Customs station.</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="code">
+            <SimpleValue>16</SimpleValue>
+         </Value>
+         <Value ColumnRef="name">
+            <SimpleValue>Document not attached</SimpleValue>
+         </Value>
+         <Value ColumnRef="description">
+            <SimpleValue>Specified document is not or cannot be attached.</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="code">
+            <SimpleValue>17</SimpleValue>
+         </Value>
+         <Value ColumnRef="name">
+            <SimpleValue>Document with the goods</SimpleValue>
+         </Value>
+         <Value ColumnRef="description">
+            <SimpleValue>Document not attached to the Customs declaration but is attached to the goods.</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="code">
+            <SimpleValue>18</SimpleValue>
+         </Value>
+         <Value ColumnRef="name">
+            <SimpleValue>Document attached, to be returned after endorsement</SimpleValue>
+         </Value>
+         <Value ColumnRef="description">
+            <SimpleValue>Specified document is attached to the Customs declaration and will be required to be returned to the declarant after Customs endorsement.</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="code">
+            <SimpleValue>19</SimpleValue>
+         </Value>
+         <Value ColumnRef="name">
+            <SimpleValue>Document applied for</SimpleValue>
+         </Value>
+         <Value ColumnRef="description">
+            <SimpleValue>Application has been submitted for that document.</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="code">
+            <SimpleValue>20</SimpleValue>
+         </Value>
+         <Value ColumnRef="name">
+            <SimpleValue>Received for shipment</SimpleValue>
+         </Value>
+         <Value ColumnRef="description">
+            <SimpleValue>Indicates that the document has legal validity from the date of receival of the cargo.</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="code">
+            <SimpleValue>21</SimpleValue>
+         </Value>
+         <Value ColumnRef="name">
+            <SimpleValue>Shipped on board</SimpleValue>
+         </Value>
+         <Value ColumnRef="description">
+            <SimpleValue>Indicates that the document has legal validity from the date that cargo is loaded on board a vessel.</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="code">
+            <SimpleValue>22</SimpleValue>
+         </Value>
+         <Value ColumnRef="name">
+            <SimpleValue>Status 0</SimpleValue>
+         </Value>
+         <Value ColumnRef="description">
+            <SimpleValue>Message is at status 0.</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="code">
+            <SimpleValue>23</SimpleValue>
+         </Value>
+         <Value ColumnRef="name">
+            <SimpleValue>Status 1</SimpleValue>
+         </Value>
+         <Value ColumnRef="description">
+            <SimpleValue>Message is at status 1.</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="code">
+            <SimpleValue>24</SimpleValue>
+         </Value>
+         <Value ColumnRef="name">
+            <SimpleValue>Status 2</SimpleValue>
+         </Value>
+         <Value ColumnRef="description">
+            <SimpleValue>Message is at status 2.</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="code">
+            <SimpleValue>25</SimpleValue>
+         </Value>
+         <Value ColumnRef="name">
+            <SimpleValue>Message under development</SimpleValue>
+         </Value>
+         <Value ColumnRef="description">
+            <SimpleValue>Message is under development.</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="code">
+            <SimpleValue>26</SimpleValue>
+         </Value>
+         <Value ColumnRef="name">
+            <SimpleValue>Document not freighted</SimpleValue>
+         </Value>
+         <Value ColumnRef="description">
+            <SimpleValue>Document not to include freight figures.</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="code">
+            <SimpleValue>27</SimpleValue>
+         </Value>
+         <Value ColumnRef="name">
+            <SimpleValue>Document freighted</SimpleValue>
+         </Value>
+         <Value ColumnRef="description">
+            <SimpleValue>Document to include freight figures.</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="code">
+            <SimpleValue>28</SimpleValue>
+         </Value>
+         <Value ColumnRef="name">
+            <SimpleValue>Archived</SimpleValue>
+         </Value>
+         <Value ColumnRef="description">
+            <SimpleValue>The document or message has been archived.</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="code">
+            <SimpleValue>29</SimpleValue>
+         </Value>
+         <Value ColumnRef="name">
+            <SimpleValue>Provisional</SimpleValue>
+         </Value>
+         <Value ColumnRef="description">
+            <SimpleValue>The document or message has no official status.</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="code">
+            <SimpleValue>30</SimpleValue>
+         </Value>
+         <Value ColumnRef="name">
+            <SimpleValue>Documents enclosed in the first transmission</SimpleValue>
+         </Value>
+         <Value ColumnRef="description">
+            <SimpleValue>The documents are enclosed in the first transmission.</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="code">
+            <SimpleValue>31</SimpleValue>
+         </Value>
+         <Value ColumnRef="name">
+            <SimpleValue>Documents enclosed in the second transmission</SimpleValue>
+         </Value>
+         <Value ColumnRef="description">
+            <SimpleValue>The documents are enclosed in the second transmission.</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="code">
+            <SimpleValue>32</SimpleValue>
+         </Value>
+         <Value ColumnRef="name">
+            <SimpleValue>Document not required, waiver issued</SimpleValue>
+         </Value>
+         <Value ColumnRef="description">
+            <SimpleValue>The document is not required, waiver of requirement has been issued.</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="code">
+            <SimpleValue>33</SimpleValue>
+         </Value>
+         <Value ColumnRef="name">
+            <SimpleValue>Already on file with receiver of this message</SimpleValue>
+         </Value>
+         <Value ColumnRef="description">
+            <SimpleValue>The document is already on file with the party receiving the message.</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="code">
+            <SimpleValue>34</SimpleValue>
+         </Value>
+         <Value ColumnRef="name">
+            <SimpleValue>Retained by sender of this message, or by sender's agent or representative</SimpleValue>
+         </Value>
+         <Value ColumnRef="description">
+            <SimpleValue>The document is in the possession of the sender or sender's agent or representative.</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="code">
+            <SimpleValue>35</SimpleValue>
+         </Value>
+         <Value ColumnRef="name">
+            <SimpleValue>Document incomplete</SimpleValue>
+         </Value>
+         <Value ColumnRef="description">
+            <SimpleValue>The document is incomplete.</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="code">
+            <SimpleValue>36</SimpleValue>
+         </Value>
+         <Value ColumnRef="name">
+            <SimpleValue>Document previously submitted</SimpleValue>
+         </Value>
+         <Value ColumnRef="description">
+            <SimpleValue>The document has already been submitted.</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="code">
+            <SimpleValue>37</SimpleValue>
+         </Value>
+         <Value ColumnRef="name">
+            <SimpleValue>Document complete</SimpleValue>
+         </Value>
+         <Value ColumnRef="description">
+            <SimpleValue>The document is complete.</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="code">
+            <SimpleValue>38</SimpleValue>
+         </Value>
+         <Value ColumnRef="name">
+            <SimpleValue>Final</SimpleValue>
+         </Value>
+         <Value ColumnRef="description">
+            <SimpleValue>The document has been finalised.</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="code">
+            <SimpleValue>39</SimpleValue>
+         </Value>
+         <Value ColumnRef="name">
+            <SimpleValue>On hold</SimpleValue>
+         </Value>
+         <Value ColumnRef="description">
+            <SimpleValue>The document or message will not be processed until further release information.</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="code">
+            <SimpleValue>40</SimpleValue>
+         </Value>
+         <Value ColumnRef="name">
+            <SimpleValue>Validity suspended</SimpleValue>
+         </Value>
+         <Value ColumnRef="description">
+            <SimpleValue>The validity of the document is or has been suspended.</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="code">
+            <SimpleValue>41</SimpleValue>
+         </Value>
+         <Value ColumnRef="name">
+            <SimpleValue>Validity revoked</SimpleValue>
+         </Value>
+         <Value ColumnRef="description">
+            <SimpleValue>The validity of the document is or has been revoked.</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="code">
+            <SimpleValue>42</SimpleValue>
+         </Value>
+         <Value ColumnRef="name">
+            <SimpleValue>In error</SimpleValue>
+         </Value>
+         <Value ColumnRef="description">
+            <SimpleValue>The specified document is in error.</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="code">
+            <SimpleValue>43</SimpleValue>
+         </Value>
+         <Value ColumnRef="name">
+            <SimpleValue>Received</SimpleValue>
+         </Value>
+         <Value ColumnRef="description">
+            <SimpleValue>The document is received.</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="code">
+            <SimpleValue>44</SimpleValue>
+         </Value>
+         <Value ColumnRef="name">
+            <SimpleValue>Accepted with warnings</SimpleValue>
+         </Value>
+         <Value ColumnRef="description">
+            <SimpleValue>The document is accepted, but has generated warnings.</SimpleValue>
+         </Value>
+      </Row>
+   </SimpleCodeList>
+</gc:CodeList>

@@ -1,0 +1,513 @@
+<project default="make" xmlns:if="ant:if" xmlns:unless="ant:unless">
+
+<taskdef name="grep" classname="ise.antelope.tasks.Find"/>
+
+<taskdef resource="net/sf/antcontrib/antcontrib.properties"/>
+
+<target name="make">
+  <!--other constants and lookup values-->
+  <property name="thisdir" value="${user.dir}"/>
+  <property name="utilitydir" value="${thisdir}/utilities/"/>
+  <!--software timestamps-->
+  <property name="ods2obdgc" value="20211105-2030z"/>
+  <property name="cva2sch"   value="20130207-1940z"/>
+  <!--documentation-->
+  <echo message="ods2obdgc=${ods2obdgc}"/>
+  <echo message="cva2sch=${cva2sch}"/>
+  <echo message="dir=${dir}"/>
+  <echo message="utilitydir=${utilitydir}"/>
+  <echo message="thisdir=${thisdir}"/>
+  <echo message="rawdir=${rawdir}"/>
+  <echo message="title=${title}"/>
+  <echo message="BPCversion=${BPCversion}"/>
+  <echo message="UBLversion=${UBLversion}"/>
+  <echo message="dateTime=${dateTime}"/>
+  <echo message="ssGoogle=${ssGoogle}"/>
+  <tstamp>
+    <format property="wgettime" pattern="yyyy-MM-dd HH:mm:ss"/>
+  </tstamp>
+  <echo message="wgettime=${wgettime}"/>
+
+<!--Diagnostics trying to work with submodules ... suspended for now
+<property name="debug-submodule" location="ubl-subset-schema/UBL-2.3-CSPRD02/mod/summary/reports/All-UBL-2.3-Documents.html"/>
+<echo message="DEBUG: debug-submodule=${debug-submodule} for ${basedir} and  ubl-subset-schema/UBL-2.3-CSPRD02/mod/summary/reports/All-UBL-2.3-Documents.html"/>
+<copy file="ubl-subset-schema/UBL-2.3-CSPRD02/mod/summary/reports/All-UBL-2.3-Documents.html" todir="${dir}"/>
+-->
+
+  <available property="ods2obdgc-exists"
+file="${utilitydir}Crane-ods2obdgc-${ods2obdgc}/Crane-ods2obdgc.xsl"/>
+  <echo unless:set="ods2obdgc-exists" 
+        message="Cannot find ods2obdgc=${ods2obdgc}"/>
+  <available property="cva2sch-exists"
+file="${utilitydir}Crane-cva2sch-${cva2sch}/utility/iso_schematron_assembly.xsl"/>
+  <echo unless:set="cva2sch-exists" 
+        message="Cannot find cva2sch=${cva2sch}"/>
+
+  <!--update the stylesheet documentation-->
+  <uptodate targetfile="${dir}/readme-gc2bpcxml.html"
+            property="readme-gc2bpcxml-okay">
+    <srcfiles dir=".">
+      <include name="gc2bpcxml.xsl"/>
+    </srcfiles>
+  </uptodate>
+  <antcall target="-make-doc">
+    <param name="okay"   value="readme-gc2bpcxml-okay"/>
+    <param name="source" value="gc2bpcxml.xsl"/>
+    <param name="target" value="${dir}/readme-gc2bpcxml.html"/>
+  </antcall>
+  
+  <uptodate targetfile="${dir}/readme-bpcCustomization2sch.html"
+            property="readme-bpcCustomization2sch-okay">
+    <srcfiles dir=".">
+      <include name="bpcCustomization2sch.xsl"/>
+    </srcfiles>
+  </uptodate>
+  <antcall target="-make-doc">
+    <param name="okay"   value="readme-bpcCustomization2sch-okay"/>
+    <param name="source" value="bpcCustomization2sch.xsl"/>
+    <param name="target" value="${dir}/readme-bpcCustomization2sch.html"/>
+  </antcall>
+
+  <uptodate targetfile="${dir}/readme-bpccodelists2xsl.html"
+            property="readme-bpccodelists2xsl-okay">
+    <srcfiles dir=".">
+      <include name="bpccodelists2xsl.xsl"/>
+    </srcfiles>
+  </uptodate>
+  <antcall target="-make-doc">
+    <param name="okay"   value="readme-bpccodelists2xsl-okay"/>
+    <param name="source" value="bpccodelists2xsl.xsl"/>
+    <param name="target" value="${dir}/readme-bpccodelists2xsl.html"/>
+  </antcall>
+
+  <uptodate targetfile="${dir}/readme-testSVRL4UBLerrors.html"
+            property="readme-testSVRL4UBLerrors-okay">
+    <srcfiles dir=".">
+      <include name="testSVRL4UBLerrors.xsl"/>
+    </srcfiles>
+  </uptodate>
+  <antcall target="-make-doc">
+    <param name="okay"   value="readme-testSVRL4UBLerrors-okay"/>
+    <param name="source" value="testSVRL4UBLerrors.xsl"/>
+    <param name="target" value="${dir}/readme-testSVRL4UBLerrors.html"/>
+  </antcall>
+
+  <!--start with the raw files-->
+  <copy preservelastmodified="true" todir="${dir}/bpc-semantics-${BPCversion}-${dateTime}">
+    <fileset dir="${rawdir}">
+      <include name="**"/>
+    </fileset>
+  </copy>
+  <!--and the configuration files found in the base directory-->
+  <copy preservelastmodified="true" todir="${dir}">
+    <fileset dir=".">
+      <include name="*"/>
+      <exclude name="**/.git/**"/>
+      <exclude name="**/.github/**"/>
+      <exclude name="**/codelists/**"/>
+      <exclude name="**/utilities/**"/>
+      <exclude name="**/ubl-subset-schema/**"/>
+      <exclude name="**/${dir}/**"/>
+      <exclude name="**/${rawdir}/**"/>
+    </fileset>
+  </copy>
+
+  <!--moving the publishing of the readme to the production directory
+      requires the support of the publishing environment to be copied-->
+  <copy preservelastmodified="true" todir="${dir}">
+    <fileset dir=".">
+      <include name="**/utilities/article/**"/>
+      <include name="**/utilities/xslstyle/**"/>
+    </fileset>
+  </copy>
+  <echo file="${dir}/readme-bpc-artifacts-timestamp.txt"
+        message="${dateTime}"/>
+  <antcall target="-make-doc">
+    <param name="okay"   value="readme-bpc-artifacts-okay"/>
+    <param name="source" value="${dir}/readme-bpc-artifacts.xml"/>
+    <param name="target" value="${dir}/readme-bpc-artifacts.html"/>
+  </antcall>
+  <!--publishing tools no longer needed-->
+  <delete dir="${dir}/utilities"/>
+
+  <!--add generated files into the distribution directory-->
+  <copy preservelastmodified="true"
+        todir="${dir}/bpc-semantics-${BPCversion}-${dateTime}/val">
+    <fileset dir="${dir}">
+      <include name="testSVRL4UBLerrors.xsl"/>
+      <include name="readme-testSVRL4UBLerrors.html"/>
+    </fileset>
+  </copy>
+  
+  <!--label the directory for future reference-->
+  <echo file="${dir}/bpc-semantics-${BPCversion}-${dateTime}/version-${BPCversion}.txt"
+        message="${BPCversion}"/>
+  <echo file="${dir}/bpc-semantics-${BPCversion}-${dateTime}/version.txt"
+        message="${BPCversion}"/>
+  <echo file="${dir}/bpc-semantics-${BPCversion}-${dateTime}/release-${dateTime}.txt"
+        message="${dateTime}"/>
+  <echo file="${dir}/bpc-semantics-${BPCversion}-${dateTime}/release.txt"
+        message="${dateTime}"/>
+
+  <!--copy the end-user documentation-->
+  <copy file="${dir}/readme-bpc-artifacts.html"
+        todir="${dir}/bpc-semantics-${BPCversion}-${dateTime}"/>
+
+  <!--create GC files for business and signature-->
+  <delete file="${dir}/Semantics-Spreadsheet-${dateTime}.gc"/>
+  
+  <echo file="${dir}/wget-spreadsheet-time.txt" message="${wgettime}"/>
+  <echo file="${dir}/wget-spreadsheet-uri.txt" message="${ssGoogle}"/>
+  <exec executable="wget">
+    <arg value="--no-check-certificate"/>
+    <arg value="-O"/>
+    <arg value="${dir}/BPC-Semantics-Spreadsheet-Google.ods"/>
+    <arg value="${ssGoogle}/export?format=ods"/>
+  </exec>
+  <property name="lengthen-uri"
+            location="${dir}/bpcSSmassage.xml"/>
+  <property name="ident-uri"
+            location="${dir}/bpcSSidentification.xml"/>
+  <antcallback target="-ods2gc" return="returnGCss">
+    <param name="okay"   value="gc-sig-okay"/>
+    <param name="source" 
+                 value="${dir}/BPC-Semantics-Spreadsheet-Google.ods"/>
+    <param name="target" 
+      value="${dir}/BPC-Semantics-Spreadsheet-${BPCversion}-${dateTime}.gc"/>
+    <param name="identification-uri" value="${ident-uri}"/>
+    <param name="lengthen-model-name-uri" value="${lengthen-uri}"/>
+    <param name="returnProperty" value="returnGCss"/>
+  </antcallback>
+  <copy preservelastmodified="true"
+        todir="${dir}/bpc-semantics-${BPCversion}-${dateTime}/model/"
+        file="${dir}/BPC-Semantics-Spreadsheet-${BPCversion}-${dateTime}.gc"/>
+  <condition property="gcSScreated">
+    <and>
+      <isset property="returnGCss"/>
+      <equals arg1="${returnGCss}" arg2="0"/>
+    </and>
+  </condition>
+  <echo unless:set="gcSScreated"
+        message="ERROR creating BPC Semantics genericode file"/>
+  <copy unless:set="gcSScreated" preservelastmodified="true"
+        todir="${dir}/bpc-semantics-${BPCversion}-${dateTime}/model/"
+ file="${dir}/BPC-Semantics-Spreadsheet-${BPCversion}-${dateTime}.gc.error.txt"/>
+  <copy unless:set="gcSScreated"
+ file="${dir}/BPC-Semantics-Spreadsheet-${BPCversion}-${dateTime}.gc.error.txt"
+tofile="${dir}/bpc-semantics-${BPCversion}-${dateTime}/VALID-SEMANTICS-GC-FILE-NOT-GENERATED.txt"/>
+  <touch unless:set="gcSScreated" 
+file="${dir}/bpc-semantics-${BPCversion}-${dateTime}/VALID-SEMANTICS-GC-FILE-NOT-GENERATED.txt"/>
+
+  <sequential if:set="gcSScreated">
+    <echo message="Creating subset model genericode..."/>
+    <move preservelastmodified="true"
+          file="${dir}/UBL-Entities-${UBLversion}.gc"
+          todir="${dir}/bpc-semantics-${BPCversion}-${dateTime}/ubl"/>
+    <java resultproperty="returnBPCxml" append="true"
+          classname="net.sf.saxon.Transform">
+       <arg value="-xsl:gc2bpcxml.xsl"/>
+       <arg value=
+   "-s:${dir}/bpc-semantics-${BPCversion}-${dateTime}/model/BPC-Semantics-Spreadsheet-${BPCversion}-${dateTime}.gc"/>
+       <arg value=
+  "-o:${dir}/bpc-semantics-${BPCversion}-${dateTime}/model/BPC-Semantics-Spreadsheet-${BPCversion}-${dateTime}.xml"/>
+       <arg value=
+        "+ublgc=${dir}/bpc-semantics-${BPCversion}-${dateTime}/ubl/UBL-Entities-${UBLversion}.gc"/>
+      <arg value="embedded-comment=&#xa;&#xa;XML serialization of BPC
+Semantics Spreadsheet v${BPCversion}
+at ${dateTime}&#xa;from
+location:&#xa;&#xa;${ssGoogle}&#xa;&#xa;"/>
+    </java>
+    <available property="bpcXMLerror"
+file="${dir}/bpc-semantics-${BPCversion}-${dateTime}/model/BPC-Semantics-Spreadsheet-${BPCversion}-${dateTime}.gc.errors.txt"/>
+    <condition property="bpcXMLcreated">
+      <and>
+        <isset property="returnBPCxml"/>
+        <equals arg1="${returnBPCxml}" arg2="0"/>
+        <not>
+          <isset property="bpcXMLerror"/>
+        </not>
+      </and>
+    </condition>
+    <echo unless:set="bpcXMLcreated"
+          message="ERROR creating BPC Semantics XML file"/>
+    <loadfile unless:set="bpcXMLcreated" property="semanticErrors" srcFile="${dir}/bpc-semantics-${BPCversion}-${dateTime}/model/BPC-Semantics-Spreadsheet-${BPCversion}-${dateTime}.gc.errors.txt"/>
+    <echo unless:set="bpcXMLcreated" message="${semanticErrors}"
+     file="${dir}/bpc-semantics-${BPCversion}-${dateTime}/VALID-SEMANTICS-XML-FILE-NOT-GENERATED.txt"/>
+    <copy preservelastmodified="true"
+file="${dir}/bpc-semantics-${BPCversion}-${dateTime}/model/BPC-Semantics-Spreadsheet-${BPCversion}-${dateTime}.xml"
+      tofile="${dir}/bpc-semantics-${BPCversion}-${dateTime}/model/BPC-Semantics-Spreadsheet.xml"/>
+    <move preservelastmodified="true"
+          file="${dir}/BPC-Semantics-Spreadsheet-Google.ods" 
+tofile="${dir}/bpc-semantics-${BPCversion}-${dateTime}/model/BPC-Semantics-Spreadsheet-${BPCversion}-${dateTime}.ods"/>
+
+    <!--synthesize the invocations of the -sch4bpc Ant target and
+        the input Schematron pattern harvested from the spreadsheet--> 
+    <echo message="Creating customization-specific Schematron for all customizations..."/>
+    <property name="antStaticScriptURI"
+              location="${dir}/prepareBPCartefacts.xml"/>
+    <java append="true" classname="net.sf.saxon.Transform">
+      <arg value="--suppressXsltNamespaceCheck:on"/>
+      <arg value="-xsl:bpcCustomization2sch.xsl"/>
+      <arg value="-it:start"/>
+      <arg value="-o:${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/junk.out"/>
+       <arg value=
+"+semanticsSummary=${dir}/bpc-semantics-${BPCversion}-${dateTime}/model/BPC-Semantics-Spreadsheet-${BPCversion}-${dateTime}.xml"/>
+      <arg value=
+              "+schemaSkeleton=${dir}/BPC-Skeleton-Data-Integrity-Constraints.sch"/>
+      <arg value="+patternSkeleton=${dir}/BPC-Skeleton-Pattern.sch"/>
+      <arg value="BPCversion=${BPCversion}"/>
+      <arg value="dateTime=${dateTime}"/>
+      <arg value="antDynamicScriptURI=../../doAllCustomizationAntScripts.xml"/>
+    </java>
+
+    <echo message="Creating the code list support stylesheet..."/>
+    <java append="true" classname="net.sf.saxon.Transform">
+      <arg value="--suppressXsltNamespaceCheck:on"/>
+      <arg value="-xsl:bpccodelists2xsl.xsl"/>
+      <arg value="-s:${dir}/BPC-Skeleton-Code-Lists.xsl"/>
+      <arg value="-o:${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/BPC-v${BPCversion}-Code-Lists.xsl"/>
+      <arg value="BPCversion=${BPCversion}"/>
+      <arg value="dateTime=${dateTime}"/>
+    </java>
+
+    <!--invoke the synthesized script that, itself, will invoke -sch4bpc-->
+    <ant antfile="${dir}/doAllCustomizationAntScripts.xml"
+         useNativeBasedir="true">
+      <property name="antStaticScriptURI"
+                value="${antStaticScriptURI}"/>
+      <property name="basedir" value="${basedir}"/>
+    </ant>
+    
+    <!--trash the source code list stylesheet that by now has been copied
+        into the PXX directories-->
+    <delete file="${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/BPC-v${BPCversion}-Code-Lists.xsl"/>
+
+    <!--trash the known future-use subdirectory-->
+    <delete dir="${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/OtherStatus"/>
+
+  </sequential>
+
+  <!--download the XLS spreadsheet version-->
+  <exec executable="wget">
+    <arg value="--no-check-certificate"/>
+    <arg value="-O"/>
+    <arg value="${dir}/bpc-semantics-${BPCversion}-${dateTime}/model/BPC-Semantics-Spreadsheet-${BPCversion}-${dateTime}.xlsx"/>
+    <arg value="${ssGoogle}/export?format=xlsx"/>
+  </exec>
+
+  <!--package it all up-->
+  <antcall target="-package"/>
+</target>
+
+<!--========================================================================-->
+
+<target name="-ods2gc" unless="${okay}">
+  <delete file="${target}"/>
+  <echo message='Rebuilding "${target}" GC file...'/>
+  <java append="true" jar="utilities/saxon9he/saxon9he.jar" failonerror="false"
+       fork="true">
+    <arg value="-xsl:${utilitydir}Crane-ods2obdgc-${ods2obdgc}/Crane-ods2obdgc.xsl"/>
+    <arg value="-o:${target}"/>
+    <arg value="-it:ods-uri"/>
+    <arg value="ods-uri=${source}"/>
+    <arg value="identification-uri=${identification-uri}"/>
+    <arg value="lengthen-model-name-uri=${lengthen-model-name-uri}"/>
+    <arg value="raw-sheet-long-name=Worksheet Tab"/>
+    <arg value="row-number-column-name=Row Number"/>
+  </java>
+  <available property="done" file="${target}"/>
+  <sequential unless:set="done">
+    <echo message="Unable to create GC file: ${target}"/>
+    <property unless:set="done" name="${resultProperty}" value="1"/>
+  </sequential>
+  <sequential if:set="done">
+    <property name="jarLocation" location="${utilitydir}xjparse"/>
+    <echo message='Validating "${target}" GC file...'/>
+    <java resultproperty="resultProperty" append="true" fork="true"
+          classname="com.nwalsh.parsers.XJParse"
+          output="${target}.error.txt"
+          classpath="${jarLocation}/xjparse.jar">
+       <arg value="-S"/>
+       <arg value="${utilitydir}genericode/xsd/genericode.xsd"/>
+       <arg value="${target}"/>
+    </java>
+    <condition property="okayGCparse">
+      <equals arg1="${resultProperty}" arg2="0"/>
+    </condition>
+    <echo unless:set="okayGCparse" file="${target}.error.txt" append="true"/>
+    <echo unless:set="okayGCparse" file="${target}.error.txt" append="true"
+          message=
+"If no 'content.xml' file found, check that the addressed spreadsheet has public access"/>
+    <delete if:set="okayGCparse" file="${target}.error.txt"/>
+    <property name="${returnProperty}" value="${resultProperty}"/>
+  </sequential>
+</target>
+
+<target name="-package">
+  
+  <!--prepare the tools distribution-->
+  <delete dir="${dir}/bpc-semantics-tools-${BPCversion}-${dateTime}"/>
+  <mkdir dir="${dir}/bpc-semantics-tools-${BPCversion}-${dateTime}"/>
+
+  <!--move dev files to the archive archive directory-->
+  <move preservelastmodified="true" includeEmptyDirs="false" 
+todir="${dir}/bpc-semantics-tools-${BPCversion}-${dateTime}/archive-only-not-in-final-distribution">
+    <fileset dir="${dir}">
+      <include name="*"/>
+      <exclude name="artefacts.*.txt"/>
+    </fileset>
+  </move>
+  
+  <!--create end-user distributable ZIP-->
+  <mkdir dir="${dir}/zipdir"/>
+  <move preservelastmodified="true" todir="${dir}/zipdir">
+    <fileset dir="${dir}">
+      <include name="bpc-semantics-${BPCversion}-${dateTime}/**"/>
+    </fileset>
+  </move>
+  <delete dir="${dir}/bpc-semantics-${BPCversion}-${dateTime}"/>
+  <zip 
+destfile="${dir}/bpc-semantics-tools-${BPCversion}-${dateTime}/bpc-semantics-${BPCversion}-${dateTime}.zip"
+       basedir="${dir}/zipdir" duplicate="preserve">
+    <fileset dir="${dir}/zipdir"/>
+  </zip>
+
+  <delete dir="${dir}/zipdir"/>
+  <delete dir="${dir}/bpc-semantics-${BPCversion}-${dateTime}"/>
+
+  <!--documentation-->
+  <echo message="dateTime=${dateTime}"/>
+  
+</target>
+
+<target name="-make-doc" unless="${okay}">
+  <delete file="${target}"/>
+  <echo message='Rebuilding "${target}" documentation...'/>
+  <java failonerror="yes" append="true" classname="com.icl.saxon.StyleSheet">
+    <arg value="-w2"/>
+    <arg value="-a"/>
+    <arg value="-o"/>
+    <arg value="${target}"/>
+    <arg value="${source}"/>
+  </java>
+  <available property="done" file="${target}"/>
+  <fail unless="done" message="Unable to create documentation: ${target}"/>
+  <echo message="Checking..."/>
+  <loadfile property="temp" srcFile="${target}"/>
+  <length property="length" string="${temp}"/>
+  <condition property="${target}-found">
+    <equals arg1="${length}" arg2="0"/>
+  </condition>
+  <grep caseinsensitive="true" in="${temp}" 
+        regex="inconsistencies detected" property="${target}-found"/>
+  <antcall target="-error-doc-html"/>
+  <echo message="Clean build of: ${target}"/>
+</target>
+
+<!--this process sets the time stamp of the output to be 2 minutes before
+    the time stamp of the input so that the output will be dected to be
+    needed to be regenerated next time around; without it, the error
+    will be reported once, but not multiple times-->
+<target name="-error-doc-html" if="${target}-found">
+  <tstamp>
+    <format property="then" pattern="yyyyMMdd-HHmmss"/>
+    <format property="earlier" pattern="yyyyMMdd-HHmmss" offset="-2" 
+            unit="minute"/>
+  </tstamp>
+  <touch datetime="${earlier}" pattern="yyyyMMdd-HHmmss" file="${target}"/>
+  <touch datetime="${then}" pattern="yyyyMMdd-HHmmss" file="${source}"/>
+  <echo message="Inconsistencies detected: ${source}"/>
+  <copy tofile="${dir}/bpc-semantics-${BPCversion}-${dateTime}/INCONSISTENCIES-DETECTED-${source}.html"
+        file="${target}"/>
+</target>
+
+<!--========================================================================-->
+
+<!--this target is invoked from an Ant script that is synthesized by
+    bpcCustomization2sch.xsl stylesheet, creating one invocation for each
+    process-->
+
+<target name="-sch4bpc" unless="${okay}">
+  <available property="test-${doctype}-${customization}"
+             file="${dir}/${doctype}-${customization}-test-Schematron.xml"/>
+  <echo unless:set="test-${doctype}-${customization}"
+        message="Creating shell Schematron skipped due to absence of file: ${dir}/${doctype}-${customization}-test-Schematron.xml"/>
+
+  <sequential if:set="test-${doctype}-${customization}">
+    <echo message="Creating shell Schematron for ${doctype} ${customization}"/>
+    <copy file="${dir}/bpc-semantics-${BPCversion}-${dateTime}/ubl/UBL-DocumentConstraints-2.3.pattern.sch"
+          todir="${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/${customization}/support"/>
+    <copy file="${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/BPC-v${BPCversion}-Code-Lists.xsl"
+          todir="${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/${customization}/support"/>
+    <copy file="${dir}/BPC-Schematron-Support.xsl"
+          todir="${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/${customization}/support"/>
+    <antcall target="-sch2xsl">
+      <param name="schin" value=
+  "${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/${customization}/BPC-${customization}-v${BPCversion}-${doctype}-Data-Integrity-Constraints.sch"/>
+      <param name="xslout" value=
+  "${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/${customization}/support/BPC-${customization}-v${BPCversion}-${doctype}-Data-Integrity-Constraints.xsl"/>
+      <param name="xslin" value=
+  "${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/${customization}/BPC-${customization}-${doctype}-Data-Integrity-Constraints.xsl"/>
+      <param name="svrlin" value=
+  "${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/${customization}/BPC-${customization}-v${BPCversion}-${doctype}-Data-Integrity-Constraints.svrl.xml"/>
+      <param name="svrlout" value=
+  "${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/${customization}/BPC-${customization}-v${BPCversion}-${doctype}-Data-Integrity-Constraints.svrl.txt"/>
+    </antcall>
+  </sequential>
+</target>
+
+<target name="-sch2xsl" unless="${okay}">
+  <delete file="${xslout}"/>
+
+  <echo message="Creating ${xslout} from ${schin}..."/>
+  <java append="true" classname="net.sf.saxon.Transform">
+     <arg value="-o:${xslout}"/>
+     <arg value="-s:${schin}"/>
+     <arg value="-xsl:${utilitydir}schematron/schxslt/2.0/pipeline-for-svrl.xsl"/>
+  </java>
+
+  <echo message="Validating ${xslout} using ${xslin}..."/>
+  <java resultproperty="returnXSLTtest" fork="true"
+        jar="${saxon9heJar}"
+        errorproperty="errorXSLTtest">
+   <arg value="-xsl:${xslin}"/>
+   <arg value= "-s:${dir}/${doctype}-${customization}-test-Schematron.xml"/>
+   <arg value="-o:${svrlin}"/>
+  </java>
+  <length property="lengthErrorXSLTtest"
+          string="${errorXSLTtest}"/>
+  <echo message="${errorXSLTtest}"/>
+  
+  <echo message="Analyzing SVRL output..."/>
+  <java resultproperty="returnSVRLtest" fork="true"
+        jar="${saxon9heJar}"
+        errorproperty="errorSVRLtest">
+   <arg value= "-xsl:${dir}/testSVRL4UBLerrors.xsl"/>
+   <arg value="-s:${svrlin}"/>
+   <arg value="-o:${svrlout}"/>
+  </java>
+
+  <condition property="xsl${customization}${doctype}created">
+    <and>
+      <isset property="returnXSLTtest"/>
+      <equals arg1="${returnXSLTtest}" arg2="0"/>
+      <equals arg1="${returnSVRLtest}" arg2="0"/>
+      <equals arg1="${lengthErrorXSLTtest}" arg2="0"/>
+    </and>
+  </condition>
+  <echo unless:set="xsl${customization}${doctype}created"
+        message="ERROR with the BPC Semantics XSLT file ${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/${customization}/BPC-${customization}-${doctype}-Data-Integrity-Constraints.xsl"/>
+  <echo unless:set="xsl${customization}${doctype}created"
+        message="${errorXSLTtest}&#xa;${errorSVRLtest}"
+        file=
+"${dir}/bpc-semantics-${BPCversion}-${dateTime}/bpc/${customization}/BPC-${customization}-${doctype}-Data-Integrity-Constraints.error.txt"/>
+  <echo unless:set="xsl${customization}${doctype}created"
+        message="${errorXSLTtest}&#xa;${errorSVRLtest}"
+file="${dir}/bpc-semantics-${BPCversion}-${dateTime}/ERROR-RUNNING-RESULTING-XSLT-FOR-${customization}-${doctype}.txt"/>
+  <echo unless:set="xsl${customization}${doctype}created"
+        message="${errorXSLTtest}&#xa;${errorSVRLtest}"/>
+  <delete if:set="xsl${customization}${doctype}created" file="${svrlin}"/>
+  <delete if:set="xsl${customization}${doctype}created" file="${svrlout}"/>
+</target>
+
+</project>

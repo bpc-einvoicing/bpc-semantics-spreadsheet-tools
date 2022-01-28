@@ -1,0 +1,2 @@
+1. Missing required Payment Account Identifier for the payment means that requires an account. /Invoice/cac:PaymentMeans[1]/cbc:PaymentMeansCode[1] / if (some $code in (17, 18, 28, 29, 30, 32, 33, 35, 36, 39, 40, 41, 43, 48, 49) satisfies normalize-space(.) = string($code) ) then count (../cac:PayeeFinancialAccount/cbc:ID) = 1 else true() (:NABT-081 Row 143 Tab 'Invoice, Credit Note':)
+Count of data errors: 1

@@ -1,0 +1,2 @@
+1. Tax Currency Code value specified is not allowed. /Invoice/cbc:TaxCurrencyCode[1] / bpc:codelist(.,'ISO-4217') (:NABT-006 Row 10 Tab 'Invoice, Credit Note':)
+Count of data errors: 1

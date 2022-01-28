@@ -1,0 +1,31 @@
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <title>Testing SVRL for any UBL-related errors</title><link rel="stylesheet" href="xslstyle.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.74.0"><style type="text/css">
+  /* put internal CSS styles here */
+
+</style></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="article" lang="en"><div class="titlepage"><div><div><h2 class="title"><a name="d8e1"></a>Testing SVRL for any UBL-related errors</h2></div></div><hr></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="section"><a href="#d4e2">1. Testing SVRL for any UBL-related errors - testSVRL4UBLerrors.xsl</a></span></dt><dd><dl><dt><span class="section"><a href="#d4e30">1.1. Invocation parameters and input file</a></span></dt><dt><span class="section"><a href="#d4e49">1.2. Main logic</a></span></dt></dl></dd></dl></div><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d4e2"></a>1.&nbsp;Testing SVRL for any UBL-related errors - <code class="literal">testSVRL4UBLerrors.xsl</code></h2></div></div></div><p class="xsl-subtitle-filename">
+              Filename: <code class="literal">testSVRL4UBLerrors.xsl</code></p><div class="literallayout"><p><code class="literal">20200921-2030z</code></p></div><p>
+    Test the output of Schematron transformation for any errors while at
+    the same time translating the location contexts for UBL namespace prefixes.
+  </p><p>
+    This returns a non-zero exit code when the input SVRL xml file contains
+    a signalled error for an assertion or a report.
+    (ref: Part 3: Rule-based validation - Schematron (ISO/IEC 19757-3:2006)
+          <a class="ulink" href="http://standards.iso.org/ittf/PubliclyAvailableStandards" target="_top">http://standards.iso.org/ittf/PubliclyAvailableStandards</a> 19757-3)
+  </p><p>
+    The location contexts are massaged when UBL namespaces are recognized so
+    that the end result uses familiar cac:, cbc:, and ext: prefixes, and no
+    prefix nor predicate on the document element.
+  </p><p>
+    Standard output can be ignored as all messages are sent to standard error.
+  </p><p>
+    Any given error reports the ordinal number, followed by the message,
+    followed by the XPath context, followed by " / ", followed by the
+    XPath test, followed by the semantics spreadsheet reference. 
+    The XPath context can be found in the input document. The
+    XPath test location may or may not be found in the input document. 
+  </p><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="d4e30"></a>1.1.&nbsp;Invocation parameters and input file</h3></div></div></div><p>
+    The input file is the output SVRL from Schematron checking.
+  </p><p class="xsl-output xsl-top-level"><a name="d4e45"></a><code class="literal"> <span class="bold xsl-block-other">method="text"</span><span class="emphasis"><em><span class="xsl-block-type"> (xsl:output)</span></em></span></code></p><div class="blockquote"><blockquote class="blockquote"><span class="xsl-detail-output"><p>The output is a text file</p></span></blockquote></div></div><div class="section" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="d4e49"></a>1.2.&nbsp;Main logic</h3></div></div></div><p class="xsl-template xsl-top-level"><a name="d4e61"></a><code class="literal"> <span class="bold xsl-block-match">match="/"</span><span class="emphasis"><em><span class="xsl-block-type"> (xsl:template)</span></em></span></code></p><div class="blockquote"><blockquote class="blockquote"><span class="xsl-detail-template"><p>
+    Return an error and report all failed assertions or successful reports.
+  </p></span></blockquote></div></div></div></div></body></html>

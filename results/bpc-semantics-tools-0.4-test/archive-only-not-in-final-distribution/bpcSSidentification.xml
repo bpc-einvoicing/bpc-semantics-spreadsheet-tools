@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Identification
+[
+<!ENTITY version "0.1">
+]>
+<Identification>
+    <ShortName>BPC-Semantics-Spreadsheet</ShortName>
+    <LongName>BPC Semantics Spreadsheet</LongName>
+    <Version>&version;</Version>
+    <CanonicalUri>urn:X-BPC</CanonicalUri>
+    <CanonicalVersionUri>urn:X-BPC:BPC-Semantics-Spreadsheet:&version;</CanonicalVersionUri>
+ </Identification>

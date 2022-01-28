@@ -4,7 +4,7 @@
       <ShortName>BinaryObjectMimeCode</ShortName>
       <LongName xml:lang="en">Binary Object Mime Code</LongName>
       <LongName Identifier="listID">IANA-Media-Types</LongName>
-      <Version>2022-01-07</Version>
+      <Version>2022-01-28</Version>
       <CanonicalUri>IANA:BinaryObjectMimeCode</CanonicalUri>
       <CanonicalVersionUri>IANA:BinaryObjectMimeCode:2021-12-07</CanonicalVersionUri>
       <LocationUri>http://www.iana.org/assignments/media-types/media-types.xml</LocationUri>
@@ -2513,6 +2513,20 @@
          </Value>
          <Value ColumnRef="template">
             <SimpleValue>image/cgm</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="code">
+            <SimpleValue>application/city+json</SimpleValue>
+         </Value>
+         <Value ColumnRef="person1">
+            <SimpleValue>OGC</SimpleValue>
+         </Value>
+         <Value ColumnRef="person2">
+            <SimpleValue>Scott_Simmons</SimpleValue>
+         </Value>
+         <Value ColumnRef="template">
+            <SimpleValue>application/city+json</SimpleValue>
          </Value>
       </Row>
       <Row>
@@ -12077,6 +12091,17 @@
          </Value>
          <Value ColumnRef="template">
             <SimpleValue>application/vnd.ecip.rlp</SimpleValue>
+         </Value>
+      </Row>
+      <Row>
+         <Value ColumnRef="code">
+            <SimpleValue>application/vnd.eclipse.ditto+json</SimpleValue>
+         </Value>
+         <Value ColumnRef="person1">
+            <SimpleValue>Eclipse_Ditto_developers</SimpleValue>
+         </Value>
+         <Value ColumnRef="template">
+            <SimpleValue>application/vnd.eclipse.ditto+json</SimpleValue>
          </Value>
       </Row>
       <Row>

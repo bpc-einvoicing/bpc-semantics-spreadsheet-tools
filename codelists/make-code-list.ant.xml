@@ -15,7 +15,7 @@
          <arg value="-xsl:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/Crane-cefactxsd2gc.xsl"/>
          <arg value="-o:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/out/UNECE-1001--DocumentNameCode.gc"/>
          <arg value="-s:work/DocumentNameCode.xsd"/>
-         <arg value="list-uri=file:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/master-code-list-BPC-0.3.xml"/>
+         <arg value="list-uri=file:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/master-code-list-BPC-0.4.xml"/>
          <arg value="out-uri=UNECE-1001--DocumentNameCode.gc"/>
          <arg value="--suppressXsltNamespaceCheck:on"/>
       </java>
@@ -49,7 +49,7 @@
          <arg value="-xsl:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/Crane-cefactxsd2gc.xsl"/>
          <arg value="-o:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/out/UNECE-1373--DocumentStatusCode.gc"/>
          <arg value="-s:work/DocumentStatusCode.xsd"/>
-         <arg value="list-uri=file:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/master-code-list-BPC-0.3.xml"/>
+         <arg value="list-uri=file:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/master-code-list-BPC-0.4.xml"/>
          <arg value="out-uri=UNECE-1373--DocumentStatusCode.gc"/>
          <arg value="--suppressXsltNamespaceCheck:on"/>
       </java>
@@ -84,7 +84,7 @@
          <arg value="-xsl:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/Crane-cefactxsd2gc.xsl"/>
          <arg value="-o:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/out/UNECE-4451--Textsubjectcodequalifier.gc"/>
          <arg value="-s:work/Textsubjectcodequalifier.xsd"/>
-         <arg value="list-uri=file:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/master-code-list-BPC-0.3.xml"/>
+         <arg value="list-uri=file:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/master-code-list-BPC-0.4.xml"/>
          <arg value="out-uri=UNECE-4451--Textsubjectcodequalifier.gc"/>
          <arg value="--suppressXsltNamespaceCheck:on"/>
       </java>
@@ -118,7 +118,7 @@
          <arg value="-xsl:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/Crane-cefactxsd2gc.xsl"/>
          <arg value="-o:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/out/UNECE-4461--PaymentMeansCode.gc"/>
          <arg value="-s:work/PaymentMeansCode.xsd"/>
-         <arg value="list-uri=file:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/master-code-list-BPC-0.3.xml"/>
+         <arg value="list-uri=file:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/master-code-list-BPC-0.4.xml"/>
          <arg value="out-uri=UNECE-4461--PaymentMeansCode.gc"/>
          <arg value="--suppressXsltNamespaceCheck:on"/>
       </java>
@@ -152,7 +152,7 @@
          <arg value="-xsl:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/Crane-cefactxsd2gc.xsl"/>
          <arg value="-o:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/out/UNECE-5153--DutyTaxFeeTypeCode.gc"/>
          <arg value="-s:work/DutyTaxFeeTypeCode.xsd"/>
-         <arg value="list-uri=file:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/master-code-list-BPC-0.3.xml"/>
+         <arg value="list-uri=file:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/master-code-list-BPC-0.4.xml"/>
          <arg value="out-uri=UNECE-5153--DutyTaxFeeTypeCode.gc"/>
          <arg value="--suppressXsltNamespaceCheck:on"/>
       </java>
@@ -187,7 +187,7 @@
          <arg value="-xsl:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/Crane-cefactxsd2gc.xsl"/>
          <arg value="-o:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/out/UNECE-5189--AllowanceChargeIdentificationCode.gc"/>
          <arg value="-s:work/AllowanceChargeIdentificationCode.xsd"/>
-         <arg value="list-uri=file:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/master-code-list-BPC-0.3.xml"/>
+         <arg value="list-uri=file:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/master-code-list-BPC-0.4.xml"/>
          <arg value="out-uri=UNECE-5189--AllowanceChargeIdentificationCode.gc"/>
          <arg value="--suppressXsltNamespaceCheck:on"/>
       </java>
@@ -222,7 +222,7 @@
          <arg value="-xsl:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/Crane-cefactxsd2gc.xsl"/>
          <arg value="-o:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/out/UNECE-5305--DutyorTaxorFeeCategoryCode.gc"/>
          <arg value="-s:work/DutyorTaxorFeeCategoryCode.xsd"/>
-         <arg value="list-uri=file:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/master-code-list-BPC-0.3.xml"/>
+         <arg value="list-uri=file:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/master-code-list-BPC-0.4.xml"/>
          <arg value="out-uri=UNECE-5305--DutyorTaxorFeeCategoryCode.gc"/>
          <arg value="--suppressXsltNamespaceCheck:on"/>
       </java>
@@ -256,7 +256,7 @@
          <arg value="-xsl:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/Crane-mimetype2gc.xsl"/>
          <arg value="-o:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/out/IANA-Media-Types-Including-Deprecated--BinaryObjectMimeCode-incl-deprecated.gc"/>
          <arg value="-s:work/mime-codes.xml"/>
-         <arg value="list-uri=file:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/master-code-list-BPC-0.3.xml"/>
+         <arg value="list-uri=file:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/master-code-list-BPC-0.4.xml"/>
          <arg value="out-uri=IANA-Media-Types-Including-Deprecated--BinaryObjectMimeCode-incl-deprecated.gc"/>
          <arg value="--suppressXsltNamespaceCheck:on"/>
       </java>
@@ -317,7 +317,7 @@
          <arg value="-xsl:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/Crane-country2gc.xsl"/>
          <arg value="-o:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/out/ISO-3166--CountryIdentificationCode.gc"/>
          <arg value="-s:work/country-codes.txt.xml"/>
-         <arg value="list-uri=file:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/master-code-list-BPC-0.3.xml"/>
+         <arg value="list-uri=file:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/master-code-list-BPC-0.4.xml"/>
          <arg value="out-uri=ISO-3166--CountryIdentificationCode.gc"/>
          <arg value="--suppressXsltNamespaceCheck:on"/>
       </java>
@@ -350,7 +350,7 @@
          <arg value="-xsl:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/Crane-currency2gc.xsl"/>
          <arg value="-o:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/out/ISO-4217--CurrencyCode.gc"/>
          <arg value="-s:work/currency-codes.xml"/>
-         <arg value="list-uri=file:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/master-code-list-BPC-0.3.xml"/>
+         <arg value="list-uri=file:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/master-code-list-BPC-0.4.xml"/>
          <arg value="out-uri=ISO-4217--CurrencyCode.gc"/>
          <arg value="--suppressXsltNamespaceCheck:on"/>
       </java>
@@ -399,7 +399,7 @@
          <arg value="-xsl:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/Crane-20unit2gc.xsl"/>
          <arg value="-o:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/out/UNECE-Rec-20-Including-Deleted--UnitOfMeasureCode-incl-deleted.gc"/>
          <arg value="-s:work/rec20_Rev17e-2021.xml"/>
-         <arg value="list-uri=file:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/master-code-list-BPC-0.3.xml"/>
+         <arg value="list-uri=file:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/master-code-list-BPC-0.4.xml"/>
          <arg value="out-uri=UNECE-Rec-20-Including-Deleted--UnitOfMeasureCode-incl-deleted.gc"/>
          <arg value="--suppressXsltNamespaceCheck:on"/>
       </java>
@@ -468,7 +468,7 @@
          <arg value="-xsl:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/Crane-21unit2gc.xsl"/>
          <arg value="-o:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/out/UNECE-Rec-21-Including-Deleted--PackagingCode-incl-deleted.gc"/>
          <arg value="-s:work/rec21_Rev12e_Annex-V-VI_2021.xml"/>
-         <arg value="list-uri=file:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/master-code-list-BPC-0.3.xml"/>
+         <arg value="list-uri=file:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/master-code-list-BPC-0.4.xml"/>
          <arg value="out-uri=UNECE-Rec-21-Including-Deleted--PackagingCode-incl-deleted.gc"/>
          <arg value="--suppressXsltNamespaceCheck:on"/>
       </java>
@@ -523,7 +523,7 @@
          <arg value="-xsl:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/Crane-combine2021.xsl"/>
          <arg value="-o:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/out/UNECE-Rec-20-21-Including-Deleted--UnitOfMeasureCode-PackagingCode-combined.gc"/>
          <arg value="-it:start"/>
-         <arg value="list-uri=file:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/master-code-list-BPC-0.3.xml"/>
+         <arg value="list-uri=file:/Users/admin/u/git/bpc/bpc-semantics-spreadsheet-tools/codelists/master-code-list-BPC-0.4.xml"/>
          <arg value="out-uri=UNECE-Rec-20-21-Including-Deleted--UnitOfMeasureCode-PackagingCode-combined.gc"/>
          <arg value="output-uri-prefix=out/"/>
          <arg value="--suppressXsltNamespaceCheck:on"/>

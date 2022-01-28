@@ -1,0 +1,2 @@
+1. The financial branch identifier is missing. /Invoice/cac:PaymentMeans[1]/cac:PayeeFinancialAccount[1] / count (cac:FinancialInstitutionBranch/cbc:ID) = 1 (:NABT-086 Row 150 Tab 'Invoice, Credit Note':)
+Count of data errors: 1

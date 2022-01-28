@@ -1,0 +1,2 @@
+1. Invalid payment method type code. /Invoice/cac:PaymentMeans[1] / bpc:codelist(cbc:PaymentMeansCode,'UNECE-4461') (:NABT-081 Row 142 Tab 'Invoice, Credit Note':)
+Count of data errors: 1

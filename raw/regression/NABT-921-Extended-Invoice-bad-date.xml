@@ -11,10 +11,6 @@
 <cbc:TaxPointDate>2020-03-13</cbc:TaxPointDate>
 <cbc:DocumentCurrencyCode>GBP</cbc:DocumentCurrencyCode>
 <cbc:TaxCurrencyCode>CAD</cbc:TaxCurrencyCode>
-<cac:InvoicePeriod>
-  <cbc:StartDate>2022-01-28</cbc:StartDate>
-  <cbc:EndDate>2022-01-27</cbc:EndDate>
-</cac:InvoicePeriod>
 <cac:OrderReference>
 <cbc:ID>TC0016_WRXKyXgOk8cr</cbc:ID>
 </cac:OrderReference>
@@ -152,6 +148,9 @@
 </cac:Item>
 <cac:Price>
 <cbc:PriceAmount currencyID="GBP">39.37</cbc:PriceAmount>
+<cac:ValidityPeriod>
+  <cbc:EndDate>2022-01-27</cbc:EndDate>
+</cac:ValidityPeriod>
 </cac:Price>
 </cac:InvoiceLine>
 </Invoice>

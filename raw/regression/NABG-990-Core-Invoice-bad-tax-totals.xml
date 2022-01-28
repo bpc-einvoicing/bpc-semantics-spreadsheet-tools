@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Invoice xmlns="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2">
 <cbc:UBLVersionID>2.3</cbc:UBLVersionID>
-<cbc:CustomizationID>urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##bpc-0.3-data-Extended</cbc:CustomizationID>
+<cbc:CustomizationID>urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##bpc-0.3-data-Core</cbc:CustomizationID>
 <cbc:ProfileID>bpc-0.3-process#Invoice</cbc:ProfileID>
 <cbc:ProfileExecutionID>1234567</cbc:ProfileExecutionID>
 <cbc:ID>HBINVOICE</cbc:ID>
@@ -10,7 +10,7 @@
 <cbc:InvoiceTypeCode>380</cbc:InvoiceTypeCode>
 <cbc:TaxPointDate>2020-03-13</cbc:TaxPointDate>
 <cbc:DocumentCurrencyCode>GBP</cbc:DocumentCurrencyCode>
-<cbc:TaxCurrencyCode>CAD</cbc:TaxCurrencyCode>
+<!--<cbc:TaxCurrencyCode>CAD</cbc:TaxCurrencyCode>-->
 <cac:OrderReference>
 <cbc:ID>TC0016_WRXKyXgOk8cr</cbc:ID>
 </cac:OrderReference>
@@ -90,13 +90,7 @@
 </cac:DeliveryParty>
 </cac:Delivery>
 <cac:PaymentMeans>
-<cbc:PaymentMeansCode>17</cbc:PaymentMeansCode>
-<cac:PayeeFinancialAccount>
-  <cbc:ID>98765</cbc:ID>
-<!--  <cac:FinancialInstitutionBranch>
-    <cbc:ID>12345</cbc:ID>
-  </cac:FinancialInstitutionBranch>-->
-</cac:PayeeFinancialAccount>
+<cbc:PaymentMeansCode>1</cbc:PaymentMeansCode>
 </cac:PaymentMeans>
 <cac:PaymentTerms>
 <cbc:Note>PaymentTerms Note</cbc:Note>
@@ -129,6 +123,34 @@
 <cac:OrderLineReference>
 <cbc:LineID>000001</cbc:LineID>
 </cac:OrderLineReference>
+<cac:TaxTotal>
+<cbc:TaxAmount currencyID="GBP">566.93</cbc:TaxAmount>
+<cac:TaxSubtotal>
+<cbc:TaxableAmount currencyID="GBP">2834.64</cbc:TaxableAmount>
+<cbc:TaxAmount currencyID="GBP">566.93</cbc:TaxAmount>
+<cac:TaxCategory>
+<cbc:ID schemeID="UNECE-5305">S</cbc:ID>
+<cbc:Percent>20.0</cbc:Percent>
+<cac:TaxScheme>
+<cbc:ID>VAT</cbc:ID>
+</cac:TaxScheme>
+</cac:TaxCategory>
+</cac:TaxSubtotal>
+</cac:TaxTotal>
+<cac:TaxTotal>
+<cbc:TaxAmount currencyID="GBP">566.93</cbc:TaxAmount>
+<cac:TaxSubtotal>
+<cbc:TaxableAmount currencyID="GBP">2834.64</cbc:TaxableAmount>
+<cbc:TaxAmount currencyID="GBP">566.93</cbc:TaxAmount>
+<cac:TaxCategory>
+<cbc:ID schemeID="UNECE-5305">S</cbc:ID>
+<cbc:Percent>20.0</cbc:Percent>
+<cac:TaxScheme>
+<cbc:ID>VAT</cbc:ID>
+</cac:TaxScheme>
+</cac:TaxCategory>
+</cac:TaxSubtotal>
+</cac:TaxTotal>
 <cac:Item>
 <cbc:Description>Syringe</cbc:Description>
 <cbc:Name>Syringe</cbc:Name>

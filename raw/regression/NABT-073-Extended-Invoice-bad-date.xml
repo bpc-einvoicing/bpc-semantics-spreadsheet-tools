@@ -13,7 +13,6 @@
 <cbc:TaxCurrencyCode>CAD</cbc:TaxCurrencyCode>
 <cac:InvoicePeriod>
   <cbc:StartDate>2022-01-28</cbc:StartDate>
-  <cbc:EndDate>2022-01-27</cbc:EndDate>
 </cac:InvoicePeriod>
 <cac:OrderReference>
 <cbc:ID>TC0016_WRXKyXgOk8cr</cbc:ID>

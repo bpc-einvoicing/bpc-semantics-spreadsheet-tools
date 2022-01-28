@@ -11,10 +11,6 @@
 <cbc:TaxPointDate>2020-03-13</cbc:TaxPointDate>
 <cbc:DocumentCurrencyCode>GBP</cbc:DocumentCurrencyCode>
 <cbc:TaxCurrencyCode>CAD</cbc:TaxCurrencyCode>
-<cac:InvoicePeriod>
-  <cbc:StartDate>2022-01-28</cbc:StartDate>
-  <cbc:EndDate>2022-01-27</cbc:EndDate>
-</cac:InvoicePeriod>
 <cac:OrderReference>
 <cbc:ID>TC0016_WRXKyXgOk8cr</cbc:ID>
 </cac:OrderReference>
@@ -124,6 +120,10 @@
 <cbc:Note>Syringe</cbc:Note>
 <cbc:InvoicedQuantity unitCode="XCT">72.0</cbc:InvoicedQuantity>
 <cbc:LineExtensionAmount currencyID="GBP">2834.64</cbc:LineExtensionAmount>
+<cac:InvoicePeriod>
+  <cbc:StartDate>2022-01-28</cbc:StartDate>
+  <cbc:EndDate>2022-01-27</cbc:EndDate>
+</cac:InvoicePeriod>
 <cac:OrderLineReference>
 <cbc:LineID>000001</cbc:LineID>
 </cac:OrderLineReference>

@@ -82,14 +82,25 @@
                           [exists(bpc:col(.,'SchematronAssertion')) or
                            exists(bpc:col(.,'ErrorMessage')) or
                            exists(bpc:col(.,'DataIntegrityRules'))]">
+      <xsl:variable name="tab" select="bpc:col(.,'WorksheetTab')"/>
       <xsl:if test="not(exists(bpc:col(.,'BPCID')) and
                         exists(bpc:col(.,'SchematronContext')) and
                         exists(bpc:col(.,'SchematronAssertion')) and
                         exists(bpc:col(.,'ErrorMessage')) and
                         exists(bpc:col(.,'DataIntegrityRules')))">
-        <xsl:variable name="tab" select="bpc:col(.,'WorksheetTab')"/>
         <xsl:value-of>
           <xsl:text>Incomplete Schematron information for tab '</xsl:text>
+          <xsl:value-of select="$tab"/>
+          <xsl:text>' row </xsl:text>
+          <xsl:value-of select="2 +
+               count(preceding-sibling::Row[bpc:col(.,'WorksheetTab')=$tab])"/>
+          <xsl:text> BPC ID </xsl:text>
+          <xsl:value-of select="bpc:col(.,'BPCID')"/>
+        </xsl:value-of>
+      </xsl:if>
+      <xsl:if test="contains(bpc:col(.,'SchematronAssertion'),'/#')">
+        <xsl:value-of>
+          <xsl:text>Assertion text must use "/*" instead of "/#": '</xsl:text>
           <xsl:value-of select="$tab"/>
           <xsl:text>' row </xsl:text>
           <xsl:value-of select="2 +
@@ -101,7 +112,7 @@
     </xsl:for-each>
   </xsl:variable>
   <xsl:if test="exists($problemRows)">
-    <xsl:result-document href="../spreadsheet.errors.txt" method="text">
+    <xsl:result-document href="../SPREADSHEET-CONTAINS-ERRORS.txt" method="text">
       <xsl:value-of select="$problemRows" separator="&#xa;"/>
       <xsl:text>&#xa;</xsl:text>
     </xsl:result-document>

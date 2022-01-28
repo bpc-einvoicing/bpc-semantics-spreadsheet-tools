@@ -1,0 +1,2 @@
+1. Too many tax total information items /Invoice / count( cac:TaxTotal ) &lt;= 1 (:NABG-023 Row 194 Tab 'Invoice, Credit Note':)
+Count of data errors: 1

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Invoice xmlns="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2">
-<cbc:CustomizationID>urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##bpc-0.4-data-Extended</cbc:CustomizationID>
-<cbc:ProfileID>bpc-0.4-process#Invoice</cbc:ProfileID>
+<cbc:CustomizationID>urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##bpc-0.5-data-Extended</cbc:CustomizationID>
+<cbc:ProfileID>bpc-0.5-process#Invoice</cbc:ProfileID>
 <cbc:ProfileExecutionID>1234567</cbc:ProfileExecutionID>
 <cbc:ID>HBINVOICE</cbc:ID>
 <cbc:IssueDate>2020-03-13</cbc:IssueDate>

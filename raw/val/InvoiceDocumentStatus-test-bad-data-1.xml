@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <DocumentStatus xmlns="urn:oasis:names:specification:ubl:schema:xsd:DocumentStatus-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <cbc:UBLVersionID>2.3</cbc:UBLVersionID>
-  <cbc:CustomizationID>urn:oasis:names:specification:ubl:schema:xsd:DocumentStatus-2::DocumentStatus##bpc-0.4-data-InvoiceStatus</cbc:CustomizationID>
-  <cbc:ProfileID>bpc-0.4-process#InvoiceStatus</cbc:ProfileID>
+  <cbc:CustomizationID>urn:oasis:names:specification:ubl:schema:xsd:DocumentStatus-2::DocumentStatus##bpc-0.5-data-InvoiceStatus</cbc:CustomizationID>
+  <cbc:ProfileID>bpc-0.5-process#InvoiceStatus</cbc:ProfileID>
 	<cbc:ID>InvoiceResponse1</cbc:ID>
 	<cbc:IssueDate>2021-11-19</cbc:IssueDate>
 	<cac:SenderParty>

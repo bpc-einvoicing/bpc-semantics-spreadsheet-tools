@@ -5,7 +5,7 @@
 <!ENTITY stamp SYSTEM "readme-bpc-artifacts-timestamp.txt">
 ]>
 <article conformance="ids ebuzzwords quotes">
-  <title>BPC Semantic Model Validation Artifacts - v0.4</title>
+  <title>BPC Semantic Model Validation Artifacts - v0.5</title>
   <articleinfo>
     <pubdate>&stamp;</pubdate>
     <copyright>

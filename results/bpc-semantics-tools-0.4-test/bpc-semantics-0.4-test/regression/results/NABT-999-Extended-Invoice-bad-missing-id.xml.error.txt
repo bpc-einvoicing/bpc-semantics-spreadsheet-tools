@@ -1,2 +1,0 @@
-1. Missing declaration of the version of UBL /Invoice / count(cbc:UBLVersionID) = 1 (:NABT-999 Row 2 Tab 'Invoice, Credit Note':)
-Count of data errors: 1

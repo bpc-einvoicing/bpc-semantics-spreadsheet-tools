@@ -1,2 +1,0 @@
-1. Payment Terms Discount Percent, Payment Terms Discount Amount or Basis for Terms Discount do not exist when one of the terms is provided. /Invoice/cac:PaymentTerms[1] / if( count( cbc:SettlementDiscountPercent ) &gt; 0 or count( cbc:SettlementDiscountAmount ) &gt; 0 or count( cbc:Amount ) &gt; 0 ) then ( count( cbc:SettlementDiscountPercent ) = 1 and count( cbc:SettlementDiscountAmount ) = 1 and count( cbc:Amount ) = 1 ) else true() (:NABG-999 Row 22 Tab 'Invoice, Credit Note':)
-Count of data errors: 1

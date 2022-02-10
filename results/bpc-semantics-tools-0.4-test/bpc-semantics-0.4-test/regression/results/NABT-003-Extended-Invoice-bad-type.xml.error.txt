@@ -1,2 +1,0 @@
-1. Invoice Type Code not specified or value specified is not allowed. /Invoice / normalize-space(cbc:InvoiceTypeCode) = ('380','381') (:NABT-003 Row 7 Tab 'Invoice, Credit Note':)
-Count of data errors: 1

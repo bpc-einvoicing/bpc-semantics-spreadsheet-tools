@@ -1,9 +1,0 @@
-urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##bpc-0.4-data-Minimum
-urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##bpc-0.4-data-Minimum
-urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##bpc-0.4-data-Core
-urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##bpc-0.4-data-Core
-urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##bpc-0.4-data-Extended
-urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##bpc-0.4-data-Extended
-urn:oasis:names:specification:ubl:schema:xsd:ApplicationResponse-2::ApplicationResponse##bpc-0.4-data-Minimum
-urn:oasis:names:specification:ubl:schema:xsd:DocumentStatus-2::DocumentStatus##bpc-0.4-data-InvoiceStatus
-urn:oasis:names:specification:ubl:schema:xsd:DocumentStatus-2::DocumentStatus##bpc-0.4-data-OtherStatus

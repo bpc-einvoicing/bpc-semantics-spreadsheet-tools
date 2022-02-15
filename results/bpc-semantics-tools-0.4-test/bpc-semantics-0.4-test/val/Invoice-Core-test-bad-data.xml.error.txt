@@ -1,9 +1,0 @@
-1. [IND5] Elements SHALL NOT be empty /Invoice/cac:AccountingCustomerParty[1]/cac:Party[1]/cac:PostalAddress[1]/cbc:PostalZone[1] / true()
-2. Fewer or more than one trading name. /Invoice/cac:AccountingCustomerParty[1] / count(cac:Party/cac:PartyName/cbc:Name) = 1 (:NABT-045 Row 108 Tab 'Invoice, Credit Note':)
-Count of data errors: 2
-
-
-The following error report is simply the exit mechanism and can be ignored:
-Error in xsl:message/@terminate on line 122 column 34 of testSVRL4UBLerrors.xsl:
-  XTMM9000: Processing terminated by xsl:message at line 122 in testSVRL4UBLerrors.xsl
-Processing terminated by xsl:message at line 122 in testSVRL4UBLerrors.xsl

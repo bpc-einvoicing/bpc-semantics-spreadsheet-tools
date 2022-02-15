@@ -7,6 +7,7 @@ if [ "$?" != "0" ]; then exit 1 ; fi
 sh one-regression.sh Extended Invoice NABT-003-Extended-Invoice-bad-type
 sh one-regression.sh Extended Invoice NABT-005-Extended-Invoice-bad-value
 sh one-regression.sh Extended Invoice NABT-006-Extended-Invoice-bad-value
+sh one-regression.sh Extended Invoice NABT-024-Extended-Invoice-bad-customization-identifier
 sh one-regression.sh Extended Invoice NABT-073-Extended-Invoice-bad-date
 sh one-regression.sh Extended Invoice NABT-074-Extended-Invoice-bad-date
 sh one-regression.sh Extended Invoice NABT-074-Extended-Invoice-bad-time
@@ -17,6 +18,7 @@ sh one-regression.sh Extended Invoice NABT-111-Extended-Invoice-bad-tax-total-cu
 sh one-regression.sh Extended Invoice NABT-134-Extended-Invoice-bad-date
 sh one-regression.sh Extended Invoice NABT-135-Extended-Invoice-bad-date
 sh one-regression.sh Extended Invoice NABT-135-Extended-Invoice-bad-time
+sh one-regression.sh Extended Invoice NABT-914-Extended-Invoice-bad-customization-id-scheme-id
 sh one-regression.sh Extended Invoice NABT-919-Extended-Invoice-bad-date
 sh one-regression.sh Extended Invoice NABT-919-Extended-Invoice-bad-time
 sh one-regression.sh Extended Invoice NABT-921-Extended-Invoice-bad-date

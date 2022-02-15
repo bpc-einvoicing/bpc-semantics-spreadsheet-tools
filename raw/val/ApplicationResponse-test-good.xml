@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ApplicationResponse xmlns="urn:oasis:names:specification:ubl:schema:xsd:ApplicationResponse-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <cbc:UBLVersionID>2.3</cbc:UBLVersionID>
-  <cbc:CustomizationID>urn:oasis:names:specification:ubl:schema:xsd:ApplicationResponse-2::ApplicationResponse##bpc-0.5-message-level-response</cbc:CustomizationID>
+  <cbc:CustomizationID schemeID="bdx-docid-qns">urn:oasis:names:specification:ubl:schema:xsd:ApplicationResponse-2::ApplicationResponse##bpc-0.5-message-level-response</cbc:CustomizationID>
   <cbc:ProfileID>bpc-0.5-response-message#MessageLevelResponse</cbc:ProfileID>
 	<cbc:ID>ApplicationResponse1</cbc:ID>
 	<cbc:IssueDate>2021-11-19</cbc:IssueDate>

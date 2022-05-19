@@ -100,7 +100,7 @@ replace($location,'Q\{urn:oasis:names:specification:ubl:schema:xsd:[^-]+-2\}([^\
   
   <xsl:variable name="internals"
                 select="distinct-values(//svrl:suppressed-rule/@context)"/>
-  <xsl:if test="$internals">
+  <xsl:if test="exists($internals)">
     <!--report all of the internal errors-->
     <xsl:for-each select="$internals">
       <xsl:variable name="message">

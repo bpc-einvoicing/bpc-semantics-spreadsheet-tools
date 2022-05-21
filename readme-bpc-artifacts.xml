@@ -386,11 +386,13 @@ sh testall.sh</programlisting>
     <programlisting>2. Fewer or more than one trading name. /Invoice/cac:AccountingCustomerParty[1]
  / count(cac:Party/cac:PartyName/cbc:Name) = 1 (:NABT-045 Row 105 Tab
  'Invoice, Credit Note':)</programlisting>
-    <para>Internal errors are of particular importance to the BPC Semantic technical subgroup, as these reflect previously-undetected errors in the spreadsheet that should be repaired readily. Without the repair, the Schematron rule for the identified semantic component is not being performed, and
-      so there is no confidence that the suppressed rule is or is not being violated.</para>
-    <programlisting>INTERNAL ERROR 1. Suppressed rule: /Invoice:Invoice/cac:InvoiceLine
- (:NABG-026 Row 249 Tab 'Invoice, Credit Note':)</programlisting>
-    <para>Please consider taking the time to forward to the BPC Semantic technical subgroup an anonymized version of the XML document that triggers the internal errors as this will assist the team in repairing the semantic spreadsheet faults.</para>
+    <para>Internal errors are of particular importance to the BPC Semantic technical subgroup, as these reflect previously-undetected errors or improvements in the spreadsheet that should be repaired readily. Without the repair, the Schematron rule for the identified semantic component is not being
+      performed, and so there is no confidence that the suppressed rule is or is not being violated.</para>
+    <programlisting>INTERNAL ERROR 1. Suppressed rule: "cac:TaxCategory (:NABT-118 NABT-927
+ Row 200 251 Tab 'Invoice, Credit Note':)" shadowed by rule:
+ "/Invoice:Invoice/cac:AllowanceCharge/cac:TaxCategory
+ (:NABT-095 NABT-096 NABT-102 Row 164 165 174 Tab 'Invoice, Credit Note':)"</programlisting>
+    <para>Please consider taking the time to forward to the BPC Semantic technical subgroup an anonymized version of the XML document that triggers the internal errors as this will assist the team in repairing/improving the semantic spreadsheet faults.</para>
   </section>
   <section id="S-VALIDATING-ONES-OWN-TEST-FILES">
     <title>Validating one’s own test files</title>

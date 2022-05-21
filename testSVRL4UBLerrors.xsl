@@ -99,18 +99,23 @@ replace($location,'Q\{urn:oasis:names:specification:ubl:schema:xsd:[^-]+-2\}([^\
   </xsl:if>
   
   <xsl:variable name="internals"
-                select="distinct-values(//svrl:suppressed-rule/@context)"/>
+                select="distinct-values(//svrl:suppressed-rule/@context)
+                        [contains(.,'(:')]"/>
   <xsl:if test="exists($internals)">
-    <!--report all of the internal errors-->
-    <xsl:for-each select="$internals">
+    <!--report all of the internal errors, but only once for each-->
+    <xsl:for-each-group group-by="@context"
+                      select="//svrl:suppressed-rule[contains(@context,'(:')]">
       <xsl:variable name="message">
         <xsl:value-of select="'INTERNAL ERROR',position()"/>
-        <xsl:text>. Suppressed rule: </xsl:text>
-        <xsl:value-of select="."/>
+        <xsl:text>. Suppressed rule: "</xsl:text>
+        <xsl:value-of select="@context"/>
+        <xsl:text>" shadowed by rule: "</xsl:text>
+        <xsl:value-of select="preceding-sibling::svrl:fired-rule[1]/@context"/>
+        <xsl:text>"</xsl:text>
       </xsl:variable>
       <!--log message-->
       <xsl:message select="$message"/>
-    </xsl:for-each>
+    </xsl:for-each-group>
     <xsl:message select="'Count of internal errors to be reported:',
                          count($internals)"/>
     <xsl:message/>

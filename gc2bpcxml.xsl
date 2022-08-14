@@ -301,16 +301,15 @@
             <xsl:if test="not(normalize-space($denErrorMessage))">
              <xsl:for-each select="if( some $den in ubldens/ublden
                                        satisfies contains( $den, '#' ) )
-                                   then doctypes/doctype else 'xxxxx'">
-              <xsl:variable name="doctypeCompressed"
-                            select="replace(.,'\s+','')"/>
+                                   then $theseDoctypes else 'xxxxx'">
+              <xsl:variable name="thisDoctype" select="."/>
               <xsl:for-each select="$thisCustomization">
                 <!--build the expected cardinalities from the UBL model-->
                 <xsl:variable name="ublDefinedCardinalities" as="element()">
                   <ublcardinalities>
                     <xsl:for-each select="ubldens/ublden">
                       <xsl:for-each select="
-                       key('bpc:den',replace(.,'#',$doctypeCompressed),$ublgc)/
+                       key('bpc:den',replace(.,'#',$thisDoctype),$ublgc)/
                        bpc:col(.,'Cardinality')/replace(.,'^1$','1..1')">
                         <ublcardinality>
                           <xsl:value-of select="."/>
@@ -328,9 +327,18 @@
                 <!--compare the stated cardinalities to actual cardinalities-->
                 <xsl:variable name="cardinalityTests">
                   <xsl:choose>
+                    <xsl:when test="
+                          not( count($ublDefinedCardinalities/ublcardinality) =
+                               count(ublcardinalities/ublcardinality) )">
+                      <xsl:text>Mismatched count of cardinalities: </xsl:text>
+                      <xsl:value-of select="$thisDoctype"/>
+                      <xsl:text>&#xa;</xsl:text>
+                    </xsl:when>
                    <xsl:when test="not( deep-equal( $ublDefinedCardinalities,
                                                     ublcardinalities ) )">
-              <xsl:text>Mismatched record of UBL cardinalities.&#xa;</xsl:text>
+                  <xsl:text>Mismatched record of UBL cardinalities: </xsl:text>
+                     <xsl:value-of select="$thisDoctype"/>
+                     <xsl:text>&#xa;</xsl:text>
                    </xsl:when>
                     <xsl:when test="count(ublcardinalities/ublcardinality) !=
                                    count(modelcardinalities/modelcardinality)">
@@ -433,10 +441,26 @@
         <xsl:sequence select="$new = ('1..1')"/>
       </xsl:when>
       <xsl:when test=". = '1..n'">
-        <xsl:sequence select="$new = ('1..1')"/>
+        <xsl:analyze-string select="$new" regex="1..(\d+)">
+          <xsl:matching-substring>
+            <xsl:sequence select="number(regex-group(1))>0"/>
+          </xsl:matching-substring>
+          <xsl:non-matching-substring>
+            <xsl:sequence select="false()"/>
+          </xsl:non-matching-substring>
+        </xsl:analyze-string>
       </xsl:when>
       <xsl:when test=". = '0..n'">
-        <xsl:sequence select="$new = ('0..1','1..1','1..n')"/>
+        <xsl:analyze-string select="$new" regex="(\d+)..((\d+)|n)">
+          <xsl:matching-substring>
+            <xsl:sequence select="( regex-group(2)='n' or
+                                    number(regex-group(2)) >=
+                                    number(regex-group(1)) )"/>
+          </xsl:matching-substring>
+          <xsl:non-matching-substring>
+            <xsl:sequence select="false()"/>
+          </xsl:non-matching-substring>
+        </xsl:analyze-string>
       </xsl:when>
       <xsl:otherwise>
         <xsl:message terminate="yes" 

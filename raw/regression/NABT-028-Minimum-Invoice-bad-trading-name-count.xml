@@ -1,37 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Invoice xmlns="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2">
   <cbc:UBLVersionID>2.3</cbc:UBLVersionID>
-  <cbc:CustomizationID schemeID="bdx-docid-qns">urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##bpc-0.5-data-Extended</cbc:CustomizationID>
+  <cbc:CustomizationID schemeID="bdx-docid-qns">urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##bpc-0.5-data-Minimum</cbc:CustomizationID>
   <cbc:ProfileID>bpc-0.5-process#Invoice</cbc:ProfileID>
-  <cbc:ProfileExecutionID>1234567</cbc:ProfileExecutionID>
   <cbc:ID>HBINVOICE</cbc:ID>
   <cbc:IssueDate>2020-03-13</cbc:IssueDate>
   <cbc:DueDate>2020-04-12</cbc:DueDate>
   <cbc:InvoiceTypeCode>380</cbc:InvoiceTypeCode>
+  <cbc:Note languageID="en">Hello</cbc:Note>
   <cbc:TaxPointDate>2020-03-13</cbc:TaxPointDate>
   <cbc:DocumentCurrencyCode>GBP</cbc:DocumentCurrencyCode>
-  <cbc:TaxCurrencyCode>CAD</cbc:TaxCurrencyCode>
   <cac:OrderReference>
     <cbc:ID>TC0016_WRXKyXgOk8cr</cbc:ID>
   </cac:OrderReference>
-  <cac:ReceiptDocumentReference>
-    <cbc:ID>receipt-123</cbc:ID>
-  </cac:ReceiptDocumentReference>
-  <cac:ContractDocumentReference>
-    <cbc:ID>contract-123</cbc:ID>
-  </cac:ContractDocumentReference>
-  <cac:ProjectReference>
-    <cbc:ID>proj-123</cbc:ID>
-  </cac:ProjectReference>
   <cac:AccountingSupplierParty>
     <cac:Party>
       <cbc:EndpointID schemeID="0088">GHXPEPHBSUINT</cbc:EndpointID>
       <cac:PartyIdentification>
         <cbc:ID schemeID="DANDB">GHXPEPHBSUINT</cbc:ID>
       </cac:PartyIdentification>
-      <cac:PartyName>
-        <cbc:Name>Fancy Pants</cbc:Name>
-      </cac:PartyName>
       <cac:PostalAddress>
         <cbc:StreetName>Fancy Building</cbc:StreetName>
         <cbc:AdditionalStreetName>Fancy Building</cbc:AdditionalStreetName>
@@ -144,9 +131,6 @@
       <cac:StandardItemIdentification>
         <cbc:ID schemeID="0160">7612449101724</cbc:ID>
       </cac:StandardItemIdentification>
-      <cac:OriginCountry>
-        <cbc:IdentificationCode>US</cbc:IdentificationCode>
-      </cac:OriginCountry>
       <cac:ClassifiedTaxCategory>
         <cbc:ID schemeID="UNCL5305">S</cbc:ID>
         <cbc:Percent>20.0</cbc:Percent>

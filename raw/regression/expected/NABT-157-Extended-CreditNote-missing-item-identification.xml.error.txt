@@ -1,0 +1,2 @@
+1. Both the standard identification number and description are missing. /CreditNote/cac:CreditNoteLine[1]/cac:Item[1] / count (cac:StandardItemIdentification/cbc:ID) = 1 or count (cbc:Description) = 1 (:NABT-157 Row 297 Tab 'Invoice, Credit Note':)
+Count of data errors: 1

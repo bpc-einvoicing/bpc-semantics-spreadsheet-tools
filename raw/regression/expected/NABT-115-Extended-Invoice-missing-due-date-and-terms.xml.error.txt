@@ -1,0 +1,2 @@
+1. The Amount due for Payment is positive, but neither the Payment Due Date or Payment Terms exists. /Invoice/cac:LegalMonetaryTotal[1]/cbc:PayableAmount[1] / if( . &gt; 0 ) then ( count( /*/cbc:DueDate )&gt;0 or count( /*/cac:PaymentTerms/cbc:Note )&gt;0 ) else true() (:NABT-115 Row 193 Tab 'Invoice, Credit Note':)
+Count of data errors: 1

@@ -1,0 +1,2 @@
+1. Credited quantity is not specified. /CreditNote/cac:CreditNoteLine[1] / count (cbc:CreditedQuantity) =1 (:NABT-129 Row 224 Tab 'Invoice, Credit Note':)
+Count of data errors: 1

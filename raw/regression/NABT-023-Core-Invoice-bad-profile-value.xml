@@ -40,6 +40,7 @@
       </cac:PartyTaxScheme>
       <cac:PartyLegalEntity>
         <cbc:RegistrationName>GB</cbc:RegistrationName>
+        <cbc:CompanyID schemeID="ABC">GB999999999</cbc:CompanyID>
       </cac:PartyLegalEntity>
     </cac:Party>
   </cac:AccountingSupplierParty>

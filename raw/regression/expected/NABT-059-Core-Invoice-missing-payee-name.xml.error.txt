@@ -1,0 +1,2 @@
+1. Fewer or more than one payee party name. /Invoice/cac:PayeeParty[1] / count(cac:PartyName/cbc:Name) = 1 (:NABT-059 Row 70 Tab 'Invoice, Credit Note':)
+Count of data errors: 1

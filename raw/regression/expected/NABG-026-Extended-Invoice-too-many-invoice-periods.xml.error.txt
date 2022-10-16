@@ -1,0 +1,2 @@
+1. More than one Invoice Period on the line exists. /Invoice/cac:InvoiceLine[1] / count (cac:InvoicePeriod) &lt;= 1 (:NABG-026 Row 253 Tab 'Invoice, Credit Note':)
+Count of data errors: 1

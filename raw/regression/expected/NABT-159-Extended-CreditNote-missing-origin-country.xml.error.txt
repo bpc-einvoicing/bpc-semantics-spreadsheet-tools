@@ -1,0 +1,2 @@
+1. Item country of origin code is missing or is not a valid value from International Organization for Standardization (ISO) ISO 3166-Country Codes. /CreditNote/cac:CreditNoteLine[1]/cac:Item[1] / bpc:codelist(cac:OriginCountry/cbc:IdentificationCode,'ISO-3166') (:NABT-159 Row 301 Tab 'Invoice, Credit Note':)
+Count of data errors: 1

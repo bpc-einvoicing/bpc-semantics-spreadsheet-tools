@@ -17,6 +17,9 @@
   <cac:ReceiptDocumentReference>
     <cbc:ID>receipt-123</cbc:ID>
   </cac:ReceiptDocumentReference>
+  <cac:ReceiptDocumentReference>
+    <cbc:ID>receipt-234</cbc:ID>
+  </cac:ReceiptDocumentReference>
   <cac:ContractDocumentReference>
     <cbc:ID>contract-123</cbc:ID>
   </cac:ContractDocumentReference>
@@ -50,6 +53,7 @@
       </cac:PartyTaxScheme>
       <cac:PartyLegalEntity>
         <cbc:RegistrationName>GB</cbc:RegistrationName>
+        <cbc:CompanyID schemeID="ABC">GB999999999</cbc:CompanyID>
       </cac:PartyLegalEntity>
     </cac:Party>
   </cac:AccountingSupplierParty>

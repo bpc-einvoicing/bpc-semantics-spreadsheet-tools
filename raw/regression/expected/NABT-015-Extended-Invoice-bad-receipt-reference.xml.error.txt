@@ -1,0 +1,2 @@
+1. More than one proof of delivery reference exists. /Invoice / count(cac:ReceiptDocumentReference/cbc:ID) &lt;= 1 (:NABT-015 Row 17 Tab 'Invoice, Credit Note':)
+Count of data errors: 1

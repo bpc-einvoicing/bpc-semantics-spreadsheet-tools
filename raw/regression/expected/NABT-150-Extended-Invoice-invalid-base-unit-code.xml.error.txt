@@ -1,0 +1,2 @@
+1. Item Price Base Quantity Unit of Measure Code does not equal Invoiced Quantity Unit of Measure Code. /Invoice/cac:InvoiceLine[1]/cac:Price[1]/cbc:BaseQuantity[1]/@unitCode / . = ../../../cbc:InvoicedQuantity/@unitCode (:NABT-150 Row 279 Tab 'Invoice, Credit Note':)
+Count of data errors: 1

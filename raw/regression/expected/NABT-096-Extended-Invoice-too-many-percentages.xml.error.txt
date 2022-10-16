@@ -1,0 +1,2 @@
+1. More than one document level discount tax rate exists. /Invoice/cac:AllowanceCharge[1] / count (cac:TaxCategory/cbc:Percent) &lt;= 1 (:NABT-096 Row 165 Tab 'Invoice, Credit Note':)
+Count of data errors: 1

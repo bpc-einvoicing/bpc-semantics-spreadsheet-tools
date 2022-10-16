@@ -1,0 +1,2 @@
+1. Supplier - Accounts Receivable Party Postal Address is not specified /Invoice / count(cac:AccountingSupplierParty/cac:Party/cac:PostalAddress) = 1 (:NABG-005 Row 58 Tab 'Invoice, Credit Note':)
+Count of data errors: 1

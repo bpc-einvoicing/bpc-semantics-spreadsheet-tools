@@ -1,0 +1,2 @@
+1. More than one project reference exists. /Invoice / count(cac:ProjectReference/cbc:ID) &lt;= 1 (:NABT-011 Row 12 Tab 'Invoice, Credit Note':)
+Count of data errors: 1

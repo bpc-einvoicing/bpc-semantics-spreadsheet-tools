@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Invoice xmlns="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2">
 <cbc:UBLVersionID>2.3</cbc:UBLVersionID>
-<cbc:CustomizationID schemeID="bdx-docid-qns">urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##bpc-0.5-data-Extended</cbc:CustomizationID>
+<cbc:CustomizationID schemeID="bdx-docid-qns">urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##bpc-0.5-data-Xxxx</cbc:CustomizationID>
 <cbc:ProfileID>bpc-0.5-process#Invoice</cbc:ProfileID>
 <cbc:ProfileExecutionID>1234567</cbc:ProfileExecutionID>
 <cbc:ID>HBINVOICE</cbc:ID>
@@ -39,9 +39,6 @@
 <cbc:ID>VAT</cbc:ID>
 </cac:TaxScheme>
 </cac:PartyTaxScheme>
-<cac:PartyLegalEntity>
-<cbc:RegistrationName>GB</cbc:RegistrationName>
-</cac:PartyLegalEntity>
 </cac:Party>
 </cac:AccountingSupplierParty>
 <cac:AccountingCustomerParty>
@@ -96,7 +93,7 @@
 <cbc:Note>PaymentTerms Note</cbc:Note>
 </cac:PaymentTerms>
 <cac:TaxTotal>
-<cbc:TaxAmount currencyID="GBPx">566.93</cbc:TaxAmount>
+<cbc:TaxAmount currencyID="GBP">566.93</cbc:TaxAmount>
 <cac:TaxSubtotal>
 <cbc:TaxableAmount currencyID="GBP">2834.64</cbc:TaxableAmount>
 <cbc:TaxAmount currencyID="GBP">566.93</cbc:TaxAmount>
@@ -108,9 +105,6 @@
 </cac:TaxScheme>
 </cac:TaxCategory>
 </cac:TaxSubtotal>
-</cac:TaxTotal>
-<cac:TaxTotal>
-<cbc:TaxAmount currencyID="CADx">566.93</cbc:TaxAmount>
 </cac:TaxTotal>
 <cac:LegalMonetaryTotal>
 <cbc:LineExtensionAmount currencyID="GBP">2834.64</cbc:LineExtensionAmount>
@@ -126,23 +120,6 @@
 <cac:OrderLineReference>
 <cbc:LineID>000001</cbc:LineID>
 </cac:OrderLineReference>
-<cac:TaxTotal>
-<cbc:TaxAmount currencyID="GBP">566.93</cbc:TaxAmount>
-<cac:TaxSubtotal>
-<cbc:TaxableAmount currencyID="GBP">2834.64</cbc:TaxableAmount>
-<cbc:TaxAmount currencyID="GBP">566.93</cbc:TaxAmount>
-<cac:TaxCategory>
-<cbc:ID schemeID="UNECE-5305">S</cbc:ID>
-<cbc:Percent>20.0</cbc:Percent>
-<cac:TaxScheme>
-<cbc:ID>VAT</cbc:ID>
-</cac:TaxScheme>
-</cac:TaxCategory>
-</cac:TaxSubtotal>
-</cac:TaxTotal>
-<cac:TaxTotal>
-<cbc:TaxAmount currencyID="CAD">566.93</cbc:TaxAmount>
-</cac:TaxTotal>
 <cac:Item>
 <cbc:Description>Syringe</cbc:Description>
 <cbc:Name>Syringe</cbc:Name>

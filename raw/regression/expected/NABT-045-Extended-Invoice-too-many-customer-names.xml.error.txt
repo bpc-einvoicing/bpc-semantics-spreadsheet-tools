@@ -1,0 +1,2 @@
+1. Fewer or more than one trading name. /Invoice/cac:AccountingCustomerParty[1] / count(cac:Party/cac:PartyName/cbc:Name) = 1 (:NABT-045 Row 108 Tab 'Invoice, Credit Note':)
+Count of data errors: 1

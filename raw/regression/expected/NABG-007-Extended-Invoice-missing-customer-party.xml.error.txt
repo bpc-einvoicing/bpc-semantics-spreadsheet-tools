@@ -1,0 +1,2 @@
+1. Customer - Accounts Payable is not specified. /Invoice / count (cac:AccountingCustomerParty)= 1 (:NABG-007 Row 106 Tab 'Invoice, Credit Note':)
+Count of data errors: 1

@@ -466,6 +466,11 @@ sh testall.sh</programlisting>
         <literal>test-examples.bat</literal> to execute the program in a pop-up window (the batch file will pause at the end). Note that lengthy reports will scroll out of the history of window lines so they may not appear when scrolling back to find them (see <xref
         linkend="S-CONFIGURING-WINDOWS-DOS-BOX-HISTORY"/> for details on increasing the length of the history).</para>
   </section>
+  <section id="S-REGRESSION-TEST-SUITE">
+    <title>Regression test suite</title>
+    <para>The <literal>regression/</literal> subdirectory has over 120 BPC UBL XML documents that validate according to the UBL schema but violate exactly one of the data integrity rules enumerated in the BPC Semantic Model Data Integrity Rules spreadsheet. The regression shell script recreates the
+        <literal>regression/results/</literal> subdirectory which can be compared against the <literal>regression/expected/</literal> subdirectory. Each file name begins with the BPC Identifier from the spreadsheet that contains the Schematron expression being tested.</para>
+  </section>
   <section id="S-CONFIGURING-WINDOWS-DOS-BOX-HISTORY">
     <title>Configuring Windows DOS box history</title>
     <para>Should the dynamic command DOS box history be too short for a long report, the height of the box window (dictating the history) can be increased as follows:</para>

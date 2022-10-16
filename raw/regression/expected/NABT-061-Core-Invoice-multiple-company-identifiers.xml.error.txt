@@ -1,0 +1,2 @@
+1. More than one Supplier - payee legal registration identifier exists. /Invoice/cac:PayeeParty[1] / count(cac:PartyLegalEntity/cbc:CompanyID) &lt;= 1 (:NABT-061 Row 73 Tab 'Invoice, Credit Note':)
+Count of data errors: 1

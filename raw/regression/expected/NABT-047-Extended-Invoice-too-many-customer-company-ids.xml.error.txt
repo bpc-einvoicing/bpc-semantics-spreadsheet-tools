@@ -1,0 +1,2 @@
+1. More than one Customer - Accounts Payable Legal Registration Identifier exists. /Invoice/cac:AccountingCustomerParty[1] / count (cac:Party/cac:PartyLegalEntity/cbc:CompanyID) &lt;= 1 (:NABT-047 Row 111 Tab 'Invoice, Credit Note':)
+Count of data errors: 1

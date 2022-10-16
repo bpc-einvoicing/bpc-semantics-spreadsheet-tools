@@ -1,0 +1,2 @@
+1. The scheme of the party identifier is missing. /Invoice/cac:AccountingCustomerParty[1]/cac:Party[1]/cac:PartyIdentification[1]/cbc:ID[1] / count( @schemeID ) = 1 (:NABT-046-1 Row 110 Tab 'Invoice, Credit Note':)
+Count of data errors: 1

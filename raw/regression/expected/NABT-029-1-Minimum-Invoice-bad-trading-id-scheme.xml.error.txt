@@ -1,0 +1,2 @@
+1. Scheme Identifier does not exist when Supplier - Accounts Receivable Identifier is provided. /Invoice/cac:AccountingSupplierParty[1]/cac:Party[1]/cac:PartyIdentification[1]/cbc:ID[1] / count (@schemeID ) = 1 (:NABT-029-1 Row 51 Tab 'Invoice, Credit Note':)
+Count of data errors: 1

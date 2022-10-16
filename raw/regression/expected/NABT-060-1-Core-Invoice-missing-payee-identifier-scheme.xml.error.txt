@@ -1,0 +1,2 @@
+1. Scheme Identifier does not exist when Supplier - payee Identifier is provided. /Invoice/cac:PayeeParty[1]/cac:PartyIdentification[1]/cbc:ID[1] / count (@schemeID) = 1 (:NABT-060-1 Row 72 Tab 'Invoice, Credit Note':)
+Count of data errors: 1

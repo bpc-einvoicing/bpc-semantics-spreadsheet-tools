@@ -29,9 +29,6 @@
         <cbc:CityName>Camden City</cbc:CityName>
         <cbc:PostalZone>S35 2PW</cbc:PostalZone>
         <cbc:CountrySubentity>Camden City</cbc:CountrySubentity>
-        <cac:Country>
-          <cbc:IdentificationCode>XX</cbc:IdentificationCode>
-        </cac:Country>
       </cac:PostalAddress>
       <cac:PartyTaxScheme>
         <cbc:CompanyID>GB999999999</cbc:CompanyID>

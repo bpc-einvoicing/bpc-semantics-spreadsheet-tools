@@ -1,0 +1,2 @@
+1. Item gross price is negative. /Invoice/cac:InvoiceLine[1]/cac:Price[1]/cac:AllowanceCharge[1]/cbc:BaseAmount[1] / . &gt;= 0 (:NABT-148 Row 276 Tab 'Invoice, Credit Note':)
+Count of data errors: 1

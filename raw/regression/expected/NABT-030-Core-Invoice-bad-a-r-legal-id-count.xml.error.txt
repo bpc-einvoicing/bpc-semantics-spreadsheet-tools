@@ -1,0 +1,2 @@
+1. More than one Supplier - Accounts Receivable Legal Registration Identifier exists, or the one that exists does not have a company identifier /Invoice/cac:AccountingSupplierParty[1]/cac:Party[1] / count (cac:PartyLegalEntity) &lt;= 1 and count (cac:PartyLegalEntity) = count (cac:PartyLegalEntity/cbc:CompanyID) (:NABT-030 Row 52 Tab 'Invoice, Credit Note':)
+Count of data errors: 1

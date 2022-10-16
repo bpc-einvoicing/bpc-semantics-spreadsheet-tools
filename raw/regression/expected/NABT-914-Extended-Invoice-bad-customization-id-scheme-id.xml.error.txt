@@ -1,2 +1,0 @@
-1. Customization identifier scheme identifier is not specified or is not the required value. /Invoice/cbc:CustomizationID[1] / normalize-space(@schemeID) = 'bdx-docid-qns' (:NABT-914 Row 43 Tab 'Invoice, Credit Note':)
-Count of data errors: 1

@@ -1,0 +1,2 @@
+1. More than one contract number exists. /Invoice / count(cac:ContractDocumentReference/cbc:ID) &lt;= 1 (:NABT-012 Row 13 Tab 'Invoice, Credit Note':)
+Count of data errors: 1

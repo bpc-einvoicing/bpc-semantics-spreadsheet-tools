@@ -1,0 +1,2 @@
+1. The second tax total is not in the tax currency. /Invoice/cac:TaxTotal[2]/cbc:TaxAmount[1] / if( exists(/*/cbc:TaxCurrencyCode) ) then @currencyID = /*/cbc:TaxCurrencyCode else true() (:NABT-111 Row 187 Tab 'Invoice, Credit Note':)
+Count of data errors: 1

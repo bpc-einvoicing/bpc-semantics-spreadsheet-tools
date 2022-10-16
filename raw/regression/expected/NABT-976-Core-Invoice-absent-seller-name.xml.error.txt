@@ -1,0 +1,2 @@
+1. Seller name is not specified or exists more than once. /Invoice/cac:SellerSupplierParty[1] / count(cac:Party/cac:PartyLegalEntity/cbc:RegistrationName) = 1 (:NABT-976 Row 87 Tab 'Invoice, Credit Note':)
+Count of data errors: 1

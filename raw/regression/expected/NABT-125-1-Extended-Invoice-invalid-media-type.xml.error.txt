@@ -1,0 +1,2 @@
+1. Embedded binary object MIME code is not valid. /Invoice/cac:AdditionalDocumentReference[1]/cac:Attachment[1]/cbc:EmbeddedDocumentBinaryObject[1]/@mimeCode / bpc:codelist(.,'IANA-Media-Types') (:NABT-125-1 Row 217 Tab 'Invoice, Credit Note':)
+Count of data errors: 1

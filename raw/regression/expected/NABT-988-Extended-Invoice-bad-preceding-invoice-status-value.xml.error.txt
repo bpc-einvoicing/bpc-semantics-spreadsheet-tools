@@ -1,0 +1,2 @@
+1. Value is not found in code list UNECE-1373. /Invoice/cac:BillingReference[1]/cac:InvoiceDocumentReference[1]/cbc:DocumentStatusCode[1] / bpc:codelist(.,'UNECE-1373') (:NABT-988 Row 45 Tab 'Invoice, Credit Note':)
+Count of data errors: 1

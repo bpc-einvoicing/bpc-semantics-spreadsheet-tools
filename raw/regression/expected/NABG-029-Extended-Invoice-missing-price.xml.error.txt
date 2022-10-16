@@ -1,0 +1,2 @@
+1. Price Details are not specified. /Invoice/cac:InvoiceLine[1] / count (cac:Price) = 1 (:NABG-029 Row 270 Tab 'Invoice, Credit Note':)
+Count of data errors: 1

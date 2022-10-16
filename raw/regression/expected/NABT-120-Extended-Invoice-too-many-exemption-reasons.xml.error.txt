@@ -1,0 +1,2 @@
+1. More than one Tax Exemption Reason Text entry exists. /Invoice/cac:TaxTotal[1]/cac:TaxSubtotal[1] / count (cac:TaxCategory/cbc:TaxExemptionReason) &lt;= 1 (:NABT-120 Row 202 Tab 'Invoice, Credit Note':)
+Count of data errors: 1

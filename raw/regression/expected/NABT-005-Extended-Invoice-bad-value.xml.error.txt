@@ -1,3 +1,2 @@
 1. Document Currency Code not specified or value specified is not allowed. /Invoice / bpc:codelist(cbc:DocumentCurrencyCode,'ISO-4217') (:NABT-005 Row 9 Tab 'Invoice, Credit Note':)
-2. The first tax total is not in the document currency. /Invoice/cac:TaxTotal[1]/cbc:TaxAmount[1] / @currencyID = /*/cbc:DocumentCurrencyCode (:NABT-111 Row 187 Tab 'Invoice, Credit Note':)
-Count of data errors: 2
+Count of data errors: 1

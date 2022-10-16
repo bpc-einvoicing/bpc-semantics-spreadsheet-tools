@@ -1,0 +1,2 @@
+1. Scheme Identifier does not exist when Item Classification Identifier is provided. /Invoice/cac:InvoiceLine[1]/cac:Item[1]/cac:CommodityClassification[1]/cbc:ItemClassificationCode[1] / count (@listID) = 1 (:NABT-158-1 Row 300 Tab 'Invoice, Credit Note':)
+Count of data errors: 1

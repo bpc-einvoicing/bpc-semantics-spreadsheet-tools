@@ -1,0 +1,2 @@
+1. Fewer or more than one party identifier. /Invoice/cac:AccountingSupplierParty[1] / count(cac:Party/cac:PartyIdentification/cbc:ID) = 1 (:NABT-029 Row 50 Tab 'Invoice, Credit Note':)
+Count of data errors: 1

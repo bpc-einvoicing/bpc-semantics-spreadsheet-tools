@@ -1,0 +1,2 @@
+1. Fewer or more than one payee party identifier. /Invoice/cac:PayeeParty[1] / count(cac:PartyIdentification/cbc:ID) = 1 (:NABT-060 Row 71 Tab 'Invoice, Credit Note':)
+Count of data errors: 1

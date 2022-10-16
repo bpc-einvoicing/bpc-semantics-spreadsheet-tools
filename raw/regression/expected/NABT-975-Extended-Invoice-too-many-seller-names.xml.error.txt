@@ -1,0 +1,2 @@
+1. More than one Supplier - Seller Trading Name exists. /Invoice/cac:SellerSupplierParty[1] / count(cac:Party/cac:PartyName/cbc:Name) &lt;= 1 (:NABT-975 Row 88 Tab 'Invoice, Credit Note':)
+Count of data errors: 1

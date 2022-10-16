@@ -1,4 +1,2 @@
-1. Too many tax total information items /Invoice / if( exists( cbc:TaxCurrencyCode ) ) then count( cac:TaxTotal ) &lt;= 2 else count( cac:TaxTotal ) &lt;= 1 (:NABG-023 Row 197 Tab 'Invoice, Credit Note':)
-2. The second tax total incorrectly has breakdown information. /Invoice/cac:TaxTotal[2] / count( cac:TaxSubtotal ) = 0 (:NABG-023 Row 198 Tab 'Invoice, Credit Note':)
-3. The second tax total is not in the tax currency. /Invoice/cac:TaxTotal[2]/cbc:TaxAmount[1] / @currencyID = /*/cbc:TaxCurrencyCode (:NABT-111 Row 188 Tab 'Invoice, Credit Note':)
-Count of data errors: 3
+1. The second tax total incorrectly has breakdown information. /Invoice/cac:TaxTotal[2] / count( cac:TaxSubtotal ) = 0 (:NABG-023 Row 197 Tab 'Invoice, Credit Note':)
+Count of data errors: 1

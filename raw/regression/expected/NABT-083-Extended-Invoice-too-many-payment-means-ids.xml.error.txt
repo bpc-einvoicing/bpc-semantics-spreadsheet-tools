@@ -1,0 +1,2 @@
+1. More than one remittance requirement information entry exists. /Invoice/cac:PaymentMeans[1] / count (cbc:PaymentID) &lt;= 1 (:NABT-083 Row 146 Tab 'Invoice, Credit Note':)
+Count of data errors: 1

@@ -1,0 +1,2 @@
+1. More than one invoice period identifier exists. /Invoice / count(cac:InvoicePeriod) &lt;= 1 (:NABG-014 Row 32 Tab 'Invoice, Credit Note':)
+Count of data errors: 1

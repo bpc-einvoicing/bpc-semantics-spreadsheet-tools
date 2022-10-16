@@ -1,0 +1,2 @@
+1. Session Identifier is not specified. /Invoice / count(cbc:ProfileExecutionID) =1 (:NABT-989 Row 39 Tab 'Invoice, Credit Note':)
+Count of data errors: 1

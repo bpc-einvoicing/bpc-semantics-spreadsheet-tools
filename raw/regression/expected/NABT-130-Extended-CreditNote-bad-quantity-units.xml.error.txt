@@ -1,0 +1,2 @@
+1. Credited quantity unit of measure code not specified or value specified is not valid. /CreditNote/cac:CreditNoteLine[1]/cbc:CreditedQuantity[1]/@unitCode / bpc:codelist(.,'UNECE-Rec-20-21') (:NABT-130 Row 226 Tab 'Invoice, Credit Note':)
+Count of data errors: 1

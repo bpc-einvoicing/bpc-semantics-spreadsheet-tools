@@ -1,0 +1,2 @@
+1. Invoiced quantity is not specified. /Invoice/cac:InvoiceLine[1] / count (cbc:InvoicedQuantity) =1 (:NABT-129 Row 223 Tab 'Invoice, Credit Note':)
+Count of data errors: 1

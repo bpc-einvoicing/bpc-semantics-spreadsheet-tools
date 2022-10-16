@@ -1,0 +1,2 @@
+1. Missing Discount Reason and/or Discount Reason Code. /Invoice/cac:AllowanceCharge[1] / count (cbc:AllowanceChargeReason) &gt;= 1 or count (cbc:AllowanceChargeReasonCode) = 1 (:NABT-097 Row 167 Tab 'Invoice, Credit Note':)
+Count of data errors: 1

@@ -1,0 +1,2 @@
+1. More than one Deliver to party name exists. /Invoice/cac:Delivery[1] / count (cac:DeliveryParty/cac:PartyName/cbc:Name) &lt;= 1 (:NABT-070 Row 129 Tab 'Invoice, Credit Note':)
+Count of data errors: 1

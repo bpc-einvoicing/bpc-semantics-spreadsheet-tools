@@ -1,0 +1,2 @@
+1. The first tax total is not in the document currency. /Invoice/cac:InvoiceLine[1]/cac:TaxTotal[1]/cbc:TaxAmount[1] / @currencyID = /*/cbc:DocumentCurrencyCode (:NABT-111 Row 186 Tab 'Invoice, Credit Note':)
+Count of data errors: 1

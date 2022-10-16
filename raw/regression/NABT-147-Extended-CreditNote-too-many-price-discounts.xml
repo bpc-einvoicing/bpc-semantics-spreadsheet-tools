@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CreditNote xmlns="urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2">
+  <cbc:UBLVersionID>2.3</cbc:UBLVersionID>
+  <cbc:CustomizationID schemeID="bdx-docid-qns">urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##bpc-0.5-data-Extended</cbc:CustomizationID>
+  <cbc:ProfileID>bpc-0.5-process#CreditNote</cbc:ProfileID>
+  <cbc:ProfileExecutionID>1234567</cbc:ProfileExecutionID>
+  <cbc:ID>HBINVOICE</cbc:ID>
+  <cbc:IssueDate>2020-03-13</cbc:IssueDate>
+  <cbc:DueDate>2020-04-12</cbc:DueDate>
+  <cbc:CreditNoteTypeCode>380</cbc:CreditNoteTypeCode>
+  <cbc:DocumentCurrencyCode>GBP</cbc:DocumentCurrencyCode>
+  <cbc:TaxCurrencyCode>CAD</cbc:TaxCurrencyCode>
+  <cac:OrderReference>
+    <cbc:ID>TC0016_WRXKyXgOk8cr</cbc:ID>
+  </cac:OrderReference>
+  <cac:AccountingSupplierParty>
+    <cac:Party>
+      <cbc:EndpointID schemeID="0088">GHXPEPHBSUINT</cbc:EndpointID>
+      <cac:PartyIdentification>
+        <cbc:ID schemeID="DANDB">GHXPEPHBSUINT</cbc:ID>
+      </cac:PartyIdentification>
+      <cac:PartyName>
+        <cbc:Name>Fancy Pants</cbc:Name>
+      </cac:PartyName>
+      <cac:PostalAddress>
+        <cbc:StreetName>Fancy Building</cbc:StreetName>
+        <cbc:AdditionalStreetName>Fancy Building</cbc:AdditionalStreetName>
+        <cbc:CityName>Camden City</cbc:CityName>
+        <cbc:PostalZone>S35 2PW</cbc:PostalZone>
+        <cbc:CountrySubentity>Camden City</cbc:CountrySubentity>
+        <cac:Country>
+          <cbc:IdentificationCode>GB</cbc:IdentificationCode>
+        </cac:Country>
+      </cac:PostalAddress>
+      <cac:PartyTaxScheme>
+        <cbc:CompanyID>GB999999999</cbc:CompanyID>
+        <cac:TaxScheme>
+          <cbc:ID>VAT</cbc:ID>
+        </cac:TaxScheme>
+      </cac:PartyTaxScheme>
+      <cac:PartyLegalEntity>
+        <cbc:RegistrationName>Fancy Pants</cbc:RegistrationName>
+        <cbc:CompanyID schemeID="ABC">1234567</cbc:CompanyID>
+      </cac:PartyLegalEntity>
+    </cac:Party>
+  </cac:AccountingSupplierParty>
+  <cac:AccountingCustomerParty>
+    <cac:Party>
+      <cbc:EndpointID schemeID="0088">GHXPEPHBPRINT</cbc:EndpointID>
+      <cac:PartyIdentification>
+        <cbc:ID schemeID="DANDB">GHXPEPHBPRINT</cbc:ID>
+      </cac:PartyIdentification>
+      <cac:PartyName>
+        <cbc:Name>GHX UK Ltd</cbc:Name>
+      </cac:PartyName>
+      <cac:PostalAddress>
+        <cbc:StreetName>Cambridge</cbc:StreetName>
+        <cbc:AdditionalStreetName>Cambridge</cbc:AdditionalStreetName>
+        <cbc:PostalZone>GB</cbc:PostalZone>
+        <cac:Country>
+          <cbc:IdentificationCode>GB</cbc:IdentificationCode>
+        </cac:Country>
+      </cac:PostalAddress>
+      <cac:PartyLegalEntity>
+        <cbc:RegistrationName>GHX UK Ltd</cbc:RegistrationName>
+      </cac:PartyLegalEntity>
+      <cac:Contact>
+        <cbc:Name>Administrator</cbc:Name>
+      </cac:Contact>
+    </cac:Party>
+  </cac:AccountingCustomerParty>
+  <cac:Delivery>
+    <cac:DeliveryLocation>
+      <cbc:ID>TC0016_20220106093432.txt</cbc:ID>
+      <cac:Address>
+        <cbc:StreetName>Test Street</cbc:StreetName>
+        <cbc:AdditionalStreetName>Test Industrial Estate</cbc:AdditionalStreetName>
+        <cbc:CityName>Alfreton</cbc:CityName>
+        <cbc:PostalZone>DE54 6QJ</cbc:PostalZone>
+        <cbc:CountrySubentity>Alfreton</cbc:CountrySubentity>
+        <cac:Country>
+          <cbc:IdentificationCode>GB</cbc:IdentificationCode>
+        </cac:Country>
+      </cac:Address>
+    </cac:DeliveryLocation>
+    <cac:DeliveryParty>
+      <cac:PartyName>
+        <cbc:Name>Test Provider</cbc:Name>
+      </cac:PartyName>
+    </cac:DeliveryParty>
+  </cac:Delivery>
+  <cac:PaymentMeans>
+    <cbc:PaymentMeansCode>1</cbc:PaymentMeansCode>
+  </cac:PaymentMeans>
+  <cac:PaymentTerms>
+    <cbc:Note>PaymentTerms Note</cbc:Note>
+  </cac:PaymentTerms>
+  <cac:TaxTotal>
+    <cbc:TaxAmount currencyID="GBP">566.93</cbc:TaxAmount>
+    <cac:TaxSubtotal>
+      <cbc:TaxableAmount currencyID="GBP">2834.64</cbc:TaxableAmount>
+      <cbc:TaxAmount currencyID="GBP">566.93</cbc:TaxAmount>
+      <cac:TaxCategory>
+        <cbc:ID schemeID="UNECE-5305">S</cbc:ID>
+        <cbc:Percent>20.0</cbc:Percent>
+        <cac:TaxScheme>
+          <cbc:ID>VAT</cbc:ID>
+        </cac:TaxScheme>
+      </cac:TaxCategory>
+    </cac:TaxSubtotal>
+  </cac:TaxTotal>
+  <cac:LegalMonetaryTotal>
+    <cbc:LineExtensionAmount currencyID="GBP">2834.64</cbc:LineExtensionAmount>
+    <cbc:TaxExclusiveAmount currencyID="GBP">2834.64</cbc:TaxExclusiveAmount>
+    <cbc:TaxInclusiveAmount currencyID="GBP">3401.57</cbc:TaxInclusiveAmount>
+    <cbc:PayableAmount currencyID="GBP">3401.57</cbc:PayableAmount>
+  </cac:LegalMonetaryTotal>
+  <cac:CreditNoteLine>
+    <cbc:ID>1</cbc:ID>
+    <cbc:Note>Syringe</cbc:Note>
+    <cbc:CreditedQuantity unitCode="XCT">72.0</cbc:CreditedQuantity>
+    <cbc:LineExtensionAmount currencyID="GBP">2834.64</cbc:LineExtensionAmount>
+    <cac:OrderLineReference>
+      <cbc:LineID>000001</cbc:LineID>
+    </cac:OrderLineReference>
+    <cac:Delivery>
+      <cac:DeliveryLocation>
+        <cbc:ID>TC0016_20220106093432.txt</cbc:ID>
+        <cac:Address>
+          <cbc:StreetName>Test Street</cbc:StreetName>
+          <cbc:AdditionalStreetName>Test Industrial Estate</cbc:AdditionalStreetName>
+          <cbc:CityName>Alfreton</cbc:CityName>
+          <cbc:PostalZone>DE54 6QJ</cbc:PostalZone>
+          <cbc:CountrySubentity>Alfreton</cbc:CountrySubentity>
+          <cac:Country>
+            <cbc:IdentificationCode>GB</cbc:IdentificationCode>
+          </cac:Country>
+        </cac:Address>
+      </cac:DeliveryLocation>
+      <cac:DeliveryParty>
+        <cac:PartyName>
+          <cbc:Name>Test Provider</cbc:Name>
+        </cac:PartyName>
+      </cac:DeliveryParty>
+    </cac:Delivery>
+    <cac:Item>
+      <cbc:Description>Syringe</cbc:Description>
+      <cbc:Name>Syringe</cbc:Name>
+      <cac:BuyersItemIdentification>
+        <cbc:ID>19039</cbc:ID>
+      </cac:BuyersItemIdentification>
+      <cac:SellersItemIdentification>
+        <cbc:ID>000000000000019039</cbc:ID>
+      </cac:SellersItemIdentification>
+      <cac:StandardItemIdentification>
+        <cbc:ID schemeID="0160">7612449101724</cbc:ID>
+      </cac:StandardItemIdentification>
+      <cac:OriginCountry>
+        <cbc:IdentificationCode>US</cbc:IdentificationCode>
+      </cac:OriginCountry>
+      <cac:ClassifiedTaxCategory>
+        <cbc:ID schemeID="UNCL5305">S</cbc:ID>
+        <cbc:Percent>20.0</cbc:Percent>
+        <cac:TaxScheme>
+          <cbc:ID>VAT</cbc:ID>
+        </cac:TaxScheme>
+      </cac:ClassifiedTaxCategory>
+    </cac:Item>
+    <cac:Price>
+      <cbc:PriceAmount currencyID="GBP">39.37</cbc:PriceAmount>
+      <cac:AllowanceCharge>
+        <cbc:ChargeIndicator>true</cbc:ChargeIndicator>
+        <cbc:AllowanceChargeReasonCode>15</cbc:AllowanceChargeReasonCode>
+        <cbc:Amount currencyID="GBP">10.00</cbc:Amount>
+      </cac:AllowanceCharge>
+      <cac:AllowanceCharge>
+        <cbc:ChargeIndicator>true</cbc:ChargeIndicator>
+        <cbc:AllowanceChargeReasonCode>15</cbc:AllowanceChargeReasonCode>
+        <cbc:Amount currencyID="GBP">10.00</cbc:Amount>
+      </cac:AllowanceCharge>
+    </cac:Price>
+  </cac:CreditNoteLine>
+</CreditNote>

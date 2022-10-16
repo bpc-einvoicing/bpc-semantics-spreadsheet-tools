@@ -1,0 +1,2 @@
+1. Customer - Accounts Payable Electronic Address Scheme Identifier is not specified or exists more than once when Electronic Address is provided. /Invoice/cac:AccountingCustomerParty[1]/cac:Party[1]/cbc:EndpointID[1] / count (@schemeID) = 1 (:NABT-049-1 Row 115 Tab 'Invoice, Credit Note':)
+Count of data errors: 1

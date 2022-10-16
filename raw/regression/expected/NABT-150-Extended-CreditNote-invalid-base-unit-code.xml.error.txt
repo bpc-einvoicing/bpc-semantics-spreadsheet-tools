@@ -1,0 +1,2 @@
+1. Item Price Base Quantity Unit of Measure Code does not equal Credited Quantity Unit of Measure Code. /CreditNote/cac:CreditNoteLine[1]/cac:Price[1]/cbc:BaseQuantity[1]/@unitCode / . = ../../../cbc:CreditedQuantity/@unitCode (:NABT-150 Row 280 Tab 'Invoice, Credit Note':)
+Count of data errors: 1

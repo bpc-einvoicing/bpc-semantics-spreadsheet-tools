@@ -1,0 +1,2 @@
+1. More than one Supplier - Seller Identifier exists. /Invoice/cac:SellerSupplierParty[1] / count(cac:Party/cac:PartyIdentification/cbc:ID) &lt;= 1 (:NABT-974 Row 89 Tab 'Invoice, Credit Note':)
+Count of data errors: 1

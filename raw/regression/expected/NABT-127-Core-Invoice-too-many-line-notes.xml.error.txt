@@ -1,0 +1,2 @@
+1. More than one Invoice Line Note exists. /Invoice/cac:InvoiceLine[1] / count (cbc:Note) &lt;= 1 (:NABT-127 Row 221 Tab 'Invoice, Credit Note':)
+Count of data errors: 1

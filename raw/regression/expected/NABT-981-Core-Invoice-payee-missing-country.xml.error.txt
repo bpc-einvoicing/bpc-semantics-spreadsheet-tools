@@ -1,0 +1,2 @@
+1. Supplier- Payee Country Code does not exist exactly once when Supplier - Payee Postal Address is provided. Supplier - Payee Country Code not specified or value specified is invalid. /Invoice/cac:PayeeParty[1]/cac:PostalAddress[1] / bpc:codelist(cac:Country/cbc:IdentificationCode,'ISO-3166') (:NABT-981 Row 80 Tab 'Invoice, Credit Note':)
+Count of data errors: 1

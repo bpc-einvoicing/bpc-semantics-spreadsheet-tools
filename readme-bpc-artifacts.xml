@@ -470,6 +470,7 @@ sh testall.sh</programlisting>
     <title>Regression test suite</title>
     <para>The <literal>regression/</literal> subdirectory has over 120 BPC UBL XML documents that validate according to the UBL schema but violate exactly one of the data integrity rules enumerated in the BPC Semantic Model Data Integrity Rules spreadsheet. The regression shell script recreates the
         <literal>regression/results/</literal> subdirectory which can be compared against the <literal>regression/expected/</literal> subdirectory. Each file name begins with the BPC Identifier from the spreadsheet that contains the Schematron expression being tested.</para>
+    <para>Note that the test files are syntactic tests of the Schematron assertions and are not examples of semantic content. In many cases bogus content is used when coercing the structures needed for testing the XPath expressions.</para>
   </section>
   <section id="S-CONFIGURING-WINDOWS-DOS-BOX-HISTORY">
     <title>Configuring Windows DOS box history</title>

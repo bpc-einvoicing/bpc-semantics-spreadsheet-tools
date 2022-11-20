@@ -154,7 +154,7 @@ file="${utilitydir}Crane-cva2sch-${cva2sch}/utility/iso_schematron_assembly.xsl"
         todir="${dir}/bpc-semantics-${BPCversion}-${dateTime}"/>
 
   <!--create GC files for business and signature-->
-  <delete file="${dir}/Semantics-Spreadsheet-${dateTime}.gc"/>
+  <delete file="${dir}/BPC-Semantics-Spreadsheet-${BPCversion}-${dateTime}.gc"/>
   
   <echo file="${dir}/wget-spreadsheet-time.txt" message="${wgettime}"/>
   <echo file="${dir}/wget-spreadsheet-uri.txt" message="${ssGoogle}"/>

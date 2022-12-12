@@ -3,8 +3,8 @@
   xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2"
   xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2">
   <cbc:UBLVersionID>2.3</cbc:UBLVersionID>
-  <cbc:CustomizationID schemeID="bdx-docid-qns">urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##bpc-0.5-data-Core</cbc:CustomizationID>
-  <cbc:ProfileID>bpc-0.5-process#CreditNote</cbc:ProfileID>
+  <cbc:CustomizationID schemeID="bdx-docid-qns">urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2::CreditNote##bpc-1.0-data-Core</cbc:CustomizationID>
+  <cbc:ProfileID>bpc-1.0-process#CreditNote</cbc:ProfileID>
   <cbc:ProfileExecutionID>A1234</cbc:ProfileExecutionID>
   <cbc:ID>3099123</cbc:ID>
   <cbc:IssueDate>2019-09-15</cbc:IssueDate>

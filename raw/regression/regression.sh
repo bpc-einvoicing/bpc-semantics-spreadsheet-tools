@@ -45,7 +45,7 @@ sh one-regression.sh Minimum  Invoice NABT-029-Minimum-Invoice-bad-trading-id-co
 sh one-regression.sh Minimum  Invoice NABT-029-1-Minimum-Invoice-bad-trading-id-scheme
 sh one-regression.sh Core     Invoice NABT-030-Core-Invoice-bad-a-r-legal-id-count
 sh one-regression.sh Core     Invoice NABT-030-1-Core-Invoice-bad-a-r-legal-id-scheme
-sh one-regression.sh Core     Invoice NABT-034-1-Core-Invoice-bad-a-r-endpoint-scheme
+sh one-regression.sh Core     Invoice NABT-034-Core-Invoice-bad-a-r-endpoint-id
 sh one-regression.sh Extended Invoice NABT-040-Extended-Invoice-bad-country
 sh one-regression.sh Extended Invoice NABT-040-Extended-Invoice-missing-country
 sh one-regression.sh Extended Invoice NABT-045-Extended-Invoice-too-many-customer-names

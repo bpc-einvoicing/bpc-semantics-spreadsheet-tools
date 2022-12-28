@@ -1,2 +1,2 @@
-1. More than one item price discount exists. /CreditNote/cac:CreditNoteLine[1]/cac:Price[1] / count (cac:AllowanceCharge/cbc:Amount) &lt;= 1 (:NABT-147 Row 273 Tab 'Invoice, Credit Note':)
+1. More than one item price discount exists. /CreditNote/cac:CreditNoteLine[1]/cac:Price[1] / count (cac:AllowanceCharge/cbc:Amount) &lt;= 1 (:NABT-147 Row 268 Tab 'Invoice, Credit Note':)
 Count of data errors: 1

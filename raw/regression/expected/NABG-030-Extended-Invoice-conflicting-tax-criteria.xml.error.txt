@@ -1,2 +1,2 @@
-1. Invoiced Item Tax Rate and Per Unit Tax Amount are mutually exclusive. /Invoice/cac:InvoiceLine[1]/cac:Item[1]/cac:ClassifiedTaxCategory[1] / if( count(cbc:Percent) = 1 and count(cbc:PerUnitAmount) = 1 ) then false() else true() (:NABG-030 Row 286 Tab 'Invoice, Credit Note':)
+1. Invoiced Item Tax Rate and Per Unit Tax Amount are mutually exclusive. /Invoice/cac:InvoiceLine[1]/cac:Item[1]/cac:ClassifiedTaxCategory[1] / if( count(cbc:Percent) = 1 and count(cbc:PerUnitAmount) = 1 ) then false() else true() (:NABG-030 Row 281 Tab 'Invoice, Credit Note':)
 Count of data errors: 1

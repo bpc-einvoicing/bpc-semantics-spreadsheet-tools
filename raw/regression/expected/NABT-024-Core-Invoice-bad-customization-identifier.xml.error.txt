@@ -1,2 +1,2 @@
-1. Specification Identifier not specified or value specified is not valid. /Invoice / normalize-space(cbc:CustomizationID) = 'urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##bpc-0.5-data-Core' (:NABT-024 Row 41 Tab 'Invoice, Credit Note':)
+1. Specification Identifier not specified or value specified is not valid. /Invoice / normalize-space(cbc:CustomizationID) = 'urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##bpc-1.0-data-Core' (:NABT-024 Row 41 Tab 'Invoice, Credit Note':)
 Count of data errors: 1

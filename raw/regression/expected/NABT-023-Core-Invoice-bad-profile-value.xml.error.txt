@@ -1,2 +1,2 @@
-1. Business process type not specified or value specified is not valid. /Invoice / normalize-space(cbc:ProfileID) = 'bpc-0.5-process#Invoice' (:NABT-023 Row 38 Tab 'Invoice, Credit Note':)
+1. Business process type not specified or value specified is not valid. /Invoice / normalize-space(cbc:ProfileID) = 'bpc-1.0-process#Invoice' (:NABT-023 Row 38 Tab 'Invoice, Credit Note':)
 Count of data errors: 1

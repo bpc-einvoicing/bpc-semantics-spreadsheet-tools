@@ -1,2 +1,2 @@
-1. Lot identification number is not specified or exists more than once. /Invoice/cac:InvoiceLine[1]/cac:Item[1]/cac:ItemInstance[1]/cac:LotIdentification[1] / count (cbc:LotNumberID) = 1 (:NABT-915 Row 306 Tab 'Invoice, Credit Note':)
+1. Lot identification number is not specified or exists more than once. /Invoice/cac:InvoiceLine[1]/cac:Item[1]/cac:ItemInstance[1]/cac:LotIdentification[1] / count (cbc:LotNumberID) = 1 (:NABT-915 Row 301 Tab 'Invoice, Credit Note':)
 Count of data errors: 1

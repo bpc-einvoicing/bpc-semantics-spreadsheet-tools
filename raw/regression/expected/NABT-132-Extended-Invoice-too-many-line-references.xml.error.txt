@@ -1,2 +1,2 @@
-1. Purchase Order Line Number is not specified or exists more than once. /Invoice/cac:InvoiceLine[1] / count (cac:OrderLineReference/cbc:LineID) =1 (:NABT-132 Row 228 Tab 'Invoice, Credit Note':)
+1. Purchase Order Line Number exists more than once. /Invoice/cac:InvoiceLine[1] / count (cac:OrderLineReference/cbc:LineID) &lt;=1 (:NABT-132 Row 223 Tab 'Invoice, Credit Note':)
 Count of data errors: 1

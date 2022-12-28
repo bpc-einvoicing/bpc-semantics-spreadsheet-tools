@@ -1,2 +1,2 @@
-1. Supplier - Accounts Receivable Contact Country Code is not specified or contains an invalid value. /Invoice/cac:AccountingSupplierParty[1]/cac:Party[1]/cac:PostalAddress[1] / bpc:codelist(cac:Country/cbc:IdentificationCode,'ISO-3166') (:NABT-040 Row 63 Tab 'Invoice, Credit Note':)
+1. Supplier - Accounts Receivable Contact Country Code is not specified or contains an invalid value. /Invoice/cac:AccountingSupplierParty[1]/cac:Party[1]/cac:PostalAddress[1] / bpc:codelist(cac:Country/cbc:IdentificationCode,'ISO-3166') (:NABT-040 Row 62 Tab 'Invoice, Credit Note':)
 Count of data errors: 1

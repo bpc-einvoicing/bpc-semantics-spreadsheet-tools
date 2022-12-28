@@ -1,2 +1,2 @@
-1. The second tax total incorrectly has breakdown information. /Invoice/cac:TaxTotal[2] / count( cac:TaxSubtotal ) = 0 (:NABG-023 Row 197 Tab 'Invoice, Credit Note':)
+1. The second tax total incorrectly has breakdown information. /Invoice/cac:TaxTotal[2] / count( cac:TaxSubtotal ) = 0 (:NABG-023 Row 192 Tab 'Invoice, Credit Note':)
 Count of data errors: 1

@@ -1,2 +1,2 @@
-1. Customer - Accounts Payable Country Code is not valid. /Invoice/cac:AccountingCustomerParty[1]/cac:Party[1]/cac:PostalAddress[1] / bpc:codelist(cac:Country/cbc:IdentificationCode,'ISO-3166') (:NABT-055 Row 121 Tab 'Invoice, Credit Note':)
+1. Customer - Accounts Payable Country Code is not valid. /Invoice/cac:AccountingCustomerParty[1]/cac:Party[1]/cac:PostalAddress[1] / bpc:codelist(cac:Country/cbc:IdentificationCode,'ISO-3166') (:NABT-055 Row 116 Tab 'Invoice, Credit Note':)
 Count of data errors: 1

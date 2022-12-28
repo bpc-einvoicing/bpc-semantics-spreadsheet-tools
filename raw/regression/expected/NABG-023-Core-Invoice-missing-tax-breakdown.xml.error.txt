@@ -1,2 +1,2 @@
-1. Missing Tax Breakdown information. /Invoice/cac:TaxTotal[1] / count( cac:TaxSubtotal ) &gt;= 1 (:NABG-023 Row 195 Tab 'Invoice, Credit Note':)
+1. Missing Tax Breakdown information. /Invoice/cac:TaxTotal[1] / count( cac:TaxSubtotal ) &gt;= 1 (:NABG-023 Row 190 Tab 'Invoice, Credit Note':)
 Count of data errors: 1

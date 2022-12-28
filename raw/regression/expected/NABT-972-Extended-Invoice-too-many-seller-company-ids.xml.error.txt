@@ -1,2 +1,2 @@
-1. More than one Supplier - Seller legal registration identifier exists. /Invoice/cac:SellerSupplierParty[1] / count(cac:Party/cac:PartyLegalEntity/cbc:CompanyID) &lt;= 1 (:NABT-972 Row 91 Tab 'Invoice, Credit Note':)
+1. More than one Supplier - Seller legal registration identifier exists. /Invoice/cac:SellerSupplierParty[1] / count(cac:Party/cac:PartyLegalEntity/cbc:CompanyID) &lt;= 1 (:NABT-972 Row 90 Tab 'Invoice, Credit Note':)
 Count of data errors: 1

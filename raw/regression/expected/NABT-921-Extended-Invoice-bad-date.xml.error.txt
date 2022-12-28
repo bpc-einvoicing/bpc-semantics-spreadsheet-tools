@@ -1,2 +1,2 @@
-1. The period is missing either the start date and/or the end date. /Invoice/cac:InvoiceLine[1]/cac:Price[1]/cac:ValidityPeriod[1] / count (cbc:StartDate) = 1 and count (cbc:EndDate) = 1 (:NABT-921 Row 282 Tab 'Invoice, Credit Note':)
+1. The period is missing either the start date and/or the end date. /Invoice/cac:InvoiceLine[1]/cac:Price[1]/cac:ValidityPeriod[1] / count (cbc:StartDate) = 1 and count (cbc:EndDate) = 1 (:NABT-921 Row 277 Tab 'Invoice, Credit Note':)
 Count of data errors: 1

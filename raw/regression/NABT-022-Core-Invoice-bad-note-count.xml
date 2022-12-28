@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Invoice xmlns="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2">
   <cbc:UBLVersionID>2.3</cbc:UBLVersionID>
-  <cbc:CustomizationID schemeID="bdx-docid-qns">urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##bpc-0.5-data-Core</cbc:CustomizationID>
-  <cbc:ProfileID>bpc-0.5-process#Invoice</cbc:ProfileID>
+  <cbc:CustomizationID schemeID="bdx-docid-qns">urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice##bpc-1.0-data-Core</cbc:CustomizationID>
+  <cbc:ProfileID>bpc-1.0-process#Invoice</cbc:ProfileID>
   <cbc:ID>HBINVOICE</cbc:ID>
   <cbc:IssueDate>2020-03-13</cbc:IssueDate>
   <cbc:DueDate>2020-04-12</cbc:DueDate>
@@ -16,7 +16,6 @@
   </cac:OrderReference>
   <cac:AccountingSupplierParty>
     <cac:Party>
-      <cbc:EndpointID schemeID="0088">GHXPEPHBSUINT</cbc:EndpointID>
       <cac:PartyIdentification>
         <cbc:ID schemeID="DANDB">GHXPEPHBSUINT</cbc:ID>
       </cac:PartyIdentification>
@@ -47,7 +46,6 @@
   </cac:AccountingSupplierParty>
   <cac:AccountingCustomerParty>
     <cac:Party>
-      <cbc:EndpointID schemeID="0088">GHXPEPHBPRINT</cbc:EndpointID>
       <cac:PartyIdentification>
         <cbc:ID schemeID="DANDB">GHXPEPHBPRINT</cbc:ID>
       </cac:PartyIdentification>

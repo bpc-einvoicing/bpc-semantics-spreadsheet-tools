@@ -1,2 +1,2 @@
-1. Product/Service description exists more than once. /Invoice/cac:InvoiceLine[1]/cac:Item[1] / count (cbc:Description) &lt;=1 (:NABT-154 Row 293 Tab 'Invoice, Credit Note':)
+1. Product/Service description exists more than once. /Invoice/cac:InvoiceLine[1]/cac:Item[1] / count (cbc:Description) &lt;=1 (:NABT-154 Row 288 Tab 'Invoice, Credit Note':)
 Count of data errors: 1

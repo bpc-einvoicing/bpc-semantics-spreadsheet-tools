@@ -1,2 +1,2 @@
-1. Missing the Invoice total amount with tax. /Invoice/cac:LegalMonetaryTotal[1] / count (cbc:TaxInclusiveAmount) = 1 (:NABT-112 Row 188 Tab 'Invoice, Credit Note':)
+1. Missing the Invoice total amount with tax. /Invoice/cac:LegalMonetaryTotal[1] / count (cbc:TaxInclusiveAmount) = 1 (:NABT-112 Row 183 Tab 'Invoice, Credit Note':)
 Count of data errors: 1

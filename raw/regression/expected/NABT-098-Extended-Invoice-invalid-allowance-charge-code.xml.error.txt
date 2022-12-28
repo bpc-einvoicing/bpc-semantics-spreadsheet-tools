@@ -1,2 +1,2 @@
-1. Document level discount reason code is invalid. /Invoice/cac:AllowanceCharge[1]/cbc:AllowanceChargeReasonCode[1] / bpc:codelist(.,'UNECE-5189') (:NABT-098 Row 168 Tab 'Invoice, Credit Note':)
+1. Document level discount reason code is invalid. /Invoice/cac:AllowanceCharge[1]/cbc:AllowanceChargeReasonCode[1] / bpc:codelist(.,'UNECE-5189') (:NABT-098 Row 163 Tab 'Invoice, Credit Note':)
 Count of data errors: 1

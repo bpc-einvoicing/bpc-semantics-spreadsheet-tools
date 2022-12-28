@@ -1,2 +1,2 @@
-1. Scheme Identifier does not exist when Supplier - Accounts Payable Legal Registration Identifier is provided. /Invoice/cac:AccountingCustomerParty[1]/cac:Party[1]/cac:PartyLegalEntity[1]/cbc:CompanyID[1] / count (@schemeID) = 1 (:NABT-047-1 Row 112 Tab 'Invoice, Credit Note':)
+1. Scheme Identifier does not exist when Supplier - Accounts Payable Legal Registration Identifier is provided. /Invoice/cac:AccountingCustomerParty[1]/cac:Party[1]/cac:PartyLegalEntity[1]/cbc:CompanyID[1] / count (@schemeID) = 1 (:NABT-047-1 Row 109 Tab 'Invoice, Credit Note':)
 Count of data errors: 1

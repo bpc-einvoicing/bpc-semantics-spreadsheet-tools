@@ -1,2 +1,2 @@
-1. Too many tax total information items /Invoice / if( exists( cbc:TaxCurrencyCode ) ) then count( cac:TaxTotal ) &lt;= 2 else count( cac:TaxTotal ) &lt;= 1 (:NABG-023 Row 196 Tab 'Invoice, Credit Note':)
+1. Too many tax total information items /Invoice / if( exists( cbc:TaxCurrencyCode ) ) then count( cac:TaxTotal ) &lt;= 2 else count( cac:TaxTotal ) &lt;= 1 (:NABG-023 Row 191 Tab 'Invoice, Credit Note':)
 Count of data errors: 1

@@ -1,2 +1,2 @@
-1. Payment Account Identifier is missing. /Invoice/cac:PaymentMeans[1]/cac:PayeeFinancialAccount[1] / count (cbc:ID) = 1 (:NABT-084 Row 148 Tab 'Invoice, Credit Note':)
+1. Payment Account Identifier is missing. /Invoice/cac:PaymentMeans[1]/cac:PayeeFinancialAccount[1] / count (cbc:ID) = 1 (:NABT-084 Row 143 Tab 'Invoice, Credit Note':)
 Count of data errors: 1

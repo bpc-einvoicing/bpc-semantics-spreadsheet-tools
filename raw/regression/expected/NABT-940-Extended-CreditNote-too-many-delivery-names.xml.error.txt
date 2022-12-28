@@ -1,2 +1,2 @@
-1. More than one Document Line Deliver to party name exists. /CreditNote/cac:CreditNoteLine[1]/cac:Delivery[1] / count (cac:DeliveryParty/cac:PartyName/cbc:Name) &lt;= 1 (:NABT-940 Row 234 Tab 'Invoice, Credit Note':)
+1. More than one Document Line Deliver to party name exists. /CreditNote/cac:CreditNoteLine[1]/cac:Delivery[1] / count (cac:DeliveryParty/cac:PartyName/cbc:Name) &lt;= 1 (:NABT-940 Row 229 Tab 'Invoice, Credit Note':)
 Count of data errors: 1

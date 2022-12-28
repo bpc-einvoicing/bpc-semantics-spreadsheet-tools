@@ -1,2 +1,2 @@
-1. Attached document filename is not specified. /Invoice/cac:AdditionalDocumentReference[1]/cac:Attachment[1]/cbc:EmbeddedDocumentBinaryObject[1] / count (@filename ) = 1 (:NABT-125-2 Row 218 Tab 'Invoice, Credit Note':)
+1. Attached document filename is not specified. /Invoice/cac:AdditionalDocumentReference[1]/cac:Attachment[1]/cbc:EmbeddedDocumentBinaryObject[1] / count (@filename ) = 1 (:NABT-125-2 Row 213 Tab 'Invoice, Credit Note':)
 Count of data errors: 1

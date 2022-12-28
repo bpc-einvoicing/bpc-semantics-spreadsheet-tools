@@ -1,2 +1,2 @@
-1. Missing Invoice line period start date and/or Invoice Line Period End Date. /Invoice/cac:InvoiceLine[1]/cac:InvoicePeriod[1] / count (cbc:StartDate) = 1 and count (cbc:EndDate) = 1 (:NABT-134 Row 254 Tab 'Invoice, Credit Note':)
+1. Missing Invoice line period start date and/or Invoice Line Period End Date. /Invoice/cac:InvoiceLine[1]/cac:InvoicePeriod[1] / count (cbc:StartDate) = 1 and count (cbc:EndDate) = 1 (:NABT-134 Row 249 Tab 'Invoice, Credit Note':)
 Count of data errors: 1

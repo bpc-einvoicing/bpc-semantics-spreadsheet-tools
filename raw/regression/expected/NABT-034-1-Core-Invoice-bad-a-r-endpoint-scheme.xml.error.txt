@@ -1,2 +1,0 @@
-1. Supplier - Seller electronic address scheme identifier is not specified /Invoice/cac:AccountingSupplierParty[1]/cac:Party[1]/cbc:EndpointID[1] / count(@schemeID) =1 (:NABT-034-1 Row 57 Tab 'Invoice, Credit Note':)
-Count of data errors: 1

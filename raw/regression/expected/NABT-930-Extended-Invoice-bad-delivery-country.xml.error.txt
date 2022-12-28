@@ -1,2 +1,2 @@
-1. Document Line Deliver to Country Code is invalid. /Invoice/cac:InvoiceLine[1]/cac:Delivery[1]/cac:DeliveryLocation[1]/cac:Address[1] / bpc:codelist(cac:Country/cbc:IdentificationCode,'ISO-3166') (:NABT-930 Row 245 Tab 'Invoice, Credit Note':)
+1. Document Line Deliver to Country Code is invalid. /Invoice/cac:InvoiceLine[1]/cac:Delivery[1]/cac:DeliveryLocation[1]/cac:Address[1] / bpc:codelist(cac:Country/cbc:IdentificationCode,'ISO-3166') (:NABT-930 Row 240 Tab 'Invoice, Credit Note':)
 Count of data errors: 1

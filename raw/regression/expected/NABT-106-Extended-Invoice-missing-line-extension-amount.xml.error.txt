@@ -1,2 +1,2 @@
-1. Sum of invoice line net amount is not specified. /Invoice/cac:LegalMonetaryTotal[1] / count (cbc:LineExtensionAmount) = 1 (:NABT-106 Row 180 Tab 'Invoice, Credit Note':)
+1. Sum of invoice line net amount is not specified. /Invoice/cac:LegalMonetaryTotal[1] / count (cbc:LineExtensionAmount) = 1 (:NABT-106 Row 175 Tab 'Invoice, Credit Note':)
 Count of data errors: 1

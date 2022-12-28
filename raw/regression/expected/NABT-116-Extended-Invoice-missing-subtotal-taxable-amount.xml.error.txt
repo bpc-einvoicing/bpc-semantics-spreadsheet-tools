@@ -1,2 +1,2 @@
-1. Tax Category taxable amount is not specified. /Invoice/cac:TaxTotal[1]/cac:TaxSubtotal[1] / count (cbc:TaxableAmount) =1 (:NABT-116 Row 198 Tab 'Invoice, Credit Note':)
+1. Tax Category taxable amount is not specified. /Invoice/cac:TaxTotal[1]/cac:TaxSubtotal[1] / count (cbc:TaxableAmount) =1 (:NABT-116 Row 193 Tab 'Invoice, Credit Note':)
 Count of data errors: 1

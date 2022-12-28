@@ -1,2 +1,2 @@
-1. Invoiced quantity unit of measure code not specified or value specified is not valid. /Invoice/cac:InvoiceLine[1]/cbc:InvoicedQuantity[1]/@unitCode / bpc:codelist(.,'UNECE-Rec-20-21') (:NABT-130 Row 225 Tab 'Invoice, Credit Note':)
+1. Invoiced quantity unit of measure code not specified or value specified is not valid. /Invoice/cac:InvoiceLine[1]/cbc:InvoicedQuantity[1]/@unitCode / bpc:codelist(.,'UNECE-Rec-20-21') (:NABT-130 Row 220 Tab 'Invoice, Credit Note':)
 Count of data errors: 1

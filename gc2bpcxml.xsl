@@ -438,7 +438,7 @@
         <xsl:sequence select="false()"/>
       </xsl:when>
       <xsl:when test=". = '0..1'">
-        <xsl:sequence select="$new = ('1..1')"/>
+        <xsl:sequence select="$new = ('0..0','1..1')"/>
       </xsl:when>
       <xsl:when test=". = '1..n'">
         <xsl:analyze-string select="$new" regex="1..(\d+)">
